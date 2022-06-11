@@ -1,0 +1,14 @@
+package com.example.eazipsample1.Controller;
+
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HelloWorldController {
+
+    @GetMapping("/api/hello")
+    public String test() {
+        return "어유 드디어 되네22222....";
+    }
+}
