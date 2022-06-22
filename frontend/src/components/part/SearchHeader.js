@@ -8,7 +8,7 @@ import Responsive from '../detail/Responsive';
 const HeaderBlock=styled.div`
 position:fixed;
 width:100%;
-background:rgba(0,0,0,0);
+background:${pallette.white[1]};
 `
 const Wrapper =styled(Responsive)`
 height: 4rem;
@@ -27,33 +27,33 @@ user-select: none;
     letter-spacing:2px;
     font-family: "Gugi";
     font-style: normal;
-    color:white;
+    color:${pallette.orange[0]};
 }
 .middle{
     display:flex;
     align-items: center;
-
-
 }
 .right{
     display: flex;
     align-items: center;
+    margin:auto 12rem auto auto;
 }
     li{
-        margin: auto 12rem auto auto;
+        margin: auto 5rem auto auto;
         padding: 0 0 0 0;
         border : 0;
         float: left;
-        font-size: 1.1rem;
-        font-weight: 600;
-        color:${pallette.white[1]};
+        font-size: 1.2rem;
+        font-weight: 700;
+        color:black;
         list-style:none;
 
         
     }
     li:hover{
-        color:${pallette.orange[0]};
+        color:${pallette.orange[1]};
     }
+
     `;
 const Spacer =styled.div`
 height: 4rem;
@@ -66,7 +66,9 @@ const MainHeader=()=>{
             <Wrapper>
                 <Link to='/' className="logo">EA.ZIP</Link>                    
                 <div className="middle">
-                    <li>
+                </div>
+                <div className="right">
+                <li>
                         <Link to='/'>일반추천</Link>
                     </li>
                     <li>
@@ -78,8 +80,6 @@ const MainHeader=()=>{
                     <li>
                         <Link to='/'>마이페이지</Link>
                     </li>
-                </div>
-                <div className="right">
                 </div>
             </Wrapper>    
         </HeaderBlock>

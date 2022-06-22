@@ -1,4 +1,4 @@
-import MainHeader from "../components/part/MainHeader";
+import SearchHeader from "../components/part/SearchHeader";
 import React from "react";
 import styled from "styled-components";
 
@@ -14,12 +14,12 @@ background-image: url(https://source.unsplash.com/random/1920x1080);
 background-size: cover;
 `;
 
-const SamplePage = () => {
+const SearchPage = () => {
   return (
 <Container>
-    <MainHeader/>
+    <SearchHeader/>
     <div>안녕하세요!</div>
     </Container>
   );
 };
-export default SamplePage;
+export default SearchPage;
