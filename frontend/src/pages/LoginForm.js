@@ -2,10 +2,10 @@ import MainHeader2 from "../components/part/MainHeader2";
 import React from "react";
 import styled from "styled-components";
 import background from "../styles/background/1.jpg"
-import logo1 from '../styles/background/Group 64.svg';
-import naverlogo from '../styles/background/Naver.svg';
-import kakaologo from '../styles/background/Kakao.svg';
-import googlelogo from '../styles/background/Google.svg';
+import logo1 from '../styles/img/Group 64.svg';
+import naverlogo from '../styles/img/Naver.svg';
+import kakaologo from '../styles/img/Kakao.svg';
+import googlelogo from '../styles/img/Google.svg';
 import pallette from "../styles/pallette";
 import { Link } from "react-router-dom";
 import reactNaverLogin from "react-naver-login";

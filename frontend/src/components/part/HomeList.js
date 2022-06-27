@@ -11,7 +11,7 @@ const Listblock=styled.div`
 
 const HomeList =() =>{
     return(
-        <Listblock>asdf</Listblock>
+        <Listblock></Listblock>
     );
 };
 

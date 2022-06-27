@@ -3,7 +3,7 @@ import '../../styles/fonts/font.css';
 import pallette from '../../styles/pallette';
 import {Link} from 'react-router-dom';
 import Responsive from '../detail/Responsive';
-
+import logo from '../../styles/img/Group 65.svg';
 
 const HeaderBlock=styled.div`
 position:fixed;
@@ -67,7 +67,7 @@ const MainHeader=()=>{
         <header>
         <HeaderBlock>
             <Wrapper>
-                <Link to='/' className="logo">EA.ZIP</Link>                    
+            <Link to='/' className="logo"><img src={logo} alt="" /></Link>                    
                 <div className="middle">
                     <li>
                         <Link to='/'>일반추천</Link>

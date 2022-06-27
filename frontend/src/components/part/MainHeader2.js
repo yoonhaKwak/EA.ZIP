@@ -3,7 +3,7 @@ import '../../styles/fonts/font.css';
 import pallette from '../../styles/pallette';
 import { Link } from 'react-router-dom';
 import Responsive from '../detail/Responsive';
-import logo from '../../styles/background/Group 65.svg';
+import logo from '../../styles/img/Group 65.svg';
 
 const HeaderBlock = styled.div`
 position:absolute;

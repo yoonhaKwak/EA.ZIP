@@ -20,7 +20,7 @@ const SamplePage = () => {
   return (
 <Container>
     <MainHeader/>
-    <div>안녕하세요!</div>
+    
     </Container>
   );
 };

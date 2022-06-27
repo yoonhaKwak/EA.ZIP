@@ -4,6 +4,8 @@ import pallette from '../../styles/pallette';
 import {Link} from 'react-router-dom';
 import Responsive from '../detail/Responsive';
 import SearchForm  from '../detail/SearchForm';
+import logo from '../../styles/img/Group 64.svg';
+
 
 
 const HeaderBlock=styled.div`
@@ -69,7 +71,7 @@ const MainHeader=()=>{
         <header>
         <HeaderBlock>
             <Wrapper>
-                <Link to='/' className="logo">EA.ZIP</Link>                    
+            <Link to='/' className="logo"><img src={logo} alt=""/></Link>                    
                 <div className="middle">
                 <SearchForm/>
                 </div>
