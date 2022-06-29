@@ -57,7 +57,7 @@ border-bottom: 1px solid rgba(0,0,0,0.1);
         
     }
     li:hover{
-        color:${pallette.orange[1]};
+        color:${pallette.orange[0]};
     }
 
     `;

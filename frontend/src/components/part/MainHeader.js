@@ -43,7 +43,7 @@ user-select: none;
     
 }
     li{
-        margin: auto 12rem auto 0;
+        margin: auto 6rem auto 6rem;
         padding: 0 0 0 0;
         border : 0;
         float: left;

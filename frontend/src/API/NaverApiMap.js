@@ -1,3 +1,4 @@
+import { NoEncryption } from "@mui/icons-material";
 import React from "react";
 import { RenderAfterNavermapsLoaded, NaverMap } from "react-naver-maps";
 
