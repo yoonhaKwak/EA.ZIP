@@ -2,7 +2,7 @@ import styled from "styled-components";
 import pallette from "../../styles/pallette";
 import React, {Component} from "react";
 import axios from "axios";
-import ItemCard from "components/detail/ItemCard";
+import ListPage from "../detail/ListMaking"
 
 const Listblock=styled.div`
     position:flex;
@@ -27,7 +27,7 @@ class HomeList extends Component {
           // data라는 이름으로 json 파일에 있는 값에 state값을 바꿔준다.
           this.setState({
             loading: true, // load되었으니 true,
-            ItemList: data // 비어있던 Itemlist는 data에 Item객체를 찾아넣어준다. ( Item : json파일에 있는 항목)
+            ItemList: data // 비어있던 Itemlist는 data에 객체를 찾아넣어준다. ( Item : json파일에 있는 항목)
           });
         })
         .catch(e => {
@@ -48,9 +48,7 @@ class HomeList extends Component {
       const { ItemList } = this.state;
       console.log(ItemList);
       return (
-        <div>
-          
-        </div>
+ <Listblock><ListPage Itemcard={ItemList} /></Listblock>
       );
     }
   }
