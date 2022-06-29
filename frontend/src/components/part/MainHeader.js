@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 import '../../styles/fonts/font.css';
 import pallette from '../../styles/pallette';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Responsive from '../detail/Responsive';
 import logo from '../../styles/img/Group 65.svg';
 
-const HeaderBlock=styled.div`
+const HeaderBlock = styled.div`
 position:fixed;
 width:100%;
 background:rgba(0,0,0,0);
 `
-const Wrapper =styled(Responsive)`
+const Wrapper = styled(Responsive)`
 height: 4rem;
 display: fixed;
 align-items: center;
@@ -58,36 +58,36 @@ user-select: none;
         color:${pallette.orange[0]};
     }
     `;
-const Spacer =styled.div`
+const Spacer = styled.div`
 height: 4rem;
 `;
 
-const MainHeader=()=>{
-    return(
+const MainHeader = () => {
+    return (
         <header>
-        <HeaderBlock>
-            <Wrapper>
-            <Link to='/' className="logo"><img src={logo} alt="" /></Link>                    
-                <div className="middle">
-                    <li>
-                        <Link to='/'>일반추천</Link>
-                    </li>
-                    <li>
-                        <Link to='/'>지역추천</Link>
-                    </li>
-                    <li>
-                        <Link to='/'>프리미엄</Link>
-                    </li>
-                    <li>
-                        <Link to='/'>마이페이지</Link>
-                    </li>
-                </div>
-                <div className="right">
+            <HeaderBlock>
+                <Wrapper>
+                    <Link to='/' className="logo"><img src={logo} alt="" /></Link>
+                    <div className="middle">
+                        <li>
+                            <Link to='/'>일반추천</Link>
+                        </li>
+                        <li>
+                            <Link to='/'>지역추천</Link>
+                        </li>
+                        <li>
+                            <Link to='/'>프리미엄</Link>
+                        </li>
+                        <li>
+                            <Link to='/'>마이페이지</Link>
+                        </li>
+                    </div>
+                    <div className="right">
 
-                </div>
-            </Wrapper>    
-        </HeaderBlock>
-        <Spacer/>
+                    </div>
+                </Wrapper>
+            </HeaderBlock>
+            <Spacer />
         </header>
     );
 }

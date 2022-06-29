@@ -61,7 +61,8 @@ const InputText = styled.input`
     }
 `;
 
-const SignIn = (onChange) => {
+const SignIn = () => {
+
     return (
         <Container>
             <MainHeader2 />
@@ -70,24 +71,24 @@ const SignIn = (onChange) => {
                     회원가입
                     <InputBox2>
                         <Button3 to='#'>아이디 확인</Button3>
-                        <InputText1 type="text" onChange={onChange} />
+                        <InputText1 type="text" />
                     </InputBox2>
                     <InputBox1>
-                        <InputText type="password" onChange={onChange} />
+                        <InputText type="password" />
                     </InputBox1>
                     <InputBox1>
-                        <InputText type="password" onChange={onChange} />
+                        <InputText type="password" />
                     </InputBox1>
                     <InputBox1>
-                        <InputText type="text" onChange={onChange} />
+                        <InputText type="text" />
                     </InputBox1>
                     <InputBox1>
-                        <InputText type="text" onChange={onChange} />
+                        <InputText type="text" />
                     </InputBox1>
                     <InputBox1>
-                        <InputText type="text" onChange={onChange} />
+                        <InputText type="text" />
                     </InputBox1>
-                    <Button2 to='#'>완료</Button2>
+                    <Button2>완료</Button2>
                 </Rectangle>
             </Positioner>
         </Container>

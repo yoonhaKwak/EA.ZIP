@@ -3,21 +3,16 @@ import React from "react";
 import styled from "styled-components";
 import HomeList from "../components/part/HomeList";
 import Map from "../components/part/Map";
+import '../styles/css/modal.css';
 
-
-
-
-
-
-
-const Container=styled.div`
+const Container = styled.div`
 position: absolute;
 top: 0;
 left: 0;
 width: 100%;
 height: 100%;
 `;
-const Body=styled.div`
+const Body = styled.div`
 position: fixed;
 display:fixed;
 width:100%;
@@ -44,15 +39,13 @@ background-color:blue;
 
 const SearchPage = () => {
   return (
-<Container>
- 
-    <SearchHeader/>
-    <Body>
-    
-      <div className="left"><HomeList/></div>
-      <div className="right"><Map/></div>
-    
-    </Body>
+    <Container>
+      <SearchHeader />
+      <Body>
+        <div className="left"><HomeList /></div>
+        <div className="right"><Map /></div>l
+
+      </Body>
     </Container>
   );
 };

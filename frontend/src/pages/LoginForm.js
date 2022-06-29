@@ -11,8 +11,8 @@ import { Link } from "react-router-dom";
 import reactNaverLogin from "react-naver-login";
 import KakaoLogin from "react-kakao-login";
 import GoogleLogin from "react-google-login";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SignIn from "./SignIn";
+import { KAKAO_AUTH_URL } from "components/detail/OAuth";
 
 const _clickSnsLoginKakao = (e) => {
     let kakaoid = e.profile.id; // 카카오에서 제공한 ID
@@ -115,9 +115,9 @@ const LoginForm = (onChange) => {
                         <Psns>간편 로그인</Psns>
                         <BorderSpan></BorderSpan>
                     </SnsBox>
-                    <Link to='/' style={{ padding: '20px' }} ><img src={naverlogo} alt="" /></Link>
-                    <Link to='/' style={{ padding: '20px' }}><img src={kakaologo} alt="" /></Link>
-                    <Link to='/' style={{ padding: '20px' }}><img src={googlelogo} alt="" /></Link>
+                    <Buttons1 style={{ padding: '10px' }}><img src={naverlogo} alt="" /></Buttons1>
+                    <Buttons1 style={{ padding: '10px' }}><img src={kakaologo} alt="" /></Buttons1>
+                    <Buttons1 style={{ padding: '10px' }}><img src={googlelogo} alt="" /></Buttons1>
                 </Reactangle>
             </Positioner>
         </Container>
