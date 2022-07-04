@@ -8,7 +8,7 @@ import logo from '../../styles/img/Group 65.svg';
 const HeaderBlock = styled.div`
 position:absolute;
 width:100%;
-background:rgba(0,0,0,0.25);
+background:rgba(0,0,0,0.5);
 `
 const Wrapper = styled(Responsive)`
 height: 4rem;

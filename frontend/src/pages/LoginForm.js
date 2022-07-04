@@ -8,21 +8,6 @@ import kakaologo from '../styles/img/Kakao.svg';
 import googlelogo from '../styles/img/Google.svg';
 import pallette from "../styles/pallette";
 import { Link } from "react-router-dom";
-import reactNaverLogin from "react-naver-login";
-import KakaoLogin from "react-kakao-login";
-import GoogleLogin from "react-google-login";
-import SignIn from "./SignIn";
-import { KAKAO_AUTH_URL } from "components/detail/OAuth";
-
-const _clickSnsLoginKakao = (e) => {
-    let kakaoid = e.profile.id; // 카카오에서 제공한 ID
-};
-const _clickSnsLoginNaver = (e) => {
-    let naverid = e.id; // 네이버에서 제공한 ID
-};
-const _clickSnsLoginGoogle = (e) => {
-    let googleid = e.Ft.NT; // 구글에서 제공한 ID
-};
 
 const Container = styled.div`
 max-width: 1920px; width: 100%;
@@ -32,7 +17,7 @@ background-size: cover;
 
 const Positioner = styled.div`
   display: flex; justify-content: center; align-items: center; width: 100%; padding-top: 180px;
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.5);
 `;
 
 const Reactangle = styled.div`
@@ -106,7 +91,7 @@ const LoginForm = (onChange) => {
                     </InputBox2>
                     <LoginBox href="#">로그인</LoginBox>
                     <div />
-                    <Buttons1 href="SignIn">회원가입</Buttons1>
+                    <Buttons1><Link to='/register'>회원가입</Link></Buttons1>
                     <Buttons2>아이디 찾기</Buttons2>
                     <Buttons2>비밀번호 찾기</Buttons2>
                     <div />

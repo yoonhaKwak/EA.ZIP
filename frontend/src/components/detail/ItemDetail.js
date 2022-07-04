@@ -1,8 +1,9 @@
 import React from "react";
-import '../../styles/css/modal.css';
+import '../../styles/css/ItemDetail.css';
+import styled from "styled-components";
 
 // 필터목록 클릭시 나오는 필터창 구간
-export default function Modal() {
+export default function ItemDetail() {
     return (
         <>
             <div className='modal'>

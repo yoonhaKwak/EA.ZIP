@@ -11,7 +11,7 @@ background-size: cover;
 `;
 
 const Positioner = styled.div`
-  display: flex; justify-content: center; align-items: center; width: 100%; padding-top: 180px;
+  display: flex; justify-content: center; align-items: center; width: 100%; padding-top: 120px;
   background: rgba(0, 0, 0, 0.25);
 `;
 

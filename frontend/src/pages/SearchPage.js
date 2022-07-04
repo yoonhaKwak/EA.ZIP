@@ -1,11 +1,16 @@
 import SearchHeader from "../components/part/SearchHeader";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import HomeList from "../components/part/HomeList";
 import Map from "../components/part/Map";
 import '../styles/css/modal.css';
 import pallette from "styles/pallette";
+import Modal from "components/part/Modal";
 
+const RemoteButton = styled.button`
+  font-size: 20px; border: solid 3px ${pallette.orange[0]}; border-radius: 20px; font-weight: bold; margin: 15px 18px;
+  z-index: 100; position: absolute; width:116px; height:47px; background-color:white; color:#FF9431; cursor: pointer;
+`;
 
 const Container = styled.div`
 position: absolute;
@@ -38,7 +43,7 @@ overflow-y: auto;
       width: 14px;
       height: 8px;
       border-radius: 6px;
-    
+      min-height: 10px;
   
     }
     &::-webkit-scrollbar-thumb {
@@ -59,18 +64,25 @@ overflow-y: auto;
 float:right;
 background-color:white;
 
+
 }
 `;
 
 
 const SearchPage = () => {
+  let [modal, setModal] = useState(false);
   return (
     <Container>
       <SearchHeader />
 
       <Body>
         <div className="left"><HomeList /></div>
-        <div className="right"><Map /></div>l
+        <div className="right"><Map />
+          <RemoteButton onClick={() => { setModal(!modal) }} >필터 목록</RemoteButton>
+          {
+            modal === true ? <Modal /> : null
+          }
+        </div>
 
       </Body>
     </Container>
