@@ -12,9 +12,10 @@ const HeaderBlock = styled.div`
 position:fixed;
 width:100%;
 background:${pallette.white[1]};
+
 `
 const Wrapper = styled(Responsive)`
-height: 4rem;
+padding-top:0.4rem;
 display: fixed;
 align-items: center;
 justify-content: space-between;
@@ -23,7 +24,7 @@ justify-content: space-between;
 -khtml-user-select: none;
 -webkit-user-select: none;
 user-select: none;
-border-bottom: 1px solid rgba(0,0,0,0.1);
+
 
 .logo{
     font-size:2.765rem;
@@ -68,7 +69,7 @@ height: 4rem;
 
 const MainHeader = () => {
     return (
-        <header>
+<>
             <HeaderBlock>
                 <Wrapper>
                     <Link to='/' className="logo"><img src={logo} alt="" /></Link>
@@ -95,7 +96,7 @@ const MainHeader = () => {
                 </Wrapper>
             </HeaderBlock>
             <Spacer />
-        </header>
+</>
     );
 }
 
