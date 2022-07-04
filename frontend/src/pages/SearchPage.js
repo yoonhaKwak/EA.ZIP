@@ -71,6 +71,12 @@ background-color:white;
 
 const SearchPage = () => {
   let [modal, setModal] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+
+  const handleClick = () => {
+    setIsActive(current => !current);
+  };
+
   return (
     <Container>
       <SearchHeader />
@@ -78,7 +84,12 @@ const SearchPage = () => {
       <Body>
         <div className="left"><HomeList /></div>
         <div className="right"><Map />
-          <RemoteButton onClick={() => { setModal(!modal) }} >필터 목록</RemoteButton>
+          <RemoteButton
+            style={{
+              backgroundColor: isActive ? 'white' : '',
+              color: isActive ? '#FF9431' : ''
+            }}
+            onClick={(handleClick) => { setModal(!modal) }} >필터 목록</RemoteButton>
           {
             modal === true ? <Modal /> : null
           }
