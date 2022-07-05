@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Responsive from '../detail/Responsive';
 import logo from '../../styles/img/Group 65.svg';
 
+
 const HeaderBlock = styled.div`
 position:fixed;
 width:100%;
@@ -70,7 +71,7 @@ const MainHeader = () => {
                     <Link to='/' className="logo"><img src={logo} alt="" /></Link>
                     <div className="middle">
                         <li>
-                            <Link to='/'>일반추천</Link>
+                            <Link to='/search'>일반추천</Link>
                         </li>
                         <li>
                             <Link to='/'>지역추천</Link>
@@ -83,7 +84,9 @@ const MainHeader = () => {
                         </li>
                     </div>
                     <div className="right">
-
+                        <li>
+                            <Link to='/login'>로그인</Link>
+                        </li>
                     </div>
                 </Wrapper>
             </HeaderBlock>
