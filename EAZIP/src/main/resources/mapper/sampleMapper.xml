@@ -5,4 +5,8 @@
     <select id="selectData" resultType="bit.project.eazip.domain.SampleDTO">
         SELECT * from hospital_tbl where name = "서울유병원";
     </select>
+
+    <select id="selectList" resultType="bit.project.eazip.domain.SampleDTO">
+        select * from hospital_tbl where name LIKE "서울%";
+    </select>
 </mapper>

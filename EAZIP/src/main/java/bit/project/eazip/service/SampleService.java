@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface SampleService {
     public SampleDTO selectData();
+
+    public List<SampleDTO> selectList();
 }

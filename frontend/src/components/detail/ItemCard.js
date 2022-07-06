@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import pallette from "styles/pallette";
 import DefaultImg from "../../styles/img/DefaultHomeImg.svg";
@@ -266,6 +266,7 @@ function ItemCard({ key, ImageUrl, Category2, Name, Feature,
   /*-----------------------------------------------------------[뽀짝뽀짝]-------------------------------------------------------------------*/
 
 
+
   return (
     <Block>
       <ul>
@@ -273,7 +274,7 @@ function ItemCard({ key, ImageUrl, Category2, Name, Feature,
 
 
 
-          <Table>
+          <Table style={{ cursor: 'pointer' }}>
             <div className="leftarea">
               {image}
             </div>
@@ -315,7 +316,6 @@ function ItemCard({ key, ImageUrl, Category2, Name, Feature,
               </ListFeature>
             </div>
           </Table>
-
         </li>
       </ul>
 

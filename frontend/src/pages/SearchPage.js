@@ -6,6 +6,7 @@ import Map from "../components/part/Map";
 import '../styles/css/modal.css';
 import pallette from "styles/pallette";
 import Modal from "components/part/Modal";
+import ItemDetail from "components/part/ItemDetail";
 
 const RemoteButton = styled.button`
   font-size: 20px; border: solid 3px ${pallette.orange[0]}; border-radius: 20px; font-weight: bold; margin: 15px 18px;
@@ -76,9 +77,10 @@ background-color:white;
 
 
 const SearchPage = () => {
+  let [itemdetail, setItemDetail] = useState(false);
   let [modal, setModal] = useState(false);
-  const [isActive, setIsActive] = useState(false);
 
+  const [isActive, setIsActive] = useState(false);
   const handleClick = () => {
     setIsActive(current => !current);
   };
@@ -86,9 +88,13 @@ const SearchPage = () => {
   return (
     <Container>
       <SearchHeader />
-
+      <RemoteButton >상세정보</RemoteButton>
+      {
+        itemdetail === true ? <ItemDetail /> : null
+      }
       <Body>
-        <div className="left"><HomeList /></div>
+        <div className="left" style={{ zindex: '50' }}><HomeList />
+        </div>
         <div className="right"><Map />
           <RemoteButton
             style={{
@@ -100,8 +106,8 @@ const SearchPage = () => {
             modal === true ? <Modal /> : null
           }
         </div>
-
       </Body>
+
     </Container>
   );
 };

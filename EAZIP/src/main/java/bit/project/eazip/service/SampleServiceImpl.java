@@ -18,4 +18,10 @@ public class SampleServiceImpl implements SampleService {
         log.info("ServiceImpl 랄라~");
         return sampleMapper.selectData();
     }
+
+    @Override
+    public List<SampleDTO> selectList() {
+        log.info("리스트 리스트!");
+        return sampleMapper.selectList();
+    }
 }

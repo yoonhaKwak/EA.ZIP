@@ -7,4 +7,6 @@ import java.util.List;
 @Mapper
 public interface SampleMapper {
     public SampleDTO selectData();
+
+    public List<SampleDTO> selectList();
 }
