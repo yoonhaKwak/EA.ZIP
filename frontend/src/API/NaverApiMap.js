@@ -23,7 +23,7 @@ export const NaverApiMap = () => {
           height: '100%'
         }}
         defaultCenter={{ lat: 37.4946012, lng: 127.027561 }}
-        defaultZoom={15}
+        defaultZoom={13}
       >
         <Marker
           key={1}

@@ -34,6 +34,11 @@ user-select: none;
     font-style: normal;
     color:${pallette.orange[0]};
 }
+
+.logo img{
+    width:140px;
+    height:40px;
+}
 .middle{
     display:flex;
     align-items: center;
@@ -69,7 +74,7 @@ height: 4rem;
 
 const MainHeader = () => {
     return (
-<>
+        <>
             <HeaderBlock>
                 <Wrapper>
                     <Link to='/' className="logo"><img src={logo} alt="" /></Link>
@@ -78,7 +83,7 @@ const MainHeader = () => {
                     </div>
                     <div className="right">
                         <li>
-                            <Link to='/'>일반추천</Link>
+                            <Link to='/search'>일반추천</Link>
                         </li>
                         <li>
                             <Link to='/'>지역추천</Link>
@@ -90,13 +95,13 @@ const MainHeader = () => {
                             <Link to='/'>마이페이지</Link>
                         </li>
                         <li>
-                            <Link to='/'>로그인</Link>
+                            <Link to='/login'>로그인</Link>
                         </li>
                     </div>
                 </Wrapper>
             </HeaderBlock>
             <Spacer />
-</>
+        </>
     );
 }
 

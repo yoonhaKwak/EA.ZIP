@@ -22,6 +22,8 @@ class Listpage extends Component {
                 Trading={itemdata.매매가}
                 Selling={itemdata.매물거래구분}
                 Room={itemdata.방수}
+                Deposit={itemdata.월세보증금}
+                SupplyP={itemdata.공급면적평}
 
               //이미지,특징광고내용,전세가,월세가,매매가,카테고리2,공급면적,
               //적용면적,매물거래구분(1:매매,2:전세,3:월세)
