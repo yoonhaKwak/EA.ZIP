@@ -107,19 +107,16 @@ height:100%
 function ItemCard({ key, ImageUrl, Category2, Name, Feature,
   Supply, Dedicated, Jeonse, Monthly, Trading, Selling, Room, Deposit, SupplyP }) {
 
+
+
+  /*--------------------------------------------[나만이 아는 코드임 뚜방뚜방]------------------------------------------*/
+
+
+
   let price = (Jeonse + Monthly + Trading).toFixed(0);
   let result = (Trading / SupplyP).toFixed(0);
   let supply = (Supply).toFixed(0);
   let dedicated = (Dedicated).toFixed(0);
-
-
-
-
-
-
-
-
-
 
   let pricel;
   let realprice;
@@ -242,12 +239,31 @@ function ItemCard({ key, ImageUrl, Category2, Name, Feature,
     }
   }
 
+  /*-----------------------------------------------------------[뽀짝뽀짝]-------------------------------------------------------------------*/
 
 
 
 
+  /*---------------------------------------------------[이미지 불러오는 함수 뚜방뚜방]-------------------------------------------------------*/
+  let image = (ImageUrl);
+  image = image.replace(/\'/g, "");
+
+  image = image.replace(/\[/g, "");
+  image = image.replace(/\]/g, "");
+
+  let imagearray = image.split(',');
+  const onErrorImg = (e) => {
+    e.target.src = DefaultImg;
+  }
 
 
+  if (imagearray[0] === "") {
+    image = <img src={DefaultImg} className="image--itemcard" alt="" />
+  }
+  else {
+    image = <img src={imagearray[0]} className="image--itemcard" onError={onErrorImg} alt="" />
+  }
+  /*-----------------------------------------------------------[뽀짝뽀짝]-------------------------------------------------------------------*/
 
 
   return (
@@ -259,10 +275,7 @@ function ItemCard({ key, ImageUrl, Category2, Name, Feature,
 
           <Table>
             <div className="leftarea">
-              {ImageUrl === [] ? <img src={ImageUrl[0]} className="image--itemcard" alt="" />
-                :
-                <img src={DefaultImg} className="image--itemcard" alt="" />}
-
+              {image}
             </div>
             <div className="rightarea">
               <ListFeature>
