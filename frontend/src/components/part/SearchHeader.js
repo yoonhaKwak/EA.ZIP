@@ -92,7 +92,7 @@ const MainHeader = () => {
                             <Link to='/'>프리미엄</Link>
                         </li>
                         <li>
-                            <Link to='/'>마이페이지</Link>
+                            <Link to='/Mypage'>마이페이지</Link>
                         </li>
                         <li>
                             <Link to='/login'>로그인</Link>

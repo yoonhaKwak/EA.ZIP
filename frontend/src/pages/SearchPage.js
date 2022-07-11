@@ -88,7 +88,6 @@ const SearchPage = () => {
   return (
     <Container>
       <SearchHeader />
-      <RemoteButton >상세정보</RemoteButton>
       {
         itemdetail === true ? <ItemDetail /> : null
       }
