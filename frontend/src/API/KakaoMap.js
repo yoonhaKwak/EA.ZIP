@@ -1,25 +1,21 @@
-import { Map, MapMarker, MarkerClusterer, CustomOverlayMap } from "react-kakao-maps-sdk";
+import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk";
 import { useEffect, useState } from 'react';
 import SearchMarker from '../styles/icons/Group 68.svg';
 import axios from "axios";
 import jQuery from "jquery";
 
 function KakaoMap() {
-    const [info, setInfo] = useState();
     const [markers, setMarkers] = useState([]);
     const [error, setError] = useState(null);
-    const [map, setMap] = useState();
 
     const fetchMarkers = async () => {
         try {
-            setError(null);
             setMarkers(null);
             const response = await axios
                 .get('./Sample.json');
             setMarkers(response.data);
         }
         catch (e) {
-            setError(e);
         }
     };
 
@@ -39,7 +35,6 @@ function KakaoMap() {
             }}
             style={{ width: "1415px", height: "865px" }}
             level={7}
-            onCreate={setMap}
         >
             <MarkerClusterer
                 averageCenter={true}

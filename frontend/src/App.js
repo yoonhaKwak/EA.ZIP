@@ -5,7 +5,6 @@ import LoginForm from 'pages/LoginForm';
 import SignIn from 'pages/SignIn';
 import Modal from 'components/part/Modal';
 import ItemDetail from 'components/part/ItemDetail';
-
 import Mypage from 'pages/Mypage';
 import KakaoMap from 'API/KakaoMap';
 
@@ -19,10 +18,8 @@ function App() {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<SignIn />} />
-
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/kakaomap" element={<KakaoMap />} />
-
       </Routes>
     </Router>
   );

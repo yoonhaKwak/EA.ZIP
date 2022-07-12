@@ -16,16 +16,16 @@ const Positioner = styled.div`
 `;
 
 const Rectangle = styled.div`
-  width: 610px; background-color: #f6f6f6; box-shadow: 4px 4px 20px 0 rgba(0, 0, 0, 0.25); text-align:center; font-size: 35px;
-  border: 4px solid #ff9431; height: 640px; border-radius: 70px; margin-bottom: 160px; font-weight: bold; color: #ff9431; padding-top: 46px;
+  width: 610px; background-color: #f6f6f6; box-shadow: 4px 4px 20px 0 rgba(0, 0, 0, 0.25); text-align:left; font-size: 35px;
+  border: 4px solid #ff9431; height: 640px; border-radius: 70px; margin-bottom: 160px; font-weight: bold; color: #ff9431; padding-top: 97px;
 `;
 
 const InputBox1 = styled.div`
-    max-width: 420px; width: 100%; margin: auto; margin-bottom: 20px;
+    max-width: 420px; width: 100%; margin: auto;
 `;
 
 const InputBox2 = styled.div`
-    max-width: 420px; width: 100%; margin: 30px auto;
+    max-width: 420px; width: 100%; margin: 0 auto;
 `;
 
 const Button2 = styled.button`
@@ -39,7 +39,7 @@ const Button3 = styled.button`
 
 const InputText1 = styled.input`
     width: 300px; font-size: 18px; box-sizing: border-box; height: 45px; float: left;
-    border: 1px solid #d1d1d1; border-radius: 10px; padding-left:15px; 
+    border: 1px solid #d1d1d1; border-radius: 10px; padding-left:15px; margin: 0 0 15px 1px;
     :focus {
         outline: none;
         width: 300px; 
@@ -68,24 +68,34 @@ const SignIn = () => {
             <MainHeader2 />
             <Positioner>
                 <Rectangle>
-                    회원가입
+                    <div style={{ textAlign: "center" }}>회원가입</div>
                     <InputBox2>
-                        <Button3 to='#'>아이디 확인</Button3>
-                        <InputText1 type="text" />
+                        <span style={{ color: 'red', fontSize: '13px', paddingBottom: '10px' }}>*</span>
+                        <span style={{ color: '#C6C6C6', fontSize: '13px', marginRight: '370px' }}>아이디</span>
+                        <InputText1 type="text" /><Button3 to='#'>아이디 확인</Button3>
                     </InputBox2>
                     <InputBox1>
+                        <span style={{ color: 'red', fontSize: '13px', paddingBottom: '10px', margin: '6px' }}>*</span>
+                        <span style={{ color: '#C6C6C6', fontSize: '13px', marginRight: '370px', margin: '1px' }}>비밀번호</span>
                         <InputText type="password" />
                     </InputBox1>
                     <InputBox1>
+                        <span style={{ color: 'red', fontSize: '13px', textAlign: "left" }}>*</span>
+                        <span style={{ color: '#C6C6C6', fontSize: '13px', textAlign: "left" }}>비밀번호 확인</span>
                         <InputText type="password" />
                     </InputBox1>
                     <InputBox1>
+                        <span style={{ color: 'red', fontSize: '13px', textAlign: "left" }}>*</span>
+                        <span style={{ color: '#C6C6C6', fontSize: '13px', textAlign: "left" }}>이름</span>
                         <InputText type="text" />
                     </InputBox1>
                     <InputBox1>
+                        <span style={{ color: 'red', fontSize: '13px', textAlign: "left" }}>*</span>
+                        <span style={{ color: '#C6C6C6', fontSize: '13px', textAlign: "left" }}>이메일</span>
                         <InputText type="text" />
                     </InputBox1>
                     <InputBox1>
+                        <span style={{ color: '#C6C6C6', fontSize: '13px', textAlign: "left" }}>전화번호</span>
                         <InputText type="text" />
                     </InputBox1>
                     <Button2>완료</Button2>
