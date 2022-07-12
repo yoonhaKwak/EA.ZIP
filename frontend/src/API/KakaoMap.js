@@ -2,17 +2,20 @@ import { Map, MapMarker, MarkerClusterer, CustomOverlayMap } from "react-kakao-m
 import { useEffect, useState } from 'react';
 import SearchMarker from '../styles/icons/Group 68.svg';
 import axios from "axios";
+import jQuery from "jquery";
 
 function KakaoMap() {
+    const [info, setInfo] = useState();
     const [markers, setMarkers] = useState([]);
     const [error, setError] = useState(null);
+    const [map, setMap] = useState();
 
     const fetchMarkers = async () => {
         try {
             setError(null);
             setMarkers(null);
             const response = await axios
-                .get('./gangnam.json');
+                .get('./Sample.json');
             setMarkers(response.data);
         }
         catch (e) {
@@ -30,9 +33,13 @@ function KakaoMap() {
 
     return (
         <Map
-            center={{ lat: 37.4946012, lng: 127.027561 }}
+            center={{
+                lat: 37.4946012,
+                lng: 127.027561
+            }}
             style={{ width: "1415px", height: "865px" }}
             level={7}
+            onCreate={setMap}
         >
             <MarkerClusterer
                 averageCenter={true}
@@ -76,12 +83,12 @@ function KakaoMap() {
             >
                 {markers.map((marker) => (
                     <MapMarker
-                        key={`${marker.WGS84위도}-${marker.WGS84경도}`}
+                        key={`${marker.lat},${marker.lng}`}
                         position={{
                             lat: marker.WGS84위도,
-                            lng: marker.WGS84경도,
+                            lng: marker.WGS84경도
                         }}
-                        onClick={() => { alert(console.log('메물상세정보')) }}
+                        onClick={() => { }}
                         image={{
                             src: SearchMarker,
                             size: {
@@ -95,10 +102,12 @@ function KakaoMap() {
                                 },
                             },
                         }}
-                    />
+
+                    >
+                    </MapMarker>
                 ))}
             </MarkerClusterer>
-        </Map>
+        </Map >
     );
 }
 

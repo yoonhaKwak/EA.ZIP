@@ -1,3 +1,4 @@
+
 import SearchHeader from "../components/part/SearchHeader";
 import React, { useState } from "react";
 import styled from "styled-components";
@@ -6,7 +7,8 @@ import Map from "../components/part/Map";
 import '../styles/css/modal.css';
 import pallette from "styles/pallette";
 import Modal from "components/part/Modal";
-import ItemDetail from "components/part/ItemDetail";
+
+
 
 const RemoteButton = styled.button`
   font-size: 20px; border: solid 3px ${pallette.orange[0]}; border-radius: 20px; font-weight: bold; margin: 15px 18px;
@@ -88,9 +90,9 @@ const SearchPage = () => {
   return (
     <Container>
       <SearchHeader />
-      {
-        itemdetail === true ? <ItemDetail /> : null
-      }
+
+
+
       <Body>
         <div className="left" style={{ zindex: '50' }}><HomeList />
         </div>

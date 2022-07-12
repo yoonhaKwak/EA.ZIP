@@ -5,7 +5,7 @@ import KakaoMap from "API/KakaoMap";
 
 function Map() {
   return (
-    <KakaoMap></KakaoMap>
+    <KakaoMap />
   );
 }
 

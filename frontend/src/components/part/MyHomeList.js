@@ -23,7 +23,7 @@ class MyHomeList extends Component {
   loadItem = async () => {
     // Json Data 불러오기
     axios // axios를 이용해
-      .get("./Sample.json") // json을 가져온다음
+      .get("./gangnam0708.json") // json을 가져온다음
       .then(({ data }) => {
         console.log(data.data)// data라는 이름으로 json 파일에 있는 값에 state값을 바꿔준다.
         this.setState({
