@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper>
+<mapper namespace="bit.project.eazip.mapper.home.HomeMapper">
+
+    <select id="getList" resultType="bit.project.eazip.domain.home.HomeDTO">
+        SELECT * from gangnam0712 WHERE idx IN
+        <foreach collection="array" item="arr" open="(" close=")" separator=",">
+            #{arr}
+        </foreach>
+    </select>
+
+
+
 
 </mapper>

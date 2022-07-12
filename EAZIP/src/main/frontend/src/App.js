@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import TestApi from "./TestApi";
+import HomeApi from "./HomeApi";
 
 function App() {
   return (
