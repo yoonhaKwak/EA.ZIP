@@ -1,11 +1,14 @@
-import React, {useState} from "react";
-import axios from "axios";
-import TestApi from './TestApi';
+import logo from './logo.svg';
+import './App.css';
+import TestApi from "./TestApi";
 
-const App = () =>  {
-
+function App() {
   return (
+    <div className="App">
+      <header className="App-header">
         <TestApi/>
+      </header>
+    </div>
   );
 }
 

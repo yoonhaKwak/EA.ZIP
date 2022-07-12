@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useEffect} from "react";
 import axios from "axios";
 import {useState} from "react";
+
 
 function TestApi() {
     const [data, setData] = useState(null);
@@ -8,10 +9,22 @@ function TestApi() {
     const [bus, setBus] = useState('null');
     const [subway, setSubway] = useState('null');
     const [time, setTime] = useState('null');
+    const [lat, setLat] = useState('null');
+    const [lng, setLng] = useState('null');
+    useEffect( () => {
+        axios.get('/react/lat')
+            .then(response => setLat(response.data))
+            .catch(error => console.log(error))
+    });
+    useEffect( () => {
+        axios.get('/react/lng')
+            .then(response => setLng(response.data))
+            .catch(error => console.log(error))
+    });
     const onClick = async () => {
         try {
             const response = await axios.get(
-                'https://api.odsay.com/v1/api/searchPubTransPath?SX=126.9027279&SY=37.5349277&EX=127.0272405799&EY=37.61232432639&apiKey=j7A34MnqbWGfZQwWtVRUtqkal9YXPsGl%2BQGMho8v2ag',
+                'https://api.odsay.com/v1/api/searchPubTransPath?SX=126.9027279&SY=37.5349277&EX='+`${lng}`+'&EY='+`${lat}`+'&apiKey=j7A34MnqbWGfZQwWtVRUtqkal9YXPsGl%2BQGMho8v2ag',
             );
             console.log("교통API 가져옴:)")
             setData(response.data.result.path[0].info)
@@ -34,7 +47,7 @@ function TestApi() {
                     'subwayTransitCount' : subway,
                     'totalTime': time
                 },
-                withCredentials : true,
+                baseURL :'http://localhost:8080'
             }
         ).then(function (response) {
             console.log("WOW 드디어 8080 됐다~")
@@ -51,9 +64,14 @@ function TestApi() {
             <div>
                 <button onClick={()=>Back()}>보내기</button>
             </div>
+
+            <div>
+                <h2>{lat}</h2>
+                <hr/>
+                <h2>{lng}</h2>
+            </div>
         </div>
     )
-
 }
 
 export default TestApi;

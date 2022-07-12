@@ -1,5 +1,5 @@
 import MainHeader2 from "../components/part/MainHeader2";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import background from "../styles/background/1.jpg"
 import logo1 from '../styles/img/Group 64.svg';
@@ -8,6 +8,7 @@ import kakaologo from '../styles/img/Kakao.svg';
 import googlelogo from '../styles/img/Google.svg';
 import pallette from "../styles/pallette";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Container = styled.div`
 max-width: 1920px; width: 100%;
@@ -39,7 +40,21 @@ const InputBox2 = styled.div`
     text-align: center;
 `;
 
-const InputText = styled.input`
+const HandleInputId = styled.input`
+    width: 100%; font-size: 18px; box-sizing: border-box;
+    height: 45px;
+    border: 1px solid #d1d1d1; border-radius: 10px;
+    padding-left:15px;
+    :focus {
+        outline: none;
+        width: 100%; 
+    }
+    ::placeholder {
+        color: #c6c6c6;
+    }
+`;
+
+const HandleInputPw = styled.input`
     width: 100%; font-size: 18px; box-sizing: border-box;
     height: 45px;
     border: 1px solid #d1d1d1; border-radius: 10px;
@@ -76,7 +91,29 @@ const Psns = styled.p`
     font-size: 14px; color: #854800; font-weight: bold; display: inline-block; margin: 0 9.5%; padding-bottom: 30px;
 `;
 
-const LoginForm = (onChange) => {
+const LoginForm = () => {
+    const [inputId, setInputId] = useState('')
+    const [inputPw, setInputPw] = useState('')
+
+    // input data 의 변화가 있을 때마다 value 값을 변경해서 useState 해준다
+    const handleInputId = (e) => {
+        setInputId(e.target.value)
+    }
+    const handleInputPw = (e) => {
+        setInputPw(e.target.value)
+    }
+    // login 버튼 클릭 이벤트
+    const onClickLogin = () => {
+        console.log('click login')
+    }
+    // 페이지 렌더링 후 가장 처음 호출되는 함수
+    useEffect(() => {
+        axios.get('./logintest.json')
+            .then(res => console.log(res))
+            .catch()
+    },
+        // 페이지 호출 후 처음 한번만 호출될 수 있도록 [] 추가
+        [])
     return (
         <Container>
             <MainHeader2 />
@@ -84,12 +121,12 @@ const LoginForm = (onChange) => {
                 <Reactangle>
                     <Logo to='/'><img src={logo1} alt="" /></Logo>
                     <InputBox1>
-                        <InputText placeholder="아이디" type="text" onChange={onChange} />
+                        <HandleInputId placeholder="아이디" name="input_id" type="text" value={inputId} onChange={handleInputId} />
                     </InputBox1>
                     <InputBox2>
-                        <InputText placeholder="비밀번호" type="password" onChange={onChange} />
+                        <HandleInputPw placeholder="비밀번호" name="input_pw" type="password" value={inputPw} onChange={handleInputPw} />
                     </InputBox2>
-                    <LoginBox href="#">로그인</LoginBox>
+                    <LoginBox onClick={onClickLogin}>로그인</LoginBox>
                     <div />
                     <Buttons1><Link to='/register'>회원가입</Link></Buttons1>
                     <Buttons2>아이디 찾기</Buttons2>

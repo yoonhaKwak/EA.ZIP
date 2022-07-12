@@ -7,6 +7,6 @@
     </select>
 
     <select id="selectList" resultType="bit.project.eazip.domain.SampleDTO">
-        select * from hospital_tbl where name LIKE "서울%";
+        select * from hospital_tbl;
     </select>
 </mapper>
