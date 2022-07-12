@@ -469,6 +469,7 @@ border-radius: 15px;
                                             빌라: <img src={Villa} className="default" alt="" />,
                                             오피스텔: <img src={Officetell} className="officetell" alt="" />,
                                             주택: <img src={Housing} className="default" alt="" />,
+                                            도시형생활주택: <img src={Housing} className="default" alt="" />,
                                             null: null
                                         }[Category2]}
 
@@ -528,6 +529,7 @@ border-radius: 15px;
 
                                         오피스텔: <img src={Officetell} className="officetall" alt="" />,
                                         주택: <img src={Housing} className="default" alt="" />,
+                                        도시형생활주택: <img src={Housing} className="default" alt="" />,
                                         null: null
                                     }[Category2]}
                                 </div>
