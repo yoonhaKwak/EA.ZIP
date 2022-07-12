@@ -2,7 +2,7 @@ import styled from "styled-components";
 import pallette from "../../styles/pallette";
 import React, { Component } from "react";
 import axios from "axios";
-import ListPage from "../detail/ListMaking"
+import ListPage from "../detail/Listpage"
 
 const Listblock = styled.div`
     position:flex;

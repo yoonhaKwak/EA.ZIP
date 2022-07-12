@@ -8,7 +8,6 @@ import { RenderAfterNavermapsLoaded } from 'react-naver-maps';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
-
   <RenderAfterNavermapsLoaded ncpClientId={"dthfefzurc"}>
     <App />
 

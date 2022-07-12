@@ -8,8 +8,6 @@ import '../styles/css/modal.css';
 import pallette from "styles/pallette";
 import Modal from "components/part/Modal";
 
-
-
 const RemoteButton = styled.button`
   font-size: 20px; border: solid 3px ${pallette.orange[0]}; border-radius: 20px; font-weight: bold; margin: 15px 18px;
   z-index: 100; position: absolute; width:116px; height:47px; background-color:white; color:#FF9431; cursor: pointer;
@@ -90,8 +88,6 @@ const SearchPage = () => {
   return (
     <Container>
       <SearchHeader />
-
-
 
       <Body>
         <div className="left" style={{ zindex: '50' }}><HomeList />

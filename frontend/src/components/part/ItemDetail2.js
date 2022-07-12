@@ -154,4 +154,5 @@ const ItemDetail2 = (props) => {
   );
 };
 
+
 export default ItemDetail2;

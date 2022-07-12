@@ -430,7 +430,6 @@ hr{
 }
 .Long{
   width:690px;
-
   padding-top:20px;
   padding-left:40px;
   word-break:initial;
