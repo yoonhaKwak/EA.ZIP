@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import MyHomeList from "../components/part/MyHomeList";
 import MapMy from "../components/part/MapMy";
-import '../styles/css/modal.css';
 import pallette from "styles/pallette";
 
 const Container = styled.div`
