@@ -8,4 +8,8 @@ public interface SampleService {
     public SampleDTO selectData();
 
     public List<SampleDTO> selectList();
+
+    public List<Double> selectLat();
+
+    public List<Double> selectLng();
 }

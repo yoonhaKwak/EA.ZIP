@@ -11,16 +11,19 @@ function TestApi() {
     const [time, setTime] = useState('null');
     const [lat, setLat] = useState('null');
     const [lng, setLng] = useState('null');
+    const [i, setI] = useState(0);
+    const [idx , setIdx] = useState('null');
+
     useEffect( () => {
-        axios.get('/react/lat')
-            .then(response => setLat(response.data))
+        axios.get('/react/coordinate')
+            .then(response => setLat(response.data[i].lat)&setIdx(response.data[i].idx)&setLng(response.data[i].lng))
             .catch(error => console.log(error))
     });
-    useEffect( () => {
-        axios.get('/react/lng')
-            .then(response => setLng(response.data))
-            .catch(error => console.log(error))
-    });
+
+    const Up = async () => {
+        setI(i+1)
+    }
+
     const onClick = async () => {
         try {
             const response = await axios.get(
@@ -39,13 +42,11 @@ function TestApi() {
     const Back = async () => {
         axios(
             {
-                url: '/react/api',
+                url: '/react/httpapi',
                 method: 'post',
                 data: {
-                    'totalWalk': walk,
-                    'busTransitCount': bus,
-                    'subwayTransitCount' : subway,
-                    'totalTime': time
+                    'lat' : '37.4882984',
+                    'lng' : '127.0483885'
                 },
                 baseURL :'http://localhost:8080'
             }
@@ -61,6 +62,7 @@ function TestApi() {
             <li>도보거리 : {walk}m</li>
             <li>환승횟수 : {bus+subway -1}회</li>
             <li>소요시간 : {time}분</li>
+            <button onClick={()=>Up()}>다음</button>
             <div>
                 <button onClick={()=>Back()}>보내기</button>
             </div>

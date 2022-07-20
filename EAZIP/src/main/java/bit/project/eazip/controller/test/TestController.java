@@ -28,6 +28,7 @@ public class TestController {
     @GetMapping("/hospitalList")
     public List<SampleDTO> selectList(){
         log.info("controller list~~~~~~~~~");
+        System.out.println(service.selectList());
         return service.selectList();
     }
 }
