@@ -1,0 +1,25 @@
+.heart {
+    width: 500px;
+    height: 500px;
+    background: #FF9431;
+    position: relative;
+    transform: rotate(45deg);
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    border-radius: 50%;
+    background: #FF9431;
+}
+
+.heart::before {
+    left: -50%;
+}
+
+.heart::after {
+    top: -50%;
+}

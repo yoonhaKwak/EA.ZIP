@@ -1,16 +1,23 @@
+
 import SearchHeader from "../components/part/SearchHeader";
 import React, { useState } from "react";
 import styled from "styled-components";
 import HomeList from "../components/part/HomeList";
 import Map from "../components/part/Map";
-import '../styles/css/modal.css';
 import pallette from "styles/pallette";
 import Modal from "components/part/Modal";
-import ItemDetail from "components/part/ItemDetail";
+import KakaoMap from "API/KakaoMap";
+import KakaoSearch from "API/KakaoSearch";
+import SpeakBox from "components/part/SpeakBox";
 
 const RemoteButton = styled.button`
   font-size: 20px; border: solid 3px ${pallette.orange[0]}; border-radius: 20px; font-weight: bold; margin: 15px 18px;
   z-index: 100; position: absolute; width:116px; height:47px; background-color:white; color:#FF9431; cursor: pointer;
+`;
+
+const QuestionMark = styled.button`
+  font-size: 30px; border: none; border-radius:25px; font-weight: bold; margin: 15px 150px; z-index: 100; position: absolute;
+   width: 45px; height: 45px; background-color:#FF9431; color: white; cursor:pointer;
 `;
 
 const Container = styled.div`
@@ -75,9 +82,8 @@ background-color:white;
 }
 `;
 
-
 const SearchPage = () => {
-  let [itemdetail, setItemDetail] = useState(false);
+  let [showbox, setShowbox] = useState(false);
   let [modal, setModal] = useState(false);
 
   const [isActive, setIsActive] = useState(false);
@@ -88,24 +94,22 @@ const SearchPage = () => {
   return (
     <Container>
       <SearchHeader />
-      <RemoteButton >상세정보</RemoteButton>
-      {
-        itemdetail === true ? <ItemDetail /> : null
-      }
+
       <Body>
         <div className="left" style={{ zindex: '50' }}><HomeList />
         </div>
-        <div className="right"><Map />
+        <div className="right"><KakaoMap />
           <RemoteButton
-            style={{
-              backgroundColor: isActive ? 'white' : '',
-              color: isActive ? '#FF9431' : ''
-            }}
             onClick={(handleClick) => { setModal(!modal) }} >필터 목록</RemoteButton>
           {
             modal === true ? <Modal /> : null
           }
+          <QuestionMark onClick={() => { setShowbox(!showbox) }}>?</QuestionMark>
+          {
+            showbox === true ? <SpeakBox /> : null
+          }
         </div>
+
       </Body>
 
     </Container>

@@ -1,11 +1,11 @@
 import React from "react";
-import NaverApiMap from "../../API/NaverApiMap";
+import KakaoMap from "API/KakaoMap";
 
 
 
 function Map() {
   return (
-    <NaverApiMap></NaverApiMap>
+    <KakaoMap />
   );
 }
 
