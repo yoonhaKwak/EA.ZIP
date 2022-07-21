@@ -28,6 +28,14 @@ class Listpage extends Component {
                 Addr2={itemdata.addr2}//신주소
                 Addr1={itemdata.addr1}//구주소
                 LongFeature={itemdata.feature}//상세광고내용
+                AllLayer={itemdata.layer_all}//총층
+                LayerType={itemdata.layer_name}//저층,중층,고층
+                Layer={itemdata.layer}//매물층
+                ManageCost={itemdata.management_cost}//관리비
+                RoomN={itemdata.room_number}//방수
+                Parking={itemdata.parking}//주차장
+                Parking2={itemdata.parking2}//주차장2
+                Bath={itemdata.bathN_number}//화장실
 
               />
             );

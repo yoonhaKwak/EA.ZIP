@@ -14,6 +14,12 @@ import RightArrow from '../../styles/icons/Right.svg';
 import Jeonseimg from '../../styles/img/Jeonse.svg';
 import Monthlyimg from '../../styles/img/Monthly.svg';
 import Tradingimg from '../../styles/img/Trading.svg';
+import Middle from '../../styles/icons/Middle.svg';
+import Low from '../../styles/icons/Low.svg';
+import High from '../../styles/icons/High.svg';
+import Management from '../../styles/icons/Management.svg';
+import ParkingLot from '../../styles/icons/Parking.svg';
+import RoomNBath from '../../styles/icons/RoomNBath.svg';
 
 
 
@@ -116,7 +122,7 @@ height:100%
 
 
 function ItemCard({ key, ImageUrl, Category2, Feature,
-    Supply, Dedicated, Jeonse, Monthly, Trading, Selling, Room, Deposit, SupplyP, Addr1, Addr2, LongFeature }) {
+    Supply, Dedicated, Jeonse, Monthly, Trading, Selling, Room, Deposit, SupplyP, Addr1, Addr2, LongFeature, Layer, AllLayer, LayerType, ManageCost, RoomN, Parking, Bath, Parking2 }) {
 
 
 
@@ -249,15 +255,73 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
             }
         }
     }
+    //관리비
+    let managecost;
 
+
+    if (ManageCost < 10000) {
+
+        managecost = (ManageCost).toString()
+            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); //매물가격이 1억을 넘지 못할 경우
+    }
+    else {
+        if (ManageCost % 10000 === 0) {
+
+            pricel = (ManageCost / 10000);         //매물 가격이 1억을 넘되 만 단위가 없을 경우
+            managecost = (pricel + "만").toString()
+                .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+        }
+        else {
+            if (!(ManageCost % 1000 === 0)) { //매물 가격이 1억을 넘되 만 단위가 1000미만일 경우
+                pricel = (ManageCost / 10000);
+                pricel = Math.floor(pricel);
+                pricel = pricel.toFixed(0);
+                pricem = (ManageCost % 10000);
+                pricem = pricem.toString()
+                    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+                managecost = (pricel + "만 " + pricem).toString();
+            }
+            else {    //그외 나머지
+                pricel = ManageCost.toString()
+                    .replace(/\B(?<!\.\d*)(?=(\d{4})+(?!\d))/g, "만 ")
+                    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+                managecost = (pricel).toString();
+            }
+        }
+    }
+    managecost = managecost + "원";
+
+    let roomnbath;
+
+    roomnbath = "방" + RoomN + "/욕실" + Bath
+
+    let parkinglot;
+
+    if (Parking === null) {
+        parkinglot = Parking2;
+    }
+    else if (Parking2 === null) {
+        parkinglot = Parking;
+    }
+    else if (Parking2 === null && Parking == null) {
+        parkinglot = null;
+    }
+    else {
+        parkinglot = Parking2;
+    }
+
+    parkinglot = "주차 " + parkinglot + "대"
     //신주소 정보 없을시 구주소
     let Addr;
     if (Addr2 === null) {
-        Addr = Addr1;
+        Addr = Addr1 + " " + Layer + "층" + "(총 " + AllLayer + "층)";;
     }
     else {
-        Addr = Addr2;
-    }
+        Addr = Addr2 + " " + Layer + "층" + "(총 " + AllLayer + "층)";
+    };
+
+
+
     /*-----------------------------------------------------------[뽀짝뽀짝]-------------------------------------------------------------------*/
 
 
@@ -294,6 +358,8 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
     const closeModal = () => {
         setModalOpen(false);
     };
+
+
     /*-----------------------------------------------------------[뽀짝뽀짝]-------------------------------------------------------------------*/
     /*---------------------------------------------------[상세페이지 내부 요소 뚜방뚜방]-------------------------------------------------------*/
     /*-----------------------------------------------------------[여기서부터 이미지]-------------------------------------------------------------------*/
@@ -428,12 +494,93 @@ hr{
   width: 700px;
 
 }
+.Icon{
+
+    height:200px;
+    padding-left:100px;
+    
+}
+.Icon .Tag{
+    
+    padding-bottom: 20px;
+    bottom:15px;
+    width:70px;
+    height:auto;
+    padding-right:88px;
+    float:left;
+   
+
+  bottom: 10px;
+    
+}
+.Icon .Tag .a img{
+
+    padding-right:auto;
+    padding-left:auto;
+    width:70px;
+   padding-top:27px;
+    
+}
+.Icon .Tag .b img{
+
+padding-right:auto;
+padding-left:auto;
+width:70px;
+padding-top:66px;
+
+}
+.Icon .Tag .c img{
+
+padding-right:auto;
+padding-left:auto;
+width:70px;
+padding-top:80px;
+
+
+}
+.Icon .Tag .d img{
+
+padding-right:auto;
+padding-left:auto;
+width:70px;
+padding-top:70px;
+
+}
+.Icon .Tag .e img{
+
+padding-right:auto;
+padding-left:auto;
+width:70px;
+padding-top:71px;
+
+}
+.Icon .Tag .f img{
+
+padding-right:auto;
+padding-left:auto;
+width:70px;
+padding-top:96px;
+}
+
+.Icon .Tag .Text{
+padding-top:15px;
+width:70px;
+
+text-align : center;
+}
+.Icon .Tag .Text .Wtf{
+
+ white-space: nowrap;
+
+}
+
 .Long{
   width:690px;
   padding-top:20px;
   padding-left:40px;
   word-break:initial;
   white-space: pre-wrap;
+  padding-bottom:20px;
 }
 `
 
@@ -581,6 +728,45 @@ border-radius: 15px;
 
                                 <hr />
 
+                                <div className="Icon">
+                                    <div className="Tag">
+                                        {{
+                                            "중간층": <div className="b"><img src={Middle} alt="" /></div>,
+                                            "저층": <div className="c"><img src={Low} alt="" /></div>,
+                                            "고층": <div className="a"><img src={High} alt="" /></div>,
+                                            null: null
+                                        }[LayerType]}
+                                        <div className="Text">{LayerType}</div>
+                                    </div>
+                                    <div className="Tag">
+
+                                        <div className="d"><img src={RoomNBath} alt="" /></div>
+
+                                        <div className="Text">
+                                            <div className="Wtf">
+                                                {roomnbath}</div></div>
+                                    </div>
+                                    <div className="Tag">
+                                        <div className="e"><img src={Management} alt="" /></div>
+                                        <div className="Text">
+                                            관리비{`\n`}
+                                            <div className="wtf">
+                                                {managecost}
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div className="Tag">
+                                        <div className="f"><img src={ParkingLot} alt="" /></div>
+                                        <div className="Text"> {parkinglot}</div>
+                                    </div>
+
+                                </div>
+
+
+
+
+
                                 <div className="mini" ><hr /></div>
                                 <div className="mini" ><hr /></div>
                                 <div className="MiniHeader" >매물소개</div>
@@ -601,7 +787,7 @@ border-radius: 15px;
                 </li>
             </ul>
 
-        </Block>
+        </Block >
 
     );
 }
