@@ -3,10 +3,18 @@
 <mapper namespace="bit.project.eazip.mapper.SampleMapper">
 
     <select id="selectData" resultType="bit.project.eazip.domain.SampleDTO">
-        SELECT * from hospital_tbl where name = "서울유병원";
+        SELECT * from hospital_tbl;
     </select>
 
     <select id="selectList" resultType="bit.project.eazip.domain.SampleDTO">
-        select * from hospital_tbl;
+        select * from hospital_tbl where name like "%서울%";
+    </select>
+
+    <select id="selectLat" resultType="bit.project.eazip.domain.SampleDTO">
+        select lat from hospital_tbl;
+    </select>
+
+    <select id="selectLng" resultType="bit.project.eazip.domain.SampleDTO">
+        select lng from hospital_tbl;
     </select>
 </mapper>

@@ -3,6 +3,10 @@ import { RenderAfterNavermapsLoaded, NaverMap, Marker, Circle } from "react-nave
 import SearchMarker from '../styles/icons/SearchMarker.svg';
 import { getActiveElement } from "@testing-library/user-event/dist/utils";
 import axios from "axios";
+import cluster1 from '../styles/icons/Group 53.svg';
+import cluster2 from '../styles/icons/Group 54.svg';
+import cluster3 from '../styles/icons/Group 55.svg';
+import styled from "styled-components";
 
 
 export const NaverApiMap = () => {
@@ -24,6 +28,7 @@ export const NaverApiMap = () => {
     }
   };
 
+
   useEffect(() => {
     fetchMarkers();
   }, []);
@@ -32,14 +37,6 @@ export const NaverApiMap = () => {
   if (!markers) return null;
   return (
     <RenderAfterNavermapsLoaded clientId={"dthfefzurc"}>
-      {/* 위도 경도만 뽑는 테스트 
-      <ul>
-        {markers.map(marker => (
-          <li key={marker}>
-            {marker.WGS84위도} : {marker.WGS84경도}
-          </li>
-        ))}
-      </ul> */}
       <NaverMap
 
         id={"map"}
@@ -53,7 +50,7 @@ export const NaverApiMap = () => {
         defaultCenter={{ lat: 37.4946012, lng: 127.027561 }}
         defaultZoom={13}
       >
-        {markers.map(marker => (
+        {/* {markers.map(marker => (
           <Marker
             key={marker}
             position={new navermaps.LatLng(marker.WGS84위도, marker.WGS84경도)}
@@ -62,9 +59,21 @@ export const NaverApiMap = () => {
               url: SearchMarker,
               size: { width: 50, height: 40 },
               scaledSize: { width: 50, height: 40 },
-              anchor: { x: 25, y: 40 }
+              anchor: { x: 25, y: 40 },
             }}
-            onClick></Marker>
+          />
+        ))} */}
+        {markers.map(marker => (
+          <Circle
+            key={marker}
+            center={new navermaps.LatLng(marker.WGS84위도, marker.WGS84경도)}
+            radius={100}
+            fillOpacity={0.5}
+            fillColor={'#FF7B31'}
+            strokeColor={'#FF7B31'}
+            clickable={true} // click event를 다루기 위해서는 true로 설정되어야함.
+          />
+
         ))}
       </NaverMap>
 

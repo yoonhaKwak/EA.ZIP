@@ -9,4 +9,8 @@ public interface SampleMapper {
     public SampleDTO selectData();
 
     public List<SampleDTO> selectList();
+
+    List<Double> selectLat();
+
+    List<Double> selectLng();
 }

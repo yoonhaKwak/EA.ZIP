@@ -16,8 +16,7 @@ const StyledBox = styled.div`
 `;
 const StyledInput = styled.input`
 width: 27rem;
-border: none; 
-height:2rem;
+border: none;
 margin: auto 0 auto 0rem;
 :focus {
     outline: none;
@@ -39,18 +38,18 @@ const Button = styled.button`
 `;
 
 
-const SearchForm=({onClick,onChange})=>{
-    return(
-        <StyledBox>
-        <Button type="button" onClick={onClick}/>
-        <StyledInput
+const SearchForm = ({ onClick, onChange }) => {
+  return (
+    <StyledBox>
+      <Button type="button" onClick={onClick} />
+      <StyledInput
         placeholder="지역을 입력하세요!"
         type="search"
         onChange={onChange}
-        />
-         </StyledBox>
-      
-    )
+      />
+    </StyledBox>
+
+  )
 }
 
 export default SearchForm;

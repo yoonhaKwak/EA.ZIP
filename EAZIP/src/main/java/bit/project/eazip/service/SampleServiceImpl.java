@@ -24,4 +24,14 @@ public class SampleServiceImpl implements SampleService {
         log.info("리스트 리스트!");
         return sampleMapper.selectList();
     }
+
+    @Override
+    public List<Double> selectLat() {
+        return sampleMapper.selectLat();
+    }
+
+    @Override
+    public List<Double> selectLng() {
+        return sampleMapper.selectLng();
+    }
 }

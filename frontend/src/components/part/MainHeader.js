@@ -74,13 +74,13 @@ const MainHeader = () => {
                             <Link to='/search'>일반추천</Link>
                         </li>
                         <li>
-                            <Link to='/'>지역추천</Link>
+                            <Link to='/normalsearch'>지역추천</Link>
                         </li>
                         <li>
                             <Link to='/'>프리미엄</Link>
                         </li>
                         <li>
-                            <Link to='/'>마이페이지</Link>
+                            <Link to='/Mypage'>마이페이지</Link>
                         </li>
                     </div>
                     <div className="right">
