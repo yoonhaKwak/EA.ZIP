@@ -99,7 +99,7 @@ const SamplePage = () => {
             <MainHeader />
             <div className="Bodya">
                 <NormalButton>
-                    <Link to='/'>
+                    <Link to='/normalsearch'>
                         <img src={Normal} alt="" />
                         <div className="Text">
                             지역을 입력하세요

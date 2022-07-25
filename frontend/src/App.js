@@ -19,7 +19,7 @@ function App() {
         return (
                 <Router>
                         <Routes>
-                                <Route path="/" element={<SamplePage />} />
+                                <Route path="/test" element={<SamplePage />} />
                                 <Route path="/normalsearch" element={<NormalSearch />} />
                                 <Route path="/Modal" element={<Modal />} />
                                 <Route path="ItemDetail" element={<ItemDetail />} />
@@ -28,7 +28,7 @@ function App() {
                                 <Route path="/register" element={<SignIn />} />
                                 <Route path="/mypage" element={<Mypage />} />
                                 <Route path="/kakaomap" element={<KakaoSearch />} />
-                                <Route path="/first" element={<FirstPage />} />
+                                <Route path="/" element={<FirstPage />} />
                         </Routes>
                 </Router>
         );
