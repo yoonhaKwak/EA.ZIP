@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.lang.Integer;
+import java.util.Objects;
+
 @Log
 @RestController
 @RequestMapping("/react")
@@ -55,7 +57,7 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/filter", method = {RequestMethod.GET,RequestMethod.POST})
-    public List<HomeDTO> Filter(@RequestBody Map<String,String>paramMap) throws SQLException,Exception{
+    public List<HomeDTO> Filter(@RequestBody Map<String,String>paramMap){
 
         int price,type, room;
         String category;
@@ -68,17 +70,17 @@ public class ApiController {
         room =Integer.parseInt(options.get("room"));
 
         HomeDTO filterDTO = new HomeDTO();
-
         filterDTO.setPrice((double)price);
-        if (category == "빌라"){
+        if (Objects.equals(category, "빌라")){
             filterDTO.setCategory1("빌라/연립");
         } else {filterDTO.setCategory1(category);}
         filterDTO.setType((double) type);
         filterDTO.setRoom_number((double) room);
-        System.out.println(filterDTO);
         List<HomeDTO> homes = service.filterData(filterDTO);
-        service.insertData(filterDTO);
-        System.out.println(homes);
+        log.info("filter");
+        for(int i=0; i<homes.size(); i++) {
+            System.out.println(homes.get(i).getIdx());
+        }
         return homes;
     }
     @GetMapping("/filtering")

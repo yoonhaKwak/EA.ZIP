@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class HomeDTO {
 
-    private Double 	idx;
+    private int 	idx;
     private String 	category1;
     private String 	category2;
     private String 	name;

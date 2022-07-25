@@ -1,14 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-import TestApi from "./TestApi";
-import HomeApi from "./HomeApi";
+import Filter from "./Filter";
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <TestApi/>
-      </header>
+        <Filter/>
     </div>
   );
 }
