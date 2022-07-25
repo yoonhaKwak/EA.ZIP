@@ -20,8 +20,9 @@ import High from '../../styles/icons/High.svg';
 import Management from '../../styles/icons/Management.svg';
 import ParkingLot from '../../styles/icons/Parking.svg';
 import RoomNBath from '../../styles/icons/RoomNBath.svg';
-
-
+import "../../styles/css/slick.css"
+import "../../styles/css/slick-theme.css"
+import Slider from "react-slick";
 
 
 
@@ -107,8 +108,8 @@ height:100%
   }
   .list .bold{
     font-weight: 700;
-    font-size:25px;
-    font-size:1vw;
+    font-size:19px;
+    
   }
 
 
@@ -348,6 +349,32 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
         image = <img src={imagearray[0]} className="image--itemcard" onError={onErrorImg} alt="" />
     }
     /*-----------------------------------------------------------[뽀짝뽀짝]-------------------------------------------------------------------*/
+    /*---------------------------------------------------[이미지배열 불러오는 함수 뚜방뚜방]-------------------------------------------------------*/
+    function ImageSlide() {
+        let imageA = (ImageUrl);
+        imageA = imageA.replace(/\'/g, "");
+
+        imageA = imageA.replace(/\[/g, "");
+        imageA = imageA.replace(/\]/g, "");
+
+        let imageAarray = imageA.split(',');
+        var imageslidearray = [];
+
+        if (imageAarray[0] === "") {
+            imageslidearray.push(<div> <img src={DefaultImg} className="image--itemcard" alt="" /></div>)
+        }
+        /*         else if (<img src={imagearray[0]} className="image--itemcard" onError={onErrorImg} alt="" /> === ) {
+                    imageslidearray.push(<div> <img src={DefaultImg} className="image--itemcard" alt="" /></div>)
+                } */
+        else {
+
+            for (var i = 0; i < imageAarray.length; i++) {
+                imageslidearray.push(<div><img src={imageAarray[i]} className="image--itemcard" onError={onErrorImg} alt="" /></div>)
+            };
+        }
+        return imageslidearray
+    }
+    /*-----------------------------------------------------------[뽀짝뽀짝]-------------------------------------------------------------------*/
 
     /*---------------------------------------------------[모달창 띄우는 함수 뚜방뚜방]-------------------------------------------------------*/
     const [modalOpen, setModalOpen] = useState(false);
@@ -369,7 +396,7 @@ width: 750px;
 height: 400px;
 margin-left:auto;
 margin-right:auto;
-
+margin-top:20px;
 background: #e2e2e2;
 border-radius: 15px;
 .image{
@@ -403,6 +430,17 @@ margin-top:175px;
 }
 
 `;
+    const settings = {
+
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        nextArrow: <img src={RightArrow} alt="" />,
+        prevArrow: <img src={LeftArrow} alt="" />
+    };
+
     /*-----------------------------------------------------------[전세,주소,간단설명 등등]-------------------------------------------------------------------*/
 
     const SecondItem = styled.div`
@@ -654,19 +692,13 @@ border-radius: 15px;
                         {/* /--------------------------------------------------[상세페이지 모달창 내용]---------------------------------------------------/ */}
                         <ItemDetail2 open={modalOpen} close={closeModal} header="Modal heading">
                             <ImageArea>
+                                <Slider {...settings}>
+                                    {ImageSlide()}
 
-                                <div className="leftbutton">
-                                    <img src={LeftArrow} alt="" />
-                                </div>
-
-
-                                <div className="rightbutton">
-                                    <img src={RightArrow} alt="" />
-                                </div>
-
-                                <div className="image">{image}</div>
-
-
+                                    {/* <div>
+                                        <img src="https://w.namu.la/s/f16f3471166dd81cfd74bd6a927ed0bd3bad05bdf74b5069e7b5b57a155bbe16809c69aef2083973a899615546150b9485eb692f50300c35238115da0c908c1353facffec7f6ca098fe904ab6faf13ff8596e7d2ab47ab285b8c15d644144115" alt="" />
+                                    </div> */}
+                                </Slider>
 
                             </ImageArea>
                             <SecondItem>

@@ -65,20 +65,22 @@ max-width: 850px;
 
 }
 .modal > section > header {
-  position: relative;
-  padding: 16px 64px 16px 16px;
+  position: absolute;
 
 
 }
 .modal > section > header button {
   position: absolute;
   top: 20px;
-  right: 12px;
-  font-weight: 700;
+  left:797px;
 
   text-align: center;
 
   background-color: transparent;
+}
+.modal > section > header button > img {
+width:23px;
+height:23px;
   
 }
 .modal > section > main {

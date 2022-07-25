@@ -12,7 +12,7 @@ const HeaderBlock = styled.div`
 position:fixed;
 width:100%;
 background:${pallette.white[1]};
-
+padding-top:0.4rem;
 `
 const Wrapper = styled(Responsive)`
 padding-top:0.4rem;
