@@ -1,5 +1,4 @@
-package bit.project.eazip.service.mypage;
-
+package bit.project.eazip.service.home;
 
 
 import bit.project.eazip.domain.home.HomeDTO;
@@ -15,10 +14,10 @@ import java.util.List;
 
 @Service
 @Log
-public class MypageServiceImpl implements MypageService{
+public class HomeServiceImpl implements HomeService{
 
     Integer[] arr = {28827383, 28827607 ,28828599 ,28828612 ,28828982 ,28829048 ,28829064 ,28829203 ,28829278 ,28829856 ,28832654 ,28832723};
-    //    List<Integer> list = Arrays.asList(arr);
+//    List<Integer> list = Arrays.asList(arr);
     @Autowired
     HomeMapper homeListMapper;
 
@@ -28,5 +27,4 @@ public class MypageServiceImpl implements MypageService{
 //        System.out.println(list);
         return homeListMapper.getList(arr);
     }
-
 }

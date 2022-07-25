@@ -2,7 +2,7 @@ import styled from "styled-components";
 import pallette from "../../styles/pallette";
 import React, { Component } from "react";
 import axios from "axios";
-import ListPage from "../detail/Listpage"
+import ListPage from "../detail/ListMaking"
 
 const Listblock = styled.div`
     position:flex;
@@ -23,7 +23,7 @@ class HomeList extends Component {
   loadItem = async () => {
     // Json Data 불러오기
     axios // axios를 이용해
-      .get("./Gangnam15.json") // json을 가져온다음
+      .get("http://localhost:8080/getlist") // json을 가져온다음
       .then(({ data }) => {
         console.log(data.data)// data라는 이름으로 json 파일에 있는 값에 state값을 바꿔준다.
         this.setState({
@@ -31,7 +31,7 @@ class HomeList extends Component {
           ItemList: data // 비어있던 Itemlist는 data에 객체를 찾아넣어준다. ( Item : json파일에 있는 항목)
         });
       })
-      .catch(e => {
+      .catch(e => {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
         // json이 로드되지않은 시간엔
         console.error(e); // 에러표시
         this.setState({
