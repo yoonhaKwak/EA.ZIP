@@ -36,7 +36,10 @@ class Listpage extends Component {
                 Parking={itemdata.parking}//주차장
                 Parking2={itemdata.parking2}//주차장2
                 Bath={itemdata.bathN_number}//화장실
-
+                MoveDate={itemdata.move_date}//입주 가능일
+                Direction={itemdata.direction}//방향
+                DirectionN={itemdata.directionN}//방향기준
+                Category1={itemdata.category1}//카테고리1
               />
             );
           })}

@@ -123,7 +123,10 @@ height:100%
 
 
 function ItemCard({ key, ImageUrl, Category2, Feature,
-    Supply, Dedicated, Jeonse, Monthly, Trading, Selling, Room, Deposit, SupplyP, Addr1, Addr2, LongFeature, Layer, AllLayer, LayerType, ManageCost, RoomN, Parking, Bath, Parking2 }) {
+    Supply, Dedicated, Jeonse, Monthly, Trading, Selling,
+    Room, Deposit, SupplyP, Addr1, Addr2, LongFeature, Layer,
+    AllLayer, LayerType, ManageCost, RoomN, Parking, Bath, Parking2,
+    MoveDate, Direction, DirectionN, Category1 }) {
 
 
 
@@ -321,6 +324,20 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
         Addr = Addr2 + " " + Layer + "층" + "(총 " + AllLayer + "층)";
     };
 
+    let Addrd
+    if (Addr2 === null) {
+        Addrd = Addr1;
+    }
+    else {
+        Addrd = Addr2;
+    };
+    let dirN
+    if (DirectionN === null) {
+        dirN = null;
+    }
+    else {
+        dirN = '(' + DirectionN + ' 기준)'
+    }
 
 
     /*-----------------------------------------------------------[뽀짝뽀짝]-------------------------------------------------------------------*/
@@ -523,12 +540,12 @@ border-radius: 15px;
 
 
 hr{
-  border: 2px solid #C6C6C6;
+  border: 2px solid #d4d4d4;
   width: 700px;
 }
 .mini hr{
   
-  border: 0.5px solid #C6C6C6;
+  border: 0.5px solid #dbdbdb;
   width: 700px;
 
 }
@@ -800,6 +817,25 @@ border-radius: 15px;
 
 
                                 <div className="mini" ><hr /></div>
+
+                                <div className="Long">
+                                    ·{supply}m²/{dedicated}m² (공급/전용)
+                                    <br />
+                                    <br />
+                                    ·{MoveDate}(입주가능일)
+                                    <br />
+                                    <br />
+                                    ·{managecost}(월 평균 관리비)
+                                    <br />
+                                    <br />
+                                    ·{Category1}
+                                    <br />
+                                    <br />
+                                    ·{Direction}{dirN}
+                                    <br />
+                                    <br />
+                                    ·{Addrd}
+                                </div>
                                 <div className="mini" ><hr /></div>
                                 <div className="MiniHeader" >매물소개</div>
                                 <hr />
@@ -808,6 +844,7 @@ border-radius: 15px;
                                 </div>
                                 <div className="mini" ><hr /></div>
                                 <div className="MiniHeader" >옵션</div>
+                                <hr />
 
 
                             </ThirdItem>

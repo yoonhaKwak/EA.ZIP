@@ -4,21 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eea96d36-841c-4069-bb9f-06433382a808" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/EA.ZIP.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EAZIP/src/main/frontend/src/setupProxy.js" beforeDir="false" afterPath="$PROJECT_DIR$/EAZIP/src/main/frontend/src/setupProxy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
+    <list default="true" id="eea96d36-841c-4069-bb9f-06433382a808" name="Changes" comment="Changes">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/detail/ItemCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/detail/ItemCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/detail/Listpage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/detail/Listpage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/NormalSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/NormalSearch.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$/EAZIP">
@@ -68,10 +67,17 @@
     &quot;spring.configuration.checksum&quot;: &quot;c08054c1ef61583c5ba3ed6fc3149996&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="애플리케이션.main">
     <configuration name="main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="bit.project.eazip.EazipApplication" />
       <module name="EAZIP.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EazipApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="EAZIP.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="bit.project.eazip.EazipApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -88,6 +94,7 @@
       <workItem from="1657158463255" duration="2081000" />
       <workItem from="1657160603964" duration="88000" />
       <workItem from="1657161153972" duration="2533000" />
+      <workItem from="1658798571729" duration="1091000" />
     </task>
     <servers />
   </component>
