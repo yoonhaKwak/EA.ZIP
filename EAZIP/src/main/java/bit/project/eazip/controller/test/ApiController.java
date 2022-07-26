@@ -44,7 +44,6 @@ public class ApiController {
             HomeDTO homeDTO = service.selectData(idx);
             System.out.println(homeDTO);
         }
-
         return testApi;
         //프론트에서 api 불러와서 값을 받음
     }
@@ -52,14 +51,14 @@ public class ApiController {
     @GetMapping("/coordinate")
     public List<HomeDTO> Lng() {
         List<HomeDTO> homeDTO= service.selectList();
-
         return homeDTO;
     }
 
     @RequestMapping(value = "/filter", method = {RequestMethod.GET,RequestMethod.POST})
     public List<HomeDTO> Filter(@RequestBody Map<String,String>paramMap){
 
-        int price,type, room;
+        int price,type, room_min,room_max;
+        String room;
         String category;
         Map<String,String> options = paramMap;
         System.out.println(options);
@@ -67,7 +66,13 @@ public class ApiController {
         price = Integer.parseInt(options.get("price"));
         category = options.get("category");
         type = Integer.parseInt(options.get("type"));
-        room =Integer.parseInt(options.get("room"));
+        room_min =Integer.parseInt(options.get("room_min"));
+        System.out.println(options.get("room"));
+        room =options.get("room");
+        room_min = Integer.parseInt(String.valueOf(room.charAt(1)));
+        room_max = Integer.parseInt(String.valueOf(room.charAt(3)));
+        System.out.println(room_min);
+        System.out.println(room_max);
 
         HomeDTO filterDTO = new HomeDTO();
         filterDTO.setPrice((double)price);
@@ -75,7 +80,7 @@ public class ApiController {
             filterDTO.setCategory1("빌라/연립");
         } else {filterDTO.setCategory1(category);}
         filterDTO.setType((double) type);
-        filterDTO.setRoom_number((double) room);
+        filterDTO.setRoom_number((double) room_min);
         List<HomeDTO> homes = service.filterData(filterDTO);
         log.info("filter");
         for(int i=0; i<homes.size(); i++) {
@@ -116,14 +121,11 @@ public class ApiController {
 
         //HomeDTO 리스트 리턴
         return homeDTOList;
-
-
     }
     @GetMapping("/dataList")
     public List<HomeDTO> DataList(){
         List<HomeDTO> homeDTO = service.selectList();
         return homeDTO;
     }
-
 
 }

@@ -6,7 +6,8 @@ function Filter(){
     const [price, setPrice] = useState(500000);
     const [category, setCategory] = useState("빌라");
     const [type, setType] = useState(1);
-    const [room, setRoom] = useState(3);
+    const [room_max, setRoom_max] = useState(3);
+    const [room_min, setRoom_min] = useState(1);
     const [data, setData] = useState('null');
     const Back = async () => {
         axios(
@@ -17,7 +18,7 @@ function Filter(){
                     "price": price,
                     "category": category,
                     "type": type,
-                    "room": room
+                    "room": [room_min, room_max]
                 },
                 baseURL: 'http://localhost:8080'
             }
