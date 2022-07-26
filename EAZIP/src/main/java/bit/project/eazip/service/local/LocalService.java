@@ -1,6 +1,8 @@
 package bit.project.eazip.service.local;
 
 import bit.project.eazip.domain.home.HomeDTO;
+import bit.project.eazip.domain.home.FilterDTO;
+
 
 import java.util.List;
 import java.util.Map;
@@ -13,7 +15,12 @@ public interface LocalService {
     public HomeDTO saveData();
     public String type();
 
-    public List<HomeDTO> filterData(HomeDTO filterDTO);
+    public List<FilterDTO> filterPrice(FilterDTO filterDTO);
+
+    public List<FilterDTO> filterMonthly(FilterDTO filterDTO);
+
+
+
 
     void insertData(HomeDTO filterDTO);
 

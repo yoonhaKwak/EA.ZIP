@@ -1,6 +1,7 @@
 package bit.project.eazip.service.local;
 
 import bit.project.eazip.domain.home.HomeDTO;
+import bit.project.eazip.domain.home.FilterDTO;
 import bit.project.eazip.mapper.local.LocalMapper;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.extern.java.Log;
@@ -50,13 +51,29 @@ public class LocalServiceImpl implements LocalService {
     }
 
     @Override
-    public List<HomeDTO> filterData(HomeDTO filterDTO) {
-        return localMapper.filterData(filterDTO);
+    public List<FilterDTO> filterPrice(FilterDTO filterDTO) {
+        log.info("############################");
+        log.info("서비스 임플, filterPrice 실행");
+        log.info("############################");
+
+        return localMapper.filterPrice(filterDTO);
     }
 
     @Override
+    public List<FilterDTO> filterMonthly(FilterDTO filterDTO) {
+        log.info("############################");
+        log.info("서비스 임플, filterMonthly 실행");
+        log.info("############################");
+
+        return localMapper.filterMonthly(filterDTO);
+    }
+
+
+
+    @Override
     public void insertData(HomeDTO homeDTO) {
-        log.info("insertData");
+        log.info("############################");
+        log.info("서비스 임플, insertData 실행");
         localMapper.insertData(homeDTO);
     }
 

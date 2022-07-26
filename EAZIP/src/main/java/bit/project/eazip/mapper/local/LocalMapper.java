@@ -1,6 +1,8 @@
 package bit.project.eazip.mapper.local;
 
 import bit.project.eazip.domain.home.HomeDTO;
+import bit.project.eazip.domain.home.FilterDTO;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -15,7 +17,10 @@ public interface LocalMapper {
     public HomeDTO saveData();
     public String type();
 
-    public List<HomeDTO> filterData(HomeDTO filterDTO);
+    public List<FilterDTO> filterPrice(FilterDTO filterDTO);
+
+    public List<FilterDTO> filterMonthly(FilterDTO filterDTO);
+
     void insertData(HomeDTO filterDTO);
 
     public List<HomeDTO> filtering();
