@@ -1,6 +1,7 @@
 package bit.project.eazip.controller.test;
 
 import bit.project.eazip.domain.home.HomeDTO;
+import bit.project.eazip.domain.home.FilterDTO;
 import bit.project.eazip.service.local.LocalService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class ApiController {
         subway = Integer.parseInt(testApi.get("subwayTransitCount"));
         min =Integer.parseInt(testApi.get("totalTime"));
         idx = Integer.parseInt(testApi.get("idx"));
-        
+
         if (walk*0.016 <= 20 & (bus+subway-1) <= 2 & min <= 50){
             System.out.println(idx);
             HomeDTO homeDTO = service.selectData(idx);
@@ -56,31 +57,85 @@ public class ApiController {
         return homeDTO;
     }
 
-    @RequestMapping(value = "/filter", method = {RequestMethod.GET,RequestMethod.POST})
-    public List<HomeDTO> Filter(@RequestBody Map<String,String>paramMap){
+    @RequestMapping(value = "/filter", method = {RequestMethod.GET, RequestMethod.POST})
+    public List<FilterDTO> Filter(@RequestBody Map<String,String>paramMap) throws SQLException,Exception{
 
-        int price,type, room;
-        String category;
+        int type;
+        String category1;
+        int room_number;
+
+//        int op1;
+//        int op2;
+//        int op3;
+
+        int map;
+        int mip;
+        int mam;
+        int mim;
+
+
+
+        ///////////////////////////////
+        // 프론트 데이터 백에서 받아 정의
+        ///////////////////////////////
+        log.info("프론트 데이터 백에서 받아 정의 시도");
         Map<String,String> options = paramMap;
-        System.out.println(options);
 
-        price = Integer.parseInt(options.get("price"));
-        category = options.get("category");
         type = Integer.parseInt(options.get("type"));
-        room =Integer.parseInt(options.get("room"));
+        log.info("type");
+        category1 = options.get("category");
+        log.info("cat");
+        System.out.println(options.get("map"));
 
-        HomeDTO filterDTO = new HomeDTO();
-        filterDTO.setPrice((double)price);
-        if (Objects.equals(category, "빌라")){
+        room_number =Integer.parseInt(options.get("room"));
+        log.info("room");
+
+
+//        op1 = Integer.parseInt(options.get("op1"));
+//        op2 = Integer.parseInt(options.get("op2"));
+//        op3 = Integer.parseInt(options.get("op3"));
+
+
+        map = Integer.parseInt(options.get("map"));
+        log.info("maxp");
+        mip = Integer.parseInt(options.get("mip"));
+        log.info("minp");
+
+        mam = Integer.parseInt(options.get("mam"));
+        log.info("maxm");
+        mim = Integer.parseInt(options.get("mim"));
+        log.info("minm");
+
+
+        log.info("############### 프론트 데이터 받아 백에서 정의완료 #####################");
+
+
+
+        FilterDTO filterDTO = new FilterDTO();
+
+
+        filterDTO.setType(type);
+        if (Objects.equals(category1, "빌라")){
             filterDTO.setCategory1("빌라/연립");
-        } else {filterDTO.setCategory1(category);}
-        filterDTO.setType((double) type);
-        filterDTO.setRoom_number((double) room);
-        List<HomeDTO> homes = service.filterData(filterDTO);
-        log.info("filter");
-        for(int i=0; i<homes.size(); i++) {
-            System.out.println(homes.get(i).getIdx());
-        }
+        } else {filterDTO.setCategory1(category1);}
+        filterDTO.setRoom_number(room_number);
+
+//        filterDTO.setOp1(op1);
+//        filterDTO.setOp2(op2);
+//        filterDTO.setOp3(op3);
+
+        filterDTO.setMaxprice(map);
+        filterDTO.setMinprice(mip);
+        filterDTO.setMaxmonthly(mam);
+        filterDTO.setMinmonthly(mim);
+
+
+        log.info("#############################");
+        log.info("필터링 적용하여 서비스 호출");
+        System.out.println(filterDTO);
+
+        List<FilterDTO> homes = service.filterData(filterDTO);
+
         return homes;
     }
     @GetMapping("/filtering")
@@ -103,6 +158,8 @@ public class ApiController {
 
             coordinate.put("lat",homes.getLat());
             coordinate.put("lng",homes.getLng());
+
+            // api 받아오기
             api = service.apiList(coordinate);
 
             if(api[0]*0.016<=5 & api[1]<=1 & api[2]<=45){
