@@ -7,6 +7,9 @@ import CheckBox from "../components/part/CheckBox";
 import axios from "axios";
 import MultiRangeSlider from "components/part/MultiRangeSlider";
 import { Link } from "react-router-dom";
+import ButtonA from "../components/part/ButtonA";
+import ButtonB from "../components/part/ButtonB";
+import ButtonC from "../components/part/ButtonC";
 
 const Container = styled.div`
 position: absolute;
@@ -42,6 +45,13 @@ const Hr = styled.hr`
 const Div = styled.div`
   width:450px; display: inline-block; margin: 186px 110px -35px 61px; text-align: -webkit-auto; z-index:11;
 `;
+
+const DivA = styled.div`
+  width:auto; display: inline-block; margin: 186px 110px -35px 61px; text-align: -webkit-auto; z-index:11;
+
+`;
+
+
 const Tbtn = styled.button`
     width: auto; height: 44px; border-radius: 20px; border: 3px solid #FF7B31; background-color: #E8E8E8;
     font-size: 23px; font-weight: bold; color: #FF7B31; margin-right: 20px; margin-bottom: 50px;
@@ -84,26 +94,26 @@ const optionsList = [
   { id: 11, text: "은행", value: 'bank' },
   { id: 12, text: "CCTV", value: 'cctv' }
 ];
+const CategoryList = [
+  { id: 0, text: "월세", value: '3' },
+  { id: 1, text: "전세", value: '2' },
+  { id: 2, text: "매매", value: '1' }
+];
+const CategoryList1 = [
+
+  { id: 0, text: '주택', value: '주택' },
+  { id: 1, text: '빌라', value: '빌라' },
+  { id: 2, text: '오피스텔', value: '오피스텔' }
+];
+const CategoryList2 = [
+
+  { id: 0, text: '원룸', value: '1' },
+  { id: 1, text: '투룸', value: '2' },
+  { id: 2, text: '쓰리룸', value: '3' }
+];
 
 const NormalSearch = () => {
 
-  const CategoryList = [
-    { id: 0, name: '월세', value: '3' },
-    { id: 1, name: '전세', value: '2' },
-    { id: 2, name: '매매', value: '1' }
-  ];
-  const CategoryList1 = [
-
-    { id: 0, name: '주택', value: '주택' },
-    { id: 1, name: '빌라', value: '빌라' },
-    { id: 2, name: '오피스텔', value: '오피스텔' }
-  ];
-  const CategoryList2 = [
-
-    { id: 0, name: '원룸', value: '1' },
-    { id: 1, name: '투룸', value: '2' },
-    { id: 2, name: '쓰리룸', value: '3' }
-  ];
 
   const formData = [
     { id: 1, name: "딸기" },
@@ -185,26 +195,19 @@ const NormalSearch = () => {
             <Hr style={{ width: '492px' }} /><FilterTitle1>편의시설 및 교통시설</FilterTitle1>
             <Hr style={{ width: '472px' }} /><FilterTitle1>가격 범위</FilterTitle1><Hr style={{ width: '275px' }} />
           </OptionList>
-          <Div style={{ marginRight: '42px', marginLeft: '166px' }}>
-            {CategoryList.map((item) => {
-              return (
-                <Tbtn>{item.name}</Tbtn>
-
-              )
-            })}
+          <DivA style={{ marginRight: '200px', marginLeft: '166px' }}>
+            {CategoryList.map((item) => (
+              <ButtonA key={item.id} text={item.text} />
+            ))}
             <div />
-            {CategoryList1.map(item1 => {
-              return (
-                <Mbtn>{item1.name}</Mbtn>
-              )
-            })}
+            {CategoryList1.map((item) => (
+              <ButtonB key={item.id} text={item.text} />
+            ))}
             <div />
-            {CategoryList2.map(item2 => {
-              return (
-                <Bbtn>{item2.name}</Bbtn>
-              )
-            })}
-          </Div>
+            {CategoryList2.map((item) => (
+              <ButtonC key={item.id} text={item.text} />
+            ))}
+          </DivA>
           <Div>
             {optionsList.map((item) => (
               <CheckBox key={item.id} text={item.text} />
