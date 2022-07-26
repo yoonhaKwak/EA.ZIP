@@ -10,9 +10,12 @@ import Mypage from 'pages/Mypage';
 import KakaoMapTest from 'API/KakaoMapTest';
 import NormalSearch from 'pages/NormalSearch';
 import KakaoSearch from 'API/KakaoSearch';
+import ButtonTest from 'components/detail/ButtonTest';
 
 import KakaoMap from 'API/KakaoMap';
 import FirstPage from 'pages/FirstPage';
+import Parent from 'components/detail/Parent';
+import Child from 'components/detail/Child';
 
 
 function App() {
@@ -29,6 +32,9 @@ function App() {
                                 <Route path="/mypage" element={<Mypage />} />
                                 <Route path="/kakaomap" element={<KakaoSearch />} />
                                 <Route path="/" element={<FirstPage />} />
+                                <Route path="/buttontest" element={<ButtonTest />} />
+                                <Route path="/parent" element={<Parent />} />
+                                <Route path="/child" element={<Child />} />
                         </Routes>
                 </Router>
         );

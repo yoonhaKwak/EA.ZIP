@@ -9,4 +9,17 @@
         </foreach>
     </select>
 
+
+
+    <select id="getIdx" resultType="String">
+        SELECT history from usertbl WHERE id =  'yyc'
+    </select>
+
+    <insert id="insertHistory">
+        update usertbl set history =
+                               #{temp}
+        where id = 'yyc'
+    </insert>
+
+
 </mapper>
