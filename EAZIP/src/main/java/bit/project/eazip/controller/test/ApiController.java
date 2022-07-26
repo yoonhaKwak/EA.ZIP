@@ -68,42 +68,39 @@ public class ApiController {
 //        int op2;
 //        int op3;
 
-        int map, mip, mam, mim;
+        int map;
+        int mip;
+        int mam;
+        int mim;
+
+
 
         ///////////////////////////////
         // 프론트 데이터 백에서 받아 정의
         ///////////////////////////////
-        log.info("프론트 데이터 백에서 받아 정의 시도");
+        log.info("############### 프론트 데이터 받아 백에서 정의 작업시작 #####################");
         Map<String,String> options = paramMap;
 
         type = Integer.parseInt(options.get("type"));
-        log.info("type");
         category1 = options.get("category");
-        log.info("cat");
-        System.out.println(options.get("map"));
-
         room_number =Integer.parseInt(options.get("room"));
-        log.info("room");
 
 //        op1 = Integer.parseInt(options.get("op1"));
 //        op2 = Integer.parseInt(options.get("op2"));
 //        op3 = Integer.parseInt(options.get("op3"));
 
-
         map = Integer.parseInt(options.get("map"));
-        log.info("map");
         mip = Integer.parseInt(options.get("mip"));
-        log.info("mip");
-
         mam = Integer.parseInt(options.get("mam"));
-        log.info("mam");
         mim = Integer.parseInt(options.get("mim"));
-        log.info("mim");
 
-        log.info("############### 프론트 데이터 받아 백에서 정의완료 #####################");
+
+        log.info("############### 프론트 데이터 받아 백에서 정의 완료 #####################");
+
 
 
         FilterDTO filterDTO = new FilterDTO();
+
 
         filterDTO.setType(type);
         if (Objects.equals(category1, "빌라")){
@@ -120,15 +117,26 @@ public class ApiController {
         filterDTO.setMaxmonthly(mam);
         filterDTO.setMinmonthly(mim);
 
-        log.info("#############################");
-        log.info("필터링 적용하여 서비스 호출");
-        System.out.println(filterDTO);
+        List<FilterDTO> homes = null;
 
-        List<FilterDTO> homes = service.filterData(filterDTO);
+        log.info("########## 필터링 적용하여 서비스 호출 작업 시작 ##########");
+
+        log.info("#######################################3");
+        System.out.println(filterDTO.getMaxmonthly());
+        log.info("#######################################3");
+
+        if (filterDTO.getMaxmonthly() == 0)
+        {
+            homes = service.filterPrice(filterDTO);
+        }
+        else
+        {
+            homes = service.filterMonthly(filterDTO);
+        }
+        log.info("########## 필터링 적용하여 서비스 호출 완료 ##########");
 
         return homes;
     }
-
     @GetMapping("/filtering")
     public List<HomeDTO> Filtering(){
         return service.filtering();

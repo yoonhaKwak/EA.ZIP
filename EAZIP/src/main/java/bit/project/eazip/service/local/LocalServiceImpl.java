@@ -51,12 +51,23 @@ public class LocalServiceImpl implements LocalService {
     }
 
     @Override
-    public List<FilterDTO> filterData(FilterDTO filterDTO) {
+    public List<FilterDTO> filterPrice(FilterDTO filterDTO) {
         log.info("############################");
-        log.info("서비스 임플, filterData 실행");
+        log.info("서비스 임플, filterPrice 실행");
+        log.info("############################");
 
-        return localMapper.filterData(filterDTO);
+        return localMapper.filterPrice(filterDTO);
     }
+
+    @Override
+    public List<FilterDTO> filterMonthly(FilterDTO filterDTO) {
+        log.info("############################");
+        log.info("서비스 임플, filterMonthly 실행");
+        log.info("############################");
+
+        return localMapper.filterMonthly(filterDTO);
+    }
+
 
 
     @Override
