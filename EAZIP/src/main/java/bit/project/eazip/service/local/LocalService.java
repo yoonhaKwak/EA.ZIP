@@ -15,7 +15,11 @@ public interface LocalService {
     public HomeDTO saveData();
     public String type();
 
-    public List<FilterDTO> filterData(FilterDTO filterDTO);
+    public List<FilterDTO> filterPrice(FilterDTO filterDTO);
+
+    public List<FilterDTO> filterMonthly(FilterDTO filterDTO);
+
+
 
 
     void insertData(HomeDTO filterDTO);

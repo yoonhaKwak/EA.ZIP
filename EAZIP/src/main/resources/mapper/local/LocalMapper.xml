@@ -10,9 +10,15 @@
         select * from gangnam0712 where idx = #{idx}
     </select>
 
-    <select id="filterData" parameterType="bit.project.eazip.domain.home.FilterDTO" resultType="bit.project.eazip.domain.home.HomeDTO">
+    <select id="filterPrice" parameterType="bit.project.eazip.domain.home.FilterDTO" resultType="bit.project.eazip.domain.home.HomeDTO">
         select * from gangnam0712 where type = #{type} and category1 = #{category1} and price <![CDATA[<=]]> #{maxprice} and price <![CDATA[>=]]> #{minprice} and room_number = #{room_number};
     </select>
+
+    <select id="filterMonthly" parameterType="bit.project.eazip.domain.home.FilterDTO" resultType="bit.project.eazip.domain.home.HomeDTO">
+        select * from gangnam0712 where type = #{type} and category1 = #{category1} and price <![CDATA[<=]]> #{maxprice} and price <![CDATA[>=]]> #{minprice} and monthly = 0 or (monthly <![CDATA[<=]]> #{maxmonthly} and monthly <![CDATA[>=]]> #{minmonthly}) and room_number = #{room_number};
+    </select>
+
+
 
     <insert id="insertRoomFiltering" parameterType="bit.project.eazip.domain.home.HomeDTO">
         insert into `table`

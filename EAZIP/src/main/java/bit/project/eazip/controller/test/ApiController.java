@@ -78,36 +78,24 @@ public class ApiController {
         ///////////////////////////////
         // 프론트 데이터 백에서 받아 정의
         ///////////////////////////////
-        log.info("프론트 데이터 백에서 받아 정의 시도");
+        log.info("############### 프론트 데이터 받아 백에서 정의 작업시작 #####################");
         Map<String,String> options = paramMap;
 
         type = Integer.parseInt(options.get("type"));
-        log.info("type");
         category1 = options.get("category");
-        log.info("cat");
-        System.out.println(options.get("map"));
-
         room_number =Integer.parseInt(options.get("room"));
-        log.info("room");
-
 
 //        op1 = Integer.parseInt(options.get("op1"));
 //        op2 = Integer.parseInt(options.get("op2"));
 //        op3 = Integer.parseInt(options.get("op3"));
 
-
         map = Integer.parseInt(options.get("map"));
-        log.info("maxp");
         mip = Integer.parseInt(options.get("mip"));
-        log.info("minp");
-
         mam = Integer.parseInt(options.get("mam"));
-        log.info("maxm");
         mim = Integer.parseInt(options.get("mim"));
-        log.info("minm");
 
 
-        log.info("############### 프론트 데이터 받아 백에서 정의완료 #####################");
+        log.info("############### 프론트 데이터 받아 백에서 정의 완료 #####################");
 
 
 
@@ -129,12 +117,23 @@ public class ApiController {
         filterDTO.setMaxmonthly(mam);
         filterDTO.setMinmonthly(mim);
 
+        List<FilterDTO> homes = null;
 
-        log.info("#############################");
-        log.info("필터링 적용하여 서비스 호출");
-        System.out.println(filterDTO);
+        log.info("########## 필터링 적용하여 서비스 호출 작업 시작 ##########");
 
-        List<FilterDTO> homes = service.filterData(filterDTO);
+        log.info("#######################################3");
+        System.out.println(filterDTO.getMaxmonthly());
+        log.info("#######################################3");
+
+        if (filterDTO.getMaxmonthly() == 0)
+        {
+            homes = service.filterPrice(filterDTO);
+        }
+        else
+        {
+            homes = service.filterMonthly(filterDTO);
+        }
+        log.info("########## 필터링 적용하여 서비스 호출 완료 ##########");
 
         return homes;
     }
