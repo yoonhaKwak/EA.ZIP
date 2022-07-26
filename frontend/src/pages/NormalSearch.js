@@ -1,12 +1,12 @@
 import MainHeader3 from "../components/part/MainHeader3";
-import React, { useState } from "react";
 import styled from "styled-components";
 import image from "../styles/background/2.jpg";
 import MainSearchForm from "../components/detail/MainSearchForm";
 import CheckBox from "../components/part/CheckBox";
 import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import React, { useCallback, useEffect, useState, useRef } from "react";
 import MultiRangeSlider from "components/part/MultiRangeSlider";
-import { Link } from "react-router-dom";
 import ButtonA from "../components/part/ButtonA";
 import ButtonB from "../components/part/ButtonB";
 import ButtonC from "../components/part/ButtonC";
@@ -77,22 +77,20 @@ width:240px; height: 44px; border-radius: 20px; border: none; background-color: 
   font-weight: bold; color: white; margin: 10px 20px 20px 820px;  display: absolute; cursor: pointer; padding:10px; line-height: 1px;
 `;
 
-
-
 const optionsList = [
-  { id: 0, text: "편의점", value: 'market' },
-  { id: 1, text: "병원", value: 'hospital' },
-  { id: 2, text: "지하철역", value: 'subway' },
-  { id: 3, text: "카페", value: 'cafe' },
-  { id: 4, text: "주민센터", value: 'office' },
-  { id: 5, text: "버스 정류장", value: 'bus' },
-  { id: 6, text: "세탁소", value: 'laundry' },
-  { id: 7, text: "우체국", value: 'post' },
+  { id: 0, text: "편의점", value: 'sc_market' },
+  { id: 1, text: "병원", value: 'sc_hospital' },
+  { id: 2, text: "지하철역", value: 'sc_subway' },
+  { id: 3, text: "카페", value: 'sc_cafe' },
+  { id: 4, text: "주민센터", value: 'sc_office' },
+  { id: 5, text: "버스 정류장", value: 'sc_bus' },
+  { id: 6, text: "세탁소", value: 'sc_laundry' },
+  { id: 7, text: "우체국", value: 'sc_post' },
   { id: 8, text: "버스 터미널" },
-  { id: 9, text: "보건소", value: 'bogun' },
-  { id: 10, text: "따릉이대여소", value: 'ddar' },
-  { id: 11, text: "은행", value: 'bank' },
-  { id: 12, text: "CCTV", value: 'cctv' }
+  { id: 9, text: "보건소", value: 'sc_bogun' },
+  { id: 10, text: "따릉이대여소", value: 'sc_ddar' },
+  { id: 11, text: "은행", value: 'sc_bank' },
+  { id: 12, text: "CCTV", value: 'sc_cctv' }
 ];
 const CategoryList = [
   { id: 0, text: "월세", value: '3' },
@@ -114,65 +112,38 @@ const CategoryList2 = [
 
 const NormalSearch = () => {
 
-
-  const formData = [
-    { id: 1, name: "딸기" },
-    { id: 2, name: "바나나" },
-    { id: 3, name: "피자" },
-    { id: 4, name: "불고기" },
-    { id: 5, name: "김치" },
-    { id: 6, name: "볶음밥" },
-    { id: 7, name: "쌀국수" },
-    { id: 8, name: "육개장" },
-    { id: 9, name: "커피" }
-  ]
-
-  const [isToggle, setIsToggle] = useState(false);
-  const [checkedItems, setCheckedItems] = useState(new Set());
-
-  const checkHandler = ({ target }) => {
-    setIsToggle(!isToggle);
-    checkedItemHandler(target.parentNode, target.value, target.checked);
-    console.log(target.parentNode, target.value, target.checked);
-  };
-
-  const checkedItemHandler = (box, id, isToggle) => {
-    if (isToggle) {
-      checkedItems.add(id);
-      setCheckedItems(checkedItems);
-      box.style.backgroundColor = "#FF7B31";
-      box.style.color = "#E8E8E8";
-    } else if (!isToggle && checkedItems.has(id)) {
-      checkedItems.delete(id);
-      setCheckedItems(checkedItems);
-      box.style.backgroundColor = "#E8E8E8";
-      box.style.color = "#FF7B31";
-    }
-    console.log(checkedItems);
-    return checkedItems;
-  };
-
-  const [price, setPrice] = useState(50000);
-  const [minMonthly, setMinMonthly] = useState(0);
-
-  const getData = (min) => {
-    setMinMonthly(min);
-  }
-  const [category, setCategory] = useState("오피스텔");
   const [type, setType] = useState(1);
+  const [category, setCategory] = useState("빌라/연립");
   const [room, setRoom] = useState(1);
+  const [map, setMap] = useState(50000);
+  const [mip, setMip] = useState(100);
+  //전세/매매/보증금 구간
+  const [mam, setMam] = useState(0);
+  const [mim, setMim] = useState(0);
+  //월세 구간
+
   const [data, setData] = useState(null);
+  // const [op1, setOp1] = useState()
+  // const [op2, setOp2] = useState()
+  // const [op3, setOp3] = useState()
+
+  const navigate = useNavigate();
 
   const Back = async () => {
     axios({
       method: 'post',
       url: '/react/filter',
       data: {
-        "price": price,
+        "map": map,
+        "mip": mip,
+        "mam": mam,
+        "mim": mim,
         "category": category,
         "type": type,
-        "room": room,
-        "monthly": minMonthly
+        "room": room
+        // "op1" : op1,
+        // "op2" : op2,
+        // "op3" : op3,
       },
       baseURL: 'http://localhost:8080'
     }
@@ -199,11 +170,11 @@ const NormalSearch = () => {
             {CategoryList.map((item) => (
               <ButtonA key={item.id} text={item.text} />
             ))}
-            <div />
+            <br />
             {CategoryList1.map((item) => (
               <ButtonB key={item.id} text={item.text} />
             ))}
-            <div />
+            <br />
             {CategoryList2.map((item) => (
               <ButtonC key={item.id} text={item.text} />
             ))}
@@ -216,14 +187,14 @@ const NormalSearch = () => {
           <Div>
             <p>매매/전세/보증금</p>
             <MultiRangeSlider
-              min={minMonthly}
-              max={5000000000}
+              min={0}
+              max={100}
               onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
             />
             <p>월세</p>
             <MultiRangeSlider
               min={0}
-              max={10000000}
+              max={100}
               onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
             //부모에서 자식으로 접근하는 방법을 찾아보기.
             />
@@ -231,9 +202,13 @@ const NormalSearch = () => {
           <Sbtn>추천받기</Sbtn>
         </form>
         <button onClick={Back}>결과받기</button>
-        <div style={{ zIndex: '110px' }}>결과결과:{data}</div>
+        {/* <div style={{ zIndex: '110px' }}>결과:{data}</div> */}
+        <code>
+          {JSON.stringify({ data })}
+        </code>
       </Positioner>
     </Container>
   );
 };
+
 export default NormalSearch;

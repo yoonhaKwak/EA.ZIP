@@ -9,6 +9,49 @@ function KakaoMap() {
     const [markers, setMarkers] = useState([]);
     const [error, setError] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
+    // const [type, setType] = useState(1);
+    // const [category, setCategory] = useState("빌라/연립");
+    // const [room, setRoom] = useState(3);
+
+    // const [map, setMap] = useState(500000);
+    // const getPrice = (max) => {
+    //     setMap(max);
+    // }
+
+    // const [mip, setMip] = useState(100);
+    // const getMiPrice = (min) => {
+    //     setMip(min);
+    // }
+    // //전세/매매/보증금 구간
+
+    // const [mam, setMam] = useState(0);
+    // const [mim, setMim] = useState(0);
+    // //월세 구간
+
+    // const [data, setData] = useState(null);
+    // // const [op1, setOp1] = useState()
+    // // const [op2, setOp2] = useState()
+    // // const [op3, setOp3] = useState()
+    // const fetchMarkers = async () => {
+    //     axios({
+    //         method: 'post',
+    //         url: '/react/filter',
+    //         data: {
+    //             "map": map,
+    //             "mip": mip,
+    //             "mam": mam,
+    //             "mim": mim,
+    //             "category": category,
+    //             "type": type,
+    //             "room": room
+    //             // "op1" : op1,
+    //             // "op2" : op2,
+    //             // "op3" : op3,
+    //         },
+    //         baseURL: 'http://localhost:8080'
+    //     }
+    //     ).then(response => setData(JSON.stringify(response.data)))
+    // }
 
     const fetchMarkers = async () => {
         try {
