@@ -68,12 +68,7 @@ public class ApiController {
 //        int op2;
 //        int op3;
 
-        int map;
-        int mip;
-        int mam;
-        int mim;
-
-
+        int map, mip, mam, mim;
 
         ///////////////////////////////
         // 프론트 데이터 백에서 받아 정의
@@ -90,29 +85,25 @@ public class ApiController {
         room_number =Integer.parseInt(options.get("room"));
         log.info("room");
 
-
 //        op1 = Integer.parseInt(options.get("op1"));
 //        op2 = Integer.parseInt(options.get("op2"));
 //        op3 = Integer.parseInt(options.get("op3"));
 
 
         map = Integer.parseInt(options.get("map"));
-        log.info("maxp");
+        log.info("map");
         mip = Integer.parseInt(options.get("mip"));
-        log.info("minp");
+        log.info("mip");
 
         mam = Integer.parseInt(options.get("mam"));
-        log.info("maxm");
+        log.info("mam");
         mim = Integer.parseInt(options.get("mim"));
-        log.info("minm");
-
+        log.info("mim");
 
         log.info("############### 프론트 데이터 받아 백에서 정의완료 #####################");
 
 
-
         FilterDTO filterDTO = new FilterDTO();
-
 
         filterDTO.setType(type);
         if (Objects.equals(category1, "빌라")){
@@ -129,7 +120,6 @@ public class ApiController {
         filterDTO.setMaxmonthly(mam);
         filterDTO.setMinmonthly(mim);
 
-
         log.info("#############################");
         log.info("필터링 적용하여 서비스 호출");
         System.out.println(filterDTO);
@@ -138,6 +128,7 @@ public class ApiController {
 
         return homes;
     }
+
     @GetMapping("/filtering")
     public List<HomeDTO> Filtering(){
         return service.filtering();
