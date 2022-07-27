@@ -20,14 +20,16 @@ const StyledLabel = styled.label`
   display: flex;
   align-items: center;
   user-select: none;
-  cursor: default;
+  cursor: pointer;
   float: left; width: auto;
   margin-right:25px;
   padding-bottom:50px;
+  white-space: pre-wrap;
+  line-height: 36px;
 
 
   &:before {
-    content:"${props => props.Cont}";
+    content:"  ${props => props.Cont}  ";
     width: auto;
     height: 44px;
     color: #FF7B31; 
@@ -39,12 +41,14 @@ const StyledLabel = styled.label`
     text-align:center;
     font-size: 23px;
     font-weight: bold;
+
+    
   }
 
   &:after {
     position: absolute;
     opacity: 0;
-    content:"${props => props.Cont}";
+    content:"  ${props => props.Cont}  ";
     width: auto;
     height: 44px;
     border-radius: 20px;
@@ -86,7 +90,13 @@ border-radius:20px;
 border: 3px solid #FF7B31;
 background-color: #E8E8E8;
     font-size: 23px;
-    font-weight: bold; color: #FF7B31; margin-right: 20px; margin-bottom: 50px;
-    display: absolute; cursor: pointer; padding: 10px; line-height: 1px;*/
+    font-weight: bold;
+    color: #FF7B31;
+    margin-right: 20px;
+    margin-bottom: 50px;
+    display: absolute;
+    cursor: pointer;
+    padding: 10px;
+    line-height: 1px;*/
 
 

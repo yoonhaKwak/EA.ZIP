@@ -3,15 +3,15 @@ import styled from "styled-components";
 
 
 function ButtonA({ text }) {
-    const Cont = text;
-    return (
-        <>
-            <StyledInput type="checkbox" id={text} name={text} />
-            <StyledLabel htmlFor={text} Cont={Cont}>
+  const Cont = text;
+  return (
+    <>
+      <StyledInput type="checkbox" id={text} name={text} />
+      <StyledLabel htmlFor={text} Cont={Cont}>
 
-            </StyledLabel>
-        </>
-    );
+      </StyledLabel>
+    </>
+  );
 }
 
 export default ButtonA;
@@ -25,9 +25,11 @@ const StyledLabel = styled.label`
   font-size: 15px; float: left;width: auto;
   margin-right:25px;
   padding-bottom:10px;
+  white-space: pre-wrap;
+  line-height: 36px;
 
   &:before {
-    content:"${props => props.Cont}";
+    content:"  ${props => props.Cont}  ";
     width: auto;
     height: 44px;
     color: #FFAD31; 
@@ -44,7 +46,7 @@ const StyledLabel = styled.label`
   &:after {
     position: absolute;
     opacity: 0;
-    content:"${props => props.Cont}";
+    content:"  ${props => props.Cont}  ";
     width: auto;
     height: 44px;
     border-radius: 20px;
