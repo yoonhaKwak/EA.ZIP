@@ -173,11 +173,11 @@ const NormalSearch = () => {
             {CategoryList.map((item) => (
               <ButtonA key={item.id} text={item.text} />
             ))}
-            <br />
+            <div />
             {CategoryList1.map((item) => (
               <ButtonB key={item.id} text={item.text} />
             ))}
-            <br />
+            <div />
             {CategoryList2.map((item) => (
               <ButtonC key={item.id} text={item.text} />
             ))}
