@@ -4,6 +4,7 @@ import "../../styles/css/multiRangeSlider.css";
 
 //min, max,onChange 가 부모로 보낼 데이터 변수.
 const MultiRangeSlider = ({ min, max, onChange }) => {
+
     const [minVal, setMinVal] = useState(min);
     const [maxVal, setMaxVal] = useState(max);
     const minValRef = useRef(min);

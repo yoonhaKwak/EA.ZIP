@@ -5,7 +5,7 @@ import MainSearchForm from "../components/detail/MainSearchForm";
 import CheckBox from "../components/part/CheckBox";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import React, { useCallback, useEffect, useState, useRef } from "react";
+import React, { useState } from "react";
 import MultiRangeSlider from "components/part/MultiRangeSlider";
 import ButtonA from "../components/part/ButtonA";
 import ButtonB from "../components/part/ButtonB";
@@ -100,7 +100,7 @@ const CategoryList = [
 const CategoryList1 = [
 
   { id: 0, text: '주택', value: '주택' },
-  { id: 1, text: '빌라', value: '빌라' },
+  { id: 1, text: '빌라', value: '빌라/연립' },
   { id: 2, text: '오피스텔', value: '오피스텔' }
 ];
 const CategoryList2 = [
@@ -111,12 +111,12 @@ const CategoryList2 = [
 ];
 
 const NormalSearch = () => {
-
   const [type, setType] = useState(1);
   const [category, setCategory] = useState("빌라/연립");
   const [room, setRoom] = useState(1);
-  const [map, setMap] = useState(50000);
-  const [mip, setMip] = useState(100);
+  const [map, setMap] = useState(0);
+  //const [map, setMap] = useState()
+  const [mip, setMip] = useState(0);
   //전세/매매/보증금 구간
   const [mam, setMam] = useState(0);
   const [mim, setMim] = useState(0);
@@ -138,9 +138,9 @@ const NormalSearch = () => {
         "mip": mip,
         "mam": mam,
         "mim": mim,
-        "category": category,
-        "type": type,
-        "room": room
+        "category": CategoryList1[1].value,
+        "type": CategoryList[2].value,
+        "room": CategoryList2[0].value
         // "op1" : op1,
         // "op2" : op2,
         // "op3" : op3,
@@ -170,11 +170,11 @@ const NormalSearch = () => {
             {CategoryList.map((item) => (
               <ButtonA key={item.id} text={item.text} />
             ))}
-            <br />
+            <div />
             {CategoryList1.map((item) => (
               <ButtonB key={item.id} text={item.text} />
             ))}
-            <br />
+            <div />
             {CategoryList2.map((item) => (
               <ButtonC key={item.id} text={item.text} />
             ))}
@@ -187,25 +187,26 @@ const NormalSearch = () => {
           <Div>
             <p>매매/전세/보증금</p>
             <MultiRangeSlider
-              min={0}
-              max={100}
-              onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
+              min={100}
+              max={50000}
+              onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`) & setMip(min) & setMap(max)}
+
             />
             <p>월세</p>
             <MultiRangeSlider
               min={0}
-              max={100}
-              onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
+              max={1000}
+              onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`) & setMim(0) & setMam(0)}
             //부모에서 자식으로 접근하는 방법을 찾아보기.
             />
           </Div>
           <Sbtn>추천받기</Sbtn>
         </form>
         <button onClick={Back}>결과받기</button>
-        {/* <div style={{ zIndex: '110px' }}>결과:{data}</div> */}
-        <code>
-          {JSON.stringify({ data })}
-        </code>
+        <div style={{ zIndex: '110px' }}>결과:{data}</div>
+        {/* <code>
+          {JSON.stringify({ data: { map, mip, mam, mim, category, type, room } })}
+        </code> */}
       </Positioner>
     </Container>
   );
