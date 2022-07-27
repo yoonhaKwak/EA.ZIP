@@ -2,10 +2,13 @@ import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk";
 import { useEffect, useState } from 'react';
 import SearchMarker from '../styles/icons/SearchMarker.svg';
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 const { kakao } = window
 
 function KakaoMap() {
+    const location = useLocation();
+    console.log('state', location.state);
     const [markers, setMarkers] = useState([]);
     const [error, setError] = useState(null);
     const [isOpen, setIsOpen] = useState(false);

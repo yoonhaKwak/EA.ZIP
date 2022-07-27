@@ -84,7 +84,6 @@ public class ApiController {
         type = Integer.parseInt(options.get("type"));
         category1 = options.get("category");
         room_number =Integer.parseInt(options.get("room"));
-
 //        op1 = Integer.parseInt(options.get("op1"));
 //        op2 = Integer.parseInt(options.get("op2"));
 //        op3 = Integer.parseInt(options.get("op3"));
