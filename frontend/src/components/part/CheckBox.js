@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import CheckedBox from "../../styles/img/CheckedBox.svg";
 
-function Checkbox({ text }) {
+function Checkbox({ text, value, onChange }) {
   return (
     <>
-      <StyledInput type="checkbox" id={text} name={text} />
+      <StyledInput type="checkbox" id={text} name={text} value={value} onChange={onChange} />
       <StyledLabel htmlFor={text}>
         <StyledP>{text}</StyledP>
       </StyledLabel>

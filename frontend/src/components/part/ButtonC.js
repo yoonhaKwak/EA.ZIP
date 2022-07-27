@@ -2,14 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 
-function ButtonA({ text }) {
+function ButtonA({ text, value, onChange }) {
   const Cont = text;
   return (
     <>
-      <StyledInput type="checkbox" id={text} name={text} />
-      <StyledLabel htmlFor={text} Cont={Cont}>
+      <StyledInput type="checkbox" id={text} name={text} value={value} onChange={onChange} />
+      <StyledLabel htmlFor={text} Cont={Cont} />
 
-      </StyledLabel>
     </>
   );
 }

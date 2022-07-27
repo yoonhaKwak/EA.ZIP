@@ -81,43 +81,46 @@ width:240px; height: 44px; border-radius: 20px; border: none; background-color: 
 `;
 
 const optionsList = [
-  { id: 0, text: "편의점", value: 'sc_market' },
-  { id: 1, text: "병원", value: 'sc_hospital' },
-  { id: 2, text: "지하철역", value: 'sc_subway' },
-  { id: 3, text: "카페", value: 'sc_cafe' },
-  { id: 4, text: "주민센터", value: 'sc_office' },
-  { id: 5, text: "버스 정류장", value: 'sc_bus' },
-  { id: 6, text: "세탁소", value: 'sc_laundry' },
-  { id: 7, text: "우체국", value: 'sc_post' },
-  { id: 8, text: "버스 터미널" },
-  { id: 9, text: "보건소", value: 'sc_bogun' },
-  { id: 10, text: "따릉이대여소", value: 'sc_ddar' },
-  { id: 11, text: "은행", value: 'sc_bank' },
-  { id: 12, text: "CCTV", value: 'sc_cctv' }
+  { id: 0, name: 'option', text: "편의점", value: 'sc_market' },
+  { id: 1, name: 'option', text: "병원", value: 'sc_hospital' },
+  { id: 2, name: 'option', text: "지하철역", value: 'sc_subway' },
+  { id: 3, name: 'option', text: "카페", value: 'sc_cafe' },
+  { id: 4, name: 'option', text: "주민센터", value: 'sc_office' },
+  { id: 5, name: 'option', text: "버스 정류장", value: 'sc_bus' },
+  { id: 6, name: 'option', text: "세탁소", value: 'sc_laundry' },
+  { id: 7, name: 'option', text: "우체국", value: 'sc_post' },
+  { id: 8, name: 'option', text: "버스 터미널" },
+  { id: 9, name: 'option', text: "보건소", value: 'sc_bogun' },
+  { id: 10, name: 'option', text: "따릉이대여소", value: 'sc_ddar' },
+  { id: 11, name: 'option', text: "은행", value: 'sc_bank' },
+  { id: 12, name: 'option', text: "CCTV", value: 'sc_cctv' }
 ];
 const CategoryList = [
-  { id: 0, text: "월세", value: '3' },
-  { id: 1, text: "전세", value: '2' },
-  { id: 2, text: "매매", value: '1' }
+  { id: 0, name: 'category', text: "월세", value: 3 },
+  { id: 1, name: 'category', text: "전세", value: 2 },
+  { id: 2, name: 'category', text: "매매", value: 1 }
 ];
 const CategoryList1 = [
 
-  { id: 0, text: '주택', value: '주택' },
-  { id: 1, text: '빌라', value: '빌라/연립' },
-  { id: 2, text: '오피스텔', value: '오피스텔' }
+
+  { id: 0, name: 'type', text: '주택', value: '주택' },
+  { id: 1, name: 'type', text: '빌라', value: '빌라' },
+  { id: 2, name: 'type', text: '오피스텔', value: '오피스텔' }
+
 ];
 const CategoryList2 = [
 
-  { id: 0, text: '원룸', value: '1' },
-  { id: 1, text: '투룸', value: '2' },
-  { id: 2, text: '쓰리룸', value: '3' }
+  { id: 0, name: 'room', text: '원룸', value: 1 },
+  { id: 1, name: 'room', text: '투룸', value: 2 },
+  { id: 2, name: 'room', text: '쓰리룸', value: 3 }
 ];
 
 const NormalSearch = () => {
-  const [type, setType] = useState(1);
-  const [category, setCategory] = useState("빌라/연립");
-  const [room, setRoom] = useState(1);
+  const [category1, setCategory] = useState([]);
+  const [type, setType] = useState([]);
+  const [room_number, setRoom] = useState([]);
   const [map, setMap] = useState(0);
+  const [options, setOption] = useState([]);
   //const [map, setMap] = useState()
   const [mip, setMip] = useState(0);
   //전세/매매/보증금 구간
@@ -132,6 +135,44 @@ const NormalSearch = () => {
 
   const navigate = useNavigate();
 
+
+
+
+  const onCateElement = (checked, item) => {
+    if (checked) {
+      setCategory([...category1, item]);
+    } else if (!checked) {
+      setCategory(category1.filter(el => el !== item));
+    }
+  };
+  const onTypeElement = (checked, item) => {
+    if (checked) {
+      setType([...type, item]);
+    } else if (!checked) {
+      setType(type.filter(el => el !== item));
+    }
+  };
+
+  const onRoomElement = (checked, item) => {
+    if (checked) {
+      setRoom([...room_number, item]);
+    } else if (!checked) {
+      setRoom(room_number.filter(el => el !== item));
+    }
+  };
+  const onOptionElement = (checked, item) => {
+    if (checked) {
+      setOption([...options, item]);
+    } else if (!checked) {
+      setOption(options.filter(el => el !== item));
+    }
+  };
+
+
+
+
+
+
   const Back = async () => {
     axios({
       method: 'post',
@@ -141,9 +182,10 @@ const NormalSearch = () => {
         "mip": mip,
         "mam": mam,
         "mim": mim,
-        "category": CategoryList1[1].value,
-        "type": CategoryList[2].value,
-        "room": CategoryList2[0].value
+        "category1": category1,
+        "type": type,
+        "room_number": room_number,
+        "options": options
         // "op1" : op1,
         // "op2" : op2,
         // "op3" : op3,
@@ -171,20 +213,50 @@ const NormalSearch = () => {
           </OptionList>
           <DivA style={{ marginRight: '140px', marginLeft: '166px' }}>
             {CategoryList.map((item) => (
-              <ButtonA key={item.id} text={item.text} />
+              <ButtonA key={item.id} text={item.text} value={item.value}
+
+                onChange={e => {
+                  onCateElement(e.target.checked, e.target.value);
+                }}
+                checked={category1.includes(item.value) ? true : false}
+
+              />
             ))}
             <div />
             {CategoryList1.map((item) => (
-              <ButtonB key={item.id} text={item.text} />
+              <ButtonB key={item.id} text={item.text} value={item.value}
+
+                onChange={e => {
+                  onTypeElement(e.target.checked, e.target.value);
+                }}
+                checked={type.includes(item.value) ? true : false}
+
+              />
             ))}
             <div />
             {CategoryList2.map((item) => (
-              <ButtonC key={item.id} text={item.text} />
+              <ButtonC key={item.id} text={item.text} value={item.value}
+                onChange={e => {
+                  onRoomElement(e.target.checked, e.target.value);
+                }}
+                checked={room_number.includes(item.value) ? true : false}
+
+
+              />
             ))}
           </DivA>
           <Div>
             {optionsList.map((item) => (
-              <CheckBox key={item.id} text={item.text} />
+              <CheckBox key={item.id} text={item.text} value={item.value}
+
+                onChange={e => {
+                  onOptionElement(e.target.checked, e.target.value);
+                }}
+                checked={options.includes(item.value) ? true : false}
+
+
+
+              />
             ))}
           </Div>
           <Div>
@@ -207,9 +279,9 @@ const NormalSearch = () => {
         </form>
         <button onClick={Back}>결과받기</button>
         <div style={{ zIndex: '110px' }}>결과:{data}</div>
-        {/* <code>
-          {JSON.stringify({ data: { map, mip, mam, mim, category, type, room } })}
-        </code> */}
+        <code>
+          {JSON.stringify({ data: { map, mip, mam, mim, category1, type, room_number, options } })}
+        </code>
       </Positioner>
     </Container>
   );
