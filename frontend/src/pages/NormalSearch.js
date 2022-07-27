@@ -75,6 +75,9 @@ const Bbtn = styled.button`
 const Sbtn = styled.button`
 width:240px; height: 44px; border-radius: 20px; border: none; background-color: #FF9431; font-size: 25px;
   font-weight: bold; color: white; margin: 10px 20px 20px 820px;  display: absolute; cursor: pointer; padding:10px; line-height: 1px;
+  &:hover{
+    background-color: #D37E30;
+  }
 `;
 
 const optionsList = [
@@ -166,7 +169,7 @@ const NormalSearch = () => {
             <Hr style={{ width: '492px' }} /><FilterTitle1>편의시설 및 교통시설</FilterTitle1>
             <Hr style={{ width: '472px' }} /><FilterTitle1>가격 범위</FilterTitle1><Hr style={{ width: '275px' }} />
           </OptionList>
-          <DivA style={{ marginRight: '200px', marginLeft: '166px' }}>
+          <DivA style={{ marginRight: '140px', marginLeft: '166px' }}>
             {CategoryList.map((item) => (
               <ButtonA key={item.id} text={item.text} />
             ))}
