@@ -7,13 +7,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class FilterDTO {
-    int type;
+    String type;
     String category1;
-    int room_number;
+    String room_number;
 
-    int op1;
-    int op2;
-    int op3;
+    String op1;
+    String op2;
+    String op3;
 
     int minprice;
     int maxprice;

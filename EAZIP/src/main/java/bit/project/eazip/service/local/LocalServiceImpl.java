@@ -18,6 +18,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -102,9 +103,11 @@ public class LocalServiceImpl implements LocalService {
 
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
             log.info("api");
+
             line = br.readLine();
             JSONParser jsonParser = new JSONParser();
             JSONObject obj = (JSONObject)jsonParser.parse(line);
+
             JSONObject result = (JSONObject) obj.get("result");
             JSONArray path = (JSONArray) result.get("path");// is null 이라고 뜸
             JSONObject info = (JSONObject)path.get(0);
@@ -118,9 +121,43 @@ public class LocalServiceImpl implements LocalService {
 //            }
 
             int transit = Integer.parseInt(info.get("busTransitCount").toString()) + Integer.parseInt(info.get("subwayTransitCount").toString());
+            System.out.println("여기 진행됨");
             apiList[0] = Integer.parseInt(info.get("totalWalk").toString());  //도보거리
             apiList[1] = transit;   //환승횟수
             apiList[2] = Integer.parseInt(info.get("totalTime").toString());  //소요시간
+
+
+            // Cashing 코드
+            log.info("############## 캐싱 테스트 시작 ###################" );
+            // path.size() 베이스 for문 시작 부분
+
+
+            Map<String, Map> pathmap = new HashMap<String, Map>();
+
+            for (int i = 0 ; i < path.size(); i++) {
+                JSONObject temppath = (JSONObject) path.get(i);
+
+                // JSONObject info0 = (JSONObject) path0.get("info");
+
+                JSONArray subpath = (JSONArray) temppath.get("subPath");
+
+                Map<String, String> subpathmap = new HashMap<String, String>();
+
+                for (int j = 0; j < subpath.size(); j++) {
+                    JSONObject tempsubpath = (JSONObject) subpath.get(j);
+                    if (Integer.parseInt(tempsubpath.get("trafficType").toString()) == 1) {
+                        subpathmap.put(new String("startID") +i + j, "s" + tempsubpath.get("startID").toString());
+                        subpathmap.put(new String("endID") +i + j, "s" + tempsubpath.get("endID").toString());
+                    } else if (Integer.parseInt(tempsubpath.get("trafficType").toString()) == 2) {
+                        subpathmap.put(new String("startID") +i + j, "b" + tempsubpath.get("startID").toString());
+                        subpathmap.put(new String("endID") +i + j, "b" + tempsubpath.get("endID").toString());
+                    }
+                    subpathmap.put(new String("trafficType") +i + j, tempsubpath.get("trafficType").toString());
+                    subpathmap.put(new String("sectionTime") +i + j, tempsubpath.get("sectionTime").toString());
+                }
+                pathmap.put("path"+i, subpathmap);
+            }
+            System.out.println(pathmap);
 
 
         } catch (ParseException | IOException e) {

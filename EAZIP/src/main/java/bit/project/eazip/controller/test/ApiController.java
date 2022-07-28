@@ -8,11 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.lang.Integer;
-import java.util.Objects;
 
 @Log
 @RestController
@@ -60,13 +57,21 @@ public class ApiController {
     @RequestMapping(value = "/filter", method = {RequestMethod.GET, RequestMethod.POST})
     public List<FilterDTO> Filter(@RequestBody Map<String,String>paramMap) throws SQLException,Exception{
 
-        int type;
-        String category1;
-        int room_number;
+        log.info("############### 진입 #####################");
 
-//        int op1;
-//        int op2;
-//        int op3;
+//        String[] type;
+//        String[] category1;
+//        String[] room_number;
+
+
+        String type;
+        String category1;
+        String room_number;
+
+
+        String op1;
+        String op2;
+        String op3;
 
         int map;
         int mip;
@@ -75,25 +80,47 @@ public class ApiController {
 
 
 
-        ///////////////////////////////
-        // 프론트 데이터 백에서 받아 정의
-        ///////////////////////////////
         log.info("############### 프론트 데이터 받아 백에서 정의 작업시작 #####################");
         Map<String,String> options = paramMap;
 
-        type = Integer.parseInt(options.get("type"));
-        category1 = options.get("category");
-        room_number =Integer.parseInt(options.get("room"));
+        System.out.println(options.get("type"));
+        type = options.get("type");
+        System.out.println(type);
+//        type = Arrays.stream(options.get("type").split(","))
+//                .map(String::trim)
+//                .toArray(String[]::new);
 
-//        op1 = Integer.parseInt(options.get("op1"));
-//        op2 = Integer.parseInt(options.get("op2"));
-//        op3 = Integer.parseInt(options.get("op3"));
+        System.out.println(options.get("category"));
+        category1 = options.get("category");
+        System.out.println("category1 :" +  category1);
+//        category1 = Arrays.stream(options.get("category").split(","))
+//                .map(String::trim)
+//                .toArray(String[]::new);
+
+        System.out.println(options.get("room"));
+        room_number = options.get("room");
+        System.out.println("room_number :" + room_number);
+//        room_number = Arrays.stream(options.get("room").split(","))
+//                .map(String::trim)
+//                .toArray(String[]::new);
+
+
+        log.info("################### 값 제대로 가져오는지 확인");
+//        System.out.println(Arrays.stream(type).toList().get(0));
+
+        op1 = options.get("op1");
+        op2 = options.get("op2");
+        op3 = options.get("op3");
+
 
         map = Integer.parseInt(options.get("map"));
+        System.out.println("map :"  + map);
         mip = Integer.parseInt(options.get("mip"));
+        System.out.println("mip :"  + mip);
         mam = Integer.parseInt(options.get("mam"));
+        System.out.println("mam :"  + mam);
         mim = Integer.parseInt(options.get("mim"));
-
+        System.out.println("mim :"  + mim);
 
         log.info("############### 프론트 데이터 받아 백에서 정의 완료 #####################");
 
@@ -102,15 +129,15 @@ public class ApiController {
         FilterDTO filterDTO = new FilterDTO();
 
 
+
         filterDTO.setType(type);
-        if (Objects.equals(category1, "빌라")){
-            filterDTO.setCategory1("빌라/연립");
-        } else {filterDTO.setCategory1(category1);}
+
+        filterDTO.setCategory1(category1);
         filterDTO.setRoom_number(room_number);
 
-//        filterDTO.setOp1(op1);
-//        filterDTO.setOp2(op2);
-//        filterDTO.setOp3(op3);
+        filterDTO.setOp1(op1);
+        filterDTO.setOp2(op2);
+        filterDTO.setOp3(op3);
 
         filterDTO.setMaxprice(map);
         filterDTO.setMinprice(mip);
@@ -135,8 +162,14 @@ public class ApiController {
         }
         log.info("########## 필터링 적용하여 서비스 호출 완료 ##########");
 
+        System.out.println(homes);
         return homes;
     }
+
+
+
+
+
     @GetMapping("/filtering")
     public List<HomeDTO> Filtering(){
         return service.filtering();
@@ -146,25 +179,38 @@ public class ApiController {
     public List<HomeDTO> ApiList() throws SQLException,Exception{
         //입력값 수정하기
         int api[] = new int[3];
+
+        // 필터링된 매물 idx 가져오기
         List<HomeDTO> idxList = service.selectIdx();
         int idx[] = new int[idxList.size()];
         for(int i=0; i<idxList.size(); i++){
             idx[i] = idxList.get(i).getIdx();
         }
-        for (int i=0; i<idx.length; i++) {
-            HomeDTO homes = service.selectData(idx[i]);
-            Map<String, Double> coordinate = new HashMap<String,Double>();
 
-            coordinate.put("lat",homes.getLat());
-            coordinate.put("lng",homes.getLng());
 
-            // api 받아오기
-            api = service.apiList(coordinate);
 
-            if(api[0]*0.016<=5 & api[1]<=1 & api[2]<=45){
-                //디비에 HomeDTO 저장하기
-                service.insertData(service.selectData(idx[i]));
-            }
+        // for (int i=0; i<idx.length; i++) {
+
+
+
+        HomeDTO homes = service.selectData(idx[0]);
+        Map<String, Double> coordinate = new HashMap<String,Double>();
+
+
+        // 매물의 위도경도 정보 coordinate에 입력
+        coordinate.put("lat",homes.getLat());
+        coordinate.put("lng",homes.getLng());
+
+
+        // api 받아오기
+        api = service.apiList(coordinate);
+
+        if(api[0]*0.016<=5 & api[1]<=1 & api[2]<=45){
+            //디비에 HomeDTO 저장하기
+            service.insertData(service.selectData(idx[0])); // DB에 저장
+
+
+        //    }
 
         }
         List<HomeDTO> homeDTOList = service.filtering();
