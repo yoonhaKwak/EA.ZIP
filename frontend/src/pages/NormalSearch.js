@@ -98,16 +98,16 @@ const optionsList = [
   { id: 12, name: 'option', text: "CCTV", value: 'sc_cctv' }
 ];
 const CategoryList = [
-  { id: 0, name: 'category', text: "월세", value: 3 },
-  { id: 1, name: 'category', text: "전세", value: 2 },
-  { id: 2, name: 'category', text: "매매", value: 1 }
+  { id: 0, name: 'type', text: "월세", value: 3 },
+  { id: 1, name: 'type', text: "전세", value: 2 },
+  { id: 2, name: 'type', text: "매매", value: 1 }
 ];
 const CategoryList1 = [
 
 
-  { id: 0, name: 'type', text: '주택', value: '주택' },
-  { id: 1, name: 'type', text: '빌라', value: '빌라' },
-  { id: 2, name: 'type', text: '오피스텔', value: '오피스텔' }
+  { id: 0, name: 'category', text: '주택', value: 1 },
+  { id: 1, name: 'category', text: '빌라', value: 2 },
+  { id: 2, name: 'category', text: '오피스텔', value: 3 }
 
 ];
 const CategoryList2 = [
@@ -121,9 +121,8 @@ const NormalSearch = () => {
   const [category1, setCategory] = useState([]);
   const [type, setType] = useState([]);
   const [room_number, setRoom] = useState([]);
-  const [map, setMap] = useState(0);
   const [options, setOption] = useState([]);
-  //const [map, setMap] = useState()
+  const [map, setMap] = useState(0);
   const [mip, setMip] = useState(0);
   const [mam, setMam] = useState(0);
   const [mim, setMim] = useState(0);
@@ -171,10 +170,14 @@ const NormalSearch = () => {
         "mip": mip,
         "mam": mam,
         "mim": mim,
-        "category1": category1,
-        "type": type,
-        "room_number": room_number,
-        "options": options
+        "category": category1.toString(),
+        "type": type.toString(),
+        "room": room_number.toString(),
+        "op1": options[0].toString(),
+        "op2": options[1].toString(),
+        "op3": options[2].toString()
+
+
 
         // "op1" : op1,
         // "op2" : op2,
@@ -182,9 +185,9 @@ const NormalSearch = () => {
       },
       baseURL: 'http://localhost:8080'
     }
-    ).then(response => setData(JSON.stringify(response.data)));
-
-    navigate(`/search`, { state: { data: { map, mip, mam, mim, category1, type, room_number } }, });
+    ).then(response => setData(JSON.stringify(response.data)))
+    //   .then(navigate('/search', { state: data }));
+    // navigate(`/search`, { state: data });
   };
   return (
     <Container>
@@ -207,9 +210,9 @@ const NormalSearch = () => {
               <ButtonA key={item.id} text={item.text} value={item.value}
 
                 onChange={e => {
-                  onCateElement(e.target.checked, e.target.value);
+                  onTypeElement(e.target.checked, e.target.value);
                 }}
-                checked={category1.includes(item.value) ? true : false}
+                checked={type.includes(item.value) ? true : false}
 
               />
             ))}
@@ -218,9 +221,10 @@ const NormalSearch = () => {
               <ButtonB key={item.id} text={item.text} value={item.value}
 
                 onChange={e => {
-                  onTypeElement(e.target.checked, e.target.value);
+                  onCateElement(e.target.checked, e.target.value);
                 }}
-                checked={type.includes(item.value) ? true : false}
+                checked={category1.includes(item.value) ? true : false}
+
 
               />
             ))}
@@ -251,20 +255,19 @@ const NormalSearch = () => {
             ))}
           </Div>
           <Div>
-            <p>매매/전세/보증금</p>
+
+            <p className="price">매매/전세/보증금</p>
             <MultiRangeSlider
               min={0}
               max={50000}
               onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`) & setMip(min) & setMap(max)}
 
             />
-            <p>월세</p>
+            <p className="monthly">월세</p>
             <MultiRangeSlider
               min={0}
-              max={1000}
-              step={50}
-              onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`) & setMim(0) & setMam(0)}
-            //부모에서 자식으로 접근하는 방법을 찾아보기.
+              max={50000}
+              onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`) & setMim(min) & setMam(max)}
             />
           </Div>
 

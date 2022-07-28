@@ -56,7 +56,6 @@ public class ApiController {
 
     @RequestMapping(value = "/filter", method = {RequestMethod.GET, RequestMethod.POST})
     public List<FilterDTO> Filter(@RequestBody Map<String,String>paramMap) throws SQLException,Exception{
-
         log.info("############### 진입 #####################");
 
 //        String[] type;
@@ -80,17 +79,20 @@ public class ApiController {
 
 
 
+
         log.info("############### 프론트 데이터 받아 백에서 정의 작업시작 #####################");
         Map<String,String> options = paramMap;
 
         System.out.println(options.get("type"));
         type = options.get("type");
+
         System.out.println(type);
 //        type = Arrays.stream(options.get("type").split(","))
 //                .map(String::trim)
 //                .toArray(String[]::new);
 
         System.out.println(options.get("category"));
+
         category1 = options.get("category");
         System.out.println("category1 :" +  category1);
 //        category1 = Arrays.stream(options.get("category").split(","))
@@ -109,6 +111,8 @@ public class ApiController {
 //        System.out.println(Arrays.stream(type).toList().get(0));
 
         op1 = options.get("op1");
+        System.out.println("op1 :"  + op1);
+
         op2 = options.get("op2");
         op3 = options.get("op3");
 
