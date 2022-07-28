@@ -12,12 +12,12 @@
 
     <select id="filterPrice" parameterType="bit.project.eazip.domain.home.FilterDTO" resultType="bit.project.eazip.domain.home.HomeDTO">
 --        select * from gangnam0712 where type in <![CDATA[(]]> ${type} <![CDATA[)]]> and category1 in <![CDATA[(]]> #{category1} <![CDATA[)]]> and price <![CDATA[<=]]> #{maxprice} and price <![CDATA[>=]]> #{minprice} and room_number in (${room_number}) and ( ${op1} > 8 and ${op2} > 8  and ${op3} > 8) order by ( ${op1} + ${op2} + ${op3}) desc;
-        select * from gangnam0712 where type in (${type})  and category1 in  (#{category1}) and price <![CDATA[<=]]> #{maxprice} and price <![CDATA[>=]]> #{minprice} and room_number in (${room_number}) and ( ${op1} > 8 and ${op2} > 8  and ${op3} > 8) order by ( ${op1} + ${op2} + ${op3}) desc;
+        select * from gangnam0712 where type in (${type})  and category1 in  (${category1}) and price <![CDATA[<=]]> #{maxprice} and price <![CDATA[>=]]> #{minprice} and room_number in (${room_number}) and ( ${op1} > 8 and ${op2} > 8  and ${op3} > 8) order by ( ${op1} + ${op2} + ${op3}) desc;
 
     </select>
 
     <select id="filterMonthly" parameterType="bit.project.eazip.domain.home.FilterDTO" resultType="bit.project.eazip.domain.home.HomeDTO">
-        select * from gangnam0712 where type in ( ${type} ) and category1 in  (#{category1})  and price <![CDATA[<=]]> #{maxprice} and price <![CDATA[>=]]> #{minprice} and monthly = 0 or (monthly <![CDATA[<=]]> #{maxmonthly} and monthly <![CDATA[>=]]> #{minmonthly} ) and room_number in (${room_number}) and ( ${op1} > 8 and ${op2} > 8  and ${op3} > 8) order by ( ${op1} + ${op2} + ${op3}) desc;
+        select * from gangnam0712 where type in ( ${type} ) and category1 in  (${category1})  and price <![CDATA[<=]]> #{maxprice} and price <![CDATA[>=]]> #{minprice} and monthly = 0 or (monthly <![CDATA[<=]]> #{maxmonthly} and monthly <![CDATA[>=]]> #{minmonthly} ) and room_number in (${room_number}) and ( ${op1} > 8 and ${op2} > 8  and ${op3} > 8) order by ( ${op1} + ${op2} + ${op3}) desc;
     </select>
 
     <insert id="insertRoomFiltering" parameterType="bit.project.eazip.domain.home.HomeDTO">

@@ -4,7 +4,7 @@ import {useState} from "react";
 
 function Filter(){
     const [type, setType] = useState(['1', '2']);
-    const [category, setCategory] = useState(['오피스텔', '원룸']);
+    const [category, setCategory] = useState(['오피스텔']);
     const [room, setRoom] = useState(['1', '2']);
     const [map, setMap] = useState(50000);
     const [mip, setMip] = useState(100);

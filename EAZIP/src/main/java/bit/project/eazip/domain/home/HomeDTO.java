@@ -10,7 +10,7 @@ import lombok.Setter;
 public class HomeDTO {
 
     private int 	idx;
-    private String 	category1;
+    private int 	category1;
     private String 	category2;
     private String 	name;
     private String 	dong;
