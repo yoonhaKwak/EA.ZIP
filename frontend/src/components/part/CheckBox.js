@@ -2,15 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import CheckedBox from "../../styles/img/CheckedBox.svg";
 
-function Checkbox({ text }) {
-    return (
-        <>
-            <StyledInput type="checkbox" id={text} name={text} />
-            <StyledLabel htmlFor={text}>
-                <StyledP>{text}</StyledP>
-            </StyledLabel>
-        </>
-    );
+function Checkbox({ text, value, onChange }) {
+  return (
+    <>
+      <StyledInput type="checkbox" id={text} name={text} value={value} onChange={onChange} />
+      <StyledLabel htmlFor={text}>
+        <StyledP>{text}</StyledP>
+      </StyledLabel>
+    </>
+  );
 }
 
 export default Checkbox;
@@ -21,7 +21,7 @@ const StyledLabel = styled.label`
   align-items: center;
   user-select: none;
   cursor: default;
-  font-size: 15px; float: left; width: 33.33%;
+ float: left; width: 33.33%;
   
 
   &:before {

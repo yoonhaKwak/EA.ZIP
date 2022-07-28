@@ -4,6 +4,7 @@ import "../../styles/css/multiRangeSlider.css";
 
 //min, max,onChange 가 부모로 보낼 데이터 변수.
 const MultiRangeSlider = ({ min, max, onChange }) => {
+
     const [minVal, setMinVal] = useState(min);
     const [maxVal, setMaxVal] = useState(max);
     const minValRef = useRef(min);
@@ -50,21 +51,27 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
                 min={min}
                 max={max}
                 value={minVal}
+                step={1000}
+                ruler={true}
+                label={true}
                 onChange={(event) => {
-                    const value = Math.min(Number(event.target.value), maxVal - 0.0000001);
+                    const value = Math.min(Number(event.target.value), maxVal - 1000);
                     setMinVal(value);
                     minValRef.current = value;
                 }}
                 className="thumb thumb--left"
-                style={{ zIndex: minVal > max - 100 && "5" }}
+                style={{ zIndex: minVal > max - 1 && "5" }}
             />
             <input
                 type="range"
                 min={min}
                 max={max}
                 value={maxVal}
+                step={1000}
+                ruler={true}
+                label={true}
                 onChange={(event) => {
-                    const value = Math.max(Number(event.target.value), minVal + 0.0000001);
+                    const value = Math.max(Number(event.target.value), minVal + 1000);
                     setMaxVal(value);
                     maxValRef.current = value;
                 }}

@@ -1,12 +1,15 @@
 import MainHeader3 from "../components/part/MainHeader3";
-import React, { useState } from "react";
 import styled from "styled-components";
 import image from "../styles/background/2.jpg";
 import MainSearchForm from "../components/detail/MainSearchForm";
 import CheckBox from "../components/part/CheckBox";
 import axios from "axios";
+import { Link, useNavigate, Navigate } from "react-router-dom";
+import React, { useState } from "react";
 import MultiRangeSlider from "components/part/MultiRangeSlider";
-import { Link } from "react-router-dom";
+import ButtonA from "../components/part/ButtonA";
+import ButtonB from "../components/part/ButtonB";
+import ButtonC from "../components/part/ButtonC";
 
 const Container = styled.div`
 position: absolute;
@@ -31,10 +34,12 @@ const FilterTitle = styled.p`
   font-size: 25px; font-weight: bold; display: inline-block;
   width:120px; height:40px; line-height: 10px; margin: 0 248px 0px 262px; padding-top: 25px;
 `;
+
 const FilterTitle1 = styled.p`
   font-size: 16px; display: inline-block;
   width:auto; height:40px; line-height: 0px; margin: 0 20px 0px 20px; padding-top: 12px;
 `;
+
 const Hr = styled.hr`
   width: 282px; display: inline-block; vertical-align: middle;
 `;
@@ -42,6 +47,13 @@ const Hr = styled.hr`
 const Div = styled.div`
   width:450px; display: inline-block; margin: 186px 110px -35px 61px; text-align: -webkit-auto; z-index:11;
 `;
+
+const DivA = styled.div`
+  width:auto; display: inline-block; margin: 186px 110px -35px 61px; text-align: -webkit-auto; z-index:11;
+
+`;
+
+
 const Tbtn = styled.button`
     width: auto; height: 44px; border-radius: 20px; border: 3px solid #FF7B31; background-color: #E8E8E8;
     font-size: 23px; font-weight: bold; color: #FF7B31; margin-right: 20px; margin-bottom: 50px;
@@ -65,110 +77,115 @@ const Bbtn = styled.button`
 const Sbtn = styled.button`
 width:240px; height: 44px; border-radius: 20px; border: none; background-color: #FF9431; font-size: 25px;
   font-weight: bold; color: white; margin: 10px 20px 20px 820px;  display: absolute; cursor: pointer; padding:10px; line-height: 1px;
+  &:hover{
+    background-color: #D37E30;
+  }
 `;
 
-
-
 const optionsList = [
-  { id: 0, text: "편의점", value: 'market' },
-  { id: 1, text: "병원", value: 'hospital' },
-  { id: 2, text: "지하철역", value: 'subway' },
-  { id: 3, text: "카페", value: 'cafe' },
-  { id: 4, text: "주민센터", value: 'office' },
-  { id: 5, text: "버스 정류장", value: 'bus' },
-  { id: 6, text: "세탁소", value: 'laundry' },
-  { id: 7, text: "우체국", value: 'post' },
-  { id: 8, text: "버스 터미널" },
-  { id: 9, text: "보건소", value: 'bogun' },
-  { id: 10, text: "따릉이대여소", value: 'ddar' },
-  { id: 11, text: "은행", value: 'bank' },
-  { id: 12, text: "CCTV", value: 'cctv' }
+  { id: 0, name: 'option', text: "편의점", value: 'sc_market' },
+  { id: 1, name: 'option', text: "병원", value: 'sc_hospital' },
+  { id: 2, name: 'option', text: "지하철역", value: 'sc_subway' },
+  { id: 3, name: 'option', text: "카페", value: 'sc_cafe' },
+  { id: 4, name: 'option', text: "주민센터", value: 'sc_office' },
+  { id: 5, name: 'option', text: "버스 정류장", value: 'sc_bus' },
+  { id: 6, name: 'option', text: "세탁소", value: 'sc_laundry' },
+  { id: 7, name: 'option', text: "우체국", value: 'sc_post' },
+  { id: 8, name: 'option', text: "버스 터미널" },
+  { id: 9, name: 'option', text: "보건소", value: 'sc_bogun' },
+  { id: 10, name: 'option', text: "따릉이대여소", value: 'sc_ddar' },
+  { id: 11, name: 'option', text: "은행", value: 'sc_bank' },
+  { id: 12, name: 'option', text: "CCTV", value: 'sc_cctv' }
+];
+const CategoryList = [
+  { id: 0, name: 'category', text: "월세", value: 3 },
+  { id: 1, name: 'category', text: "전세", value: 2 },
+  { id: 2, name: 'category', text: "매매", value: 1 }
+];
+const CategoryList1 = [
+
+
+  { id: 0, name: 'type', text: '주택', value: '주택' },
+  { id: 1, name: 'type', text: '빌라', value: '빌라' },
+  { id: 2, name: 'type', text: '오피스텔', value: '오피스텔' }
+
+];
+const CategoryList2 = [
+
+  { id: 0, name: 'room', text: '원룸', value: 1 },
+  { id: 1, name: 'room', text: '투룸', value: 2 },
+  { id: 2, name: 'room', text: '쓰리룸', value: 3 }
 ];
 
 const NormalSearch = () => {
-
-  const CategoryList = [
-    { id: 0, name: '월세', value: '3' },
-    { id: 1, name: '전세', value: '2' },
-    { id: 2, name: '매매', value: '1' }
-  ];
-  const CategoryList1 = [
-
-    { id: 0, name: '주택', value: '주택' },
-    { id: 1, name: '빌라', value: '빌라' },
-    { id: 2, name: '오피스텔', value: '오피스텔' }
-  ];
-  const CategoryList2 = [
-
-    { id: 0, name: '원룸', value: '1' },
-    { id: 1, name: '투룸', value: '2' },
-    { id: 2, name: '쓰리룸', value: '3' }
-  ];
-
-  const formData = [
-    { id: 1, name: "딸기" },
-    { id: 2, name: "바나나" },
-    { id: 3, name: "피자" },
-    { id: 4, name: "불고기" },
-    { id: 5, name: "김치" },
-    { id: 6, name: "볶음밥" },
-    { id: 7, name: "쌀국수" },
-    { id: 8, name: "육개장" },
-    { id: 9, name: "커피" }
-  ]
-
-  const [isToggle, setIsToggle] = useState(false);
-  const [checkedItems, setCheckedItems] = useState(new Set());
-
-  const checkHandler = ({ target }) => {
-    setIsToggle(!isToggle);
-    checkedItemHandler(target.parentNode, target.value, target.checked);
-    console.log(target.parentNode, target.value, target.checked);
-  };
-
-  const checkedItemHandler = (box, id, isToggle) => {
-    if (isToggle) {
-      checkedItems.add(id);
-      setCheckedItems(checkedItems);
-      box.style.backgroundColor = "#FF7B31";
-      box.style.color = "#E8E8E8";
-    } else if (!isToggle && checkedItems.has(id)) {
-      checkedItems.delete(id);
-      setCheckedItems(checkedItems);
-      box.style.backgroundColor = "#E8E8E8";
-      box.style.color = "#FF7B31";
-    }
-    console.log(checkedItems);
-    return checkedItems;
-  };
-
-  const [price, setPrice] = useState(50000);
-  const [minMonthly, setMinMonthly] = useState(0);
-
-  const getData = (min) => {
-    setMinMonthly(min);
-  }
-  const [category, setCategory] = useState("오피스텔");
-  const [type, setType] = useState(1);
-  const [room, setRoom] = useState(1);
+  const [category1, setCategory] = useState([]);
+  const [type, setType] = useState([]);
+  const [room_number, setRoom] = useState([]);
+  const [map, setMap] = useState(0);
+  const [options, setOption] = useState([]);
+  //const [map, setMap] = useState()
+  const [mip, setMip] = useState(0);
+  const [mam, setMam] = useState(0);
+  const [mim, setMim] = useState(0);
   const [data, setData] = useState(null);
+  // const [op1, setOp1] = useState()
+  // const [op2, setOp2] = useState()
+  // const [op3, setOp3] = useState()
+  const navigate = useNavigate();
 
+  const onCateElement = (checked, item) => {
+    if (checked) {
+      setCategory([...category1, item]);
+    } else if (!checked) {
+      setCategory(category1.filter(el => el !== item));
+    }
+  };
+  const onTypeElement = (checked, item) => {
+    if (checked) {
+      setType([...type, item]);
+    } else if (!checked) {
+      setType(type.filter(el => el !== item));
+    }
+  };
+
+  const onRoomElement = (checked, item) => {
+    if (checked) {
+      setRoom([...room_number, item]);
+    } else if (!checked) {
+      setRoom(room_number.filter(el => el !== item));
+    }
+  };
+  const onOptionElement = (checked, item) => {
+    if (checked) {
+      setOption([...options, item]);
+    } else if (!checked) {
+      setOption(options.filter(el => el !== item));
+    }
+  };
   const Back = async () => {
     axios({
       method: 'post',
       url: '/react/filter',
       data: {
-        "price": price,
-        "category": category,
+        "map": map,
+        "mip": mip,
+        "mam": mam,
+        "mim": mim,
+        "category1": category1,
         "type": type,
-        "room": room,
-        "monthly": minMonthly
+        "room_number": room_number,
+        "options": options
+
+        // "op1" : op1,
+        // "op2" : op2,
+        // "op3" : op3,
       },
       baseURL: 'http://localhost:8080'
     }
-    ).then(response => setData(JSON.stringify(response.data)))
-  }
+    ).then(response => setData(JSON.stringify(response.data)));
 
+    navigate(`/search`, { state: { data: { map, mip, mam, mim, category1, type, room_number } }, });
+  };
   return (
     <Container>
       <MainHeader3 />
@@ -185,52 +202,83 @@ const NormalSearch = () => {
             <Hr style={{ width: '492px' }} /><FilterTitle1>편의시설 및 교통시설</FilterTitle1>
             <Hr style={{ width: '472px' }} /><FilterTitle1>가격 범위</FilterTitle1><Hr style={{ width: '275px' }} />
           </OptionList>
-          <Div style={{ marginRight: '42px', marginLeft: '166px' }}>
-            {CategoryList.map((item) => {
-              return (
-                <Tbtn>{item.name}</Tbtn>
+          <DivA style={{ marginRight: '140px', marginLeft: '166px' }}>
+            {CategoryList.map((item) => (
+              <ButtonA key={item.id} text={item.text} value={item.value}
 
-              )
-            })}
+                onChange={e => {
+                  onCateElement(e.target.checked, e.target.value);
+                }}
+                checked={category1.includes(item.value) ? true : false}
+
+              />
+            ))}
             <div />
-            {CategoryList1.map(item1 => {
-              return (
-                <Mbtn>{item1.name}</Mbtn>
-              )
-            })}
+            {CategoryList1.map((item) => (
+              <ButtonB key={item.id} text={item.text} value={item.value}
+
+                onChange={e => {
+                  onTypeElement(e.target.checked, e.target.value);
+                }}
+                checked={type.includes(item.value) ? true : false}
+
+              />
+            ))}
             <div />
-            {CategoryList2.map(item2 => {
-              return (
-                <Bbtn>{item2.name}</Bbtn>
-              )
-            })}
-          </Div>
+            {CategoryList2.map((item) => (
+              <ButtonC key={item.id} text={item.text} value={item.value}
+                onChange={e => {
+                  onRoomElement(e.target.checked, e.target.value);
+                }}
+                checked={room_number.includes(item.value) ? true : false}
+
+
+              />
+            ))}
+          </DivA>
           <Div>
             {optionsList.map((item) => (
-              <CheckBox key={item.id} text={item.text} />
+              <CheckBox key={item.id} text={item.text} value={item.value}
+
+                onChange={e => {
+                  onOptionElement(e.target.checked, e.target.value);
+                }}
+                checked={options.includes(item.value) ? true : false}
+
+
+
+              />
             ))}
           </Div>
           <Div>
             <p>매매/전세/보증금</p>
             <MultiRangeSlider
-              min={minMonthly}
-              max={5000000000}
-              onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
+              min={0}
+              max={50000}
+              onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`) & setMip(min) & setMap(max)}
+
             />
             <p>월세</p>
             <MultiRangeSlider
               min={0}
-              max={10000000}
-              onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
+              max={1000}
+              step={50}
+              onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`) & setMim(0) & setMam(0)}
             //부모에서 자식으로 접근하는 방법을 찾아보기.
             />
           </Div>
-          <Sbtn>추천받기</Sbtn>
+
         </form>
-        <button onClick={Back}>결과받기</button>
-        <div style={{ zIndex: '110px' }}>결과결과:{data}</div>
+        <button onClick={Back}>
+          추천받기
+        </button>
+        <div style={{ zIndex: '110px' }}>결과:{data}</div>
+        <code>
+          {JSON.stringify({ data: { map, mip, mam, mim, category1, type, room_number, options } })}
+        </code>
       </Positioner>
     </Container>
   );
 };
+
 export default NormalSearch;
