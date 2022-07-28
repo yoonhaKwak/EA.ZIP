@@ -8,7 +8,7 @@ const { kakao } = window
 
 function KakaoMap() {
     const location = useLocation();
-    console.log('state', location.state);
+    console.log('state', location);
     const [markers, setMarkers] = useState([]);
     const [error, setError] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
