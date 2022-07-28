@@ -126,10 +126,8 @@ const NormalSearch = () => {
   const [mip, setMip] = useState(0);
   const [mam, setMam] = useState(0);
   const [mim, setMim] = useState(0);
+  const [search, setSearch] = useState("강남구");
   const [data, setData] = useState(null);
-  // const [op1, setOp1] = useState()
-  // const [op2, setOp2] = useState()
-  // const [op3, setOp3] = useState()
   const navigate = useNavigate();
 
   const onCateElement = (checked, item) => {
@@ -166,6 +164,7 @@ const NormalSearch = () => {
       method: 'post',
       url: '/react/filter',
       data: {
+        "addr1": search.toString(),
         "map": map,
         "mip": mip,
         "mam": mam,
@@ -176,18 +175,13 @@ const NormalSearch = () => {
         "op1": options[0].toString(),
         "op2": options[1].toString(),
         "op3": options[2].toString()
-
-
-
-        // "op1" : op1,
-        // "op2" : op2,
-        // "op3" : op3,
       },
       baseURL: 'http://localhost:8080'
     }
-    ).then(response => setData(JSON.stringify(response.data)))
-    //   .then(navigate('/search', { state: data }));
-    // navigate(`/search`, { state: data });
+    ).then((response) => {
+      setData(JSON.stringify(response.data));
+      navigate('/search', { state: response.data })
+    });
   };
   return (
     <Container>
@@ -195,8 +189,8 @@ const NormalSearch = () => {
       <Positioner>
         <p style={{ paddingLeft: '760px', color: 'white', fontSize: '30px', marginTop: '0px', fontWeight: 'bold' }}>"나에게 딱 맞는 집을 찾아보세요!"</p>
         <div />
-        <MainSearchForm />
         <form>
+          <MainSearchForm />
           <OptionList>
             <FilterTitle>검색 옵션</FilterTitle>
             <FilterTitle>우선 순위</FilterTitle>
@@ -259,25 +253,25 @@ const NormalSearch = () => {
             <p className="price">매매/전세/보증금</p>
             <MultiRangeSlider
               min={0}
-              max={50000}
+              max={10000}
               onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`) & setMip(min) & setMap(max)}
 
             />
             <p className="monthly">월세</p>
             <MultiRangeSlider
               min={0}
-              max={50000}
+              max={1000}
               onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`) & setMim(min) & setMam(max)}
             />
           </Div>
 
         </form>
-        <button onClick={Back}>
+        <Sbtn onClick={Back}>
           추천받기
-        </button>
+        </Sbtn>
         <div style={{ zIndex: '110px' }}>결과:{data}</div>
         <code>
-          {JSON.stringify({ data: { map, mip, mam, mim, category1, type, room_number, options } })}
+          {JSON.stringify({ data: { search, map, mip, mam, mim, category1, type, room_number, options } })}
         </code>
       </Positioner>
     </Container>

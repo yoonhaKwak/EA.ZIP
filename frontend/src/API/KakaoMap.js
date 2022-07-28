@@ -7,8 +7,8 @@ import { useLocation } from "react-router-dom";
 const { kakao } = window
 
 function KakaoMap() {
-    const location = useLocation();
-    console.log('state', location);
+    const { state } = useLocation();
+    console.log(state)
     const [markers, setMarkers] = useState([]);
     const [error, setError] = useState(null);
     const [isOpen, setIsOpen] = useState(false);

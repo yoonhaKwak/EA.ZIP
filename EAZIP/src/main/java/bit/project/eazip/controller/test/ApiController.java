@@ -166,7 +166,7 @@ public class ApiController {
         }
         log.info("########## 필터링 적용하여 서비스 호출 완료 ##########");
 
-        System.out.println(homes);
+        System.out.println(homes.size());
         return homes;
     }
 
