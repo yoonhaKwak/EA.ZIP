@@ -4,19 +4,27 @@ package bit.project.eazip.domain.home;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+
 @Getter
 @Setter
 public class FilterDTO {
-    String type;
-    String category1;
-    String room_number;
 
-    String op1;
-    String op2;
-    String op3;
+    private String addr1;
 
-    int minprice;
-    int maxprice;
-    int minmonthly;
-    int maxmonthly;
+    private ArrayList<String> type;
+    private ArrayList<String> category1;
+    private ArrayList<String> room_number;
+
+    private String op1;
+    private String op2;
+    private String op3;
+
+    private int minprice;
+    private int maxprice;
+    private int minmonthly;
+    private int maxmonthly;
+
+
+
 }

@@ -3,16 +3,19 @@ import axios from "axios";
 import {useState} from "react";
 
 function Filter(){
-    const [type, setType] = useState(['1', '2']);
-    const [category, setCategory] = useState(['오피스텔']);
-    const [room, setRoom] = useState(['1', '2']);
-    const [map, setMap] = useState(50000);
-    const [mip, setMip] = useState(100);
-    const [mam, setMam] = useState(0);
-    const [mim, setMim] = useState(0);
+    const [addr1, setAddr1] = useState("논현로");
+    const [type, setType] = useState(['2', '3']);
+    const [category, setCategory] = useState(['1']);
+    const [room, setRoom] = useState(['1']);
+
     const [op1, setOp1] = useState("sc_office");
     const [op2, setOp2] = useState("sc_cafe");
     const [op3, setOp3] = useState("sc_hospital");
+
+    const [map, setMap] = useState(500000);
+    const [mip, setMip] = useState(1000);
+    const [mam, setMam] = useState(0);
+    const [mim, setMim] = useState(0);
 
     const [data, setData] = useState('안됨');
 
@@ -22,13 +25,17 @@ function Filter(){
                 url: '/react/filter',
                 method: 'post',
                 data: {
-                    "map" : map,
-                    "mip" : mip,
-                    "mam" : mam,
-                    "mim" : mim,
-                    "category" : category.toString(),
-                    "type" : type.toString(),
-                    "room" : room.toString(),
+                    "addr1" : addr1,
+
+                    "category1" : category,
+                    "type" : type,
+                    "room_number" : room,
+
+                    "maxprice" : map,
+                    "minprice" : mip,
+                    "maxmonthly" : mam,
+                    "minmonthly" : mim,
+
                     "op1" : op1,
                     "op2" : op2,
                     "op3" : op3,

@@ -55,107 +55,28 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/filter", method = {RequestMethod.GET, RequestMethod.POST})
-    public List<FilterDTO> Filter(@RequestBody Map<String,String>paramMap) throws SQLException,Exception{
-        log.info("############### 진입 #####################");
-
-//        String[] type;
-//        String[] category1;
-//        String[] room_number;
+//    public List<FilterDTO> Filter(@RequestBody Map<String,FilterDTO>paramMap) throws SQLException,Exception{
+    public List<FilterDTO> Filter(@RequestBody FilterDTO paramMap) throws SQLException,Exception{
 
 
-        String type;
-        String category1;
-        String room_number;
+        log.info("############### 컨트롤러 진입 #####################");
+        FilterDTO filterDTO = paramMap;
+        System.out.println("들어온 정보 확인");
+        System.out.println("getAddr1 :" +filterDTO.getAddr1());
+        System.out.println("getType :" + filterDTO.getType());
+        System.out.println("getCategory1 :" + filterDTO.getCategory1());
+        System.out.println("getRoom_number :" + filterDTO.getRoom_number());
+        System.out.println("getOp1 :" + filterDTO.getOp1());
+        System.out.println("getOp2 :" + filterDTO.getOp2());
+        System.out.println("getOp3 :" + filterDTO.getOp3());
+        System.out.println("getMaxprice :" + filterDTO.getMaxprice());
+        System.out.println("getMinprice :" + filterDTO.getMinprice());
+        System.out.println("getMaxmonthly :" + filterDTO.getMaxmonthly());
+        System.out.println("getMinmonthly :" + filterDTO.getMinmonthly());
 
 
-        String op1;
-        String op2;
-        String op3;
-
-        int map;
-        int mip;
-        int mam;
-        int mim;
-
-
-
-
-        log.info("############### 프론트 데이터 받아 백에서 정의 작업시작 #####################");
-        Map<String,String> options = paramMap;
-
-        System.out.println(options.get("type"));
-        type = options.get("type");
-
-        System.out.println(type);
-//        type = Arrays.stream(options.get("type").split(","))
-//                .map(String::trim)
-//                .toArray(String[]::new);
-
-        System.out.println(options.get("category"));
-
-        category1 = options.get("category");
-        System.out.println("category1 :" +  category1);
-//        category1 = Arrays.stream(options.get("category").split(","))
-//                .map(String::trim)
-//                .toArray(String[]::new);
-
-        System.out.println(options.get("room"));
-        room_number = options.get("room");
-        System.out.println("room_number :" + room_number);
-//        room_number = Arrays.stream(options.get("room").split(","))
-//                .map(String::trim)
-//                .toArray(String[]::new);
-
-
-        log.info("################### 값 제대로 가져오는지 확인");
-//        System.out.println(Arrays.stream(type).toList().get(0));
-
-        op1 = options.get("op1");
-        System.out.println("op1 :"  + op1);
-
-        op2 = options.get("op2");
-        op3 = options.get("op3");
-
-
-        map = Integer.parseInt(options.get("map"));
-        System.out.println("map :"  + map);
-        mip = Integer.parseInt(options.get("mip"));
-        System.out.println("mip :"  + mip);
-        mam = Integer.parseInt(options.get("mam"));
-        System.out.println("mam :"  + mam);
-        mim = Integer.parseInt(options.get("mim"));
-        System.out.println("mim :"  + mim);
-
-        log.info("############### 프론트 데이터 받아 백에서 정의 완료 #####################");
-
-
-
-        FilterDTO filterDTO = new FilterDTO();
-
-
-
-        filterDTO.setType(type);
-
-        filterDTO.setCategory1(category1);
-        filterDTO.setRoom_number(room_number);
-
-        filterDTO.setOp1(op1);
-        filterDTO.setOp2(op2);
-        filterDTO.setOp3(op3);
-
-        filterDTO.setMaxprice(map);
-        filterDTO.setMinprice(mip);
-        filterDTO.setMaxmonthly(mam);
-        filterDTO.setMinmonthly(mim);
-
+        log.info("########## 들어온 정보 적용하여 서비스 호출 작업 시작 ##########");
         List<FilterDTO> homes = null;
-
-        log.info("########## 필터링 적용하여 서비스 호출 작업 시작 ##########");
-
-        log.info("#######################################3");
-        System.out.println(filterDTO.getMaxmonthly());
-        log.info("#######################################3");
-
         if (filterDTO.getMaxmonthly() == 0)
         {
             homes = service.filterPrice(filterDTO);
@@ -165,8 +86,7 @@ public class ApiController {
             homes = service.filterMonthly(filterDTO);
         }
         log.info("########## 필터링 적용하여 서비스 호출 완료 ##########");
-
-        System.out.println(homes);
+        System.out.println(homes.size());
         return homes;
     }
 
