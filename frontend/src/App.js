@@ -14,8 +14,7 @@ import ButtonTest from 'components/detail/ButtonTest';
 
 import KakaoMap from 'API/KakaoMap';
 import FirstPage from 'pages/FirstPage';
-import Parent from 'components/detail/Parent';
-import Child from 'components/detail/Child';
+
 
 
 function App() {
@@ -33,8 +32,6 @@ function App() {
                                 <Route path="/kakaomap" element={<KakaoSearch />} />
                                 <Route path="/" element={<FirstPage />} />
                                 <Route path="/buttontest" element={<ButtonTest />} />
-                                <Route path="/parent" element={<Parent />} />
-                                <Route path="/child" element={<Child />} />
                         </Routes>
                 </Router>
         );

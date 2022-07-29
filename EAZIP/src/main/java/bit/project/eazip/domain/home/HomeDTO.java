@@ -10,7 +10,7 @@ import lombok.Setter;
 public class HomeDTO {
 
     private int 	idx;
-    private String 	category1;
+    private int 	category1;
     private String 	category2;
     private String 	name;
     private String 	dong;
@@ -92,6 +92,21 @@ public class HomeDTO {
     private int	elevator;
     private int	terrace;
     private int	garden;
+    private double sc_bank;
+    private double sc_bogun;
+    private double sc_bus;
+    private double sc_cafe;
+    private double sc_cctv;
+    private double sc_ddar;
+    private double sc_hospital;
+    private double sc_laundary;
+    private double sc_market;
+    private double sc_office;
+    private double sc_post;
+    private double sc_subway;
+
+
+
 
 
 

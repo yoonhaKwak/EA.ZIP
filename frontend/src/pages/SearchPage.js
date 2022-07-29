@@ -9,6 +9,7 @@ import Modal from "components/part/Modal";
 import KakaoMap from "API/KakaoMap";
 import KakaoSearch from "API/KakaoSearch";
 import SpeakBox from "components/part/SpeakBox";
+import { useLocation } from "react-router-dom";
 
 const RemoteButton = styled.button`
   font-size: 20px; border: solid 3px ${pallette.orange[0]}; border-radius: 20px; font-weight: bold; margin: 15px 18px;
@@ -82,6 +83,7 @@ background-color:white;
 }
 `;
 
+
 const SearchPage = () => {
   let [showbox, setShowbox] = useState(false);
   let [modal, setModal] = useState(false);
@@ -90,7 +92,6 @@ const SearchPage = () => {
   const handleClick = () => {
     setIsActive(current => !current);
   };
-
   return (
     <Container>
       <SearchHeader />

@@ -45,21 +45,17 @@ const Button = styled.button`
 
 
 const MainSearchForm = ({ onClick, onChange }) => {
-  const [qurery, setQuery] = useState("");
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const res = await axios.get("http://localhost:3300")
-    }
-  }, [])
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <StyledBox>
       <Button type="button" onClick={onClick} />
       <StyledInput
         placeholder="지역을 입력하세요!"
-        type="search"
-        onChange={onChange}
+        type="text"
+        onChange={(e) => {
+          setSearchTerm(e.target.value);
+        }}
       />
     </StyledBox>
   )

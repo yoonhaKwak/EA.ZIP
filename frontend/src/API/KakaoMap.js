@@ -2,35 +2,41 @@ import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk";
 import { useEffect, useState } from 'react';
 import SearchMarker from '../styles/icons/SearchMarker.svg';
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 const { kakao } = window
 
-function KakaoMap() {
-    const [markers, setMarkers] = useState([]);
-    const [error, setError] = useState(null);
+function KakaoMap(data) {
+    const { state } = useLocation([]);
     const [isOpen, setIsOpen] = useState(false);
-
-    const fetchMarkers = async () => {
-        try {
-            setMarkers(null);
-            const response = await axios
-                .get('./Gangnam15.json'); //백엔드 강남매물 데이터 테스트 http://localhost:8080/react/dataList
-            setMarkers(response.data);
-        }
-        catch (e) {
-        }
-    };
+    // console.log(state);
+    // for (const key in Object.keys(state)) {
+    //     // console.log(state[key].lat, state[key].lng)
+    // }
+    // const [markers, setMarkers] = useState([]);
+    // const [error, setError] = useState(null);
 
 
-    useEffect(() => {
-        fetchMarkers();
-    }, []);
+    // const fetchMarkers = async () => {
+    //     try {
+    //         setMarkers(null);
+    //         const response = await axios
+    //             .get('./Gangnam15.json'); //백엔드 강남매물 데이터 테스트 http://localhost:8080/react/dataList
+    //         setMarkers(response.data);
+    //         console.log(response.data);
+    //     }
+    //     catch (e) {
+    //     }
+    // };
 
-    if (error) return <div>에러발생</div>;
-    if (!markers) return null;
 
+    // useEffect(() => {
+    //     fetchMarkers();
+    // }, []);
+    // console.log(markers)
 
-
+    // if (error) return <div>에러발생</div>;
+    // if (!markers) return null;
     return (
         <Map
             center={{
@@ -80,7 +86,7 @@ function KakaoMap() {
                 }
                 ]}
             >
-                {markers.map((marker) => (
+                {state.map((marker) => (
                     <MapMarker
                         key={`${marker.lat},${marker.lng}`}
                         position={{
