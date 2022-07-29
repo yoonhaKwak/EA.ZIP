@@ -10,6 +10,8 @@ import MultiRangeSlider from "components/part/MultiRangeSlider";
 import ButtonA from "../components/part/ButtonA";
 import ButtonB from "../components/part/ButtonB";
 import ButtonC from "../components/part/ButtonC";
+import pallette from 'styles/pallette';
+import Search from '../styles/icons/Search.svg';
 
 const Container = styled.div`
 position: absolute;
@@ -81,6 +83,44 @@ width:240px; height: 44px; border-radius: 20px; border: none; background-color: 
     background-color: #D37E30;
   }
 `;
+const StyledBox = styled.form`
+  position:flex;
+  background-color:white;
+  margin-left:550px;
+  width: 50.6rem;
+  height: 2.7rem;
+  border-radius: 100px;
+  border: solid 3px ${pallette.orange[0]};
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+`;
+
+const StyledInput = styled.input`
+width: 46rem;
+height: 2.5rem;
+background-color:white;
+font-size: 22px;
+border: none;
+:focus {
+    outline: none;
+    width:46rem;
+  }
+::placeholder{
+  color: #c6c6c6;
+}
+`;
+const Button = styled.button`
+    display:flex;
+    margin:2% 0 0 0;
+    background-image:url(${Search}); 
+    background-repeat: no-repeat;
+    width: 35px;
+    height: 35px;
+    border:none;
+    background-color: transparent;
+`;
+
 
 const optionsList = [
   { id: 0, name: 'option', text: "편의점", value: 'sc_market' },
@@ -116,8 +156,8 @@ const CategoryList2 = [
   { id: 1, name: 'room', text: '투룸', value: 2 },
   { id: 2, name: 'room', text: '쓰리룸', value: 3 }
 ];
-
-const NormalSearch = () => {
+//////////////////////////함수입력 구간//////////////////////////////////////////
+const NormalSearch = (onClick) => {
   const [category1, setCategory] = useState([]);
   const [type, setType] = useState([]);
   const [room_number, setRoom] = useState([]);
@@ -126,9 +166,14 @@ const NormalSearch = () => {
   const [mip, setMip] = useState(0);
   const [mam, setMam] = useState(0);
   const [mim, setMim] = useState(0);
-  const [search, setSearch] = useState("강남구");
+  const [search, setSearch] = useState("");
   const [data, setData] = useState(null);
   const navigate = useNavigate();
+  const [InputText, setInputText] = useState('');
+
+  const onChange = (e) => {
+    setSearch(e.target.value)
+  }
 
   const onCateElement = (checked, item) => {
     if (checked) {
@@ -190,7 +235,14 @@ const NormalSearch = () => {
         <p style={{ paddingLeft: '760px', color: 'white', fontSize: '30px', marginTop: '0px', fontWeight: 'bold' }}>"나에게 딱 맞는 집을 찾아보세요!"</p>
         <div />
         <form>
-          <MainSearchForm />
+          <>
+            <StyledBox className="inputForm">
+              <Button type="button" onClick={onClick} />
+              <StyledInput type="text" placeholder="검색어를 입력하세요" onChange={onChange} onKeyPress={e => {
+                if (e.key === 'Enter') e.preventDefault();
+              }} />
+            </StyledBox>
+          </>
           <OptionList>
             <FilterTitle>검색 옵션</FilterTitle>
             <FilterTitle>우선 순위</FilterTitle>
@@ -254,17 +306,16 @@ const NormalSearch = () => {
             <MultiRangeSlider
               min={0}
               max={10000}
-              onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`) & setMip(min) & setMap(max)}
+              onChange={({ min, max }) => setMip(min) & setMap(max)}
 
             />
             <p className="monthly">월세</p>
             <MultiRangeSlider
               min={0}
               max={1000}
-              onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`) & setMim(min) & setMam(max)}
+              onChange={({ min, max }) => setMim(min) & setMam(max)}
             />
           </Div>
-
         </form>
         <Sbtn onClick={Back}>
           추천받기

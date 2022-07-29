@@ -106,13 +106,4 @@ public class HomeDTO {
     private double sc_subway;
 
 
-
-
-<<<<<<< Updated upstream
-=======
-
-
-
-
->>>>>>> Stashed changes
 }

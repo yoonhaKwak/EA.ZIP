@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ItemCard from "./ItemCard";
 
+
 const Listpage = ({ ItemList }) => {
   console.log(ItemList);
   return (
@@ -43,6 +44,7 @@ const Listpage = ({ ItemList }) => {
         })}
     </ul>
   );
+
 }
 
 

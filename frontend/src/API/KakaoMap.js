@@ -2,7 +2,7 @@ import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk";
 import { useEffect, useState } from 'react';
 import SearchMarker from '../styles/icons/SearchMarker.svg';
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 const { kakao } = window
 
@@ -94,7 +94,7 @@ function KakaoMap(data) {
                             lng: marker.lng
                         }}
                         clickable={true}
-                        onClick={() => setIsOpen(true)}
+                        onClick={() => console.log(marker)}
                         image={{
                             src: SearchMarker,
                             size: {
@@ -108,7 +108,6 @@ function KakaoMap(data) {
                                 },
                             },
                         }}>
-                        <div style={{ padding: "14px", fontSize: "20px" }}>place.y , place.x</div>
                     </MapMarker>
                 ))}
             </MarkerClusterer>

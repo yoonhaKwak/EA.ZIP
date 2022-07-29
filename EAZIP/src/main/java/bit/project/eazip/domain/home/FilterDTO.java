@@ -27,5 +27,4 @@ public class FilterDTO {
     private int maxmonthly;
 
 
-
 }
