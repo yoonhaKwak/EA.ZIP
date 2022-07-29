@@ -126,15 +126,25 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
     Supply, Dedicated, Jeonse, Monthly, Trading, Selling,
     Room, Deposit, SupplyP, Addr1, Addr2, LongFeature, Layer,
     AllLayer, LayerType, ManageCost, RoomN, Parking, Bath, Parking2,
-    MoveDate, Direction, DirectionN, Category1 }) {
+    MoveDate, Direction, DirectionN, Category1, Price }) {
 
+
+
+    let longfeature;
+    if (LongFeature === "0") {
+        longfeature = null;
+    }
+    else {
+        longfeature = LongFeature;
+    }
 
 
     /*--------------------------------------------[나만이 아는 코드임 뚜방뚜방]------------------------------------------*/
 
 
 
-    let price = (Jeonse + Monthly + Trading).toFixed(0);
+    let price = (Price).toFixed(0);
+    let monthly = (Monthly).toFixed(0);
     let result = (Trading / SupplyP).toFixed(0);
     let supply = (Supply).toFixed(0);
     let dedicated = (Dedicated).toFixed(0);
@@ -144,7 +154,7 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
     let pricem;
 
     if (Selling === 3) {
-        realprice = (price + "만").toString(); //월세일 경우
+        realprice = (monthly + "만").toString(); //월세일 경우
     }
     else {  //월세가 아닌경우
         if (price < 10000) {
@@ -185,42 +195,42 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
     //보증금
     let deposit;
     let depositl;
-    if (Deposit === null) {
-        deposit = null;
-    }
-    else {
-        if (Deposit < 10000) {
-            depositl = Deposit.toString()
+    if (Selling === 3) {
+        if (Price < 10000) {
+            depositl = Price.toString()
                 .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
 
             deposit = ("/" + depositl + "만").toString();
         }
         else {
-            if (Deposit % 10000 === 0) {
+            if (Price % 10000 === 0) {
 
-                pricel = (Deposit / 10000);         //매물 가격이 1억을 넘되 만 단위가 없을 경우
+                pricel = (Price / 10000);         //매물 가격이 1억을 넘되 만 단위가 없을 경우
                 deposit = ("/" + pricel + "억").toString()
                     .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 
             }
             else {
-                if (!(Deposit % 1000 === 0)) { //매물 가격이 1억을 넘되 만 단위가 1000미만일 경우
-                    pricel = (Deposit / 10000);
+                if (!(Price % 1000 === 0)) { //매물 가격이 1억을 넘되 만 단위가 1000미만일 경우
+                    pricel = (Price / 10000);
                     pricel = Math.floor(pricel);
                     pricel = pricel.toFixed(0);
-                    pricem = (Deposit % 10000);
+                    pricem = (Price % 10000);
                     pricem = pricem.toString()
                         .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-                    deposit = ("/" + pricel + "억 " + pricem + "만").toString();
+                    Price = ("/" + pricel + "억 " + pricem + "만").toString();
                 }
                 else {    //그외 나머지
-                    pricel = Deposit.toString()
+                    pricel = Price.toString()
                         .replace(/\B(?<!\.\d*)(?=(\d{4})+(?!\d))/g, "억 ")
                         .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
                     deposit = ("/" + pricel + "만").toString();
                 }
             }
         }
+    }
+    else {
+        deposit = null;
     }
 
 
@@ -301,14 +311,14 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
 
     let parkinglot;
 
-    if (Parking === null) {
+    if (Parking === 0) {
         parkinglot = Parking2;
     }
-    else if (Parking2 === null) {
+    else if (Parking2 === 0) {
         parkinglot = Parking;
     }
-    else if (Parking2 === null && Parking == null) {
-        parkinglot = null;
+    else if (Parking2 === 0 && Parking == 0) {
+        parkinglot = 0;
     }
     else {
         parkinglot = Parking2;
@@ -317,7 +327,7 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
     parkinglot = "주차 " + parkinglot + "대"
     //신주소 정보 없을시 구주소
     let Addr;
-    if (Addr2 === null) {
+    if (Addr2 === "0") {
         Addr = Addr1 + " " + Layer + "층" + "(총 " + AllLayer + "층)";;
     }
     else {
@@ -325,7 +335,7 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
     };
 
     let Addrd
-    if (Addr2 === null) {
+    if (Addr2 === "0") {
         Addrd = Addr1;
     }
     else {
@@ -347,11 +357,15 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
 
     /*---------------------------------------------------[이미지 불러오는 함수 뚜방뚜방]-------------------------------------------------------*/
     let image = (ImageUrl);
-    image = image.replace(/\'/g, "");
+    if (image === null) {
+        image = "[]";
+    }
+    else {
+        image = image.replace(/\'/g, "");
 
-    image = image.replace(/\[/g, "");
-    image = image.replace(/\]/g, "");
-
+        image = image.replace(/\[/g, "");
+        image = image.replace(/\]/g, "");
+    }
     let imagearray = image.split(',');
     const onErrorImg = (e) => {
         e.target.src = DefaultImg;
@@ -369,11 +383,16 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
     /*---------------------------------------------------[이미지배열 불러오는 함수 뚜방뚜방]-------------------------------------------------------*/
     function ImageSlide() {
         let imageA = (ImageUrl);
-        imageA = imageA.replace(/\'/g, "");
+        if (imageA === null) {
+            imageA = "[]";
+        }
+        else {
 
-        imageA = imageA.replace(/\[/g, "");
-        imageA = imageA.replace(/\]/g, "");
+            imageA = imageA.replace(/\'/g, "");
 
+            imageA = imageA.replace(/\[/g, "");
+            imageA = imageA.replace(/\]/g, "");
+        }
         let imageAarray = imageA.split(',');
         var imageslidearray = [];
 
@@ -828,7 +847,7 @@ border-radius: 15px;
                                     ·{managecost}(월 평균 관리비)
                                     <br />
                                     <br />
-                                    ·{Category1}
+                                    ·{Category2}
                                     <br />
                                     <br />
                                     ·{Direction}{dirN}
@@ -840,7 +859,7 @@ border-radius: 15px;
                                 <div className="MiniHeader" >매물소개</div>
                                 <hr />
                                 <div className="Long">
-                                    {LongFeature}
+                                    {longfeature}
                                 </div>
                                 <div className="mini" ><hr /></div>
                                 <div className="MiniHeader" >옵션</div>

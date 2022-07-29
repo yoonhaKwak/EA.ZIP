@@ -8,13 +8,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class HomeDTO {
-
     private int 	idx;
     private int 	category1;
     private String 	category2;
     private String 	name;
     private String 	dong;
     private Double 	layer;
+    private int layer_all;
     private String 	layer_name;
     private String 	direction;
     private String 	directionN;
@@ -53,7 +53,7 @@ public class HomeDTO {
     private String 	addr1;
     private String 	addr2;
     private String 	building_name;
-    private List<String> image_url;
+    private String image_url;
     private int	aircon_hanging;
     private int	aircon_standing;
     private int	aircon_system;
@@ -108,4 +108,11 @@ public class HomeDTO {
 
 
 
+<<<<<<< Updated upstream
+=======
+
+
+
+
+>>>>>>> Stashed changes
 }

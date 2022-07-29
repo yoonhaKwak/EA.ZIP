@@ -105,9 +105,9 @@ const CategoryList = [
 const CategoryList1 = [
 
 
-  { id: 0, name: 'category', text: '주택', value: 1 },
-  { id: 1, name: 'category', text: '빌라', value: 2 },
-  { id: 2, name: 'category', text: '오피스텔', value: 3 }
+  { id: 0, name: 'category1', text: '주택', value: 1 },
+  { id: 1, name: 'category1', text: '빌라', value: 2 },
+  { id: 2, name: 'category1', text: '오피스텔', value: 3 }
 
 ];
 const CategoryList2 = [
@@ -164,17 +164,17 @@ const NormalSearch = () => {
       method: 'post',
       url: '/react/filter',
       data: {
-        "addr1": search.toString(),
-        "map": map,
-        "mip": mip,
-        "mam": mam,
-        "mim": mim,
-        "category": category1.toString(),
-        "type": type.toString(),
-        "room": room_number.toString(),
-        "op1": options[0].toString(),
-        "op2": options[1].toString(),
-        "op3": options[2].toString()
+        "addr1": search,
+        "maxprice": map,
+        "minprice": mip,
+        "maxmonthly": mam,
+        "minmonthly": mim,
+        "category1": category1,
+        "type": type,
+        "room_number": room_number,
+        "op1": options[0],
+        "op2": options[1],
+        "op3": options[2]
       },
       baseURL: 'http://localhost:8080'
     }

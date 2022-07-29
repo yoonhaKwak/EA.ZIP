@@ -92,6 +92,7 @@ const SearchPage = () => {
   const handleClick = () => {
     setIsActive(current => !current);
   };
+
   return (
     <Container>
       <SearchHeader />

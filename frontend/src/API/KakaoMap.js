@@ -43,7 +43,7 @@ function KakaoMap(data) {
                 lat: 37.4946012,
                 lng: 127.027561
             }}
-            style={{ width: "1415px", height: "865px" }}
+            style={{ width: "100%", height: "100%", maxHeight: "905px", maxWidth: "1415px" }}
             level={8}
             minLevel={2}
         >
