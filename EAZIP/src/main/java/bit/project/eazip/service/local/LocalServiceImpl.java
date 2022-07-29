@@ -170,4 +170,5 @@ public class LocalServiceImpl implements LocalService {
     public List<HomeDTO> selectIdx() {
         return localMapper.selectIdx();
     }
+
 }

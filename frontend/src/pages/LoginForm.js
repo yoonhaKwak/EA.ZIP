@@ -7,7 +7,7 @@ import naverlogo from '../styles/img/Naver.svg';
 import kakaologo from '../styles/img/Kakao.svg';
 import googlelogo from '../styles/img/Google.svg';
 import pallette from "../styles/pallette";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Container = styled.div`
@@ -92,6 +92,7 @@ const Psns = styled.p`
 `;
 
 const LoginForm = () => {
+    const params = new URLSearchParams(window.location.search)
     const [inputId, setInputId] = useState('')
     const [inputPw, setInputPw] = useState('')
 
@@ -114,6 +115,13 @@ const LoginForm = () => {
     // },
     //     // 페이지 호출 후 처음 한번만 호출될 수 있도록 [] 추가
     //     [])
+
+    const CLIENT_ID = "e98b7c20443a64d2a2230260e7c2fa22";
+    const REDIRECT_URI = "http://localhost:3000/oauth/kakao/callback";
+    const KAKAO_AUTH_URL = "https://kauth.kakao.com/oauth/authorize?client_id="+`${CLIENT_ID}`+"&redirect_uri="+`${REDIRECT_URI}`+"&response_type=code";
+    
+
+
     return (
         <Container>
             <MainHeader2 />
@@ -137,8 +145,8 @@ const LoginForm = () => {
                         <Psns>간편 로그인</Psns>
                         <BorderSpan></BorderSpan>
                     </SnsBox>
-                    <Buttons1 style={{ padding: '10px' }}><img src={naverlogo} alt="" /></Buttons1>
-                    <Buttons1 style={{ padding: '10px' }}><img src={kakaologo} alt="" /></Buttons1>
+                    <Buttons1 style={{ padding: '10px' }} ><img src={naverlogo} alt="" /></Buttons1>
+                    <Buttons1 style={{ padding: '10px' }} onClick={()=>window.open(`${KAKAO_AUTH_URL}`)}><img src={kakaologo} alt="" /></Buttons1>
                     <Buttons1 style={{ padding: '10px' }}><img src={googlelogo} alt="" /></Buttons1>
                 </Reactangle>
             </Positioner>

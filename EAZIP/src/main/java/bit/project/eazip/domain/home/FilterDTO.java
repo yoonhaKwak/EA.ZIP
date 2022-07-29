@@ -10,6 +10,7 @@ import java.util.ArrayList;
 @Setter
 public class FilterDTO {
 
+
     private String addr1;
 
     private ArrayList<String> type;

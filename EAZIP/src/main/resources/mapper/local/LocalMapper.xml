@@ -69,8 +69,14 @@
 
     <insert id="insertData" parameterType="bit.project.eazip.domain.home.HomeDTO">
         insert into `table`
-        select * from test0719 where idx=#{idx};
+        select * from test0719 where idx = #{idx};
     </insert>
+
+<!--   칼럼명 변수로 할 때 : ${}    -->
+
+
+
+
 </mapper>
 
 
