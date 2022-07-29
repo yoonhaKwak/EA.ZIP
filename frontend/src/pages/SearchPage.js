@@ -92,11 +92,6 @@ const SearchPage = () => {
   const handleClick = () => {
     setIsActive(current => !current);
   };
-
-  const { state } = useLocation();
-  console.log(state)
-
-
   return (
     <Container>
       <SearchHeader />
