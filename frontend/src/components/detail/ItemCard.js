@@ -23,6 +23,7 @@ import RoomNBath from '../../styles/icons/RoomNBath.svg';
 import "../../styles/css/slick.css"
 import "../../styles/css/slick-theme.css"
 import Slider from "react-slick";
+import Heart from "../part/Heart";
 
 
 
@@ -42,7 +43,7 @@ const Table = styled.div`
 width:100%;
 min-width: 491px;
 height:278px;
-
+float:left;
     background-color:white;
 
 
@@ -58,14 +59,16 @@ height:278px;
   display:fixed;
   width:234px;
   height:278px;
+ 
 }
 .leftarea{
   float:left;
   display:fixed;
-  width:258px;
-  min-width:258px;
-  max-width:258px;
+  width:100px;
+  min-width:100px;
+  max-width:100px;
   height:278px;
+  overflow:visible;
 
 }
     border-bottom:1px solid rgba(0,0,0,0.1);
@@ -76,11 +79,12 @@ height:278px;
 `;
 const ListFeature = styled.div`
   height: 100%;
-  width: 100%;
+  width: 80%;
   margin-bottom:12px;
   margin-top:24px;
  padding-left:12px;
  word-break:keep-all;
+ overflow:visible;
 
   .default{
     width:45px;
@@ -114,7 +118,12 @@ height:100%
 
 
 `;
-
+const WTF = styled.div`
+width:35px;
+height:216px;
+margin-top:24px;
+cursor: pointer;
+`;
 
 
 
@@ -126,7 +135,7 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
     Supply, Dedicated, Jeonse, Monthly, Trading, Selling,
     Room, Deposit, SupplyP, Addr1, Addr2, LongFeature, Layer,
     AllLayer, LayerType, ManageCost, RoomN, Parking, Bath, Parking2,
-    MoveDate, Direction, DirectionN, Category1, Price }) {
+    MoveDate, Direction, DirectionN, Category1, Price, Id }) {
 
 
 
@@ -671,29 +680,104 @@ border-radius: 15px;
 `;
 
 
+
+
     /*-----------------------------------------------------------[여기서부터 리턴값]-------------------------------------------------------------------*/
     return (
         <Block>
             <ul>
-                <li className="component component--item_card" key={key}>
+                <form>
+                    <li className="component component--item_card" key={key} >
 
 
-                    <React.Fragment>
-                        <Table style={{ cursor: 'pointer' }} onClick={openModal}>
-                            <div className="leftarea">
-                                {image}
-                            </div>
-                            <div className="rightarea">
-                                <ListFeature>
+                        <React.Fragment>
+
+                            <Table>
+
+                                <div>
+                                    <div className="leftarea" style={{ cursor: 'pointer' }} onClick={openModal}>
+                                        {image}
+                                    </div>
+                                    <div className="rightarea">
+                                        <ListFeature style={{ cursor: 'pointer' }} onClick={openModal}>
+                                            <div className="tag">
+                                                {{
+                                                    빌라: <img src={Villa} className="default" alt="" />,
+                                                    오피스텔: <img src={Officetell} className="officetell" alt="" />,
+                                                    주택: <img src={Housing} className="default" alt="" />,
+                                                    도시형생활주택: <img src={Housing} className="default" alt="" />,
+                                                    null: null
+                                                }[Category2]}
+
+                                                {{
+                                                    1: <img src={Oneroom} className="roomdefault" alt="" />,
+                                                    2: <img src={Tworoom} className="roomdefault" alt="" />,
+                                                    3: <img src={Threeroom} className="threeroom" alt="" />,
+                                                    null: null
+                                                }[Room]}
+                                            </div>
+
+
+
+                                            <div className="list">
+                                                <p><scaleFontSize><div className="bold"> {{ 1: "매매", 2: "전세", 3: "월세" }[Selling]} {realprice}
+
+                                                    {deposit}
+                                                </div></scaleFontSize></p>
+                                                <p><div className="em">{Addr}</div></p>
+                                                {Feature}
+
+                                                <p>
+                                                    {supply}m²/{dedicated}m² |<br />
+                                                    {realresult === '0만' ? null
+                                                        :
+                                                        <>{realresult}원/3.3m²</>}
+
+                                                </p>
+
+
+                                            </div>
+
+
+                                        </ListFeature>
+                                        <div style={{ float: 'top' }}>
+                                            <WTF onClick={openModal} />
+                                            <Heart id={Id} />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                            </Table>
+
+
+
+                            {/* /--------------------------------------------------[상세페이지 모달창 내용]---------------------------------------------------/ */}
+                            <ItemDetail2 open={modalOpen} close={closeModal} header="Modal heading">
+                                <ImageArea>
+                                    <Slider {...settings}>
+                                        {ImageSlide()}
+
+                                        {/* <div>
+                                        <img src="https://w.namu.la/s/f16f3471166dd81cfd74bd6a927ed0bd3bad05bdf74b5069e7b5b57a155bbe16809c69aef2083973a899615546150b9485eb692f50300c35238115da0c908c1353facffec7f6ca098fe904ab6faf13ff8596e7d2ab47ab285b8c15d644144115" alt="" />
+                                    </div> */}
+                                    </Slider>
+
+                                </ImageArea>
+                                <SecondItem>
                                     <div className="tag">
                                         {{
                                             빌라: <img src={Villa} className="default" alt="" />,
-                                            오피스텔: <img src={Officetell} className="officetell" alt="" />,
+
+                                            오피스텔: <img src={Officetell} className="officetall" alt="" />,
                                             주택: <img src={Housing} className="default" alt="" />,
                                             도시형생활주택: <img src={Housing} className="default" alt="" />,
                                             null: null
                                         }[Category2]}
-
+                                    </div>
+                                    <div className="tag">
                                         {{
                                             1: <img src={Oneroom} className="roomdefault" alt="" />,
                                             2: <img src={Tworoom} className="roomdefault" alt="" />,
@@ -701,178 +785,124 @@ border-radius: 15px;
                                             null: null
                                         }[Room]}
                                     </div>
-
-
-
-                                    <div className="list">
-                                        <p><scaleFontSize><div className="bold"> {{ 1: "매매", 2: "전세", 3: "월세" }[Selling]} {realprice}
-
-                                            {deposit}
-                                        </div></scaleFontSize></p>
-                                        <p><div className="em">{Addr}</div></p>
-                                        {Feature}
-
-                                        <p>
-                                            {supply}m²/{dedicated}m² |<br />
-                                            {realresult === '0만' ? null
-                                                :
-                                                <>{realresult}원/3.3m²</>}
-                                        </p>
-
-
-                                    </div>
-                                </ListFeature>
-                            </div>
-                        </Table>
-
-                        {/* /--------------------------------------------------[상세페이지 모달창 내용]---------------------------------------------------/ */}
-                        <ItemDetail2 open={modalOpen} close={closeModal} header="Modal heading">
-                            <ImageArea>
-                                <Slider {...settings}>
-                                    {ImageSlide()}
-
-                                    {/* <div>
-                                        <img src="https://w.namu.la/s/f16f3471166dd81cfd74bd6a927ed0bd3bad05bdf74b5069e7b5b57a155bbe16809c69aef2083973a899615546150b9485eb692f50300c35238115da0c908c1353facffec7f6ca098fe904ab6faf13ff8596e7d2ab47ab285b8c15d644144115" alt="" />
-                                    </div> */}
-                                </Slider>
-
-                            </ImageArea>
-                            <SecondItem>
-                                <div className="tag">
-                                    {{
-                                        빌라: <img src={Villa} className="default" alt="" />,
-
-                                        오피스텔: <img src={Officetell} className="officetall" alt="" />,
-                                        주택: <img src={Housing} className="default" alt="" />,
-                                        도시형생활주택: <img src={Housing} className="default" alt="" />,
-                                        null: null
-                                    }[Category2]}
-                                </div>
-                                <div className="tag">
-                                    {{
-                                        1: <img src={Oneroom} className="roomdefault" alt="" />,
-                                        2: <img src={Tworoom} className="roomdefault" alt="" />,
-                                        3: <img src={Threeroom} className="threeroom" alt="" />,
-                                        null: null
-                                    }[Room]}
-                                </div>
-                                <div className="sellingtag">
-                                    {{
-                                        1: <img src={Tradingimg} alt="" />,
-                                        2: <img src={Jeonseimg} alt="" />,
-                                        3: <img src={Monthlyimg} alt="" />
-                                    }[Selling]}
-                                </div>
-
-                                <scaleFontSize>
-                                    <div className="bold"> {{ 1: "매매", 2: "전세", 3: "월세" }[Selling]} {realprice}{deposit}
-                                    </div>
-                                </scaleFontSize>
-                                <div className="addr">
-                                    {Addr}
-                                </div>
-
-
-
-                                <div className="word">
-                                    {Feature}
-                                </div>
-
-
-
-
-                                <div className="word">
-                                    {supply}m²/{dedicated}m²
-                                    {realresult === '0만' ? null
-                                        :
-                                        <> | {realresult}원/3.3m²</>}
-                                </div>
-
-                            </SecondItem>
-                            <ThirdItem>
-                                <div className="Header">
-                                    상세정보
-                                </div>
-
-                                <hr />
-
-                                <div className="Icon">
-                                    <div className="Tag">
+                                    <div className="sellingtag">
                                         {{
-                                            "중간층": <div className="b"><img src={Middle} alt="" /></div>,
-                                            "저층": <div className="c"><img src={Low} alt="" /></div>,
-                                            "고층": <div className="a"><img src={High} alt="" /></div>,
-                                            null: null
-                                        }[LayerType]}
-                                        <div className="Text">{LayerType}</div>
+                                            1: <img src={Tradingimg} alt="" />,
+                                            2: <img src={Jeonseimg} alt="" />,
+                                            3: <img src={Monthlyimg} alt="" />
+                                        }[Selling]}
                                     </div>
-                                    <div className="Tag">
 
-                                        <div className="d"><img src={RoomNBath} alt="" /></div>
-
-                                        <div className="Text">
-                                            <div className="Wtf">
-                                                {roomnbath}</div></div>
-                                    </div>
-                                    <div className="Tag">
-                                        <div className="e"><img src={Management} alt="" /></div>
-                                        <div className="Text">
-                                            관리비{`\n`}
-                                            <div className="wtf">
-                                                {managecost}
-                                            </div>
-
+                                    <scaleFontSize>
+                                        <div className="bold"> {{ 1: "매매", 2: "전세", 3: "월세" }[Selling]} {realprice}{deposit}
                                         </div>
+                                    </scaleFontSize>
+                                    <div className="addr">
+                                        {Addr}
                                     </div>
-                                    <div className="Tag">
-                                        <div className="f"><img src={ParkingLot} alt="" /></div>
-                                        <div className="Text"> {parkinglot}</div>
+
+
+
+                                    <div className="word">
+                                        {Feature}
                                     </div>
 
-                                </div>
+
+
+
+                                    <div className="word">
+                                        {supply}m²/{dedicated}m²
+                                        {realresult === '0만' ? null
+                                            :
+                                            <> | {realresult}원/3.3m²</>}
+                                    </div>
+
+                                </SecondItem>
+                                <ThirdItem>
+                                    <div className="Header">
+                                        상세정보
+                                    </div>
+
+                                    <hr />
+
+                                    <div className="Icon">
+                                        <div className="Tag">
+                                            {{
+                                                "중간층": <div className="b"><img src={Middle} alt="" /></div>,
+                                                "저층": <div className="c"><img src={Low} alt="" /></div>,
+                                                "고층": <div className="a"><img src={High} alt="" /></div>,
+                                                null: null
+                                            }[LayerType]}
+                                            <div className="Text">{LayerType}</div>
+                                        </div>
+                                        <div className="Tag">
+
+                                            <div className="d"><img src={RoomNBath} alt="" /></div>
+
+                                            <div className="Text">
+                                                <div className="Wtf">
+                                                    {roomnbath}</div></div>
+                                        </div>
+                                        <div className="Tag">
+                                            <div className="e"><img src={Management} alt="" /></div>
+                                            <div className="Text">
+                                                관리비{`\n`}
+                                                <div className="wtf">
+                                                    {managecost}
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div className="Tag">
+                                            <div className="f"><img src={ParkingLot} alt="" /></div>
+                                            <div className="Text"> {parkinglot}</div>
+                                        </div>
+
+                                    </div>
 
 
 
 
 
-                                <div className="mini" ><hr /></div>
+                                    <div className="mini" ><hr /></div>
 
-                                <div className="Long">
-                                    ·{supply}m²/{dedicated}m² (공급/전용)
-                                    <br />
-                                    <br />
-                                    ·{MoveDate}(입주가능일)
-                                    <br />
-                                    <br />
-                                    ·{managecost}(월 평균 관리비)
-                                    <br />
-                                    <br />
-                                    ·{Category2}
-                                    <br />
-                                    <br />
-                                    ·{Direction}{dirN}
-                                    <br />
-                                    <br />
-                                    ·{Addrd}
-                                </div>
-                                <div className="mini" ><hr /></div>
-                                <div className="MiniHeader" >매물소개</div>
-                                <hr />
-                                <div className="Long">
-                                    {longfeature}
-                                </div>
-                                <div className="mini" ><hr /></div>
-                                <div className="MiniHeader" >옵션</div>
-                                <hr />
+                                    <div className="Long">
+                                        ·{supply}m²/{dedicated}m² (공급/전용)
+                                        <br />
+                                        <br />
+                                        ·{MoveDate}(입주가능일)
+                                        <br />
+                                        <br />
+                                        ·{managecost}(월 평균 관리비)
+                                        <br />
+                                        <br />
+                                        ·{Category2}
+                                        <br />
+                                        <br />
+                                        ·{Direction}{dirN}
+                                        <br />
+                                        <br />
+                                        ·{Addrd}
+                                    </div>
+                                    <div className="mini" ><hr /></div>
+                                    <div className="MiniHeader" >매물소개</div>
+                                    <hr />
+                                    <div className="Long">
+                                        {longfeature}
+                                    </div>
+                                    <div className="mini" ><hr /></div>
+                                    <div className="MiniHeader" >옵션</div>
+                                    <hr />
 
 
-                            </ThirdItem>
-                            <ForthItem>
-                                4
-                            </ForthItem>
-                        </ItemDetail2>
-                    </React.Fragment>
-                </li>
+                                </ThirdItem>
+                                <ForthItem>
+                                    4
+                                </ForthItem>
+                            </ItemDetail2>
+                        </React.Fragment>
+                    </li>
+                </form>
             </ul>
 
         </Block >

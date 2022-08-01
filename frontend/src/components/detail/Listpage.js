@@ -5,7 +5,7 @@ import ItemCard from "./ItemCard";
 const Listpage = ({ ItemList }) => {
   console.log(ItemList);
   return (
-    <ul className="list__itemview">
+    <ul >
       {ItemList &&
         ItemList.map((itemdata) => {
           return (
@@ -39,6 +39,7 @@ const Listpage = ({ ItemList }) => {
               DirectionN={itemdata.directionN}//방향기준
               Category1={itemdata.category1}//카테고리1
               Price={itemdata.price}//전세,매매,보증금
+              Id={itemdata.idx}//매물 아이디
             />
           );
         })}

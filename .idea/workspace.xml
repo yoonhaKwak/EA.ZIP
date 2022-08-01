@@ -6,13 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="eea96d36-841c-4069-bb9f-06433382a808" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EAZIP/src/main/java/bit/project/eazip/domain/home/HomeDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/EAZIP/src/main/java/bit/project/eazip/domain/home/HomeDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/API/KakaoMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/API/KakaoMap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/detail/ItemCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/detail/ItemCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/detail/Listpage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/detail/Listpage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/part/HomeList.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/part/HomeList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/NormalSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/NormalSearch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/SearchPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/SearchPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,27 +49,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/EA.ZIP/EA.ZIP",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
-    "spring.configuration.checksum": "c08054c1ef61583c5ba3ed6fc3149996"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/EA.ZIP/EA.ZIP&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;c08054c1ef61583c5ba3ed6fc3149996&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mariadb"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mariadb&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="애플리케이션.main">
     <configuration name="main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="bit.project.eazip.EazipApplication" />
@@ -109,6 +103,7 @@
       <workItem from="1659053131909" duration="2855000" />
       <workItem from="1659057364570" duration="752000" />
       <workItem from="1659074621685" duration="7684000" />
+      <workItem from="1659312632005" duration="4911000" />
     </task>
     <servers />
   </component>

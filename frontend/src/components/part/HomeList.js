@@ -16,18 +16,18 @@ const Listblock = styled.div`
 
 function HomeList() {
 
-  /*   const [ItemList, SetItemList] = useState([]);
-    useEffect(() => {
-      axios.get("Gangnam15.json")
-        .then((response) => {
-          SetItemList(response.data);
-        });
-    }, []);
-    console.log(ItemList); */
-  const { state } = useLocation([]);
-  console.log(state);
+  const [ItemList, SetItemList] = useState([]);
+  useEffect(() => {
+    axios.get("Gangnam15.json")
+      .then((response) => {
+        SetItemList(response.data);
+      });
+  }, []);
+  console.log(ItemList);
+  /*   const { state } = useLocation([]);
+    console.log(state); */
   return (
-    <Listblock><ListPage ItemList={state} /></Listblock>
+    <Listblock><ListPage ItemList={ItemList} /></Listblock>
   );
 }
 
