@@ -1,10 +1,9 @@
 import MainHeader3 from "../components/part/MainHeader3";
 import styled from "styled-components";
 import image from "../styles/background/2.jpg";
-import MainSearchForm from "../components/detail/MainSearchForm";
 import CheckBox from "../components/part/CheckBox";
 import axios from "axios";
-import { Link, useNavigate, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import MultiRangeSlider from "components/part/MultiRangeSlider";
 import ButtonA from "../components/part/ButtonA";
@@ -47,7 +46,7 @@ const Hr = styled.hr`
 `;
 
 const Div = styled.div`
-  width:450px; display: inline-block; margin: 186px 110px -35px 61px; text-align: -webkit-auto; z-index:11;
+  width:450px; display: inline-block; margin: 160px 110px -35px 61px; text-align: -webkit-auto; z-index:11;
 `;
 
 const DivA = styled.div`
@@ -55,30 +54,11 @@ const DivA = styled.div`
 
 `;
 
-
-const Tbtn = styled.button`
-    width: auto; height: 44px; border-radius: 20px; border: 3px solid #FF7B31; background-color: #E8E8E8;
-    font-size: 23px; font-weight: bold; color: #FF7B31; margin-right: 20px; margin-bottom: 50px;
-    display: absolute; cursor: pointer; padding: 10px; line-height: 1px;
-`;
-// 배경색: #E8E8E8
-// 글자색: #FF7B31
-
-const Mbtn = styled.button`
-  width:auto; height: 44px; border-radius: 20px; border: 3px solid #FF9431; background-color: #E8E8E8; font-size: 23px;
-  font-weight: bold; color: #FF9431; margin-right: 20px; margin-bottom:50px; display: absolute; cursor: pointer; padding:10px; line-height: 1px;
-`;
-// 배경색: #E8E8E8
-// 글자색: #FF9431
-const Bbtn = styled.button`
-  width:auto; height: 44px; border-radius: 20px; border: 3px solid #FFAD31; background-color: #E8E8E8; font-size: 23px;
-  font-weight: bold; color: #FFAD31; margin-right: 20px; margin-bottom:50px; display: absolute; cursor: pointer; padding:10px; line-height: 1px;
-`;
 // 배경색: #E8E8E8
 // 글자색: #FFAD31
 const Sbtn = styled.button`
 width:240px; height: 44px; border-radius: 20px; border: none; background-color: #FF9431; font-size: 25px;
-  font-weight: bold; color: white; margin: 10px 20px 20px 820px;  display: absolute; cursor: pointer; padding:10px; line-height: 1px;
+  font-weight: bold; color: white; margin: -50px 20px 20px 820px;  display: absolute; cursor: pointer; padding:10px; line-height: 1px;
   &:hover{
     background-color: #D37E30;
   }
@@ -121,6 +101,14 @@ const Button = styled.button`
     background-color: transparent;
 `;
 
+const SliderDBox = styled.div`
+  display: flex; float:left; width:170px; height:52px; border: 1px solid #ff9431; border-radius: 15px; font-size:15px;
+  padding-left: 20px; padding-top:7px;
+`;
+
+const Hr1 = styled.hr`
+  display:flex; float:left; width: 30px; margin: 30px 15px; line-height:10px;
+`;
 
 const optionsList = [
   { id: 0, name: 'option', text: "편의점", value: 'sc_market' },
@@ -169,7 +157,6 @@ const NormalSearch = (onClick) => {
   const [search, setSearch] = useState("");
   const [data, setData] = useState(null);
   const navigate = useNavigate();
-  const [InputText, setInputText] = useState('');
 
   const onChange = (e) => {
     setSearch(e.target.value)
@@ -228,6 +215,7 @@ const NormalSearch = (onClick) => {
       navigate('/search', { state: response.data })
     });
   };
+  //  mim, mam, mip, map
   return (
     <Container>
       <MainHeader3 />
@@ -302,28 +290,36 @@ const NormalSearch = (onClick) => {
           </Div>
           <Div>
 
-            <p className="price">매매/전세/보증금</p>
+            <p style={{ fontSize: "20px" }}>매매/전세/보증금</p>
             <MultiRangeSlider
               min={0}
-              max={10000}
+              max={1000000}
               onChange={({ min, max }) => setMip(min) & setMap(max)}
 
             />
-            <p className="monthly">월세</p>
+            <SliderDBox>최저 금액<br /> ₩ {mip}</SliderDBox>
+            <Hr1 />
+            <SliderDBox>최고 금액 <br />  ₩ {map}</SliderDBox>
+            <br />
+            <p style={{ fontSize: "20px", padding: "10px 10px" }}>월세</p>
             <MultiRangeSlider
               min={0}
               max={1000}
               onChange={({ min, max }) => setMim(min) & setMam(max)}
             />
+            <SliderDBox>최저 금액 <br /> ₩ {mim}</SliderDBox>
+            <Hr1 />
+            <SliderDBox>최고 금액 <br /> ₩ {mam}</SliderDBox>
           </Div>
         </form>
         <Sbtn onClick={Back}>
           추천받기
         </Sbtn>
-        <div style={{ zIndex: '110px' }}>결과:{data}</div>
+        {/* 데이터 잘 들어오는지 확인하는 구간.
+         <div style={{ zIndex: '110px' }}>결과:{data}</div>
         <code>
           {JSON.stringify({ data: { search, map, mip, mam, mim, category1, type, room_number, options } })}
-        </code>
+        </code> */}
       </Positioner>
     </Container>
   );

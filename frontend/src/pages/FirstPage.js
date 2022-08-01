@@ -110,7 +110,7 @@ const SamplePage = () => {
             </div>
             <div className="Bodyb">
                 <LocationButton>
-                    <Link to='/search'>
+                    <Link to='/targetsearch'>
                         <img src={Location} alt="" />
                         <div className="Text">
                             목적지를 입력하세요

@@ -6,9 +6,9 @@ import SignIn from 'pages/SignIn';
 import Modal from 'components/part/Modal';
 import ItemDetail from 'components/part/ItemDetail';
 import Mypage from 'pages/Mypage';
-
-import KakaoMapTest from 'API/KakaoMapTest';
+import TargetSearch from 'pages/TargetSearch';
 import NormalSearch from 'pages/NormalSearch';
+
 import KakaoSearch from 'API/KakaoSearch';
 import ButtonTest from 'components/detail/ButtonTest';
 
@@ -34,6 +34,7 @@ function App() {
                                 <Route path="/kakaomap" element={<KakaoSearch />} />
                                 <Route path="/" element={<FirstPage />} />
                                 <Route path="/buttontest" element={<ButtonTest />} />
+                                <Route path="/targetsearch" element={<TargetSearch />} />
                         </Routes>
                 </Router>
         );

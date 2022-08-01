@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
-import "../../styles/css/multiRangeSlider.css";
+import "../../styles/css/multiRangeSlider1.css";
 
 //min, max,onChange 가 부모로 보낼 데이터 변수.
-const MultiRangeSlider = ({ min, max, onChange }) => {
+const MultiRangeSlider1 = ({ min, max, onChange }) => {
 
     const [minVal, setMinVal] = useState(min);
     const [maxVal, setMaxVal] = useState(max);
@@ -51,11 +51,11 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
                 min={min}
                 max={max}
                 value={minVal}
-                step={100}
+                step={10}
                 ruler={true}
                 label={true}
                 onChange={(event) => {
-                    const value = Math.min(Number(event.target.value), maxVal - 100);
+                    const value = Math.min(Number(event.target.value), maxVal - 10);
                     setMinVal(value);
                     minValRef.current = value;
                 }}
@@ -67,11 +67,11 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
                 min={min}
                 max={max}
                 value={maxVal}
-                step={100}
+                step={10}
                 ruler={true}
                 label={true}
                 onChange={(event) => {
-                    const value = Math.max(Number(event.target.value), minVal + 100);
+                    const value = Math.max(Number(event.target.value), minVal + 10);
                     setMaxVal(value);
                     maxValRef.current = value;
                 }}
@@ -84,7 +84,7 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
                 <div className="slider__left-value" style={{ paddingLeft: '1.5px', lineHeight: '10px' }}>|</div>
                 <div className="slider__left-value" style={{ lineHeight: '45px', textAlign: 'center' }}>0</div>
                 <div className="slider__right-value" style={{ paddingRight: '210.5px', lineHeight: '10px' }}>|</div>
-                <div className="slider__right-value" style={{ lineHeight: '45px', paddingRight: '203px', textAlign: 'center' }}>1억</div>
+                <div className="slider__right-value" style={{ lineHeight: '45px', paddingRight: '203px', textAlign: 'center' }}>30분</div>
                 <div className="slider__right-value" style={{ paddingRight: '11.5px', lineHeight: '10px' }}>|</div>
                 <div className="slider__right-value" style={{ lineHeight: '45px', textAlign: 'center' }}>무제한</div>
             </div>
@@ -92,10 +92,10 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
     );
 };
 
-MultiRangeSlider.propTypes = {
+MultiRangeSlider1.propTypes = {
     min: PropTypes.number.isRequired,
     max: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired
 };
 
-export default MultiRangeSlider;
+export default MultiRangeSlider1;

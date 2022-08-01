@@ -11,6 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Container = styled.div`
+position: fixed;
 max-width: 1920px; width: 100%;
 background:url(${background}) no-repeat;
 background-size: cover;
@@ -118,8 +119,8 @@ const LoginForm = () => {
 
     const CLIENT_ID = "e98b7c20443a64d2a2230260e7c2fa22";
     const REDIRECT_URI = "http://localhost:3000/oauth/kakao/callback";
-    const KAKAO_AUTH_URL = "https://kauth.kakao.com/oauth/authorize?client_id="+`${CLIENT_ID}`+"&redirect_uri="+`${REDIRECT_URI}`+"&response_type=code";
-    
+    const KAKAO_AUTH_URL = "https://kauth.kakao.com/oauth/authorize?client_id=" + `${CLIENT_ID}` + "&redirect_uri=" + `${REDIRECT_URI}` + "&response_type=code";
+
 
 
     return (
@@ -146,7 +147,7 @@ const LoginForm = () => {
                         <BorderSpan></BorderSpan>
                     </SnsBox>
                     <Buttons1 style={{ padding: '10px' }} ><img src={naverlogo} alt="" /></Buttons1>
-                    <Buttons1 style={{ padding: '10px' }} onClick={()=>window.open(`${KAKAO_AUTH_URL}`)}><img src={kakaologo} alt="" /></Buttons1>
+                    <Buttons1 style={{ padding: '10px' }} onClick={() => window.open(`${KAKAO_AUTH_URL}`)}><img src={kakaologo} alt="" /></Buttons1>
                     <Buttons1 style={{ padding: '10px' }}><img src={googlelogo} alt="" /></Buttons1>
                 </Reactangle>
             </Positioner>
