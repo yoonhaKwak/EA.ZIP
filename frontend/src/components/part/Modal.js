@@ -1,11 +1,9 @@
 import "focus-visible";
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import CheckBox from "./CheckBox";
 import GlobalStyles from "../detail/GlobalStyles";
-import axios from "axios";
-import { SettingsInputAntennaTwoTone } from "@mui/icons-material";
 
 //필터목록
 const roomKind = [

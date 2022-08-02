@@ -102,102 +102,102 @@ const Hr1 = styled.hr`
 //////////////////////////함수입력 구간//////////////////////////////////////////
 const TargetSearch = (onClick) => {
 
-    const [map, setMap] = useState(0);
-    const [mip, setMip] = useState(0);
-    const [mal, setMal] = useState(0);
-    const [mil, setMil] = useState(0);
-    const [mam, setMam] = useState(0);
-    const [mim, setMim] = useState(0);
-    const [search, setSearch] = useState("");
-    const [data, setData] = useState(null);
-    const navigate = useNavigate();
+  const [map, setMap] = useState(0);
+  const [mip, setMip] = useState(0);
+  const [mal, setMal] = useState(0);
+  const [mil, setMil] = useState(0);
+  const [mam, setMam] = useState(0);
+  const [mim, setMim] = useState(0);
+  const [search, setSearch] = useState("");
+  const [data, setData] = useState(null);
+  const navigate = useNavigate();
 
-    const onChange = (e) => {
-        setSearch(e.target.value)
+  const onChange = (e) => {
+    setSearch(e.target.value)
+  }
+  const Back = async () => {
+    axios({
+      method: 'post',
+      url: '/react/filter', // 여기에 지역추천옵션에 맞는 백엔드 경로 설정해줘야함.
+      data: {
+        "addr1": search,
+        "TimeSectionMin": map,
+        "TimeSectionMax": mip,
+        "WalkTimeMin": mal,
+        "WalkTimeMax": mil,
+        "TransferMin": mam,
+        "TransfeerMax": mim,
+      },
+      baseURL: 'http://localhost:8080'
     }
-    const Back = async () => {
-        axios({
-            method: 'post',
-            url: '/react/filter', // 여기에 지역추천옵션에 맞는 백엔드 경로 설정해줘야함.
-            data: {
-                "addr1": search,
-                "maxprice": map,
-                "minprice": mip,
-                "maxprice1": mal,
-                "minprice1": mil,
-                "maxmonthly": mam,
-                "minmonthly": mim,
-            },
-            baseURL: 'http://localhost:8080'
-        }
-        ).then((response) => {
-            setData(JSON.stringify(response.data));
-            navigate('/normalsearch', { state: response.data })
-        });
-    };
-    return (
-        <Container>
-            <MainHeader3 />
-            <Positioner>
-                <p style={{ paddingLeft: '760px', color: 'white', fontSize: '30px', marginTop: '0px', fontWeight: 'bold' }}>"나에게 딱 맞는 집을 찾아보세요!"</p>
-                <div />
-                <form>
-                    <>
-                        <StyledBox className="inputForm">
-                            <Button type="button" onClick={onClick} />
-                            <StyledInput type="text" placeholder="목적지를 입력하세요!" onChange={onChange} onKeyPress={e => {
-                                if (e.key === 'Enter') e.preventDefault();
-                            }} />
-                        </StyledBox>
-                    </>
-                    <OptionList>
-                        <FilterTitle>지역추천 옵션</FilterTitle>
-                        <Hr /><FilterTitle1>소요시간</FilterTitle1>
-                        <Hr style={{ width: '510px' }} /><FilterTitle1>도보시간</FilterTitle1>
-                        <Hr style={{ width: '520px' }} /><FilterTitle1>환승횟수</FilterTitle1><Hr style={{ width: '260px' }} />
+    ).then((response) => {
+      setData(JSON.stringify(response.data));
+      navigate('/normalsearch', { state: response.data })
+    });
+  };
+  return (
+    <Container>
+      <MainHeader3 />
+      <Positioner>
+        <p style={{ paddingLeft: '760px', color: 'white', fontSize: '30px', marginTop: '0px', fontWeight: 'bold' }}>"나에게 딱 맞는 집을 찾아보세요!"</p>
+        <div />
+        <form>
+          <>
+            <StyledBox className="inputForm">
+              <Button type="button" onClick={onClick} />
+              <StyledInput type="text" placeholder="목적지를 입력하세요!" onChange={onChange} onKeyPress={e => {
+                if (e.key === 'Enter') e.preventDefault();
+              }} />
+            </StyledBox>
+          </>
+          <OptionList>
+            <FilterTitle>지역추천 옵션</FilterTitle>
+            <Hr /><FilterTitle1>소요시간</FilterTitle1>
+            <Hr style={{ width: '510px' }} /><FilterTitle1>도보시간</FilterTitle1>
+            <Hr style={{ width: '520px' }} /><FilterTitle1>환승횟수</FilterTitle1><Hr style={{ width: '260px' }} />
 
-                    </OptionList>
-                    <Div>
-                        <MultiRangeSlider1
-                            min={0}
-                            max={180}
-                            onChange={({ min, max }) => setMip(min) & setMap(max)}
+          </OptionList>
+          <Div>
+            <MultiRangeSlider1
+              min={0}
+              max={180}
+              onChange={({ min, max }) => setMip(min) & setMap(max)}
 
-                        />
-                        <SliderDBox>최소 시간 <br />{mip}</SliderDBox>
-                        <Hr1 />
-                        <SliderDBox>최대 시간<br />{map}</SliderDBox>
-                    </Div>
-                    <Div>
-                        <MultiRangeSlider1
-                            min={0}
-                            max={180}
-                            onChange={({ min, max }) => setMil(min) & setMal(max)}
-                        />
-                        <SliderDBox>최소 시간 <br />{mil}</SliderDBox>
-                        <Hr1 />
-                        <SliderDBox>최대 시간 <br />{mal}</SliderDBox>
-                    </Div>
-                    <Div>
-                        <MultiRangeSlider1
-                            min={0}
-                            max={180}
-                            onChange={({ min, max }) => setMim(min) & setMam(max)}
-                        />
-                        <SliderDBox>최소 횟수 <br />{mim}</SliderDBox>
-                        <Hr1 />
-                        <SliderDBox>최대 횟수 <br />{mam}</SliderDBox>
-                    </Div>
-                    <Sbtn onClick={Back}>
-                        우선순위 정하기
-                    </Sbtn>
-                    <code>
-                        {JSON.stringify({ data: { search, map, mip, mil, mal, mam, mim } })}
-                    </code>
-                </form>
-            </Positioner>
-        </Container>
-    );
+            />
+            <SliderDBox>최소 시간 <br />{mip}</SliderDBox>
+            <Hr1 />
+            <SliderDBox>최대 시간<br />{map}</SliderDBox>
+          </Div>
+          <Div>
+            <MultiRangeSlider1
+              min={0}
+              max={180}
+              onChange={({ min, max }) => setMil(min) & setMal(max)}
+            />
+            <SliderDBox>최소 시간 <br />{mil}</SliderDBox>
+            <Hr1 />
+            <SliderDBox>최대 시간 <br />{mal}</SliderDBox>
+          </Div>
+          <Div>
+            <MultiRangeSlider1
+              min={0}
+              max={180}
+              onChange={({ min, max }) => setMim(min) & setMam(max)}
+            />
+            <SliderDBox>최소 횟수 <br />{mim}</SliderDBox>
+            <Hr1 />
+            <SliderDBox>최대 횟수 <br />{mam}</SliderDBox>
+          </Div>
+          <Sbtn onClick={Back}>
+            우선순위 정하기
+          </Sbtn>
+          <code>
+            {JSON.stringify({ data: { search, map, mip, mil, mal, mam, mim } })}
+          </code>
+        </form>
+      </Positioner>
+    </Container>
+  );
 };
 
 export default TargetSearch;

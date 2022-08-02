@@ -20,21 +20,22 @@ public class MemberController {
     @Autowired
     MemberService service;
     @RequestMapping(value = "/login", method = {RequestMethod.POST,RequestMethod.GET})
-    public HttpSession login(@RequestBody Map<String,String> codeMap, HttpServletRequest request){
+    public void login(@RequestBody Map<String,String> codeMap){
         String code = codeMap.get("code");
+        log.info("############### 프론트에서 받기 #####################");
         System.out.println(code);
         String token = service.getKakaoAccessToken(code);
         Map<String,String> userMap = service.createKakaoUser(token);
 
         //세션
-        HttpSession session = request.getSession();
-        session.setAttribute("id", userMap.get("id"));
+//        HttpSession session = request.getSession();
+//        session.setAttribute("id", userMap.get("id"));
 
         MemberDTO memberDTO = new MemberDTO();
         memberDTO.setId(userMap.get("id"));
         memberDTO.setEmail(userMap.get("email"));
 
         service.insertUser(memberDTO);
-        return session;
+//        return session;
     }
 }

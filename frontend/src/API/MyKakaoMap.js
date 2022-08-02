@@ -1,14 +1,15 @@
 import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk";
 import { useEffect, useState } from 'react';
-import SearchMarker from '../styles/icons/SearchMarker.svg';
+import SearchMarker from '../styles/icons/Group 68.svg';
 import axios from "axios";
 import { useLocation, Link } from "react-router-dom";
+import MyListpage from "components/detail/MyListpage";
+import ItemCard from "components/detail/ItemCard";
 
 const { kakao } = window
 
 function MyKakaoMap(data) {
     const { state } = useLocation([]);
-    const [isOpen, setIsOpen] = useState(false);
     // console.log(state);
     // for (const key in Object.keys(state)) {
     //     // console.log(state[key].lat, state[key].lng)
@@ -92,7 +93,7 @@ function MyKakaoMap(data) {
                             lng: marker.lng
                         }}
                         clickable={true}
-                        onClick={() => console.log(marker)}
+                        onClick={() => { <ItemCard /> && console.log(marker) }}
                         image={{
                             src: SearchMarker,
                             size: {

@@ -85,9 +85,7 @@ background-color:white;
 
 
 const SearchPage = () => {
-  let [showbox, setShowbox] = useState(false);
   let [modal, setModal] = useState(false);
-
   const [isActive, setIsActive] = useState(false);
   const handleClick = () => {
     setIsActive(current => !current);
@@ -105,10 +103,6 @@ const SearchPage = () => {
             onClick={(handleClick) => { setModal(!modal) }} >필터 목록</RemoteButton>
           {
             modal === true ? <Modal /> : null
-          }
-          <QuestionMark onClick={() => { setShowbox(!showbox) }}>?</QuestionMark>
-          {
-            showbox === true ? <SpeakBox /> : null
           }
         </div>
 

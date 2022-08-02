@@ -3,12 +3,17 @@ import { useEffect, useState } from 'react';
 import SearchMarker from '../styles/icons/SearchMarker.svg';
 import axios from "axios";
 import { useLocation, Link } from "react-router-dom";
+import ItemDetailMarker from "../components/part/ItemDetailMarker";
+import styled from "styled-components";
 
 const { kakao } = window
 
 function KakaoMap(data) {
+    const [modalOpen, setModalOpen] = useState(false);
+    const openModal = () => { setModalOpen(true) };
+    const closeModal = () => { setModalOpen(false) };
+
     const { state } = useLocation([]);
-    const [isOpen, setIsOpen] = useState(false);
     // console.log(state);
     // for (const key in Object.keys(state)) {
     //     // console.log(state[key].lat, state[key].lng)
@@ -51,7 +56,6 @@ function KakaoMap(data) {
                 gridSize={80}
                 averageCenter={true}
                 minLevel={2}
-                disableClickZoom={true} // 클러스터 마커를 클릭했을 때 지도가 확대되지 않도록 설정한다
                 calculator={[5, 10, 20]} // 클러스터의 크기 구분 값, 각 사이값마다 설정된 text나 style이 적용된다
                 styles={[{ // calculator 각 사이 값 마다 적용될 스타일을 지정한다
                     width: '100px', height: '100px',
@@ -85,6 +89,8 @@ function KakaoMap(data) {
                     lineHeight: '100px'
                 }
                 ]}
+                disableClickZoom={true}
+                onClusterClick={() => console.log(state.name)}
             >
                 {state.map((marker) => (
                     <MapMarker
@@ -94,7 +100,7 @@ function KakaoMap(data) {
                             lng: marker.lng
                         }}
                         clickable={true}
-                        onClick={() => console.log(marker)}
+                        onClick={openModal}
                         image={{
                             src: SearchMarker,
                             size: {
@@ -107,10 +113,11 @@ function KakaoMap(data) {
                                     y: 45,
                                 },
                             },
-                        }}>
-                    </MapMarker>
+                        }}
+                    />
                 ))}
             </MarkerClusterer>
+            <ItemDetailMarker open={modalOpen} close={closeModal} ItemData={state[0]} />
         </Map >
 
     );
