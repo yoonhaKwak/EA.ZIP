@@ -1,63 +1,91 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import styled from "styled-components";
 import BlankHeart from "../../styles/img/Blank_Heart.svg";
 import FillHeart from "../../styles/img/Fill_Heart.svg";
 
-function Heart(onClick) {
+
+
+
+
+
+
+function Heart({ Id, value }) {
+
+
+  /*-----------------------------------------------------------[Wla기능 만들거임]-------------------------------------------------------------------------------*/
+  const [Wishadd, setWishadd] = useState(false)
+  const [Wishcount, setWishcount] = useState(800)
+
+  const wishAddHandler = () => {
+    setWishadd(!Wishadd)
+  }
+  const wishCountHandler = () => {
+    Id = Id + ""
+    wishAddHandler()
+    if (!Wishadd) {
+      setWishcount(Wishcount + 1)
+      axios({
+        url: '/history',
+        method: 'post',
+        data: {
+          'idx': Id,
+        },
+        baseURL: 'http://localhost:8080'
+      })
+      console.log({
+        'productID': Id,
+        '찜': "찜했슈"
+
+      })
+
+    } else if (Wishadd) {
+      setWishcount(Wishcount - 1)
+      axios({
+        url: '/history',
+        method: 'post',
+        data: {
+          'idx': Id,
+        },
+        baseURL: 'http://localhost:8080'
+      })
+      console.log({
+        'product': Id,
+        '찜': "찜 풀렸슈"
+
+      })
+    }
+  }
+
 
   return (
-    <>
-      <StyledInput type="checkbox" onClick={onClick} />
-      <StyledLabel />
+    <HeartButton>
+      <input type="checkbox" name="heart" id={Id} value={value} onClick={wishCountHandler} />
+      <label htmlFor={Id}><img src={BlankHeart} alt="" /></label>
 
-    </>
+    </HeartButton>
   );
 }
 
 export default Heart;
 
-const StyledLabel = styled.label`
-align-items: center;
-  user-select: none;
-  float: left;
-  cursor: pointer;
-  white-space: pre-wrap;
-
-  white-space: pre-wrap;
-  z-index:100;
-
-  &:before {
-
-    content:url(${BlankHeart});
-    width: 32px;
-    height: 32px;
-
-
-    
+const HeartButton = styled.div`
+  input{
+    display:none;
   }
-
-  &:after {
-  content:url(${FillHeart});
-    width: 32px;
-    height: 32px;
-
+  label{
+    width:32px;
+    height:32px;
   }
-`;
-
-// visually-hidden
-// https://www.a11yproject.com/posts/how-to-hide-content
-const StyledInput = styled.input`
-  position: absolute;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 0px;
-  overflow: hidden;
-  white-space: nowrap;
-  width: 0px;
-
-  &:checked + ${StyledLabel} {
-    :after {
-      opacity: 1;
-    }
-  }
+input+label{
+  content:url(${BlankHeart});
+}
+input:checked+label{
+  content:url(${FillHeart});  
+}
+img{
+  width:32px;
+  height:32px;
+  padding:0;
+}
 `;

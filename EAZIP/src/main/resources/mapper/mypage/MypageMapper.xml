@@ -12,13 +12,13 @@
 
 
     <select id="getIdx" resultType="String">
-        SELECT history from usertbl WHERE id =  'yyc'
+        SELECT history from usertbl WHERE id =  '2361494735'
     </select>
 
     <insert id="insertHistory">
         update usertbl set history =
                                #{temp}
-        where id = 'yyc'
+        where id = '2361494735'
     </insert>
 
 

@@ -24,7 +24,7 @@ import "../../styles/css/slick.css"
 import "../../styles/css/slick-theme.css"
 import Slider from "react-slick";
 import Heart from "../part/Heart";
-
+import axios from "axios";
 
 
 const Block = styled.div`
@@ -680,8 +680,6 @@ border-radius: 15px;
 `;
 
 
-
-
     /*-----------------------------------------------------------[여기서부터 리턴값]-------------------------------------------------------------------*/
     return (
         <Block>
@@ -742,7 +740,7 @@ border-radius: 15px;
                                         </ListFeature>
                                         <div style={{ float: 'top' }}>
                                             <WTF onClick={openModal} />
-                                            <Heart id={Id} />
+                                            <Heart Id={Id} />
                                         </div>
                                     </div>
 

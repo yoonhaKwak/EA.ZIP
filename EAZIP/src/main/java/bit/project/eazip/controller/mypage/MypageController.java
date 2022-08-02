@@ -33,10 +33,9 @@ public class MypageController {
 
         System.out.println("idx = " + idx);
 
-        List<String> history = new ArrayList<String>();
-        history = service.getIdx();
+        List<String> history = service.getIdx();
         log.info("###########################################");
-        log.info("Idx 받아 옴");
+        log.info("Idxhis 받아 옴");
         log.info("###########################################");
         history.add(idx);
         log.info("###########################################");
