@@ -90,7 +90,7 @@ function KakaoMap(data) {
                 }
                 ]}
                 disableClickZoom={true}
-                onClusterClick={() => console.log(state.name)}
+            // onClusterClick={() => console.log(state.name)}
             >
                 {state.map((marker) => (
                     <MapMarker
@@ -119,7 +119,6 @@ function KakaoMap(data) {
             </MarkerClusterer>
             <ItemDetailMarker open={modalOpen} close={closeModal} ItemData={state[0]} />
         </Map >
-
     );
 }
 

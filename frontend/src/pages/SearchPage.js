@@ -105,9 +105,7 @@ const SearchPage = () => {
             modal === true ? <Modal /> : null
           }
         </div>
-
       </Body>
-
     </Container>
   );
 };

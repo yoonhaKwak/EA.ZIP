@@ -118,15 +118,15 @@ const TargetSearch = (onClick) => {
   const Back = async () => {
     axios({
       method: 'post',
-      url: '/react/filter', // 여기에 지역추천옵션에 맞는 백엔드 경로 설정해줘야함.
+      url: '/local/apilist',
       data: {
         "addr1": search,
-        "TimeSectionMin": map,
-        "TimeSectionMax": mip,
-        "WalkTimeMin": mal,
-        "WalkTimeMax": mil,
-        "TransferMin": mam,
-        "TransfeerMax": mim,
+        "timeSectionMin": map,
+        "timeSectionMax": mip,
+        "walkTimeMin": mal,
+        "walkTimeMax": mil,
+        "transferMin": mam,
+        "transferMax": mim,
       },
       baseURL: 'http://localhost:8080'
     }
@@ -135,6 +135,22 @@ const TargetSearch = (onClick) => {
       navigate('/normalsearch', { state: response.data })
     });
   };
+
+
+  ////////////////////////////////////////////////////////////////////////////////숫자==> 시간으로
+  String.prototype.toHHMMSS = function () {
+    var sec_num = parseInt(this, 10); // don't forget the second param
+    var hours = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+
+    if (hours < 10) { hours = "0" + hours; }
+    if (minutes < 10) { minutes = "0" + minutes; }
+    return hours + ':' + minutes;
+  }
+
+  console.log("16000".toHHMMSS())
+
+
   return (
     <Container>
       <MainHeader3 />
@@ -176,7 +192,7 @@ const TargetSearch = (onClick) => {
             />
             <SliderDBox>최소 시간 <br />{mil}</SliderDBox>
             <Hr1 />
-            <SliderDBox>최대 시간 <br />{mal}</SliderDBox>
+            <SliderDBox>최대 시간 <br />{"16000".toHHMMSS()}</SliderDBox>
           </Div>
           <Div>
             <MultiRangeSlider1
@@ -192,7 +208,7 @@ const TargetSearch = (onClick) => {
             우선순위 정하기
           </Sbtn>
           <code>
-            {JSON.stringify({ data: { search, map, mip, mil, mal, mam, mim } })}
+            {JSON.stringify({ data: { search, mip, map, mil, mal, mim, mam } })}
           </code>
         </form>
       </Positioner>

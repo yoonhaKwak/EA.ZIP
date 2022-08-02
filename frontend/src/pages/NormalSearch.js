@@ -146,6 +146,49 @@ const CategoryList2 = [
 ];
 //////////////////////////함수입력 구간//////////////////////////////////////////
 const NormalSearch = (onClick) => {
+
+
+  //보증금
+  // let deposit;
+  // let depositl;
+  // if (Selling === 3) {
+  //     if (Price < 10000) {
+  //         depositl = Price.toString()
+  //             .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+
+  //         deposit = ("/" + depositl + "만").toString();
+  //     }
+  //     else {
+  //         if (Price % 10000 === 0) {
+
+  //             pricel = (Price / 10000);         //매물 가격이 1억을 넘되 만 단위가 없을 경우
+  //             deposit = ("/" + pricel + "억").toString()
+  //                 .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+
+  //         }
+  //         else {
+  //             if (!(Price % 1000 === 0)) { //매물 가격이 1억을 넘되 만 단위가 1000미만일 경우
+  //                 pricel = (Price / 10000);
+  //                 pricel = Math.floor(pricel);
+  //                 pricel = pricel.toFixed(0);
+  //                 pricem = (Price % 10000);
+  //                 pricem = pricem.toString()
+  //                     .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+  //                 Price = ("/" + pricel + "억 " + pricem + "만").toString();
+  //             }
+  //             else {    //그외 나머지
+  //                 pricel = Price.toString()
+  //                     .replace(/\B(?<!\.\d*)(?=(\d{4})+(?!\d))/g, "억 ")
+  //                     .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+  //                 deposit = ("/" + pricel + "만").toString();
+  //             }
+  //         }
+  //     }
+  // }
+  // else {
+  //     deposit = null;
+  // }
+
   const [category1, setCategory] = useState([]);
   const [type, setType] = useState([]);
   const [room_number, setRoom] = useState([]);
@@ -215,7 +258,7 @@ const NormalSearch = (onClick) => {
       navigate('/search', { state: response.data })
     });
   };
-  //  mim, mam, mip, map
+
   return (
     <Container>
       <MainHeader3 />

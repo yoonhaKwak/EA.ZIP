@@ -26,5 +26,11 @@ public class FilterDTO {
     private int minmonthly;
     private int maxmonthly;
 
+    private int timeSectionMin;
+    private int timeSectionMax;
+    private int walkTimeMin;
+    private int walkTimeMax;
+    private int transferMin;
+    private int transferMax;
 
 }
