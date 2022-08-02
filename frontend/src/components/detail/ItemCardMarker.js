@@ -126,6 +126,253 @@ cursor: pointer;
 `;
 
 
+/*---------------------------------------------------[상세페이지 내부 요소 뚜방뚜방]-------------------------------------------------------*/
+/*-----------------------------------------------------------[여기서부터 이미지]-------------------------------------------------------------------*/
+
+const ImageArea = styled.div`
+width: 750px;
+height: 400px;
+margin-left:auto;
+margin-right:auto;
+margin-top:20px;
+background: #e2e2e2;
+border-radius: 15px;
+.image{
+ 
+
+  position:flex;
+
+
+}
+.image img{
+  width:400px;
+  height:400px;
+  padding-left:125px;
+  padding-right:125px;
+  
+}
+.rightbutton{
+width:50px;
+height:50px;
+float:right;
+position:flex;
+margin-top:175px;
+}
+
+.leftbutton{
+width:50px;
+height:50px;
+float:left;
+position:flex;
+margin-top:175px;
+}
+
+`;
+const settings = {
+
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow: <img src={RightArrow} alt="" />,
+    prevArrow: <img src={LeftArrow} alt="" />
+};
+
+/*-----------------------------------------------------------[전세,주소,간단설명 등등]-------------------------------------------------------------------*/
+
+const SecondItem = styled.div`
+width: 750px;
+height: 250px;
+margin-top:20px;
+margin-left:auto;
+margin-right:auto;
+text-align:center;
+background: #FDFDFD;
+box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.25);
+border-radius: 15px;
+
+
+.tag{
+padding-top:10px;
+padding-left:10px;
+padding-right:0;
+  float:left;
+}
+.tag img{
+    width:60px;
+    height:24px;
+    padding: 0 0 0 0;
+  }
+  .tag .officetall{
+    width:92px;
+    height:24px;
+    padding: 0 0 0 0;
+  }
+  .tag .threeroom{
+        width:76px;
+    height:24px;
+    padding: 0 0 0 0;
+  }
+  
+
+.sellingtag{
+  padding-top:10px;
+  padding-right:10px;
+
+  float:right;
+  
+}
+.sellingtag img{
+    width:60px;
+    height:24px;
+    padding: 0 0 0 0;
+  }
+  .bold{
+    position:flex;
+    font-weight: 700;
+    font-size:30px;
+    padding-top:40px;
+  }
+  .word{
+    font-size:17px;
+    padding-top:25px;
+    
+  }
+  .addr{
+    font-size:17px;
+    padding-top:15px;
+  }
+`;
+
+
+
+
+const ThirdItem = styled.div`
+
+width: 750px;
+height: 1678px;
+margin-top:20px;
+margin-left:auto;
+margin-right:auto;
+background: #FDFDFD;
+box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.25);
+border-radius: 15px;
+
+
+hr{
+  border: 2px solid #d4d4d4;
+  width: 700px;
+}
+.mini hr{
+  
+  border: 0.5px solid #dbdbdb;
+  width: 700px;
+
+}
+.Icon{
+
+    height:200px;
+    padding-left:100px;
+    
+}
+.Icon .Tag{
+    
+    padding-bottom: 20px;
+    bottom:15px;
+    width:70px;
+    height:auto;
+    padding-right:88px;
+    float:left;
+   
+
+  bottom: 10px;
+    
+}
+.Icon .Tag .a img{
+
+    padding-right:auto;
+    padding-left:auto;
+    width:70px;
+   padding-top:27px;
+    
+}
+.Icon .Tag .b img{
+
+padding-right:auto;
+padding-left:auto;
+width:70px;
+padding-top:66px;
+
+}
+.Icon .Tag .c img{
+
+padding-right:auto;
+padding-left:auto;
+width:70px;
+padding-top:80px;
+
+
+}
+.Icon .Tag .d img{
+
+padding-right:auto;
+padding-left:auto;
+width:70px;
+padding-top:70px;
+
+}
+.Icon .Tag .e img{
+
+padding-right:auto;
+padding-left:auto;
+width:70px;
+padding-top:71px;
+
+}
+.Icon .Tag .f img{
+
+padding-right:auto;
+padding-left:auto;
+width:70px;
+padding-top:96px;
+}
+
+.Icon .Tag .Text{
+padding-top:15px;
+width:70px;
+
+text-align : center;
+}
+.Icon .Tag .Text .Wtf{
+
+ white-space: nowrap;
+
+}
+
+.Long{
+  width:690px;
+  padding-top:20px;
+  padding-left:40px;
+  word-break:initial;
+  white-space: pre-wrap;
+  padding-bottom:20px;
+}
+`
+
+const ForthItem = styled.div`
+
+width: 750px;
+height: 809px;
+margin-top:20px;
+margin-left:auto;
+margin-right:auto;
+background: #FDFDFD;
+box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.25);
+border-radius: 15px;
+`;
+
+
 
 
 
@@ -433,253 +680,6 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
 
 
     /*-----------------------------------------------------------[뽀짝뽀짝]-------------------------------------------------------------------*/
-    /*---------------------------------------------------[상세페이지 내부 요소 뚜방뚜방]-------------------------------------------------------*/
-    /*-----------------------------------------------------------[여기서부터 이미지]-------------------------------------------------------------------*/
-
-    const ImageArea = styled.div`
-width: 750px;
-height: 400px;
-margin-left:auto;
-margin-right:auto;
-margin-top:20px;
-background: #e2e2e2;
-border-radius: 15px;
-.image{
- 
-
-  position:flex;
-
-
-}
-.image img{
-  width:400px;
-  height:400px;
-  padding-left:125px;
-  padding-right:125px;
-  
-}
-.rightbutton{
-width:50px;
-height:50px;
-float:right;
-position:flex;
-margin-top:175px;
-}
-
-.leftbutton{
-width:50px;
-height:50px;
-float:left;
-position:flex;
-margin-top:175px;
-}
-
-`;
-    const settings = {
-
-        dots: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        nextArrow: <img src={RightArrow} alt="" />,
-        prevArrow: <img src={LeftArrow} alt="" />
-    };
-
-    /*-----------------------------------------------------------[전세,주소,간단설명 등등]-------------------------------------------------------------------*/
-
-    const SecondItem = styled.div`
-width: 750px;
-height: 250px;
-margin-top:20px;
-margin-left:auto;
-margin-right:auto;
-text-align:center;
-background: #FDFDFD;
-box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.25);
-border-radius: 15px;
-
-
-.tag{
-padding-top:10px;
-padding-left:10px;
-padding-right:0;
-  float:left;
-}
-.tag img{
-    width:60px;
-    height:24px;
-    padding: 0 0 0 0;
-  }
-  .tag .officetall{
-    width:92px;
-    height:24px;
-    padding: 0 0 0 0;
-  }
-  .tag .threeroom{
-        width:76px;
-    height:24px;
-    padding: 0 0 0 0;
-  }
-  
-
-.sellingtag{
-  padding-top:10px;
-  padding-right:10px;
-
-  float:right;
-  
-}
-.sellingtag img{
-    width:60px;
-    height:24px;
-    padding: 0 0 0 0;
-  }
-  .bold{
-    position:flex;
-    font-weight: 700;
-    font-size:30px;
-    padding-top:40px;
-  }
-  .word{
-    font-size:17px;
-    padding-top:25px;
-    
-  }
-  .addr{
-    font-size:17px;
-    padding-top:15px;
-  }
-`;
-
-
-
-
-    const ThirdItem = styled.div`
-
-width: 750px;
-height: 1678px;
-margin-top:20px;
-margin-left:auto;
-margin-right:auto;
-background: #FDFDFD;
-box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.25);
-border-radius: 15px;
-
-
-hr{
-  border: 2px solid #d4d4d4;
-  width: 700px;
-}
-.mini hr{
-  
-  border: 0.5px solid #dbdbdb;
-  width: 700px;
-
-}
-.Icon{
-
-    height:200px;
-    padding-left:100px;
-    
-}
-.Icon .Tag{
-    
-    padding-bottom: 20px;
-    bottom:15px;
-    width:70px;
-    height:auto;
-    padding-right:88px;
-    float:left;
-   
-
-  bottom: 10px;
-    
-}
-.Icon .Tag .a img{
-
-    padding-right:auto;
-    padding-left:auto;
-    width:70px;
-   padding-top:27px;
-    
-}
-.Icon .Tag .b img{
-
-padding-right:auto;
-padding-left:auto;
-width:70px;
-padding-top:66px;
-
-}
-.Icon .Tag .c img{
-
-padding-right:auto;
-padding-left:auto;
-width:70px;
-padding-top:80px;
-
-
-}
-.Icon .Tag .d img{
-
-padding-right:auto;
-padding-left:auto;
-width:70px;
-padding-top:70px;
-
-}
-.Icon .Tag .e img{
-
-padding-right:auto;
-padding-left:auto;
-width:70px;
-padding-top:71px;
-
-}
-.Icon .Tag .f img{
-
-padding-right:auto;
-padding-left:auto;
-width:70px;
-padding-top:96px;
-}
-
-.Icon .Tag .Text{
-padding-top:15px;
-width:70px;
-
-text-align : center;
-}
-.Icon .Tag .Text .Wtf{
-
- white-space: nowrap;
-
-}
-
-.Long{
-  width:690px;
-  padding-top:20px;
-  padding-left:40px;
-  word-break:initial;
-  white-space: pre-wrap;
-  padding-bottom:20px;
-}
-`
-
-    const ForthItem = styled.div`
-
-width: 750px;
-height: 809px;
-margin-top:20px;
-margin-left:auto;
-margin-right:auto;
-background: #FDFDFD;
-box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.25);
-border-radius: 15px;
-`;
-
-
 
 
     /*-----------------------------------------------------------[여기서부터 리턴값]-------------------------------------------------------------------*/
@@ -689,218 +689,152 @@ border-radius: 15px;
                 <form>
                     <li className="component component--item_card" key={key} >
 
-
                         <React.Fragment onClick={openModal}>
-                            {Category2}======, {Addr1}
-                            {/* 
-                            <Table>
 
-                                <div>
-                                    <div className="leftarea" style={{ cursor: 'pointer' }} onClick={openModal}>
-                                        {image}
+                            <ImageArea>
+                                <Slider {...settings}>
+                                    {ImageSlide()}
+
+                                    {/* <div>
+                                        <img src="https://w.namu.la/s/f16f3471166dd81cfd74bd6a927ed0bd3bad05bdf74b5069e7b5b57a155bbe16809c69aef2083973a899615546150b9485eb692f50300c35238115da0c908c1353facffec7f6ca098fe904ab6faf13ff8596e7d2ab47ab285b8c15d644144115" alt="" />
+                                    </div> */}
+                                </Slider>
+
+                            </ImageArea>
+                            <SecondItem>
+                                <div className="tag">
+                                    {{
+                                        빌라: <img src={Villa} className="default" alt="" />,
+
+                                        오피스텔: <img src={Officetell} className="officetall" alt="" />,
+                                        주택: <img src={Housing} className="default" alt="" />,
+                                        도시형생활주택: <img src={Housing} className="default" alt="" />,
+                                        null: null
+                                    }[Category2]}
+                                </div>
+                                <div className="tag">
+                                    {{
+                                        1: <img src={Oneroom} className="roomdefault" alt="" />,
+                                        2: <img src={Tworoom} className="roomdefault" alt="" />,
+                                        3: <img src={Threeroom} className="threeroom" alt="" />,
+                                        null: null
+                                    }[Room]}
+                                </div>
+                                <div className="sellingtag">
+                                    {{
+                                        1: <img src={Tradingimg} alt="" />,
+                                        2: <img src={Jeonseimg} alt="" />,
+                                        3: <img src={Monthlyimg} alt="" />
+                                    }[Selling]}
+                                </div>
+
+                                <scaleFontSize>
+                                    <div className="bold"> {{ 1: "매매", 2: "전세", 3: "월세" }[Selling]} {realprice}{deposit}
                                     </div>
-                                    <div className="rightarea">
-                                        <ListFeature style={{ cursor: 'pointer' }} onClick={openModal}>
-                                            <div className="tag">
-                                                {{
-                                                    빌라: <img src={Villa} className="default" alt="" />,
-                                                    오피스텔: <img src={Officetell} className="officetell" alt="" />,
-                                                    주택: <img src={Housing} className="default" alt="" />,
-                                                    도시형생활주택: <img src={Housing} className="default" alt="" />,
-                                                    null: null
-                                                }[Category2]}
+                                </scaleFontSize>
+                                <div className="addr">
+                                    {Addr}
+                                </div>
 
-                                                {{
-                                                    1: <img src={Oneroom} className="roomdefault" alt="" />,
-                                                    2: <img src={Tworoom} className="roomdefault" alt="" />,
-                                                    3: <img src={Threeroom} className="threeroom" alt="" />,
-                                                    null: null
-                                                }[Room]}
+
+
+                                <div className="word">
+                                    {Feature}
+                                </div>
+
+
+
+
+                                <div className="word">
+                                    {supply}m²/{dedicated}m²
+                                    {realresult === '0만' ? null
+                                        :
+                                        <> | {realresult}원/3.3m²</>}
+                                </div>
+
+                            </SecondItem>
+                            <ThirdItem>
+                                <div className="Header">
+                                    상세정보
+                                </div>
+
+                                <hr />
+
+                                <div className="Icon">
+                                    <div className="Tag">
+                                        {{
+                                            "중간층": <div className="b"><img src={Middle} alt="" /></div>,
+                                            "저층": <div className="c"><img src={Low} alt="" /></div>,
+                                            "고층": <div className="a"><img src={High} alt="" /></div>,
+                                            null: null
+                                        }[LayerType]}
+                                        <div className="Text">{LayerType}</div>
+                                    </div>
+                                    <div className="Tag">
+
+                                        <div className="d"><img src={RoomNBath} alt="" /></div>
+
+                                        <div className="Text">
+                                            <div className="Wtf">
+                                                {roomnbath}</div></div>
+                                    </div>
+                                    <div className="Tag">
+                                        <div className="e"><img src={Management} alt="" /></div>
+                                        <div className="Text">
+                                            관리비{`\n`}
+                                            <div className="wtf">
+                                                {managecost}
                                             </div>
 
-
-
-                                            <div className="list">
-                                                <p><scaleFontSize><div className="bold"> {{ 1: "매매", 2: "전세", 3: "월세" }[Selling]} {realprice}
-
-                                                    {deposit}
-                                                </div></scaleFontSize></p>
-                                                <p><div className="em">{Addr}</div></p>
-                                                {Feature}
-
-                                                <p>
-                                                    {supply}m²/{dedicated}m² |<br />
-                                                    {realresult === '0만' ? null
-                                                        :
-                                                        <>{realresult}원/3.3m²</>}
-
-                                                </p>
-
-
-                                            </div>
-
-
-                                        </ListFeature>
-                                        <div style={{ float: 'top' }}>
-                                            <WTF onClick={openModal} />
-                                            <Heart id={Id} />
                                         </div>
+                                    </div>
+                                    <div className="Tag">
+                                        <div className="f"><img src={ParkingLot} alt="" /></div>
+                                        <div className="Text"> {parkinglot}</div>
                                     </div>
 
                                 </div>
 
 
 
-                            </Table>
-
- */}
-
-                            {/* /--------------------------------------------------[상세페이지 모달창 내용]---------------------------------------------------/ */}
-                            <ItemDetail2 header="Modal heading">
-                                <ImageArea>
-                                    <Slider {...settings}>
-                                        {ImageSlide()}
-
-                                        {/* <div>
-                                        <img src="https://w.namu.la/s/f16f3471166dd81cfd74bd6a927ed0bd3bad05bdf74b5069e7b5b57a155bbe16809c69aef2083973a899615546150b9485eb692f50300c35238115da0c908c1353facffec7f6ca098fe904ab6faf13ff8596e7d2ab47ab285b8c15d644144115" alt="" />
-                                    </div> */}
-                                    </Slider>
-
-                                </ImageArea>
-                                <SecondItem>
-                                    <div className="tag">
-                                        {{
-                                            빌라: <img src={Villa} className="default" alt="" />,
-
-                                            오피스텔: <img src={Officetell} className="officetall" alt="" />,
-                                            주택: <img src={Housing} className="default" alt="" />,
-                                            도시형생활주택: <img src={Housing} className="default" alt="" />,
-                                            null: null
-                                        }[Category2]}
-                                    </div>
-                                    <div className="tag">
-                                        {{
-                                            1: <img src={Oneroom} className="roomdefault" alt="" />,
-                                            2: <img src={Tworoom} className="roomdefault" alt="" />,
-                                            3: <img src={Threeroom} className="threeroom" alt="" />,
-                                            null: null
-                                        }[Room]}
-                                    </div>
-                                    <div className="sellingtag">
-                                        {{
-                                            1: <img src={Tradingimg} alt="" />,
-                                            2: <img src={Jeonseimg} alt="" />,
-                                            3: <img src={Monthlyimg} alt="" />
-                                        }[Selling]}
-                                    </div>
-
-                                    <scaleFontSize>
-                                        <div className="bold"> {{ 1: "매매", 2: "전세", 3: "월세" }[Selling]} {realprice}{deposit}
-                                        </div>
-                                    </scaleFontSize>
-                                    <div className="addr">
-                                        {Addr}
-                                    </div>
 
 
+                                <div className="mini" ><hr /></div>
 
-                                    <div className="word">
-                                        {Feature}
-                                    </div>
-
-
-
-
-                                    <div className="word">
-                                        {supply}m²/{dedicated}m²
-                                        {realresult === '0만' ? null
-                                            :
-                                            <> | {realresult}원/3.3m²</>}
-                                    </div>
-
-                                </SecondItem>
-                                <ThirdItem>
-                                    <div className="Header">
-                                        상세정보
-                                    </div>
-
-                                    <hr />
-
-                                    <div className="Icon">
-                                        <div className="Tag">
-                                            {{
-                                                "중간층": <div className="b"><img src={Middle} alt="" /></div>,
-                                                "저층": <div className="c"><img src={Low} alt="" /></div>,
-                                                "고층": <div className="a"><img src={High} alt="" /></div>,
-                                                null: null
-                                            }[LayerType]}
-                                            <div className="Text">{LayerType}</div>
-                                        </div>
-                                        <div className="Tag">
-
-                                            <div className="d"><img src={RoomNBath} alt="" /></div>
-
-                                            <div className="Text">
-                                                <div className="Wtf">
-                                                    {roomnbath}</div></div>
-                                        </div>
-                                        <div className="Tag">
-                                            <div className="e"><img src={Management} alt="" /></div>
-                                            <div className="Text">
-                                                관리비{`\n`}
-                                                <div className="wtf">
-                                                    {managecost}
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div className="Tag">
-                                            <div className="f"><img src={ParkingLot} alt="" /></div>
-                                            <div className="Text"> {parkinglot}</div>
-                                        </div>
-
-                                    </div>
+                                <div className="Long">
+                                    ·{supply}m²/{dedicated}m² (공급/전용)
+                                    <br />
+                                    <br />
+                                    ·{MoveDate}(입주가능일)
+                                    <br />
+                                    <br />
+                                    ·{managecost}(월 평균 관리비)
+                                    <br />
+                                    <br />
+                                    ·{Category2}
+                                    <br />
+                                    <br />
+                                    ·{Direction}{dirN}
+                                    <br />
+                                    <br />
+                                    ·{Addrd}
+                                </div>
+                                <div className="mini" ><hr /></div>
+                                <div className="MiniHeader" >매물소개</div>
+                                <hr />
+                                <div className="Long">
+                                    {longfeature}
+                                </div>
+                                <div className="mini" ><hr /></div>
+                                <div className="MiniHeader" >옵션</div>
+                                <hr />
 
 
+                            </ThirdItem>
+                            <ForthItem>
+                                4
+                            </ForthItem>
 
-
-
-                                    <div className="mini" ><hr /></div>
-
-                                    <div className="Long">
-                                        ·{supply}m²/{dedicated}m² (공급/전용)
-                                        <br />
-                                        <br />
-                                        ·{MoveDate}(입주가능일)
-                                        <br />
-                                        <br />
-                                        ·{managecost}(월 평균 관리비)
-                                        <br />
-                                        <br />
-                                        ·{Category2}
-                                        <br />
-                                        <br />
-                                        ·{Direction}{dirN}
-                                        <br />
-                                        <br />
-                                        ·{Addrd}
-                                    </div>
-                                    <div className="mini" ><hr /></div>
-                                    <div className="MiniHeader" >매물소개</div>
-                                    <hr />
-                                    <div className="Long">
-                                        {longfeature}
-                                    </div>
-                                    <div className="mini" ><hr /></div>
-                                    <div className="MiniHeader" >옵션</div>
-                                    <hr />
-
-
-                                </ThirdItem>
-                                <ForthItem>
-                                    4
-                                </ForthItem>
-                            </ItemDetail2>
                         </React.Fragment>
                     </li>
                 </form>

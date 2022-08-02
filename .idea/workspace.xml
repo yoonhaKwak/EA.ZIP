@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="eea96d36-841c-4069-bb9f-06433382a808" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EAZIP/src/main/java/bit/project/eazip/controller/mypage/MypageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EAZIP/src/main/java/bit/project/eazip/controller/mypage/MypageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EAZIP/src/main/resources/mapper/mypage/MypageMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/EAZIP/src/main/resources/mapper/mypage/MypageMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/detail/ItemCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/detail/ItemCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/part/Heart.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/part/Heart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/detail/ItemCardMarker.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/detail/ItemCardMarker.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,6 +105,7 @@
       <workItem from="1659074621685" duration="7684000" />
       <workItem from="1659312632005" duration="4911000" />
       <workItem from="1659399568368" duration="4944000" />
+      <workItem from="1659425790426" duration="1175000" />
     </task>
     <servers />
   </component>
