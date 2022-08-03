@@ -5,6 +5,7 @@ import axios from "axios";
 import { useLocation, Link } from "react-router-dom";
 import MyListpage from "components/detail/MyListpage";
 import ItemCard from "components/detail/ItemCard";
+import ItemDetailMarker from "components/part/ItemDetailMarker";
 
 const { kakao } = window
 
@@ -12,8 +13,9 @@ function MyKakaoMap(data) {
     const [modalOpen, setModalOpen] = useState(false);
     const openModal = () => { setModalOpen(true) };
     const closeModal = () => { setModalOpen(false) };
-
     const { state } = useLocation([]);
+
+    const [sendData, setSendData] = useState();
     // console.log(state);
     // for (const key in Object.keys(state)) {
     //     // console.log(state[key].lat, state[key].lng)
@@ -59,7 +61,10 @@ function MyKakaoMap(data) {
                         lng: marker.lng
                     }}
                     clickable={true}
-                    onClick={openModal}
+                    onClick={() => {
+                        openModal()
+                        setSendData(marker)
+                    }}
                     image={{
                         src: SearchMarker,
                         size: {
@@ -72,9 +77,9 @@ function MyKakaoMap(data) {
                                 y: 45,
                             },
                         },
-                    }}>
-                </MapMarker>
+                    }} />
             ))}
+            <ItemDetailMarker open={modalOpen} close={closeModal} ItemData={sendData} />
         </Map >
     );
 }

@@ -102,7 +102,7 @@ white-space: nowrap;
     width: 375px;
     display: flex;
     height: 110px;
-    padding: 8px 17px 5px 17px;
+    padding: 0px 17px 0px 17px;
     border: none;
     flex-wrap: wrap;
     font-weight:500;
@@ -123,7 +123,7 @@ export default function Modal() {
       </STabList>
       {/* 매물정보 구간 */}
       <STabPanel>
-        <p style={{ fontWeight: 'bold', fontSize: '20px', paddingTop: '10px' }}>방종류</p>
+        <p style={{ fontWeight: 'bold', fontSize: '20px', paddingTop: '1px' }}>방종류</p>
         <GlobalStyles />
         <StyledFieldset>
           {roomKind.map((item) => (
@@ -139,14 +139,16 @@ export default function Modal() {
         </StyledFieldset>
         <hr style={{ width: '90%' }} />
         <p style={{ fontWeight: 'bold', fontSize: '20px' }}>가격</p>
+        <p style={{ fontSize: "20px" }}>매매/전세/보증금</p>
         <MapMultiRangeSlider
           min={0}
           max={10000}
           onChange={({ min, max }) => console.log(min, max)}
         />
+        <p style={{ fontSize: "20px" }}>월세</p>
         <MapMultiRangeSlider
           min={0}
-          max={10000}
+          max={1000}
           onChange={({ min, max }) => console.log(min, max)}
         />
       </STabPanel>

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import image from "../styles/background/2.jpg";
 import CheckBox from "../components/part/CheckBox";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import React, { useState } from "react";
 import MultiRangeSlider from "components/part/MultiRangeSlider";
 import ButtonA from "../components/part/ButtonA";
@@ -58,7 +58,7 @@ const DivA = styled.div`
 // 글자색: #FFAD31
 const Sbtn = styled.button`
 width:240px; height: 44px; border-radius: 20px; border: none; background-color: #FF9431; font-size: 25px;
-  font-weight: bold; color: white; margin: -50px 20px 20px 820px;  display: absolute; cursor: pointer; padding:10px; line-height: 1px;
+  font-weight: bold; color: white; margin: -28px 20px 20px 820px;  display: absolute; cursor: pointer; padding:10px; line-height: 1px;
   &:hover{
     background-color: #D37E30;
   }
@@ -117,7 +117,7 @@ const optionsList = [
   { id: 3, name: 'option', text: "카페", value: 'sc_cafe' },
   { id: 4, name: 'option', text: "주민센터", value: 'sc_office' },
   { id: 5, name: 'option', text: "버스 정류장", value: 'sc_bus' },
-  { id: 6, name: 'option', text: "세탁소", value: 'sc_laundry' },
+  { id: 6, name: 'option', text: "세탁소", value: 'sc_laundary' },
   { id: 7, name: 'option', text: "우체국", value: 'sc_post' },
   { id: 8, name: 'option', text: "버스 터미널" },
   { id: 9, name: 'option', text: "보건소", value: 'sc_bogun' },
@@ -144,50 +144,8 @@ const CategoryList2 = [
   { id: 1, name: 'room', text: '투룸', value: 2 },
   { id: 2, name: 'room', text: '쓰리룸', value: 3 }
 ];
-//////////////////////////함수입력 구간//////////////////////////////////////////
+
 const NormalSearch = (onClick) => {
-
-
-  //보증금
-  // let deposit;
-  // let depositl;
-  // if (Selling === 3) {
-  //     if (Price < 10000) {
-  //         depositl = Price.toString()
-  //             .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-
-  //         deposit = ("/" + depositl + "만").toString();
-  //     }
-  //     else {
-  //         if (Price % 10000 === 0) {
-
-  //             pricel = (Price / 10000);         //매물 가격이 1억을 넘되 만 단위가 없을 경우
-  //             deposit = ("/" + pricel + "억").toString()
-  //                 .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-
-  //         }
-  //         else {
-  //             if (!(Price % 1000 === 0)) { //매물 가격이 1억을 넘되 만 단위가 1000미만일 경우
-  //                 pricel = (Price / 10000);
-  //                 pricel = Math.floor(pricel);
-  //                 pricel = pricel.toFixed(0);
-  //                 pricem = (Price % 10000);
-  //                 pricem = pricem.toString()
-  //                     .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-  //                 Price = ("/" + pricel + "억 " + pricem + "만").toString();
-  //             }
-  //             else {    //그외 나머지
-  //                 pricel = Price.toString()
-  //                     .replace(/\B(?<!\.\d*)(?=(\d{4})+(?!\d))/g, "억 ")
-  //                     .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-  //                 deposit = ("/" + pricel + "만").toString();
-  //             }
-  //         }
-  //     }
-  // }
-  // else {
-  //     deposit = null;
-  // }
 
   const [category1, setCategory] = useState([]);
   const [type, setType] = useState([]);
@@ -199,6 +157,9 @@ const NormalSearch = (onClick) => {
   const [mim, setMim] = useState(0);
   const [search, setSearch] = useState("");
   const [data, setData] = useState(null);
+
+  const { state } = useLocation();
+
   const navigate = useNavigate();
 
   const onChange = (e) => {
@@ -258,6 +219,35 @@ const NormalSearch = (onClick) => {
       navigate('/search', { state: response.data })
     });
   };
+  ////////////////////////////////////////////////////////// 숫자에 금액 표시 구간/////////////////////////////////////////////////////
+
+  function numberFormat(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  function numberToKorean(number) {
+    var inputNumber = number < 0 ? false : number;
+    var unitWords = ["만", "억"];
+    var splitUnit = 10000;
+    var splitCount = unitWords.length;
+    var resultArray = [];
+    var resultString = "원";
+
+    for (var i = 0; i < splitCount; i++) {
+      var unitResult =
+        (inputNumber % Math.pow(splitUnit, i + 1)) / Math.pow(splitUnit, i);
+      unitResult = Math.floor(unitResult);
+      if (unitResult > 0) {
+        resultArray[i] = unitResult;
+      }
+    }
+    for (var i = 0; i < resultArray.length; i++) {
+      if (!resultArray[i]) continue;
+      resultString = String(numberFormat(resultArray[i])) + unitWords[i] + resultString;
+    }
+    return resultString;
+  }
+  ////////////////////////////////////////////////////////// 숫자에 금액 표시 구간/////////////////////////////////////////////////////
 
   return (
     <Container>
@@ -340,9 +330,9 @@ const NormalSearch = (onClick) => {
               onChange={({ min, max }) => setMip(min) & setMap(max)}
 
             />
-            <SliderDBox>최저 금액<br /> ₩ {mip}</SliderDBox>
+            <SliderDBox>최저 금액<br /> ₩ {numberToKorean(mip)}</SliderDBox>
             <Hr1 />
-            <SliderDBox>최고 금액 <br />  ₩ {map}</SliderDBox>
+            <SliderDBox>최고 금액 <br />  ₩ {numberToKorean(map)}</SliderDBox>
             <br />
             <p style={{ fontSize: "20px", padding: "10px 10px" }}>월세</p>
             <MultiRangeSlider
@@ -350,17 +340,17 @@ const NormalSearch = (onClick) => {
               max={1000}
               onChange={({ min, max }) => setMim(min) & setMam(max)}
             />
-            <SliderDBox>최저 금액 <br /> ₩ {mim}</SliderDBox>
+            <SliderDBox>최저 금액 <br /> ₩ {numberToKorean(mim)}</SliderDBox>
             <Hr1 />
-            <SliderDBox>최고 금액 <br /> ₩ {mam}</SliderDBox>
+            <SliderDBox>최고 금액 <br /> ₩ {numberToKorean(mam)}</SliderDBox>
           </Div>
         </form>
         <Sbtn onClick={Back}>
           추천받기
         </Sbtn>
         {/* 데이터 잘 들어오는지 확인하는 구간.
-         <div style={{ zIndex: '110px' }}>결과:{data}</div>
-        <code>
+         <div style={{ zIndex: '110px' }}>결과:{data}</div> */}
+        {/* <code>
           {JSON.stringify({ data: { search, map, mip, mam, mim, category1, type, room_number, options } })}
         </code> */}
       </Positioner>

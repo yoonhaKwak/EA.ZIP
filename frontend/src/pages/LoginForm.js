@@ -96,6 +96,7 @@ const LoginForm = () => {
     const params = new URLSearchParams(window.location.search)
     const [inputId, setInputId] = useState('')
     const [inputPw, setInputPw] = useState('')
+    const navigate = useNavigate();
 
     // input data 의 변화가 있을 때마다 value 값을 변경해서 useState 해준다
     const handleInputId = (e) => {
@@ -105,9 +106,21 @@ const LoginForm = () => {
         setInputPw(e.target.value)
     }
     // login 버튼 클릭 이벤트
-    const onClickLogin = () => {
-        console.log('click login')
-    }
+    const onClickLogin = async () => {
+        axios({
+            method: 'post',
+            url: '/login',
+            data: {
+                "id": inputId,
+                "email": inputPw
+            },
+            baseURL: 'http://localhost:8080'
+        }
+        ).then((response) => {
+            console.log(response.data);
+            navigate('/normalsearch')
+        });
+    };
     // // 페이지 렌더링 후 가장 처음 호출되는 함수
     // useEffect(() => {
     //     axios.get('./logintest.json')
@@ -135,6 +148,9 @@ const LoginForm = () => {
                     <InputBox2>
                         <HandleInputPw placeholder="비밀번호" name="input_pw" type="password" value={inputPw} onChange={handleInputPw} />
                     </InputBox2>
+                    <code>
+                        {JSON.stringify({ data: { inputId, inputPw } })}
+                    </code>
                     <LoginBox onClick={onClickLogin}>로그인</LoginBox>
                     <div />
                     <Buttons1><Link to='/register'>회원가입</Link></Buttons1>

@@ -51,11 +51,11 @@ const MultiRangeSlider1 = ({ min, max, onChange }) => {
                 min={min}
                 max={max}
                 value={minVal}
-                step={1}
+                step={0.1}
                 ruler={true}
                 label={true}
                 onChange={(event) => {
-                    const value = Math.min(Number(event.target.value), maxVal - 10);
+                    const value = Math.min(Number(event.target.value), maxVal - 1);
                     setMinVal(value);
                     minValRef.current = value;
                 }}
@@ -67,11 +67,11 @@ const MultiRangeSlider1 = ({ min, max, onChange }) => {
                 min={min}
                 max={max}
                 value={maxVal}
-                step={1}
+                step={0.1}
                 ruler={true}
                 label={true}
                 onChange={(event) => {
-                    const value = Math.max(Number(event.target.value), minVal + 10);
+                    const value = Math.max(Number(event.target.value), minVal + 1);
                     setMaxVal(value);
                     maxValRef.current = value;
                 }}
@@ -83,10 +83,8 @@ const MultiRangeSlider1 = ({ min, max, onChange }) => {
                 <div ref={range} className="slider__range" />
                 <div className="slider__left-value" style={{ paddingLeft: '1.5px', lineHeight: '10px' }}>|</div>
                 <div className="slider__left-value" style={{ lineHeight: '45px', textAlign: 'center' }}>0</div>
-                <div className="slider__right-value" style={{ paddingRight: '210.5px', lineHeight: '10px' }}>|</div>
-                <div className="slider__right-value" style={{ lineHeight: '45px', paddingRight: '203px', textAlign: 'center' }}>30분</div>
                 <div className="slider__right-value" style={{ paddingRight: '11.5px', lineHeight: '10px' }}>|</div>
-                <div className="slider__right-value" style={{ lineHeight: '45px', textAlign: 'center' }}>무제한</div>
+                <div className="slider__right-value" style={{ paddingRight: '2px', lineHeight: '45px', textAlign: 'center' }}>3번</div>
             </div>
         </div>
     );

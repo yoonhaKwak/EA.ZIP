@@ -5,15 +5,18 @@ import axios from "axios";
 import { useLocation, Link } from "react-router-dom";
 import ItemDetailMarker from "../components/part/ItemDetailMarker";
 import styled from "styled-components";
+import { param } from "jquery";
 
 const { kakao } = window
 
-function KakaoMap(data) {
+function KakaoMap() {
     const [modalOpen, setModalOpen] = useState(false);
     const openModal = () => { setModalOpen(true) };
     const closeModal = () => { setModalOpen(false) };
-
     const { state } = useLocation([]);
+
+    const [sendData, setSendData] = useState();
+
     // console.log(state);
     // for (const key in Object.keys(state)) {
     //     // console.log(state[key].lat, state[key].lng)
@@ -42,6 +45,15 @@ function KakaoMap(data) {
 
     // if (error) return <div>에러발생</div>;
     // if (!markers) return null;
+
+    // var markers = cluster.getMarkers();
+    // for (var idx = 0; idx < markers.length; idx++) {
+    //     console.log(markers[idx].getPosition());
+    // }
+    // kakao.maps.event.addListener(clusterer, 'clusterclick', function (cluster) {
+    //     console.log(cluster.getMarkers());
+
+    // });
     return (
         <Map
             center={{
@@ -90,7 +102,8 @@ function KakaoMap(data) {
                 }
                 ]}
                 disableClickZoom={true}
-            // onClusterClick={() => console.log(state.name)}
+                onCreate={console.log()}
+
             >
                 {state.map((marker) => (
                     <MapMarker
@@ -100,7 +113,10 @@ function KakaoMap(data) {
                             lng: marker.lng
                         }}
                         clickable={true}
-                        onClick={openModal}
+                        onClick={() => {
+                            openModal()
+                            setSendData(marker)
+                        }}
                         image={{
                             src: SearchMarker,
                             size: {
@@ -116,8 +132,9 @@ function KakaoMap(data) {
                         }}
                     />
                 ))}
+                <ItemDetailMarker open={modalOpen} close={closeModal} ItemData={sendData} />
             </MarkerClusterer>
-            <ItemDetailMarker open={modalOpen} close={closeModal} ItemData={state[0]} />
+
         </Map >
     );
 }

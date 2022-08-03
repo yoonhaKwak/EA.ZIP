@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
-import "../../styles/css/mapmultiRangeSlider.css";
+import "../../styles/css/mapMultiRangeSlider.css";
 
 //min, max,onChange 가 부모로 보낼 데이터 변수.
 const MultiRangeSlider = ({ min, max, onChange }) => {
@@ -51,7 +51,7 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
                 min={min}
                 max={max}
                 value={minVal}
-                step={1000}
+                step={100}
                 ruler={true}
                 label={true}
                 onChange={(event) => {
@@ -67,7 +67,7 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
                 min={min}
                 max={max}
                 value={maxVal}
-                step={1000}
+                step={100}
                 ruler={true}
                 label={true}
                 onChange={(event) => {

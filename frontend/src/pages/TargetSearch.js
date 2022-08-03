@@ -5,6 +5,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import MultiRangeSlider1 from "components/part/MultiRangeSlider1";
+import TimeSectionSlider from "components/part/TimeSectionSlider";
+import TransferSlider from "components/part/TransferSlider";
 import pallette from 'styles/pallette';
 import Search from '../styles/icons/Search.svg';
 
@@ -110,46 +112,31 @@ const TargetSearch = (onClick) => {
   const [mim, setMim] = useState(0);
   const [search, setSearch] = useState("");
   const [data, setData] = useState(null);
-  const navigate = useNavigate();
-
   const onChange = (e) => {
     setSearch(e.target.value)
   }
-  const Back = async () => {
-    axios({
-      method: 'post',
-      url: '/local/apilist',
-      data: {
-        "addr1": search,
-        "timeSectionMin": map,
-        "timeSectionMax": mip,
-        "walkTimeMin": mal,
-        "walkTimeMax": mil,
-        "transferMin": mam,
-        "transferMax": mim,
-      },
-      baseURL: 'http://localhost:8080'
-    }
-    ).then((response) => {
-      setData(JSON.stringify(response.data));
-      navigate('/normalsearch', { state: response.data })
-    });
+  const navigate = useNavigate();
+  const NextPage = () => {
+    navigate('/normalsearch', { state: data })
   };
 
+  // const Back = () => {
+  //   navigate('/normalsearch', { state: data })
+  // };
 
-  ////////////////////////////////////////////////////////////////////////////////숫자==> 시간으로
-  String.prototype.toHHMMSS = function () {
-    var sec_num = parseInt(this, 10); // don't forget the second param
-    var hours = Math.floor(sec_num / 3600);
-    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
 
-    if (hours < 10) { hours = "0" + hours; }
-    if (minutes < 10) { minutes = "0" + minutes; }
-    return hours + ':' + minutes;
+  /////////////////////////////////////////////////숫자==> 시간으로////////////////////////////////////////////////////////
+  Number.prototype.toHHMMSS = function () {
+    let min_num = parseInt(this, 10);
+    let hours = Math.floor(min_num / 60);
+    let minutes = Math.floor(min_num);
+
+    if (hours < 10) { hours = hours; }
+    if (minutes > 60) { minutes = minutes - 60; }
+    if (minutes === 60) { minutes = 0; }
+    return hours + '  시간   ' + minutes + ' 분  ';
   }
-
-  console.log("16000".toHHMMSS())
-
+  /////////////////////////////////////////////////숫자==> 시간으로////////////////////////////////////////////////////////
 
   return (
     <Container>
@@ -174,43 +161,46 @@ const TargetSearch = (onClick) => {
 
           </OptionList>
           <Div>
-            <MultiRangeSlider1
+            {/* 소요시간 구간 */}
+            <TimeSectionSlider
               min={0}
-              max={180}
+              max={120}
               onChange={({ min, max }) => setMip(min) & setMap(max)}
 
             />
-            <SliderDBox>최소 시간 <br />{mip}</SliderDBox>
+            <SliderDBox>최소 시간 <br />{(mip).toHHMMSS()}</SliderDBox>
             <Hr1 />
-            <SliderDBox>최대 시간<br />{map}</SliderDBox>
+            <SliderDBox>최대 시간<br />{(map).toHHMMSS()}</SliderDBox>
           </Div>
           <Div>
+            {/* 도보시간 구간 */}
             <MultiRangeSlider1
               min={0}
-              max={180}
+              max={60}
               onChange={({ min, max }) => setMil(min) & setMal(max)}
             />
-            <SliderDBox>최소 시간 <br />{mil}</SliderDBox>
+            <SliderDBox>최소 시간 <br />{(mil).toHHMMSS()}</SliderDBox>
             <Hr1 />
-            <SliderDBox>최대 시간 <br />{"16000".toHHMMSS()}</SliderDBox>
+            <SliderDBox>최대 시간 <br />{(mal).toHHMMSS()}</SliderDBox>
           </Div>
           <Div>
-            <MultiRangeSlider1
+            {/* 환승횟수 구간 */}
+            <TransferSlider
               min={0}
-              max={180}
+              max={3}
               onChange={({ min, max }) => setMim(min) & setMam(max)}
             />
-            <SliderDBox>최소 횟수 <br />{mim}</SliderDBox>
+            <SliderDBox>최소 횟수 <br />{mim} 번</SliderDBox>
             <Hr1 />
-            <SliderDBox>최대 횟수 <br />{mam}</SliderDBox>
+            <SliderDBox>최대 횟수 <br />{mam} 번</SliderDBox>
           </Div>
-          <Sbtn onClick={Back}>
-            우선순위 정하기
-          </Sbtn>
-          <code>
+          {/* <code>
             {JSON.stringify({ data: { search, mip, map, mil, mal, mim, mam } })}
-          </code>
+          </code> */}
         </form>
+        <Sbtn onClick={NextPage}>
+          우선순위 정하기
+        </Sbtn>
       </Positioner>
     </Container>
   );

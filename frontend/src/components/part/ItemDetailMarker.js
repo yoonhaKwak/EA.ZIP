@@ -133,7 +133,6 @@ height:23px;
 const ItemDetailMarker = (props) => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
   const { open, close, ItemData } = props;
-  console.log(ItemData);
 
   const itemdata = ItemData;
   return (
