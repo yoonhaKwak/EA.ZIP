@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import pallette from "styles/pallette";
 import DefaultImg from "../../styles/img/DefaultHomeImg.svg";
 import Officetell from "../../styles/img/Officetell.svg";
 import Villa from "../../styles/img/Villa.svg";
@@ -24,7 +23,34 @@ import "../../styles/css/slick.css"
 import "../../styles/css/slick-theme.css"
 import Slider from "react-slick";
 import Heart from "../part/Heart";
-import axios from "axios";
+import aircon_hanging from "../../styles/icons/options/aircon_hanging.svg";
+import aircon_stand_system from "../../styles/icons/options/aircon_stand_system.svg";
+import bath from "../../styles/icons/options/bath.svg";
+import bed from "../../styles/icons/options/bed.svg";
+import bidet from "../../styles/icons/options/bidet.svg";
+import cardkey from "../../styles/icons/options/cardkey.svg";
+import CCTV from "../../styles/icons/options/CCTV.svg";
+import closet from "../../styles/icons/options/closet.svg";
+import couch from "../../styles/icons/options/couch.svg";
+import delivery_box from "../../styles/icons/options/delivery_box.svg";
+import desk from "../../styles/icons/options/desk.svg";
+import drier from "../../styles/icons/options/drier.svg";
+import elevator from "../../styles/icons/options/elevator.svg";
+import entrance_security from "../../styles/icons/options/entrance_security.svg";
+import fridge from "../../styles/icons/options/fridge.svg";
+import gas_induction from "../../styles/icons/options/gas_induction.svg";
+import interphone from "../../styles/icons/options/interphone.svg";
+import microwave from "../../styles/icons/options/microwave.svg";
+import oven from "../../styles/icons/options/oven.svg";
+import security from "../../styles/icons/options/security.svg";
+import shoe from "../../styles/icons/options/shoe.svg";
+import shower_booth from "../../styles/icons/options/shower_booth.svg";
+import sink from "../../styles/icons/options/sink.svg";
+import table from "../../styles/icons/options/table.svg";
+import wardrobe from "../../styles/icons/options/wardrobe.svg";
+import washing from "../../styles/icons/options/washing.svg";
+import window_guard from "../../styles/icons/options/window_guard.svg";
+import fire_alarm from "../../styles/icons/options/fire_alarm.svg";
 
 
 const Block = styled.div`
@@ -39,7 +65,7 @@ li{
 `;
 
 
-const Table = styled.div`
+const TablE = styled.div`
 width:100%;
 min-width: 491px;
 height:278px;
@@ -134,8 +160,13 @@ cursor: pointer;
 function ItemCard({ key, ImageUrl, Category2, Feature,
     Supply, Dedicated, Jeonse, Monthly, Trading, Selling,
     Room, Deposit, SupplyP, Addr1, Addr2, LongFeature, Layer,
-    AllLayer, LayerType, ManageCost, RoomN, Parking, Bath, Parking2,
-    MoveDate, Direction, DirectionN, Category1, Price, Id }) {
+    AllLayer, LayerType, ManageCost, RoomN, Parking, BathN, Parking2,
+    MoveDate, Direction, DirectionN, Category1, Price, Id,
+    Aircon_Hanging, Fridge, Wardrobe, Microwave, Shoe, Washing, Elevator, Security_private,
+    Security, Cctv, Bed, Desk, Bidet, Closet, Table, Couch, Shower_booth, Bath, Gas, Induction,
+    Oven, Interphone, Cardkey, Fire_alarm, Dishwasher, Sink, Aircon_system, Aircon_standing,
+    Delivery_box, Window_guard, Entrance_security, Drier
+}) {
 
 
 
@@ -316,7 +347,7 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
 
     let roomnbath;
 
-    roomnbath = "방" + RoomN + "/욕실" + Bath
+    roomnbath = "방" + RoomN + "/욕실" + BathN
 
     let parkinglot;
 
@@ -558,7 +589,7 @@ padding-right:0;
     const ThirdItem = styled.div`
 
 width: 750px;
-height: 1678px;
+height: auto;
 margin-top:20px;
 margin-left:auto;
 margin-right:auto;
@@ -664,8 +695,9 @@ text-align : center;
   word-break:initial;
   white-space: pre-wrap;
   padding-bottom:20px;
+  float:left;
 }
-`
+`;
 
     const ForthItem = styled.div`
 
@@ -678,8 +710,27 @@ background: #FDFDFD;
 box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.25);
 border-radius: 15px;
 `;
+    /*----------------------------------------------[옵션 아이콘 스타일 지정할거임 (될때까지 숨참음)]----------------------------------------------------*/
 
-
+    const Options = styled.div`
+    width:auto;
+    height:auto;
+    display: flex;
+  justify-content: space-between;
+  .Long{
+  width:690px;
+  padding-left:40px;
+  word-break:initial;
+  white-space: pre-wrap;
+  padding-bottom:20px;
+}
+  .Long .aircon_hanging{
+padding-top:16px;
+padding-right:auto;
+padding-left:auto;
+  }
+`;
+    /*----------------------------------------------------------[라고 쓰여있는데요?]-------------------------------------------------------------------*/
     /*-----------------------------------------------------------[여기서부터 리턴값]-------------------------------------------------------------------*/
     return (
         <Block>
@@ -690,7 +741,7 @@ border-radius: 15px;
 
                         <React.Fragment>
 
-                            <Table>
+                            <TablE>
 
                                 <div>
                                     <div className="leftarea" style={{ cursor: 'pointer' }} onClick={openModal}>
@@ -748,7 +799,7 @@ border-radius: 15px;
 
 
 
-                            </Table>
+                            </TablE>
 
 
 
@@ -757,10 +808,6 @@ border-radius: 15px;
                                 <ImageArea>
                                     <Slider {...settings}>
                                         {ImageSlide()}
-
-                                        {/* <div>
-                                        <img src="https://w.namu.la/s/f16f3471166dd81cfd74bd6a927ed0bd3bad05bdf74b5069e7b5b57a155bbe16809c69aef2083973a899615546150b9485eb692f50300c35238115da0c908c1353facffec7f6ca098fe904ab6faf13ff8596e7d2ab47ab285b8c15d644144115" alt="" />
-                                    </div> */}
                                     </Slider>
 
                                 </ImageArea>
@@ -857,13 +904,7 @@ border-radius: 15px;
                                         </div>
 
                                     </div>
-
-
-
-
-
                                     <div className="mini" ><hr /></div>
-
                                     <div className="Long">
                                         ·{supply}m²/{dedicated}m² (공급/전용)
                                         <br />
@@ -891,6 +932,30 @@ border-radius: 15px;
                                     <div className="mini" ><hr /></div>
                                     <div className="MiniHeader" >옵션</div>
                                     <hr />
+
+                                    {/* ------------------자 여기서 부터 옵션 들어갑니다(끝날떄 까지 숨참을거임)-------------------------------- */}
+                                    <Options>
+                                        <div className="Long">
+
+                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
+                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
+                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
+                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
+                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
+                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
+
+                                            <div className="mini" ><hr /></div>
+                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
+                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
+                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
+                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
+                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
+                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
+                                        </div>
+                                    </Options>
+
+                                    {/* ------------------------------------------라고 쓰여있는데요?------------------------------------- */}
+
 
 
                                 </ThirdItem>
