@@ -44,13 +44,15 @@ import microwave from "../../styles/icons/options/microwave.svg";
 import oven from "../../styles/icons/options/oven.svg";
 import security from "../../styles/icons/options/security.svg";
 import shoe from "../../styles/icons/options/shoe.svg";
-import shower_booth from "../../styles/icons/options/shower_booth.svg";
+import shower_booth from "../../styles/icons/options/showr_booth.svg";
 import sink from "../../styles/icons/options/sink.svg";
 import table from "../../styles/icons/options/table.svg";
 import wardrobe from "../../styles/icons/options/wardrobe.svg";
 import washing from "../../styles/icons/options/washing.svg";
 import window_guard from "../../styles/icons/options/window_guard.svg";
 import fire_alarm from "../../styles/icons/options/fire_alarm.svg";
+import dishwasher from "../../styles/icons/options/dishwasher.svg";
+import { Card } from "react-bootstrap";
 
 
 const Block = styled.div`
@@ -712,24 +714,50 @@ border-radius: 15px;
 `;
     /*----------------------------------------------[옵션 아이콘 스타일 지정할거임 (될때까지 숨참음)]----------------------------------------------------*/
 
-    const Options = styled.div`
+    const Options = styled.main`
     width:auto;
     height:auto;
     display: flex;
   justify-content: space-between;
-  .Long{
+  .Longa{
   width:690px;
-  padding-left:40px;
+  padding-top:20px;
+  padding-left:50px;
+  padding-right:40px;
   word-break:initial;
   white-space: pre-wrap;
   padding-bottom:20px;
+  float:left;
 }
-  .Long .aircon_hanging{
-padding-top:16px;
-padding-right:auto;
-padding-left:auto;
+
+
+  .Longa  img{
+padding-left:16px;
+padding-right:16px;
+padding-top:28px;
+padding-bottom:28px;
   }
 `;
+
+    let Sec;
+    if (Security === 1) { Sec = 1 }
+    else if (Security_private === 1) { Sec = 1 }
+    else {
+        Sec = 0
+    }
+    let GasIn;
+    if (Gas === 1) { GasIn = 1 }
+    else if (Induction === 1) { GasIn = 1 }
+    else {
+        GasIn = 0
+    }
+    let Air
+    if (Aircon_standing === 1) { Air = 1 }
+    else if (Aircon_system === 1) { Air = 1 }
+    else {
+        Air = 0
+    }
+
     /*----------------------------------------------------------[라고 쓰여있는데요?]-------------------------------------------------------------------*/
     /*-----------------------------------------------------------[여기서부터 리턴값]-------------------------------------------------------------------*/
     return (
@@ -935,22 +963,143 @@ padding-left:auto;
 
                                     {/* ------------------자 여기서 부터 옵션 들어갑니다(끝날떄 까지 숨참을거임)-------------------------------- */}
                                     <Options>
-                                        <div className="Long">
+                                        <div className="Longa">
 
-                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
-                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
-                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
-                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
-                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
-                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
+                                            {{
+                                                1: <img src={aircon_hanging} alt="" />,
+                                                0: null
+                                            }[Aircon_Hanging]}
 
-                                            <div className="mini" ><hr /></div>
-                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
-                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
-                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
-                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
-                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
-                                            <img src={aircon_hanging} className="aircon_hanging" alt="" />
+
+
+
+
+                                            {{
+                                                1: <img src={aircon_stand_system} alt="" />,
+                                                0: null
+                                            }[Air]}
+
+
+
+                                            {{
+                                                1: <img src={bath} alt="" />,
+                                                0: null
+                                            }[Bath]}
+                                            {{
+                                                1: <img src={bed} alt="" />,
+                                                0: null
+                                            }[Bed]}
+                                            {{
+                                                1: <img src={drier} alt="" />,
+                                                0: null
+                                            }[Drier]}
+
+                                            {{
+                                                1: <img src={bidet} alt="" />,
+                                                0: null
+                                            }[Bidet]}
+                                            {{
+                                                1: <img src={cardkey} alt="" />,
+                                                0: null
+                                            }[Cardkey]}
+                                            {{
+                                                1: <img src={CCTV} alt="" />,
+                                                0: null
+                                            }[Cctv]}
+                                            {{
+                                                1: <img src={closet} alt="" />,
+                                                0: null
+                                            }[Closet]}
+                                            {{
+                                                1: <img src={couch} alt="" />,
+                                                0: null
+                                            }[Couch]}
+                                            {{
+                                                1: <img src={delivery_box} alt="" />,
+                                                0: null
+                                            }[Delivery_box]}
+                                            {{
+                                                1: <img src={desk} alt="" />,
+                                                0: null
+                                            }[Desk]}
+                                            {{
+                                                1: <img src={elevator} alt="" />,
+                                                0: null
+                                            }[Elevator]}
+                                            {{
+                                                1: <img src={entrance_security} alt="" />,
+                                                0: null
+                                            }[Entrance_security]}
+                                            {{
+                                                1: <img src={fridge} alt="" />,
+                                                0: null
+                                            }[Fridge]}
+
+
+
+
+                                            {{
+                                                1: <img src={gas_induction} alt="" />,
+                                                0: null
+                                            }[GasIn]}
+
+
+                                            {{
+                                                1: <img src={interphone} alt="" />,
+                                                0: null
+                                            }[Interphone]}
+                                            {{
+                                                1: <img src={oven} alt="" />,
+                                                0: null
+                                            }[Oven]}
+
+
+
+
+
+
+                                            {{
+                                                1: <img src={security} alt="" />,
+                                                0: null
+                                            }[Sec]}
+
+                                            {{
+                                                1: <img src={shoe} alt="" />,
+                                                0: null
+                                            }[Shoe]}
+                                            {{
+                                                1: <img src={shower_booth} alt="" />,
+                                                0: null
+                                            }[Shower_booth]}
+                                            {{
+                                                1: <img src={sink} alt="" />,
+                                                0: null
+                                            }[Sink]}
+                                            {{
+                                                1: <img src={table} alt="" />,
+                                                0: null
+                                            }[Table]}
+                                            {{
+                                                1: <img src={wardrobe} alt="" />,
+                                                0: null
+                                            }[Wardrobe]}
+                                            {{
+                                                1: <img src={washing} alt="" />,
+                                                0: null
+                                            }[Washing]}
+                                            {{
+                                                1: <img src={window_guard} alt="" />,
+                                                0: null
+                                            }[Window_guard]}
+                                            {{
+                                                1: <img src={fire_alarm} alt="" />,
+                                                0: null
+                                            }[Fire_alarm]}
+                                            {{
+                                                1: <img src={dishwasher} alt="" />,
+                                                0: null
+                                            }[Dishwasher]}
+
                                         </div>
                                     </Options>
 
