@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
-import "../../styles/css/mapMultiRangeSlider.css";
+import "../../styles/css/MapMultiRangeSlider.css";
 
 //min, max,onChange 가 부모로 보낼 데이터 변수.
 const MultiRangeSlider = ({ min, max, onChange }) => {
@@ -45,7 +45,7 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
 
     //if ~ else 사용해서 금액에 따라 억/천/백/십/일 원 입력해주는 함수 입력.
     return (
-        <div className="container" style={{ paddingTop: '20px' }}>
+        <div className="container" style={{ paddingTop: '5px' }}>
             <input
                 type="range"
                 min={min}

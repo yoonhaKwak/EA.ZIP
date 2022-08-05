@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import MapCheckBox from "./MapCheckBox";
 import MapMultiRangeSlider from "./MapMultiRangeSlider";
-import GlobalStyles from "../detail/GlobalStyles";
 
 //필터목록
 const roomKind = [
@@ -124,7 +123,6 @@ export default function Modal() {
       {/* 매물정보 구간 */}
       <STabPanel>
         <p style={{ fontWeight: 'bold', fontSize: '20px', paddingTop: '1px' }}>방종류</p>
-        <GlobalStyles />
         <StyledFieldset>
           {roomKind.map((item) => (
             <MapCheckBox key={item.id} text={item.text} />
@@ -139,13 +137,13 @@ export default function Modal() {
         </StyledFieldset>
         <hr style={{ width: '90%' }} />
         <p style={{ fontWeight: 'bold', fontSize: '20px' }}>가격</p>
-        <p style={{ fontSize: "20px" }}>매매/전세/보증금</p>
+        <p style={{ fontSize: "15px" }}>매매/전세/보증금</p>
         <MapMultiRangeSlider
           min={0}
           max={10000}
           onChange={({ min, max }) => console.log(min, max)}
         />
-        <p style={{ fontSize: "20px" }}>월세</p>
+        <p style={{ fontSize: "15px" }}>월세</p>
         <MapMultiRangeSlider
           min={0}
           max={1000}
@@ -158,7 +156,6 @@ export default function Modal() {
         <p style={{ paddingLeft: '20px', paddingBottom: '20px', fontWeight: 'bold' }}>2.</p>
         <p style={{ paddingLeft: '20px', paddingBottom: "40px", fontWeight: 'bold' }}>3.</p>
         <hr style={{ width: '90%' }} />
-        <GlobalStyles />
         <StyledFieldset style={{ height: '300px', paddingTop: '10px', width: '375px' }}>
           {Options.map((item) => (
             <MapCheckBox key={item.id} text={item.text} />

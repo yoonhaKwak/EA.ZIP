@@ -16,7 +16,9 @@ function KakaoMap() {
     const { state } = useLocation([]);
 
     const [sendData, setSendData] = useState();
-
+    // useEffect(() => {
+    //     setSendData(clusterPositionsData.positions);
+    // })
     // console.log(state);
     // for (const key in Object.keys(state)) {
     //     // console.log(state[key].lat, state[key].lng)
@@ -54,6 +56,7 @@ function KakaoMap() {
     //     console.log(cluster.getMarkers());
 
     // });
+
     return (
         <Map
             center={{
@@ -62,12 +65,12 @@ function KakaoMap() {
             }}
             style={{ width: "100%", height: "100%", maxHeight: "905px", maxWidth: "1415px" }}
             level={8}
-            minLevel={2}
+            minLevel={3}
         >
             <MarkerClusterer
                 gridSize={80}
                 averageCenter={true}
-                minLevel={2}
+                minLevel={5}
                 calculator={[5, 10, 20]} // 클러스터의 크기 구분 값, 각 사이값마다 설정된 text나 style이 적용된다
                 styles={[{ // calculator 각 사이 값 마다 적용될 스타일을 지정한다
                     width: '100px', height: '100px',
@@ -101,13 +104,11 @@ function KakaoMap() {
                     lineHeight: '100px'
                 }
                 ]}
-                disableClickZoom={true}
-                onCreate={console.log()}
 
             >
                 {state.map((marker) => (
                     <MapMarker
-                        key={`${marker.lat},${marker.lng}`}
+                        key={marker.idx}
                         position={{
                             lat: marker.lat,
                             lng: marker.lng
@@ -134,7 +135,6 @@ function KakaoMap() {
                 ))}
                 <ItemDetailMarker open={modalOpen} close={closeModal} ItemData={sendData} />
             </MarkerClusterer>
-
         </Map >
     );
 }

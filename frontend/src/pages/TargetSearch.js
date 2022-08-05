@@ -111,19 +111,21 @@ const TargetSearch = (onClick) => {
   const [mam, setMam] = useState(0);
   const [mim, setMim] = useState(0);
   const [search, setSearch] = useState("");
-  const [data, setData] = useState(null);
-  const onChange = (e) => {
-    setSearch(e.target.value)
-  }
-  const navigate = useNavigate();
-  const NextPage = () => {
-    navigate('/normalsearch', { state: data })
-  };
+  const [data, setData] = useState([]);
 
+
+  const NextPage = () => {
+    setData([map, mip, mal, mil, mam, mim, search])
+    console.log(data)
+    // navigate('/normalsearch', { state: data })
+  };
+  const navigate = useNavigate();
   // const Back = () => {
   //   navigate('/normalsearch', { state: data })
   // };
-
+  const onChange = (e) => {
+    setSearch(e.target.value)
+  }
 
   /////////////////////////////////////////////////숫자==> 시간으로////////////////////////////////////////////////////////
   Number.prototype.toHHMMSS = function () {

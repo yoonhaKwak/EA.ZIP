@@ -159,6 +159,7 @@ const NormalSearch = (onClick) => {
   const [data, setData] = useState(null);
 
   const { state } = useLocation();
+  console.log(state);
 
   const navigate = useNavigate();
 
