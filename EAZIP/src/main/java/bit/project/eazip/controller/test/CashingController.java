@@ -89,8 +89,6 @@ public class CashingController {
 
 
 
-
-
         log.info("############결과값 확인##############");
         System.out.println(busList.size());
 //        System.out.println(result_lat.size());

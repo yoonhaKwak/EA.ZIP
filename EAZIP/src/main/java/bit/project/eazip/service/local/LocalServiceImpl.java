@@ -87,6 +87,8 @@ public class LocalServiceImpl implements LocalService {
         Double lat,lng;
         lat = coordinate.get("lat");
         lng = coordinate.get("lng");
+
+
         String line = null;
         int apiList[] = new int[3];
         String uri = "https://api.odsay.com/v1/api/searchPubTransPath?SX=126.9027279&SY=37.5349277&EX="+lng+"&EY="+lat+"&apiKey=j7A34MnqbWGfZQwWtVRUtqkal9YXPsGl%2BQGMho8v2ag";
@@ -119,7 +121,7 @@ public class LocalServiceImpl implements LocalService {
 //            }
 
             int transit = Integer.parseInt(info.get("busTransitCount").toString()) + Integer.parseInt(info.get("subwayTransitCount").toString());
-            System.out.println("여기 진행됨");
+            log.info("여기 진행 됨");
             apiList[0] = Integer.parseInt(info.get("totalWalk").toString());  //도보거리
             apiList[1] = transit;   //환승횟수
             apiList[2] = Integer.parseInt(info.get("totalTime").toString());  //소요시간
@@ -132,6 +134,8 @@ public class LocalServiceImpl implements LocalService {
 
             Map<String, Map> pathmap = new HashMap<String, Map>();
 
+            //path[i]가 목적지까지 가는 여러 경로 중 하나임
+            log.info("path size :" +String.valueOf(path.size()));
             for (int i = 0 ; i < path.size(); i++) {
                 JSONObject temppath = (JSONObject) path.get(i);
 
@@ -140,23 +144,57 @@ public class LocalServiceImpl implements LocalService {
                 JSONArray subpath = (JSONArray) temppath.get("subPath");
 
                 Map<String, String> subpathmap = new HashMap<String, String>();
+                int waltTime = 0;
 
+                // subpath[j]가 총 경로 안에서 각각의 환승 경로임
                 for (int j = 0; j < subpath.size(); j++) {
                     JSONObject tempsubpath = (JSONObject) subpath.get(j);
-                    if (Integer.parseInt(tempsubpath.get("trafficType").toString()) == 1) {
-                        subpathmap.put(new String("startID") +i + j, "s" + tempsubpath.get("startID").toString());
-                        subpathmap.put(new String("endID") +i + j, "s" + tempsubpath.get("endID").toString());
-                    } else if (Integer.parseInt(tempsubpath.get("trafficType").toString()) == 2) {
-                        subpathmap.put(new String("startID") +i + j, "b" + tempsubpath.get("startID").toString());
-                        subpathmap.put(new String("endID") +i + j, "b" + tempsubpath.get("endID").toString());
+                    if (Integer.parseInt(tempsubpath.get("trafficType").toString()) == 1)
+                    {
+                        subpathmap.put(new String("startID") +j , "s" + tempsubpath.get("startID").toString());
+                        subpathmap.put(new String("endID") + j , "s" + tempsubpath.get("endID").toString());
+                        subpathmap.put(new String("sectionTime")+j + j, tempsubpath.get("sectionTime").toString());
                     }
-                    subpathmap.put(new String("trafficType") +i + j, tempsubpath.get("trafficType").toString());
-                    subpathmap.put(new String("sectionTime") +i + j, tempsubpath.get("sectionTime").toString());
+                    else if (Integer.parseInt(tempsubpath.get("trafficType").toString()) == 2)
+                    {
+                        subpathmap.put(new String("startID") +j , "b" + tempsubpath.get("startID").toString());
+                        subpathmap.put(new String("endID") + j, "b" + tempsubpath.get("endID").toString());
+                        subpathmap.put(new String("sectionTime") +j+j, tempsubpath.get("sectionTime").toString());
+                    }
+                    else
+                    {
+                        subpathmap.put(new String("startID") +j , "");
+                        subpathmap.put(new String("endID") + j, "");
+                        subpathmap.put(new String("sectionTime") + j+ j, tempsubpath.get("sectionTime").toString());
+                    }
+                }
+
+                // API 데이터의 모든 역 간 경우의 수 상정하여 소요시간 체크
+                Integer temp = 0;
+                for (int k =0; k <subpath.size(); k++)
+                {
+                    for (int l =0; l<= k; l++)
+                    {
+                        if (k == l)
+                        {
+                            continue;
+                        }
+                        temp = 0;
+                        for (int m =l; m<= k; m++)
+                        {
+                            temp += Integer.parseInt(subpathmap.get("sectionTime"+m+m));
+                        }
+                        if (subpathmap.get("endID" + k).isBlank() || subpathmap.get("startID" +l).isBlank()){
+                            continue;
+                        }
+                        {
+                            subpathmap.put(new String("sectionTime") + l + k, temp.toString());
+                        }
+                    }
                 }
                 pathmap.put("path"+i, subpathmap);
             }
             System.out.println(pathmap);
-
 
         } catch (ParseException | IOException e) {
             throw new RuntimeException(e);

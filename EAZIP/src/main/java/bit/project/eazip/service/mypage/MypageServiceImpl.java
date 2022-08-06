@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,32 +24,48 @@ public class MypageServiceImpl implements MypageService{
     MypageMapper mypageMapper;
 
     @Override
-    public List<HomeDTO> getList() {
-        log.info("service imple, getList() 서비스 실행");
-//        System.out.println(list);
-        return mypageMapper.getList(arr);
+    public List<HomeDTO> getHistoryHome(ArrayList<String> history) {
+        log.info("service imple, getHistoryHome() 서비스 실행");
+        return mypageMapper.getHistoryHome(history);
     }
-
 
     @Override
-    public List<String> getIdx(){
-        log.info("service inple, getIdx() 서비스 실행");
-        return mypageMapper.getIdx();
+    public List<HomeDTO> getFavoriteHome(ArrayList<String> favorite) {
+        log.info("service imple, getFavoriteHome() 서비스 실행");
+        return mypageMapper.getFavoriteHome(favorite);
     }
+
+    @Override
+    public String getHistory(){
+        log.info("service inple, getIdx() 서비스 실행");
+        return mypageMapper.getHistory();
+    }
+
+    @Override
+    public String getFavorite(){
+        log.info("service inple, getIdx() 서비스 실행");
+        return mypageMapper.getFavorite();
+    }
+
 
     @Override
     public void insertHistory(List<String> history){
 
-        log.info("service imple, insertHistory() 서비스 실행");
+        log.info("service imple, insertFavorite() 서비스 실행");
         String temp = history.toString();
-        log.info("###########################################");
-
-
-
-        log.info("###########################################");
         temp = temp.replace("[","");
         temp = temp.replace("]","");
         mypageMapper.insertHistory(temp);
+    }
+
+
+    public void insertFavorite(List<String> favorite){
+
+        log.info("service imple, insertFavorite() 서비스 실행");
+        String temp = favorite.toString();
+        temp = temp.replace("[","");
+        temp = temp.replace("]","");
+        mypageMapper.insertFavorite(temp);
     }
 
 

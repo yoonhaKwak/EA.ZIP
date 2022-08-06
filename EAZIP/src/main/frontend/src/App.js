@@ -4,6 +4,8 @@ import TestApi from "./TestApi";
 import MyPage from "./MyPage";
 import Cashing from "./cashing";
 import Filter from "./Filter";
+import Local from "./local";
+
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -18,6 +20,7 @@ function App() {
                         <Route path="/mypage" element={<MyPage/>} />
                         <Route path="/cashing" element={<Cashing/>} />
                         <Route path="/Filter" element={<Filter/>} />
+                        <Route path="/local" element={<Local/>} />
             
 
                     </Routes>

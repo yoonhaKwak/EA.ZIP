@@ -16,6 +16,7 @@ public class HomeDTO {
     private String 	dong;
     private Double 	layer;
     private String 	layer_name;
+    private int 	layer_all;
     private String 	direction;
     private String 	directionN;
     private Double 	supply;
@@ -53,7 +54,7 @@ public class HomeDTO {
     private String 	addr1;
     private String 	addr2;
     private String 	building_name;
-    private List<String> image_url;
+    private String image_url;
     private int	aircon_hanging;
     private int	aircon_standing;
     private int	aircon_system;

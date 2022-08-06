@@ -60,9 +60,10 @@ public class ApiController {
 
 
         log.info("############### 컨트롤러 진입 #####################");
+
         FilterDTO filterDTO = paramMap;
-        System.out.println("들어온 정보 확인");
-        System.out.println("getAddr1 :" +filterDTO.getAddr1());
+        System.out.println("####  들어온 정보 확인  #####");
+        System.out.println("getAddr1 :" + filterDTO.getAddr1());
         System.out.println("getType :" + filterDTO.getType());
         System.out.println("getCategory1 :" + filterDTO.getCategory1());
         System.out.println("getRoom_number :" + filterDTO.getRoom_number());
@@ -77,10 +78,14 @@ public class ApiController {
 
         log.info("########## 들어온 정보 적용하여 서비스 호출 작업 시작 ##########");
         List<FilterDTO> homes = null;
+
+        // 월세를 0으로 지정하면, 전세 매매 대상 필터링(db의 price를 이용)
         if (filterDTO.getMaxmonthly() == 0)
         {
             homes = service.filterPrice(filterDTO);
         }
+
+        // 월세가 0이 아니라면 월세 전세 매매 모두 필터링(db의 price와 monthly 모두 이용)
         else
         {
             homes = service.filterMonthly(filterDTO);
@@ -111,15 +116,10 @@ public class ApiController {
             idx[i] = idxList.get(i).getIdx();
         }
 
-
-
         // for (int i=0; i<idx.length; i++) {
-
-
 
         HomeDTO homes = service.selectData(idx[0]);
         Map<String, Double> coordinate = new HashMap<String,Double>();
-
 
         // 매물의 위도경도 정보 coordinate에 입력
         coordinate.put("lat",homes.getLat());
@@ -133,18 +133,17 @@ public class ApiController {
             //디비에 HomeDTO 저장하기
             service.insertData(service.selectData(idx[0])); // DB에 저장
 
-
         //    }
 
         }
         List<HomeDTO> homeDTOList = service.filtering();
-
 
         //HomeDTO 리스트 리턴
         return homeDTOList;
 
 
     }
+
     @GetMapping("/dataList")
     public List<HomeDTO> DataList(){
         List<HomeDTO> homeDTO = service.selectList();

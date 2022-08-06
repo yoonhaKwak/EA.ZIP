@@ -2,24 +2,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bit.project.eazip.mapper.mypage.MypageMapper">
 
-    <select id="getList" resultType="bit.project.eazip.domain.home.HomeDTO">
+    <select id="getHistoryHome" resultType="bit.project.eazip.domain.home.HomeDTO">
         SELECT * from gangnam0712 WHERE idx IN
-        <foreach collection="array" item="arr" open="(" close=")" separator=",">
-            #{arr}
+        <foreach collection="history" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="getFavoriteHome" resultType="bit.project.eazip.domain.home.HomeDTO">
+        SELECT * from gangnam0712 WHERE idx IN
+        <foreach collection="favorite" item="item" open="(" close=")" separator=",">
+            #{item}
         </foreach>
     </select>
 
 
 
-    <select id="getIdx" resultType="String">
-        SELECT history from usertbl WHERE id =  'yyc'
+    <select id="getHistory" resultType="String">
+        SELECT history from usertbl WHERE id ='2361369723'
+    </select>
+
+
+    <select id="getFavorite" resultType="String">
+        SELECT favorite from usertbl WHERE id ='2361369723'
     </select>
 
     <insert id="insertHistory">
         update usertbl set history =
                                #{temp}
-        where id = 'yyc'
+        where id = '2361369723'
     </insert>
+
+    <insert id="insertFavorite">
+        update usertbl set favorite =
+                               #{temp}
+        where id = '2361369723'
+    </insert>
+
 
 
 </mapper>

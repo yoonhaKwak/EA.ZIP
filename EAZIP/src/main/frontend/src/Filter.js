@@ -4,9 +4,9 @@ import {useState} from "react";
 
 function Filter(){
     const [addr1, setAddr1] = useState("논현로");
-    const [type, setType] = useState(['2', '3']);
-    const [category, setCategory] = useState(['1']);
-    const [room, setRoom] = useState(['1']);
+    const [type, setType] = useState(['2', '3','1']);
+    const [category, setCategory] = useState(['1','2','3']);
+    const [room, setRoom] = useState(['1','3','2']);
 
     const [op1, setOp1] = useState("sc_office");
     const [op2, setOp2] = useState("sc_cafe");
