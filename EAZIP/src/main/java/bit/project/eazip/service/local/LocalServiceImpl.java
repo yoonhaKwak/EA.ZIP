@@ -179,18 +179,24 @@ public class LocalServiceImpl implements LocalService {
                 for (int k =0; k <subpath.size(); k++)
                 {
                     for (int l =0; l<= k; l++) {
-                        if (k == l  || subpathmap.get("endID" + k).isBlank()) {
+                        if (k == l  || subpathmap.get("startID" + l).isBlank() || subpathmap.get("endID" + k).isBlank() ){
                             continue;
                         }
                         temp = 0;
 
-                        for (int m =l; m< k; m++) {
+                        for (int m =l+1; m< k; m++) {
                             temp += Integer.parseInt(subpathmap.get("sectionTime"+m+0+m+1));
                         }
-//                        || subpathmap.get("startID" +l).isBlank()
+                        subpathmap.put(new String("sectionTime") + l+1 + k+0, (temp.toString()));
+
+                        temp += Integer.parseInt(subpathmap.get("sectionTime"+l+0+l+1));
                         subpathmap.put(new String("sectionTime") + l+0 + k+0, temp.toString());
+
                         temp += Integer.parseInt(subpathmap.get("sectionTime"+k+0+k+1));
                         subpathmap.put(new String("sectionTime") + l+0 + k+1, (temp.toString()));
+
+                        temp -= Integer.parseInt(subpathmap.get("sectionTime"+l+0+l+1));
+                        subpathmap.put(new String("sectionTime") + l+1 + k+1, (temp.toString()));
                     }
                 }
                 pathmap.put("path"+i, subpathmap);
