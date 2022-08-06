@@ -38,6 +38,7 @@ public class CashingController {
 
         // String testStr = resultList.get(4).get("name").toString();
 
+
         // 주변 역 탐색시 반경 100m로 검색하기 위한 parameter
         Double lat_gap = 0.0009000;
         Double lng_gap = 0.0011340;
@@ -70,13 +71,13 @@ public class CashingController {
         log.info("버스데이터 처리 완료");
 
         scale = 6;
-        for (int i = 0; i < subwayList.size(); i++ ){
+        for (Map<BusDTO, Object> busDTOObjectMap : subwayList) {
 
-            Double slat = Double.parseDouble(subwayList.get(i).get("lat").toString());
-            Double slng = Double.parseDouble(subwayList.get(i).get("lng").toString());
-            String sidx = "s" + subwayList.get(i).get("idx").toString();
+            double slat = Double.parseDouble(busDTOObjectMap.get("lat").toString());
+            double slng = Double.parseDouble(busDTOObjectMap.get("lng").toString());
+            String sidx = "s" + busDTOObjectMap.get("idx").toString();
 
-            if ( slat < dlat + lat_gap * scale&& slat > dlat - lat_gap* scale && slng < dlng + lng_gap* scale && slng > dlng - lng_gap* scale ){
+            if (slat < dlat + lat_gap * scale && slat > dlat - lat_gap * scale && slng < dlng + lng_gap * scale && slng > dlng - lng_gap * scale) {
                 System.out.println("lat :" + slat);
                 idx_list.add(sidx);
                 Double distance = service.Haversine(dlat, dlng, slat, slng);

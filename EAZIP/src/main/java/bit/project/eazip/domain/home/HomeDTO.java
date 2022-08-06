@@ -16,7 +16,6 @@ public class HomeDTO {
     private Double 	layer;
     private int layer_all;
     private String 	layer_name;
-    private int 	layer_all;
     private String 	direction;
     private String 	directionN;
     private Double 	supply;
