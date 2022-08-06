@@ -1,9 +1,9 @@
 import MySearchHeader from "../components/part/MySearchHeader";
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import MyHomeList from "../components/part/MyHomeList";
-import MapMy from "../components/part/MapMy";
 import pallette from "styles/pallette";
+import MyKakaoMap from "API/MyKakaoMap";
 
 const Container = styled.div`
 justify-content: space-between;
@@ -74,9 +74,10 @@ const Mypage = () => {
     <Container>
       <MySearchHeader />
       <Body>
-        <div className="left" style={{ zindex: '50' }}><MyHomeList />
+        <div className="left" style={{ zindex: '50' }}>
+          <MyHomeList />
         </div>
-        <div className="right"><MapMy />
+        <div className="right"><MyKakaoMap />
         </div>
       </Body>
 

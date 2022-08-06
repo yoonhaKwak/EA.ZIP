@@ -2,13 +2,23 @@ import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk";
 import { useEffect, useState } from 'react';
 import SearchMarker from '../styles/icons/SearchMarker.svg';
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
+import ItemDetailMarker from "../components/part/ItemDetailMarker";
+import styled from "styled-components";
+import { param } from "jquery";
 
 const { kakao } = window
 
-function KakaoMap(data) {
+function KakaoMap() {
+    const [modalOpen, setModalOpen] = useState(false);
+    const openModal = () => { setModalOpen(true) };
+    const closeModal = () => { setModalOpen(false) };
     const { state } = useLocation([]);
-    const [isOpen, setIsOpen] = useState(false);
+
+    const [sendData, setSendData] = useState();
+    // useEffect(() => {
+    //     setSendData(clusterPositionsData.positions);
+    // })
     // console.log(state);
     // for (const key in Object.keys(state)) {
     //     // console.log(state[key].lat, state[key].lng)
@@ -37,21 +47,30 @@ function KakaoMap(data) {
 
     // if (error) return <div>에러발생</div>;
     // if (!markers) return null;
+
+    // var markers = cluster.getMarkers();
+    // for (var idx = 0; idx < markers.length; idx++) {
+    //     console.log(markers[idx].getPosition());
+    // }
+    // kakao.maps.event.addListener(clusterer, 'clusterclick', function (cluster) {
+    //     console.log(cluster.getMarkers());
+
+    // });
+
     return (
         <Map
             center={{
                 lat: 37.4946012,
                 lng: 127.027561
             }}
-            style={{ width: "1415px", height: "865px" }}
+            style={{ width: "100%", height: "100%", maxHeight: "905px", maxWidth: "1415px" }}
             level={8}
-            minLevel={2}
+            minLevel={3}
         >
             <MarkerClusterer
                 gridSize={80}
                 averageCenter={true}
-                minLevel={2}
-                disableClickZoom={true} // 클러스터 마커를 클릭했을 때 지도가 확대되지 않도록 설정한다
+                minLevel={5}
                 calculator={[5, 10, 20]} // 클러스터의 크기 구분 값, 각 사이값마다 설정된 text나 style이 적용된다
                 styles={[{ // calculator 각 사이 값 마다 적용될 스타일을 지정한다
                     width: '100px', height: '100px',
@@ -85,16 +104,20 @@ function KakaoMap(data) {
                     lineHeight: '100px'
                 }
                 ]}
+
             >
                 {state.map((marker) => (
                     <MapMarker
-                        key={`${marker.lat},${marker.lng}`}
+                        key={marker.idx}
                         position={{
                             lat: marker.lat,
                             lng: marker.lng
                         }}
                         clickable={true}
-                        onClick={() => setIsOpen(true)}
+                        onClick={() => {
+                            openModal()
+                            setSendData(marker)
+                        }}
                         image={{
                             src: SearchMarker,
                             size: {
@@ -107,13 +130,12 @@ function KakaoMap(data) {
                                     y: 45,
                                 },
                             },
-                        }}>
-                        <div style={{ padding: "14px", fontSize: "20px" }}>place.y , place.x</div>
-                    </MapMarker>
+                        }}
+                    />
                 ))}
+                <ItemDetailMarker open={modalOpen} close={closeModal} ItemData={sendData} />
             </MarkerClusterer>
         </Map >
-
     );
 }
 

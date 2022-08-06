@@ -1,15 +1,16 @@
 import MainHeader3 from "../components/part/MainHeader3";
 import styled from "styled-components";
 import image from "../styles/background/2.jpg";
-import MainSearchForm from "../components/detail/MainSearchForm";
 import CheckBox from "../components/part/CheckBox";
 import axios from "axios";
-import { Link, useNavigate, Navigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import React, { useState } from "react";
 import MultiRangeSlider from "components/part/MultiRangeSlider";
 import ButtonA from "../components/part/ButtonA";
 import ButtonB from "../components/part/ButtonB";
 import ButtonC from "../components/part/ButtonC";
+import pallette from 'styles/pallette';
+import Search from '../styles/icons/Search.svg';
 
 const Container = styled.div`
 position: absolute;
@@ -45,7 +46,7 @@ const Hr = styled.hr`
 `;
 
 const Div = styled.div`
-  width:450px; display: inline-block; margin: 186px 110px -35px 61px; text-align: -webkit-auto; z-index:11;
+  width:450px; display: inline-block; margin: 160px 110px -35px 61px; text-align: -webkit-auto; z-index:11;
 `;
 
 const DivA = styled.div`
@@ -53,33 +54,60 @@ const DivA = styled.div`
 
 `;
 
-
-const Tbtn = styled.button`
-    width: auto; height: 44px; border-radius: 20px; border: 3px solid #FF7B31; background-color: #E8E8E8;
-    font-size: 23px; font-weight: bold; color: #FF7B31; margin-right: 20px; margin-bottom: 50px;
-    display: absolute; cursor: pointer; padding: 10px; line-height: 1px;
-`;
-// 배경색: #E8E8E8
-// 글자색: #FF7B31
-
-const Mbtn = styled.button`
-  width:auto; height: 44px; border-radius: 20px; border: 3px solid #FF9431; background-color: #E8E8E8; font-size: 23px;
-  font-weight: bold; color: #FF9431; margin-right: 20px; margin-bottom:50px; display: absolute; cursor: pointer; padding:10px; line-height: 1px;
-`;
-// 배경색: #E8E8E8
-// 글자색: #FF9431
-const Bbtn = styled.button`
-  width:auto; height: 44px; border-radius: 20px; border: 3px solid #FFAD31; background-color: #E8E8E8; font-size: 23px;
-  font-weight: bold; color: #FFAD31; margin-right: 20px; margin-bottom:50px; display: absolute; cursor: pointer; padding:10px; line-height: 1px;
-`;
 // 배경색: #E8E8E8
 // 글자색: #FFAD31
 const Sbtn = styled.button`
 width:240px; height: 44px; border-radius: 20px; border: none; background-color: #FF9431; font-size: 25px;
-  font-weight: bold; color: white; margin: 10px 20px 20px 820px;  display: absolute; cursor: pointer; padding:10px; line-height: 1px;
+  font-weight: bold; color: white; margin: -28px 20px 20px 820px;  display: absolute; cursor: pointer; padding:10px; line-height: 1px;
   &:hover{
     background-color: #D37E30;
   }
+`;
+const StyledBox = styled.form`
+  position:flex;
+  background-color:white;
+  margin-left:550px;
+  width: 50.6rem;
+  height: 2.7rem;
+  border-radius: 100px;
+  border: solid 3px ${pallette.orange[0]};
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+`;
+
+const StyledInput = styled.input`
+width: 46rem;
+height: 2.5rem;
+background-color:white;
+font-size: 22px;
+border: none;
+:focus {
+    outline: none;
+    width:46rem;
+  }
+::placeholder{
+  color: #c6c6c6;
+}
+`;
+const Button = styled.button`
+    display:flex;
+    margin:2% 0 0 0;
+    background-image:url(${Search}); 
+    background-repeat: no-repeat;
+    width: 35px;
+    height: 35px;
+    border:none;
+    background-color: transparent;
+`;
+
+const SliderDBox = styled.div`
+  display: flex; float:left; width:170px; height:52px; border: 1px solid #ff9431; border-radius: 15px; font-size:15px;
+  padding-left: 20px; padding-top:7px;
+`;
+
+const Hr1 = styled.hr`
+  display:flex; float:left; width: 30px; margin: 30px 15px; line-height:10px;
 `;
 
 const optionsList = [
@@ -89,7 +117,7 @@ const optionsList = [
   { id: 3, name: 'option', text: "카페", value: 'sc_cafe' },
   { id: 4, name: 'option', text: "주민센터", value: 'sc_office' },
   { id: 5, name: 'option', text: "버스 정류장", value: 'sc_bus' },
-  { id: 6, name: 'option', text: "세탁소", value: 'sc_laundry' },
+  { id: 6, name: 'option', text: "세탁소", value: 'sc_laundary' },
   { id: 7, name: 'option', text: "우체국", value: 'sc_post' },
   { id: 8, name: 'option', text: "버스 터미널" },
   { id: 9, name: 'option', text: "보건소", value: 'sc_bogun' },
@@ -105,9 +133,9 @@ const CategoryList = [
 const CategoryList1 = [
 
 
-  { id: 0, name: 'category', text: '주택', value: 1 },
-  { id: 1, name: 'category', text: '빌라', value: 2 },
-  { id: 2, name: 'category', text: '오피스텔', value: 3 }
+  { id: 0, name: 'category1', text: '주택', value: 1 },
+  { id: 1, name: 'category1', text: '빌라', value: 2 },
+  { id: 2, name: 'category1', text: '오피스텔', value: 3 }
 
 ];
 const CategoryList2 = [
@@ -117,7 +145,8 @@ const CategoryList2 = [
   { id: 2, name: 'room', text: '쓰리룸', value: 3 }
 ];
 
-const NormalSearch = () => {
+const NormalSearch = (onClick) => {
+
   const [category1, setCategory] = useState([]);
   const [type, setType] = useState([]);
   const [room_number, setRoom] = useState([]);
@@ -126,9 +155,17 @@ const NormalSearch = () => {
   const [mip, setMip] = useState(0);
   const [mam, setMam] = useState(0);
   const [mim, setMim] = useState(0);
-  const [search, setSearch] = useState("강남구");
+  const [search, setSearch] = useState("");
   const [data, setData] = useState(null);
+
+  const { state } = useLocation();
+  console.log(state);
+
   const navigate = useNavigate();
+
+  const onChange = (e) => {
+    setSearch(e.target.value)
+  }
 
   const onCateElement = (checked, item) => {
     if (checked) {
@@ -164,17 +201,17 @@ const NormalSearch = () => {
       method: 'post',
       url: '/react/filter',
       data: {
-        "addr1": search.toString(),
-        "map": map,
-        "mip": mip,
-        "mam": mam,
-        "mim": mim,
-        "category": category1.toString(),
-        "type": type.toString(),
-        "room": room_number.toString(),
-        "op1": options[0].toString(),
-        "op2": options[1].toString(),
-        "op3": options[2].toString()
+        "addr1": search,
+        "maxprice": map,
+        "minprice": mip,
+        "maxmonthly": mam,
+        "minmonthly": mim,
+        "category1": category1,
+        "type": type,
+        "room_number": room_number,
+        "op1": options[0],
+        "op2": options[1],
+        "op3": options[2]
       },
       baseURL: 'http://localhost:8080'
     }
@@ -183,6 +220,36 @@ const NormalSearch = () => {
       navigate('/search', { state: response.data })
     });
   };
+  ////////////////////////////////////////////////////////// 숫자에 금액 표시 구간/////////////////////////////////////////////////////
+
+  function numberFormat(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  function numberToKorean(number) {
+    var inputNumber = number < 0 ? false : number;
+    var unitWords = ["만", "억"];
+    var splitUnit = 10000;
+    var splitCount = unitWords.length;
+    var resultArray = [];
+    var resultString = "원";
+
+    for (var i = 0; i < splitCount; i++) {
+      var unitResult =
+        (inputNumber % Math.pow(splitUnit, i + 1)) / Math.pow(splitUnit, i);
+      unitResult = Math.floor(unitResult);
+      if (unitResult > 0) {
+        resultArray[i] = unitResult;
+      }
+    }
+    for (var i = 0; i < resultArray.length; i++) {
+      if (!resultArray[i]) continue;
+      resultString = String(numberFormat(resultArray[i])) + unitWords[i] + resultString;
+    }
+    return resultString;
+  }
+  ////////////////////////////////////////////////////////// 숫자에 금액 표시 구간/////////////////////////////////////////////////////
+
   return (
     <Container>
       <MainHeader3 />
@@ -190,7 +257,14 @@ const NormalSearch = () => {
         <p style={{ paddingLeft: '760px', color: 'white', fontSize: '30px', marginTop: '0px', fontWeight: 'bold' }}>"나에게 딱 맞는 집을 찾아보세요!"</p>
         <div />
         <form>
-          <MainSearchForm />
+          <>
+            <StyledBox className="inputForm">
+              <Button type="button" onClick={onClick} />
+              <StyledInput type="text" placeholder="검색어를 입력하세요" onChange={onChange} onKeyPress={e => {
+                if (e.key === 'Enter') e.preventDefault();
+              }} />
+            </StyledBox>
+          </>
           <OptionList>
             <FilterTitle>검색 옵션</FilterTitle>
             <FilterTitle>우선 순위</FilterTitle>
@@ -250,29 +324,36 @@ const NormalSearch = () => {
           </Div>
           <Div>
 
-            <p className="price">매매/전세/보증금</p>
+            <p style={{ fontSize: "20px" }}>매매/전세/보증금</p>
             <MultiRangeSlider
               min={0}
-              max={10000}
-              onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`) & setMip(min) & setMap(max)}
+              max={1000000}
+              onChange={({ min, max }) => setMip(min) & setMap(max)}
 
             />
-            <p className="monthly">월세</p>
+            <SliderDBox>최저 금액<br /> ₩ {numberToKorean(mip)}</SliderDBox>
+            <Hr1 />
+            <SliderDBox>최고 금액 <br />  ₩ {numberToKorean(map)}</SliderDBox>
+            <br />
+            <p style={{ fontSize: "20px", padding: "10px 10px" }}>월세</p>
             <MultiRangeSlider
               min={0}
               max={1000}
-              onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`) & setMim(min) & setMam(max)}
+              onChange={({ min, max }) => setMim(min) & setMam(max)}
             />
+            <SliderDBox>최저 금액 <br /> ₩ {numberToKorean(mim)}</SliderDBox>
+            <Hr1 />
+            <SliderDBox>최고 금액 <br /> ₩ {numberToKorean(mam)}</SliderDBox>
           </Div>
-
         </form>
         <Sbtn onClick={Back}>
           추천받기
         </Sbtn>
-        <div style={{ zIndex: '110px' }}>결과:{data}</div>
-        <code>
+        {/* 데이터 잘 들어오는지 확인하는 구간.
+         <div style={{ zIndex: '110px' }}>결과:{data}</div> */}
+        {/* <code>
           {JSON.stringify({ data: { search, map, mip, mam, mim, category1, type, room_number, options } })}
-        </code>
+        </code> */}
       </Positioner>
     </Container>
   );

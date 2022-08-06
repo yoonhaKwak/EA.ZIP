@@ -20,12 +20,12 @@ public interface LocalService {
     public List<FilterDTO> filterMonthly(FilterDTO filterDTO);
 
 
-
-
     void insertData(HomeDTO filterDTO);
 
     public List<HomeDTO> filtering();
 
     public int[] apiList(Map<String,Double> coordinate);
     public List<HomeDTO> selectIdx();
+
+
 }

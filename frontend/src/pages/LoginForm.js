@@ -7,10 +7,11 @@ import naverlogo from '../styles/img/Naver.svg';
 import kakaologo from '../styles/img/Kakao.svg';
 import googlelogo from '../styles/img/Google.svg';
 import pallette from "../styles/pallette";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Container = styled.div`
+position: fixed;
 max-width: 1920px; width: 100%;
 background:url(${background}) no-repeat;
 background-size: cover;
@@ -92,8 +93,10 @@ const Psns = styled.p`
 `;
 
 const LoginForm = () => {
+    const params = new URLSearchParams(window.location.search)
     const [inputId, setInputId] = useState('')
     const [inputPw, setInputPw] = useState('')
+    const navigate = useNavigate();
 
     // input data 의 변화가 있을 때마다 value 값을 변경해서 useState 해준다
     const handleInputId = (e) => {
@@ -103,9 +106,21 @@ const LoginForm = () => {
         setInputPw(e.target.value)
     }
     // login 버튼 클릭 이벤트
-    const onClickLogin = () => {
-        console.log('click login')
-    }
+    const onClickLogin = async () => {
+        axios({
+            method: 'post',
+            url: '/login',
+            data: {
+                "id": inputId,
+                "email": inputPw
+            },
+            baseURL: 'http://localhost:8080'
+        }
+        ).then((response) => {
+            console.log(response.data);
+            navigate('/normalsearch')
+        });
+    };
     // // 페이지 렌더링 후 가장 처음 호출되는 함수
     // useEffect(() => {
     //     axios.get('./logintest.json')
@@ -114,6 +129,13 @@ const LoginForm = () => {
     // },
     //     // 페이지 호출 후 처음 한번만 호출될 수 있도록 [] 추가
     //     [])
+
+    const CLIENT_ID = "e98b7c20443a64d2a2230260e7c2fa22";
+    const REDIRECT_URI = "http://localhost:3000/oauth/kakao/callback";
+    const KAKAO_AUTH_URL = "https://kauth.kakao.com/oauth/authorize?client_id=" + `${CLIENT_ID}` + "&redirect_uri=" + `${REDIRECT_URI}` + "&response_type=code";
+
+
+
     return (
         <Container>
             <MainHeader2 />
@@ -126,6 +148,9 @@ const LoginForm = () => {
                     <InputBox2>
                         <HandleInputPw placeholder="비밀번호" name="input_pw" type="password" value={inputPw} onChange={handleInputPw} />
                     </InputBox2>
+                    <code>
+                        {JSON.stringify({ data: { inputId, inputPw } })}
+                    </code>
                     <LoginBox onClick={onClickLogin}>로그인</LoginBox>
                     <div />
                     <Buttons1><Link to='/register'>회원가입</Link></Buttons1>
@@ -137,8 +162,8 @@ const LoginForm = () => {
                         <Psns>간편 로그인</Psns>
                         <BorderSpan></BorderSpan>
                     </SnsBox>
-                    <Buttons1 style={{ padding: '10px' }}><img src={naverlogo} alt="" /></Buttons1>
-                    <Buttons1 style={{ padding: '10px' }}><img src={kakaologo} alt="" /></Buttons1>
+                    <Buttons1 style={{ padding: '10px' }} ><img src={naverlogo} alt="" /></Buttons1>
+                    <Buttons1 style={{ padding: '10px' }} onClick={() => window.open(`${KAKAO_AUTH_URL}`)}><img src={kakaologo} alt="" /></Buttons1>
                     <Buttons1 style={{ padding: '10px' }}><img src={googlelogo} alt="" /></Buttons1>
                 </Reactangle>
             </Positioner>

@@ -83,10 +83,10 @@ const MainHeader = () => {
                     </div>
                     <div className="right">
                         <li>
-                            <Link to='/search'>일반추천</Link>
+                            <Link to='/normalsearch'>일반추천</Link>
                         </li>
                         <li>
-                            <Link to='/normalsearch'>지역추천</Link>
+                            <Link to='/targetsearch'>지역추천</Link>
                         </li>
                         <li>
                             <Link to='/'>프리미엄</Link>

@@ -28,7 +28,7 @@ const StyledLabel = styled.label`
     content: "";
     height: 1.5rem;
     width: 1.5rem;
-    background-color: white;
+    background-color: #E8E8E8;
     background-size: 21px 21px;
     box-sizing: border-box;
     border: 0.23rem solid #FF9431;

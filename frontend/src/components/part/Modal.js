@@ -1,11 +1,9 @@
 import "focus-visible";
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
-import CheckBox from "./CheckBox";
-import GlobalStyles from "../detail/GlobalStyles";
-import axios from "axios";
-import { SettingsInputAntennaTwoTone } from "@mui/icons-material";
+import MapCheckBox from "./MapCheckBox";
+import MapMultiRangeSlider from "./MapMultiRangeSlider";
 
 //필터목록
 const roomKind = [
@@ -103,7 +101,7 @@ white-space: nowrap;
     width: 375px;
     display: flex;
     height: 110px;
-    padding: 8px 17px 24px 17px;
+    padding: 0px 17px 0px 17px;
     border: none;
     flex-wrap: wrap;
     font-weight:500;
@@ -114,6 +112,7 @@ export default function Modal() {
 
   return (
     <STabs
+      type="form"
       selectedTabClassName='is-selected'
       selectedTabPanelClassName='is-selected'
     >
@@ -121,37 +120,49 @@ export default function Modal() {
         <STab style={{ fontSize: '20px', borderRadius: '20px 0 0 0', lineHeight: '35px', fontWeight: 'bold' }}>매물정보</STab>
         <STab style={{ fontSize: '20px', borderRadius: '20px 0 0 0', lineHeight: '35px', fontWeight: 'bold' }}>편의시설</STab>
       </STabList>
+      {/* 매물정보 구간 */}
       <STabPanel>
-        <p style={{ fontWeight: 'bold', fontSize: '20px', paddingTop: '10px' }}>방종류</p>
-        <GlobalStyles />
+        <p style={{ fontWeight: 'bold', fontSize: '20px', paddingTop: '1px' }}>방종류</p>
         <StyledFieldset>
           {roomKind.map((item) => (
-            <CheckBox key={item.id} text={item.text} />
+            <MapCheckBox key={item.id} text={item.text} />
           ))}
         </StyledFieldset>
         <hr style={{ width: '90%' }} />
         <p style={{ fontWeight: 'bold', fontSize: '20px', marginBottom: '10px' }}>거래유형</p>
         <StyledFieldset style={{ height: '55px', paddingBottom: '5px', marginBottom: '5px' }} >
           {tradeType.map((item) => (
-            <CheckBox key={item.id} text={item.text} />
+            <MapCheckBox key={item.id} text={item.text} />
           ))}
         </StyledFieldset>
         <hr style={{ width: '90%' }} />
         <p style={{ fontWeight: 'bold', fontSize: '20px' }}>가격</p>
+        <p style={{ fontSize: "15px" }}>매매/전세/보증금</p>
+        <MapMultiRangeSlider
+          min={0}
+          max={10000}
+          onChange={({ min, max }) => console.log(min, max)}
+        />
+        <p style={{ fontSize: "15px" }}>월세</p>
+        <MapMultiRangeSlider
+          min={0}
+          max={1000}
+          onChange={({ min, max }) => console.log(min, max)}
+        />
       </STabPanel>
+      {/* 편의시설 구간 */}
       <STabPanel style={{ textAlign: "left" }}>
-        <p style={{ fontWeight: 'bold' }}>1.</p>
-        <p style={{ fontWeight: 'bold' }}>2.</p>
-        <p style={{ fontWeight: 'bold' }}>3.</p>
+        <p style={{ paddingLeft: '20px', paddingTop: '20px', paddingBottom: '20px', fontWeight: 'bold' }}>1.</p>
+        <p style={{ paddingLeft: '20px', paddingBottom: '20px', fontWeight: 'bold' }}>2.</p>
+        <p style={{ paddingLeft: '20px', paddingBottom: "40px", fontWeight: 'bold' }}>3.</p>
         <hr style={{ width: '90%' }} />
-        <GlobalStyles />
         <StyledFieldset style={{ height: '300px', paddingTop: '10px', width: '375px' }}>
           {Options.map((item) => (
-            <CheckBox key={item.id} text={item.text} />
+            <MapCheckBox key={item.id} text={item.text} />
           ))}
         </StyledFieldset>
-      </STabPanel>
+      </STabPanel >
 
-    </STabs>
+    </STabs >
   );
 };

@@ -82,9 +82,11 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
                 <div className="slider__track" />
                 <div ref={range} className="slider__range" />
                 <div className="slider__left-value" style={{ paddingLeft: '1.5px', lineHeight: '10px' }}>|</div>
-                <div className="slider__left-value" style={{ lineHeight: '45px', textAlign: 'center' }}>{minVal}</div>
+                <div className="slider__left-value" style={{ lineHeight: '45px', textAlign: 'center' }}>0</div>
+                <div className="slider__right-value" style={{ paddingRight: '210.5px', lineHeight: '10px' }}>|</div>
+                <div className="slider__right-value" style={{ lineHeight: '45px', paddingRight: '203px', textAlign: 'center' }}>1억</div>
                 <div className="slider__right-value" style={{ paddingRight: '11.5px', lineHeight: '10px' }}>|</div>
-                <div className="slider__right-value" style={{ lineHeight: '45px', textAlign: 'center' }}>{maxVal}</div>
+                <div className="slider__right-value" style={{ lineHeight: '45px', textAlign: 'center' }}>무제한</div>
             </div>
         </div>
     );
@@ -97,36 +99,3 @@ MultiRangeSlider.propTypes = {
 };
 
 export default MultiRangeSlider;
-
-
-
-// realprice = (price + "만").toString()
-// .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); //매물가격이 1억을 넘지 못할 경우
-// }
-// else {
-// if (price % 10000 === 0) {
-
-// pricel = (price / 10000);         //매물 가격이 1억을 넘되 만 단위가 없을 경우
-// realprice = (pricel + "억").toString()
-//     .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-
-// }
-// else {
-// if (!(price % 1000 === 0)) { //매물 가격이 1억을 넘되 만 단위가 1000미만일 경우
-//     pricel = (price / 10000);
-//     pricel = Math.floor(pricel);
-//     pricel = pricel.toFixed(0);
-//     pricem = (price % 10000);
-//     pricem = pricem.toString()
-//         .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-//     realprice = (pricel + "억 " + pricem + "만").toString();
-// }
-// else {    //그외 나머지
-//     pricel = price.toString()
-//         .replace(/\B(?<!\.\d*)(?=(\d{4})+(?!\d))/g, "억 ")
-//         .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-//     realprice = (pricel + "만").toString();
-// }
-// }
-// }
-// }

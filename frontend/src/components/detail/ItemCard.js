@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import pallette from "styles/pallette";
 import DefaultImg from "../../styles/img/DefaultHomeImg.svg";
 import Officetell from "../../styles/img/Officetell.svg";
 import Villa from "../../styles/img/Villa.svg";
@@ -23,7 +22,37 @@ import RoomNBath from '../../styles/icons/RoomNBath.svg';
 import "../../styles/css/slick.css"
 import "../../styles/css/slick-theme.css"
 import Slider from "react-slick";
-
+import Heart from "../part/Heart";
+import aircon_hanging from "../../styles/icons/options/aircon_hanging.svg";
+import aircon_stand_system from "../../styles/icons/options/aircon_stand_system.svg";
+import bath from "../../styles/icons/options/bath.svg";
+import bed from "../../styles/icons/options/bed.svg";
+import bidet from "../../styles/icons/options/bidet.svg";
+import cardkey from "../../styles/icons/options/cardkey.svg";
+import CCTV from "../../styles/icons/options/CCTV.svg";
+import closet from "../../styles/icons/options/closet.svg";
+import couch from "../../styles/icons/options/couch.svg";
+import delivery_box from "../../styles/icons/options/delivery_box.svg";
+import desk from "../../styles/icons/options/desk.svg";
+import drier from "../../styles/icons/options/drier.svg";
+import elevator from "../../styles/icons/options/elevator.svg";
+import entrance_security from "../../styles/icons/options/entrance_security.svg";
+import fridge from "../../styles/icons/options/fridge.svg";
+import gas_induction from "../../styles/icons/options/gas_induction.svg";
+import interphone from "../../styles/icons/options/interphone.svg";
+import microwave from "../../styles/icons/options/microwave.svg";
+import oven from "../../styles/icons/options/oven.svg";
+import security from "../../styles/icons/options/security.svg";
+import shoe from "../../styles/icons/options/shoe.svg";
+import shower_booth from "../../styles/icons/options/showr_booth.svg";
+import sink from "../../styles/icons/options/sink.svg";
+import table from "../../styles/icons/options/table.svg";
+import wardrobe from "../../styles/icons/options/wardrobe.svg";
+import washing from "../../styles/icons/options/washing.svg";
+import window_guard from "../../styles/icons/options/window_guard.svg";
+import fire_alarm from "../../styles/icons/options/fire_alarm.svg";
+import dishwasher from "../../styles/icons/options/dishwasher.svg";
+import { Card } from "react-bootstrap";
 
 
 const Block = styled.div`
@@ -38,11 +67,11 @@ li{
 `;
 
 
-const Table = styled.div`
+const TablE = styled.div`
 width:100%;
 min-width: 491px;
 height:278px;
-
+float:left;
     background-color:white;
 
 
@@ -58,14 +87,16 @@ height:278px;
   display:fixed;
   width:234px;
   height:278px;
+ 
 }
 .leftarea{
   float:left;
   display:fixed;
-  width:258px;
-  min-width:258px;
-  max-width:258px;
+  width:100px;
+  min-width:100px;
+  max-width:100px;
   height:278px;
+  overflow:visible;
 
 }
     border-bottom:1px solid rgba(0,0,0,0.1);
@@ -76,11 +107,12 @@ height:278px;
 `;
 const ListFeature = styled.div`
   height: 100%;
-  width: 100%;
+  width: 80%;
   margin-bottom:12px;
   margin-top:24px;
  padding-left:12px;
  word-break:keep-all;
+ overflow:visible;
 
   .default{
     width:45px;
@@ -114,7 +146,12 @@ height:100%
 
 
 `;
-
+const WTF = styled.div`
+width:35px;
+height:216px;
+margin-top:24px;
+cursor: pointer;
+`;
 
 
 
@@ -125,16 +162,31 @@ height:100%
 function ItemCard({ key, ImageUrl, Category2, Feature,
     Supply, Dedicated, Jeonse, Monthly, Trading, Selling,
     Room, Deposit, SupplyP, Addr1, Addr2, LongFeature, Layer,
-    AllLayer, LayerType, ManageCost, RoomN, Parking, Bath, Parking2,
-    MoveDate, Direction, DirectionN, Category1 }) {
+    AllLayer, LayerType, ManageCost, RoomN, Parking, BathN, Parking2,
+    MoveDate, Direction, DirectionN, Category1, Price, Id,
+    Aircon_Hanging, Fridge, Wardrobe, Microwave, Shoe, Washing, Elevator, Security_private,
+    Security, Cctv, Bed, Desk, Bidet, Closet, Table, Couch, Shower_booth, Bath, Gas, Induction,
+    Oven, Interphone, Cardkey, Fire_alarm, Dishwasher, Sink, Aircon_system, Aircon_standing,
+    Delivery_box, Window_guard, Entrance_security, Drier
+}) {
 
+
+
+    let longfeature;
+    if (LongFeature === "0") {
+        longfeature = null;
+    }
+    else {
+        longfeature = LongFeature;
+    }
 
 
     /*--------------------------------------------[나만이 아는 코드임 뚜방뚜방]------------------------------------------*/
 
 
 
-    let price = (Jeonse + Monthly + Trading).toFixed(0);
+    let price = (Price).toFixed(0);
+    let monthly = (Monthly).toFixed(0);
     let result = (Trading / SupplyP).toFixed(0);
     let supply = (Supply).toFixed(0);
     let dedicated = (Dedicated).toFixed(0);
@@ -144,7 +196,7 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
     let pricem;
 
     if (Selling === 3) {
-        realprice = (price + "만").toString(); //월세일 경우
+        realprice = (monthly + "만").toString(); //월세일 경우
     }
     else {  //월세가 아닌경우
         if (price < 10000) {
@@ -185,42 +237,42 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
     //보증금
     let deposit;
     let depositl;
-    if (Deposit === null) {
-        deposit = null;
-    }
-    else {
-        if (Deposit < 10000) {
-            depositl = Deposit.toString()
+    if (Selling === 3) {
+        if (Price < 10000) {
+            depositl = Price.toString()
                 .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
 
             deposit = ("/" + depositl + "만").toString();
         }
         else {
-            if (Deposit % 10000 === 0) {
+            if (Price % 10000 === 0) {
 
-                pricel = (Deposit / 10000);         //매물 가격이 1억을 넘되 만 단위가 없을 경우
+                pricel = (Price / 10000);         //매물 가격이 1억을 넘되 만 단위가 없을 경우
                 deposit = ("/" + pricel + "억").toString()
                     .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 
             }
             else {
-                if (!(Deposit % 1000 === 0)) { //매물 가격이 1억을 넘되 만 단위가 1000미만일 경우
-                    pricel = (Deposit / 10000);
+                if (!(Price % 1000 === 0)) { //매물 가격이 1억을 넘되 만 단위가 1000미만일 경우
+                    pricel = (Price / 10000);
                     pricel = Math.floor(pricel);
                     pricel = pricel.toFixed(0);
-                    pricem = (Deposit % 10000);
+                    pricem = (Price % 10000);
                     pricem = pricem.toString()
                         .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-                    deposit = ("/" + pricel + "억 " + pricem + "만").toString();
+                    Price = ("/" + pricel + "억 " + pricem + "만").toString();
                 }
                 else {    //그외 나머지
-                    pricel = Deposit.toString()
+                    pricel = Price.toString()
                         .replace(/\B(?<!\.\d*)(?=(\d{4})+(?!\d))/g, "억 ")
                         .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
                     deposit = ("/" + pricel + "만").toString();
                 }
             }
         }
+    }
+    else {
+        deposit = null;
     }
 
 
@@ -297,18 +349,18 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
 
     let roomnbath;
 
-    roomnbath = "방" + RoomN + "/욕실" + Bath
+    roomnbath = "방" + RoomN + "/욕실" + BathN
 
     let parkinglot;
 
-    if (Parking === null) {
+    if (Parking === 0) {
         parkinglot = Parking2;
     }
-    else if (Parking2 === null) {
+    else if (Parking2 === 0) {
         parkinglot = Parking;
     }
-    else if (Parking2 === null && Parking == null) {
-        parkinglot = null;
+    else if (Parking2 === 0 && Parking == 0) {
+        parkinglot = 0;
     }
     else {
         parkinglot = Parking2;
@@ -317,7 +369,7 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
     parkinglot = "주차 " + parkinglot + "대"
     //신주소 정보 없을시 구주소
     let Addr;
-    if (Addr2 === null) {
+    if (Addr2 === "0") {
         Addr = Addr1 + " " + Layer + "층" + "(총 " + AllLayer + "층)";;
     }
     else {
@@ -325,7 +377,7 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
     };
 
     let Addrd
-    if (Addr2 === null) {
+    if (Addr2 === "0") {
         Addrd = Addr1;
     }
     else {
@@ -347,11 +399,15 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
 
     /*---------------------------------------------------[이미지 불러오는 함수 뚜방뚜방]-------------------------------------------------------*/
     let image = (ImageUrl);
-    image = image.replace(/\'/g, "");
+    if (image === null) {
+        image = "[]";
+    }
+    else {
+        image = image.replace(/\'/g, "");
 
-    image = image.replace(/\[/g, "");
-    image = image.replace(/\]/g, "");
-
+        image = image.replace(/\[/g, "");
+        image = image.replace(/\]/g, "");
+    }
     let imagearray = image.split(',');
     const onErrorImg = (e) => {
         e.target.src = DefaultImg;
@@ -369,11 +425,16 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
     /*---------------------------------------------------[이미지배열 불러오는 함수 뚜방뚜방]-------------------------------------------------------*/
     function ImageSlide() {
         let imageA = (ImageUrl);
-        imageA = imageA.replace(/\'/g, "");
+        if (imageA === null) {
+            imageA = "[]";
+        }
+        else {
 
-        imageA = imageA.replace(/\[/g, "");
-        imageA = imageA.replace(/\]/g, "");
+            imageA = imageA.replace(/\'/g, "");
 
+            imageA = imageA.replace(/\[/g, "");
+            imageA = imageA.replace(/\]/g, "");
+        }
         let imageAarray = imageA.split(',');
         var imageslidearray = [];
 
@@ -530,7 +591,7 @@ padding-right:0;
     const ThirdItem = styled.div`
 
 width: 750px;
-height: 1678px;
+height: auto;
 margin-top:20px;
 margin-left:auto;
 margin-right:auto;
@@ -636,8 +697,9 @@ text-align : center;
   word-break:initial;
   white-space: pre-wrap;
   padding-bottom:20px;
+  float:left;
 }
-`
+`;
 
     const ForthItem = styled.div`
 
@@ -650,31 +712,145 @@ background: #FDFDFD;
 box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.25);
 border-radius: 15px;
 `;
+    /*----------------------------------------------[옵션 아이콘 스타일 지정할거임 (될때까지 숨참음)]----------------------------------------------------*/
+
+    const Options = styled.main`
+    width:auto;
+    height:auto;
+    display: flex;
+  justify-content: space-between;
+  .Longa{
+  width:690px;
+  padding-top:20px;
+  padding-left:50px;
+  padding-right:40px;
+  word-break:initial;
+  white-space: pre-wrap;
+  padding-bottom:20px;
+  float:left;
+}
 
 
+  .Longa  img{
+padding-left:16px;
+padding-right:16px;
+padding-top:28px;
+padding-bottom:28px;
+  }
+`;
+
+    let Sec;
+    if (Security === 1) { Sec = 1 }
+    else if (Security_private === 1) { Sec = 1 }
+    else {
+        Sec = 0
+    }
+    let GasIn;
+    if (Gas === 1) { GasIn = 1 }
+    else if (Induction === 1) { GasIn = 1 }
+    else {
+        GasIn = 0
+    }
+    let Air
+    if (Aircon_standing === 1) { Air = 1 }
+    else if (Aircon_system === 1) { Air = 1 }
+    else {
+        Air = 0
+    }
+
+    /*----------------------------------------------------------[라고 쓰여있는데요?]-------------------------------------------------------------------*/
     /*-----------------------------------------------------------[여기서부터 리턴값]-------------------------------------------------------------------*/
     return (
         <Block>
             <ul>
-                <li className="component component--item_card" key={key}>
+                <form>
+                    <li className="component component--item_card" key={key} >
 
 
-                    <React.Fragment>
-                        <Table style={{ cursor: 'pointer' }} onClick={openModal}>
-                            <div className="leftarea">
-                                {image}
-                            </div>
-                            <div className="rightarea">
-                                <ListFeature>
+                        <React.Fragment>
+
+                            <TablE>
+
+                                <div>
+                                    <div className="leftarea" style={{ cursor: 'pointer' }} onClick={openModal}>
+                                        {image}
+                                    </div>
+                                    <div className="rightarea">
+                                        <ListFeature style={{ cursor: 'pointer' }} onClick={openModal}>
+                                            <div className="tag">
+                                                {{
+                                                    빌라: <img src={Villa} className="default" alt="" />,
+                                                    오피스텔: <img src={Officetell} className="officetell" alt="" />,
+                                                    주택: <img src={Housing} className="default" alt="" />,
+                                                    도시형생활주택: <img src={Housing} className="default" alt="" />,
+                                                    null: null
+                                                }[Category2]}
+
+                                                {{
+                                                    1: <img src={Oneroom} className="roomdefault" alt="" />,
+                                                    2: <img src={Tworoom} className="roomdefault" alt="" />,
+                                                    3: <img src={Threeroom} className="threeroom" alt="" />,
+                                                    null: null
+                                                }[Room]}
+                                            </div>
+
+
+
+                                            <div className="list">
+                                                <p><scaleFontSize><div className="bold"> {{ 1: "매매", 2: "전세", 3: "월세" }[Selling]} {realprice}
+
+                                                    {deposit}
+                                                </div></scaleFontSize></p>
+                                                <p><div className="em">{Addr}</div></p>
+                                                {Feature}
+
+                                                <p>
+                                                    {supply}m²/{dedicated}m² |<br />
+                                                    {realresult === '0만' ? null
+                                                        :
+                                                        <>{realresult}원/3.3m²</>}
+
+                                                </p>
+
+
+                                            </div>
+
+
+                                        </ListFeature>
+                                        <div style={{ float: 'top' }}>
+                                            <WTF onClick={openModal} />
+                                            <Heart Id={Id} />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                            </TablE>
+
+
+
+                            {/* /--------------------------------------------------[상세페이지 모달창 내용]---------------------------------------------------/ */}
+                            <ItemDetail2 open={modalOpen} close={closeModal} header="Modal heading">
+                                <ImageArea>
+                                    <Slider {...settings}>
+                                        {ImageSlide()}
+                                    </Slider>
+
+                                </ImageArea>
+                                <SecondItem>
                                     <div className="tag">
                                         {{
                                             빌라: <img src={Villa} className="default" alt="" />,
-                                            오피스텔: <img src={Officetell} className="officetell" alt="" />,
+
+                                            오피스텔: <img src={Officetell} className="officetall" alt="" />,
                                             주택: <img src={Housing} className="default" alt="" />,
                                             도시형생활주택: <img src={Housing} className="default" alt="" />,
                                             null: null
                                         }[Category2]}
-
+                                    </div>
+                                    <div className="tag">
                                         {{
                                             1: <img src={Oneroom} className="roomdefault" alt="" />,
                                             2: <img src={Tworoom} className="roomdefault" alt="" />,
@@ -682,178 +858,263 @@ border-radius: 15px;
                                             null: null
                                         }[Room]}
                                     </div>
-
-
-
-                                    <div className="list">
-                                        <p><scaleFontSize><div className="bold"> {{ 1: "매매", 2: "전세", 3: "월세" }[Selling]} {realprice}
-
-                                            {deposit}
-                                        </div></scaleFontSize></p>
-                                        <p><div className="em">{Addr}</div></p>
-                                        {Feature}
-
-                                        <p>
-                                            {supply}m²/{dedicated}m² |<br />
-                                            {realresult === '0만' ? null
-                                                :
-                                                <>{realresult}원/3.3m²</>}
-                                        </p>
-
-
-                                    </div>
-                                </ListFeature>
-                            </div>
-                        </Table>
-
-                        {/* /--------------------------------------------------[상세페이지 모달창 내용]---------------------------------------------------/ */}
-                        <ItemDetail2 open={modalOpen} close={closeModal} header="Modal heading">
-                            <ImageArea>
-                                <Slider {...settings}>
-                                    {ImageSlide()}
-
-                                    {/* <div>
-                                        <img src="https://w.namu.la/s/f16f3471166dd81cfd74bd6a927ed0bd3bad05bdf74b5069e7b5b57a155bbe16809c69aef2083973a899615546150b9485eb692f50300c35238115da0c908c1353facffec7f6ca098fe904ab6faf13ff8596e7d2ab47ab285b8c15d644144115" alt="" />
-                                    </div> */}
-                                </Slider>
-
-                            </ImageArea>
-                            <SecondItem>
-                                <div className="tag">
-                                    {{
-                                        빌라: <img src={Villa} className="default" alt="" />,
-
-                                        오피스텔: <img src={Officetell} className="officetall" alt="" />,
-                                        주택: <img src={Housing} className="default" alt="" />,
-                                        도시형생활주택: <img src={Housing} className="default" alt="" />,
-                                        null: null
-                                    }[Category2]}
-                                </div>
-                                <div className="tag">
-                                    {{
-                                        1: <img src={Oneroom} className="roomdefault" alt="" />,
-                                        2: <img src={Tworoom} className="roomdefault" alt="" />,
-                                        3: <img src={Threeroom} className="threeroom" alt="" />,
-                                        null: null
-                                    }[Room]}
-                                </div>
-                                <div className="sellingtag">
-                                    {{
-                                        1: <img src={Tradingimg} alt="" />,
-                                        2: <img src={Jeonseimg} alt="" />,
-                                        3: <img src={Monthlyimg} alt="" />
-                                    }[Selling]}
-                                </div>
-
-                                <scaleFontSize>
-                                    <div className="bold"> {{ 1: "매매", 2: "전세", 3: "월세" }[Selling]} {realprice}{deposit}
-                                    </div>
-                                </scaleFontSize>
-                                <div className="addr">
-                                    {Addr}
-                                </div>
-
-
-
-                                <div className="word">
-                                    {Feature}
-                                </div>
-
-
-
-
-                                <div className="word">
-                                    {supply}m²/{dedicated}m²
-                                    {realresult === '0만' ? null
-                                        :
-                                        <> | {realresult}원/3.3m²</>}
-                                </div>
-
-                            </SecondItem>
-                            <ThirdItem>
-                                <div className="Header">
-                                    상세정보
-                                </div>
-
-                                <hr />
-
-                                <div className="Icon">
-                                    <div className="Tag">
+                                    <div className="sellingtag">
                                         {{
-                                            "중간층": <div className="b"><img src={Middle} alt="" /></div>,
-                                            "저층": <div className="c"><img src={Low} alt="" /></div>,
-                                            "고층": <div className="a"><img src={High} alt="" /></div>,
-                                            null: null
-                                        }[LayerType]}
-                                        <div className="Text">{LayerType}</div>
+                                            1: <img src={Tradingimg} alt="" />,
+                                            2: <img src={Jeonseimg} alt="" />,
+                                            3: <img src={Monthlyimg} alt="" />
+                                        }[Selling]}
                                     </div>
-                                    <div className="Tag">
 
-                                        <div className="d"><img src={RoomNBath} alt="" /></div>
-
-                                        <div className="Text">
-                                            <div className="Wtf">
-                                                {roomnbath}</div></div>
+                                    <scaleFontSize>
+                                        <div className="bold"> {{ 1: "매매", 2: "전세", 3: "월세" }[Selling]} {realprice}{deposit}
+                                        </div>
+                                    </scaleFontSize>
+                                    <div className="addr">
+                                        {Addr}
                                     </div>
-                                    <div className="Tag">
-                                        <div className="e"><img src={Management} alt="" /></div>
-                                        <div className="Text">
-                                            관리비{`\n`}
-                                            <div className="wtf">
-                                                {managecost}
+
+
+
+                                    <div className="word">
+                                        {Feature}
+                                    </div>
+
+
+
+
+                                    <div className="word">
+                                        {supply}m²/{dedicated}m²
+                                        {realresult === '0만' ? null
+                                            :
+                                            <> | {realresult}원/3.3m²</>}
+                                    </div>
+
+                                </SecondItem>
+                                <ThirdItem>
+                                    <div className="Header">
+                                        상세정보
+                                    </div>
+
+                                    <hr />
+
+                                    <div className="Icon">
+                                        <div className="Tag">
+                                            {{
+                                                "중간층": <div className="b"><img src={Middle} alt="" /></div>,
+                                                "저층": <div className="c"><img src={Low} alt="" /></div>,
+                                                "고층": <div className="a"><img src={High} alt="" /></div>,
+                                                null: null
+                                            }[LayerType]}
+                                            <div className="Text">{LayerType}</div>
+                                        </div>
+                                        <div className="Tag">
+
+                                            <div className="d"><img src={RoomNBath} alt="" /></div>
+
+                                            <div className="Text">
+                                                <div className="Wtf">
+                                                    {roomnbath}</div></div>
+                                        </div>
+                                        <div className="Tag">
+                                            <div className="e"><img src={Management} alt="" /></div>
+                                            <div className="Text">
+                                                관리비{`\n`}
+                                                <div className="wtf">
+                                                    {managecost}
+                                                </div>
+
                                             </div>
+                                        </div>
+                                        <div className="Tag">
+                                            <div className="f"><img src={ParkingLot} alt="" /></div>
+                                            <div className="Text"> {parkinglot}</div>
+                                        </div>
+
+                                    </div>
+                                    <div className="mini" ><hr /></div>
+                                    <div className="Long">
+                                        ·{supply}m²/{dedicated}m² (공급/전용)
+                                        <br />
+                                        <br />
+                                        ·{MoveDate}(입주가능일)
+                                        <br />
+                                        <br />
+                                        ·{managecost}(월 평균 관리비)
+                                        <br />
+                                        <br />
+                                        ·{Category2}
+                                        <br />
+                                        <br />
+                                        ·{Direction}{dirN}
+                                        <br />
+                                        <br />
+                                        ·{Addrd}
+                                    </div>
+                                    <div className="mini" ><hr /></div>
+                                    <div className="MiniHeader" >매물소개</div>
+                                    <hr />
+                                    <div className="Long">
+                                        {longfeature}
+                                    </div>
+                                    <div className="mini" ><hr /></div>
+                                    <div className="MiniHeader" >옵션</div>
+                                    <hr />
+
+                                    {/* ------------------자 여기서 부터 옵션 들어갑니다(끝날떄 까지 숨참을거임)-------------------------------- */}
+                                    <Options>
+                                        <div className="Longa">
+
+                                            {{
+                                                1: <img src={aircon_hanging} alt="" />,
+                                                0: null
+                                            }[Aircon_Hanging]}
+
+
+
+
+
+                                            {{
+                                                1: <img src={aircon_stand_system} alt="" />,
+                                                0: null
+                                            }[Air]}
+
+
+
+                                            {{
+                                                1: <img src={bath} alt="" />,
+                                                0: null
+                                            }[Bath]}
+                                            {{
+                                                1: <img src={bed} alt="" />,
+                                                0: null
+                                            }[Bed]}
+                                            {{
+                                                1: <img src={drier} alt="" />,
+                                                0: null
+                                            }[Drier]}
+
+                                            {{
+                                                1: <img src={bidet} alt="" />,
+                                                0: null
+                                            }[Bidet]}
+                                            {{
+                                                1: <img src={cardkey} alt="" />,
+                                                0: null
+                                            }[Cardkey]}
+                                            {{
+                                                1: <img src={CCTV} alt="" />,
+                                                0: null
+                                            }[Cctv]}
+                                            {{
+                                                1: <img src={closet} alt="" />,
+                                                0: null
+                                            }[Closet]}
+                                            {{
+                                                1: <img src={couch} alt="" />,
+                                                0: null
+                                            }[Couch]}
+                                            {{
+                                                1: <img src={delivery_box} alt="" />,
+                                                0: null
+                                            }[Delivery_box]}
+                                            {{
+                                                1: <img src={desk} alt="" />,
+                                                0: null
+                                            }[Desk]}
+                                            {{
+                                                1: <img src={elevator} alt="" />,
+                                                0: null
+                                            }[Elevator]}
+                                            {{
+                                                1: <img src={entrance_security} alt="" />,
+                                                0: null
+                                            }[Entrance_security]}
+                                            {{
+                                                1: <img src={fridge} alt="" />,
+                                                0: null
+                                            }[Fridge]}
+
+
+
+
+                                            {{
+                                                1: <img src={gas_induction} alt="" />,
+                                                0: null
+                                            }[GasIn]}
+
+
+                                            {{
+                                                1: <img src={interphone} alt="" />,
+                                                0: null
+                                            }[Interphone]}
+                                            {{
+                                                1: <img src={oven} alt="" />,
+                                                0: null
+                                            }[Oven]}
+
+
+
+
+
+
+                                            {{
+                                                1: <img src={security} alt="" />,
+                                                0: null
+                                            }[Sec]}
+
+                                            {{
+                                                1: <img src={shoe} alt="" />,
+                                                0: null
+                                            }[Shoe]}
+                                            {{
+                                                1: <img src={shower_booth} alt="" />,
+                                                0: null
+                                            }[Shower_booth]}
+                                            {{
+                                                1: <img src={sink} alt="" />,
+                                                0: null
+                                            }[Sink]}
+                                            {{
+                                                1: <img src={table} alt="" />,
+                                                0: null
+                                            }[Table]}
+                                            {{
+                                                1: <img src={wardrobe} alt="" />,
+                                                0: null
+                                            }[Wardrobe]}
+                                            {{
+                                                1: <img src={washing} alt="" />,
+                                                0: null
+                                            }[Washing]}
+                                            {{
+                                                1: <img src={window_guard} alt="" />,
+                                                0: null
+                                            }[Window_guard]}
+                                            {{
+                                                1: <img src={fire_alarm} alt="" />,
+                                                0: null
+                                            }[Fire_alarm]}
+                                            {{
+                                                1: <img src={dishwasher} alt="" />,
+                                                0: null
+                                            }[Dishwasher]}
 
                                         </div>
-                                    </div>
-                                    <div className="Tag">
-                                        <div className="f"><img src={ParkingLot} alt="" /></div>
-                                        <div className="Text"> {parkinglot}</div>
-                                    </div>
+                                    </Options>
 
-                                </div>
+                                    {/* ------------------------------------------라고 쓰여있는데요?------------------------------------- */}
 
 
 
-
-
-                                <div className="mini" ><hr /></div>
-
-                                <div className="Long">
-                                    ·{supply}m²/{dedicated}m² (공급/전용)
-                                    <br />
-                                    <br />
-                                    ·{MoveDate}(입주가능일)
-                                    <br />
-                                    <br />
-                                    ·{managecost}(월 평균 관리비)
-                                    <br />
-                                    <br />
-                                    ·{Category1}
-                                    <br />
-                                    <br />
-                                    ·{Direction}{dirN}
-                                    <br />
-                                    <br />
-                                    ·{Addrd}
-                                </div>
-                                <div className="mini" ><hr /></div>
-                                <div className="MiniHeader" >매물소개</div>
-                                <hr />
-                                <div className="Long">
-                                    {LongFeature}
-                                </div>
-                                <div className="mini" ><hr /></div>
-                                <div className="MiniHeader" >옵션</div>
-                                <hr />
-
-
-                            </ThirdItem>
-                            <ForthItem>
-                                4
-                            </ForthItem>
-                        </ItemDetail2>
-                    </React.Fragment>
-                </li>
+                                </ThirdItem>
+                                <ForthItem>
+                                    4
+                                </ForthItem>
+                            </ItemDetail2>
+                        </React.Fragment>
+                    </li>
+                </form>
             </ul>
 
         </Block >

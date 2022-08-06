@@ -8,13 +8,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class HomeDTO {
-
     private int 	idx;
     private int 	category1;
     private String 	category2;
     private String 	name;
     private String 	dong;
     private Double 	layer;
+    private int layer_all;
     private String 	layer_name;
     private int 	layer_all;
     private String 	direction;
@@ -105,11 +105,6 @@ public class HomeDTO {
     private double sc_office;
     private double sc_post;
     private double sc_subway;
-
-
-
-
-
 
 
 }

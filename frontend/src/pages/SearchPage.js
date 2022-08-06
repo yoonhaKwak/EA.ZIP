@@ -16,11 +16,6 @@ const RemoteButton = styled.button`
   z-index: 100; position: absolute; width:116px; height:47px; background-color:white; color:#FF9431; cursor: pointer;
 `;
 
-const QuestionMark = styled.button`
-  font-size: 30px; border: none; border-radius:25px; font-weight: bold; margin: 15px 150px; z-index: 100; position: absolute;
-   width: 45px; height: 45px; background-color:#FF9431; color: white; cursor:pointer;
-`;
-
 const Container = styled.div`
 justify-content: space-between;
 -ms-user-select: none; 
@@ -85,13 +80,12 @@ background-color:white;
 
 
 const SearchPage = () => {
-  let [showbox, setShowbox] = useState(false);
   let [modal, setModal] = useState(false);
-
   const [isActive, setIsActive] = useState(false);
   const handleClick = () => {
     setIsActive(current => !current);
   };
+
   return (
     <Container>
       <SearchHeader />
@@ -105,14 +99,8 @@ const SearchPage = () => {
           {
             modal === true ? <Modal /> : null
           }
-          <QuestionMark onClick={() => { setShowbox(!showbox) }}>?</QuestionMark>
-          {
-            showbox === true ? <SpeakBox /> : null
-          }
         </div>
-
       </Body>
-
     </Container>
   );
 };
