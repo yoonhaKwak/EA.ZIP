@@ -5,11 +5,10 @@ import SignIn from 'pages/SignIn';
 import Modal from 'components/part/Modal';
 import Mypage from 'pages/Mypage';
 import TargetSearch from 'pages/TargetSearch';
+import TargetToNormalSearch from 'pages/TargetToNormalSearch';
 import NormalSearch from 'pages/NormalSearch';
-
 import KakaoSearch from 'API/KakaoSearch';
 
-import KakaoMap from 'API/KakaoMap';
 import FirstPage from 'pages/FirstPage';
 import OAuthRedirectHandler from 'pages/OAuthRedirectHandler';
 import Test from 'pages/Test';
@@ -31,6 +30,7 @@ function App() {
                                 <Route path="/" element={<FirstPage />} />
                                 <Route path="/targetsearch" element={<TargetSearch />} />
                                 <Route path="/test" element={<Test />} />
+                                <Route path="/normalsearch1" element={<TargetToNormalSearch />} />
                         </Routes>
                 </Router>
         );

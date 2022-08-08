@@ -10,11 +10,11 @@ import FillHeart from "../../styles/img/Fill_Heart.svg";
 
 
 
-function Heart({ Id, value }) {
+function ReverseHeart({ Id, value }) {
 
 
   /*-----------------------------------------------------------[Wla기능 만들거임]-------------------------------------------------------------------------------*/
-  const [Wishadd, setWishadd] = useState(false)
+  const [Wishadd, setWishadd] = useState(true)
   const [Wishcount, setWishcount] = useState(800)
 
   const wishAddHandler = () => {
@@ -61,13 +61,13 @@ function Heart({ Id, value }) {
   return (
     <HeartButton>
       <input type="checkbox" name="heart" id={Id} value={value} onClick={wishCountHandler} />
-      <label htmlFor={Id}><img src={BlankHeart} alt="" /></label>
+      <label htmlFor={Id}><img src={FillHeart} alt="" /></label>
 
     </HeartButton>
   );
 }
 
-export default Heart;
+export default ReverseHeart;
 
 const HeartButton = styled.div`
   input{
@@ -78,10 +78,10 @@ const HeartButton = styled.div`
     height:32px;
   }
 input+label{
-  content:url(${BlankHeart});
+  content:url(${FillHeart});
 }
 input:checked+label{
-  content:url(${FillHeart});  
+  content:url(${BlankHeart});  
 }
 img{
   width:32px;

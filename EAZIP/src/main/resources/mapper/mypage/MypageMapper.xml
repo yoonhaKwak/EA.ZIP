@@ -4,14 +4,14 @@
 
     <select id="getHistoryHome" resultType="bit.project.eazip.domain.home.HomeDTO">
         SELECT * from gangnam0712 WHERE idx IN
-        <foreach collection="history" item="item" open="(" close=")" separator=",">
+        <foreach collection="collection" item="item" open="(" close=")" separator=",">
             #{item}
         </foreach>
     </select>
 
     <select id="getFavoriteHome" resultType="bit.project.eazip.domain.home.HomeDTO">
         SELECT * from gangnam0712 WHERE idx IN
-        <foreach collection="favorite" item="item" open="(" close=")" separator=",">
+        <foreach collection="collection" item="item" open="(" close=")" separator=",">
             #{item}
         </foreach>
     </select>
