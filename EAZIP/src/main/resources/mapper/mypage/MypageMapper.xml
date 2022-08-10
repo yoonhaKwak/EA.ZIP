@@ -4,39 +4,39 @@
 
     <select id="getHistoryHome" resultType="bit.project.eazip.domain.home.HomeDTO">
         SELECT * from gangnam0712 WHERE idx IN
-        <foreach collection="history" item="item" open="(" close=")" separator=",">
+        <foreach collection="collection" item="item" index="index" separator="," open="(" close=")">
             #{item}
         </foreach>
     </select>
 
     <select id="getFavoriteHome" resultType="bit.project.eazip.domain.home.HomeDTO">
         SELECT * from gangnam0712 WHERE idx IN
-        <foreach collection="favorite" item="item" open="(" close=")" separator=",">
+        <foreach collection="collection" item="item" index="index" separator="," open="(" close=")">
             #{item}
         </foreach>
     </select>
 
 
 
-    <select id="getHistory" resultType="String">
-        SELECT history from usertbl WHERE id ='2361369723'
+    <select id="getHistoryIdx" resultType="String">
+        SELECT history from usertbl WHERE id =#{userId}
     </select>
 
 
-    <select id="getFavorite" resultType="String">
-        SELECT favorite from usertbl WHERE id ='2361369723'
+    <select id="getFavoriteIdx" resultType="String">
+        SELECT favorite from usertbl WHERE id =#{userId}
     </select>
 
-    <insert id="insertHistory">
+    <insert id="updateHistoryIdx">
         update usertbl set history =
-                               #{temp}
-        where id = '2361369723'
+                               #{param1}
+        where id = #{param2}
     </insert>
 
-    <insert id="insertFavorite">
+    <insert id="updateFavoriteIdx">
         update usertbl set favorite =
-                               #{temp}
-        where id = '2361369723'
+                               #{param1}
+        where id = #{param2}
     </insert>
 
 

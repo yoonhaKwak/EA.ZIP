@@ -10,15 +10,12 @@ public interface MypageService {
 
     public List<HomeDTO> getFavoriteHome(ArrayList<String> favorite);
 
+    public String getHistoryIdx(String userId);
 
+    public String getFavoriteIdx(String userId);
 
-
-    public String getHistory();
-
-    public String getFavorite();
-
-    public void insertHistory(List<String> history);
-    public void insertFavorite(List<String> favorite);
+    public void updateHistoryIdx(List<String> history, String userId);
+    public void updateFavoriteIdx(List<String> favorite, String userId);
 
 
 }

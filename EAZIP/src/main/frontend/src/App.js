@@ -17,7 +17,7 @@ function App() {
                 <Router>
                     <Routes>
                         <Route path="/testapi" element={<TestApi/>} />
-                        <Route path="/mypage" element={<MyPage/>} />
+                        <Route path="/my" element={<MyPage/>} />
                         <Route path="/cashing" element={<Cashing/>} />
                         <Route path="/Filter" element={<Filter/>} />
                         <Route path="/local" element={<Local/>} />
