@@ -25,7 +25,6 @@ public class MemberController {
     @RequestMapping(value = "/login", method = {RequestMethod.POST,RequestMethod.GET})
     public Map<String,String> login(@RequestBody Map<String,String> codeMap){
         String code = codeMap.get("code");
-        log.info("############### 프론트에서 받기 #####################");
         System.out.println(code);
         String token = service.getKakaoAccessToken(code);
         Map<String,String> userMap = service.createKakaoUser(token);
