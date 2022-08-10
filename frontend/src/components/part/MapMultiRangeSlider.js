@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
-import "../../styles/css/MapMultiRangeSlider.css";
+import "../../styles/css/mapmultiRangeSlider.css";
 
 //min, max,onChange 가 부모로 보낼 데이터 변수.
 const MultiRangeSlider = ({ min, max, onChange }) => {

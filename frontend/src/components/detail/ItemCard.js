@@ -52,7 +52,10 @@ import washing from "../../styles/icons/options/washing.svg";
 import window_guard from "../../styles/icons/options/window_guard.svg";
 import fire_alarm from "../../styles/icons/options/fire_alarm.svg";
 import dishwasher from "../../styles/icons/options/dishwasher.svg";
-import { Card } from "react-bootstrap";
+import KakaoMap from "API/KakaoMap";
+import OptionButton from "components/part/OptionButton";
+import cafe from "../../styles/icons/locate/CafeOn.svg";
+
 
 
 const Block = styled.div`
@@ -111,7 +114,7 @@ const ListFeature = styled.div`
   margin-bottom:12px;
   margin-top:24px;
  padding-left:12px;
- word-break:keep-all;
+
  overflow:visible;
 
   .default{
@@ -368,12 +371,24 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
 
     parkinglot = "주차 " + parkinglot + "대"
     //신주소 정보 없을시 구주소
+
+    let layer;
+    if (Layer < 0) {
+        layer = Math.abs(Layer);
+        layer = "지하 " + layer;
+    }
+    else if (Layer === 0) { layer = "반지하" }
+    else {
+        layer = Layer;
+    }
+
+
     let Addr;
     if (Addr2 === "0") {
-        Addr = Addr1 + " " + Layer + "층" + "(총 " + AllLayer + "층)";;
+        Addr = Addr1 + " " + layer + "층" + "(총 " + AllLayer + "층)";;
     }
     else {
-        Addr = Addr2 + " " + Layer + "층" + "(총 " + AllLayer + "층)";
+        Addr = Addr2 + " " + layer + "층" + "(총 " + AllLayer + "층)";
     };
 
     let Addrd
@@ -711,6 +726,26 @@ margin-right:auto;
 background: #FDFDFD;
 box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.25);
 border-radius: 15px;
+
+.Map{
+    width:690px;
+    height:500px;
+    padding-left:30px;
+    padding-top:10px;
+    
+}
+hr{
+  border: 2px solid #d4d4d4;
+  width: 700px;
+}
+.mini hr{
+  
+  border: 0.5px solid #dbdbdb;
+  width: 700px;
+
+}
+
+
 `;
     /*----------------------------------------------[옵션 아이콘 스타일 지정할거임 (될때까지 숨참음)]----------------------------------------------------*/
 
@@ -796,21 +831,22 @@ padding-bottom:28px;
 
 
 
-                                            <div className="list">
+                                            <div className="list" >
                                                 <p><scaleFontSize><div className="bold"> {{ 1: "매매", 2: "전세", 3: "월세" }[Selling]} {realprice}
 
                                                     {deposit}
                                                 </div></scaleFontSize></p>
                                                 <p><div className="em">{Addr}</div></p>
                                                 {Feature}
+                                                <div style={{ height: '8px' }}>
+                                                    <br />
+                                                </div >
+                                                {supply}m²/{dedicated}m² |<br />
+                                                {realresult === '0만' ? null
+                                                    :
+                                                    <>{realresult}원/3.3m²</>}
 
-                                                <p>
-                                                    {supply}m²/{dedicated}m² |<br />
-                                                    {realresult === '0만' ? null
-                                                        :
-                                                        <>{realresult}원/3.3m²</>}
 
-                                                </p>
 
 
                                             </div>
@@ -961,7 +997,7 @@ padding-bottom:28px;
                                     <div className="MiniHeader" >옵션</div>
                                     <hr />
 
-                                    {/* ------------------자 여기서 부터 옵션 들어갑니다(끝날떄 까지 숨참을거임)-------------------------------- */}
+                                    {/* ------------------자 여기서부터 옵션 (끝날떄 까지 숨참을거임)-------------------------------- */}
                                     <Options>
                                         <div className="Longa">
 
@@ -1034,7 +1070,10 @@ padding-bottom:28px;
                                                 1: <img src={fridge} alt="" />,
                                                 0: null
                                             }[Fridge]}
-
+                                            {{
+                                                1: <img src={microwave} alt="" />,
+                                                0: null
+                                            }[Microwave]}
 
 
 
@@ -1052,12 +1091,6 @@ padding-bottom:28px;
                                                 1: <img src={oven} alt="" />,
                                                 0: null
                                             }[Oven]}
-
-
-
-
-
-
                                             {{
                                                 1: <img src={security} alt="" />,
                                                 0: null
@@ -1109,7 +1142,14 @@ padding-bottom:28px;
 
                                 </ThirdItem>
                                 <ForthItem>
-                                    4
+                                    <div className="Header" >위치 및 주변시설</div>
+                                    <hr />
+                                    <div className="Map">
+                                           <KakaoMap />
+                                    </div>
+
+                                    <img src={cafe} alt="" />
+                                    {/* <OptionButton /> */}
                                 </ForthItem>
                             </ItemDetail2>
                         </React.Fragment>

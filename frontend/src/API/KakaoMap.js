@@ -1,11 +1,12 @@
 import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, createContext } from 'react';
 import SearchMarker from '../styles/icons/SearchMarker.svg';
 import axios from "axios";
 import { useLocation, Link } from "react-router-dom";
 import ItemDetailMarker from "../components/part/ItemDetailMarker";
 import styled from "styled-components";
 import { param } from "jquery";
+
 
 const { kakao } = window
 
@@ -63,6 +64,7 @@ function KakaoMap() {
                 lat: 37.4946012,
                 lng: 127.027561
             }}
+            isPanto={true}
             style={{ width: "100%", height: "100%", maxHeight: "905px", maxWidth: "1415px" }}
             level={8}
             minLevel={3}

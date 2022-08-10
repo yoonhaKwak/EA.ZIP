@@ -18,7 +18,7 @@ function MyHomeList() {
 
   const [ItemList, SetItemList] = useState();
   useEffect(() => {
-    axios.get("Gangnam15.json")
+    axios.get("http://localhost:8080/getfavorite")
       .then((response) => {
         SetItemList(response.data);
         console.log(response.data);

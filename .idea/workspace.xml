@@ -7,34 +7,8 @@
     <list default="true" id="eea96d36-841c-4069-bb9f-06433382a808" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/detail/ItemCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/detail/ItemCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/CCTV.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/CCTV.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/aircon_hanging.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/aircon_hanging.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/aircon_stand_system.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/aircon_stand_system.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/bath.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/bath.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/bed.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/bed.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/bidet.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/bidet.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/cardkey.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/cardkey.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/closet.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/closet.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/couch.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/couch.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/delivery_box.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/delivery_box.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/desk.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/desk.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/drier.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/drier.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/elevator.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/elevator.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/entrance_security.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/entrance_security.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/fire_alarm.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/fire_alarm.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/fridge.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/fridge.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/gas_induction.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/gas_induction.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/interphone.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/interphone.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/microwave.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/microwave.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/oven.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/oven.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/security.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/security.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/shoe.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/shoe.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/shower_booth.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/sink.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/sink.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/table.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/table.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/wardrobe.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/wardrobe.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/washing.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/washing.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/icons/options/window_guard.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/icons/options/window_guard.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/part/HomeList.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/part/HomeList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/part/MapMultiRangeSlider.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/part/MapMultiRangeSlider.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +110,10 @@
       <workItem from="1659425790426" duration="1764000" />
       <workItem from="1659486285330" duration="1742000" />
       <workItem from="1659515583184" duration="287000" />
-      <workItem from="1659571735251" duration="2362000" />
+      <workItem from="1659571735251" duration="2459000" />
+      <workItem from="1659658861513" duration="799000" />
+      <workItem from="1659853210856" duration="758000" />
+      <workItem from="1660089327490" duration="814000" />
     </task>
     <servers />
   </component>

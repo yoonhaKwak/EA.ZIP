@@ -3,7 +3,7 @@ import styled from "styled-components";
 import image from "../styles/background/2.jpg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MultiRangeSlider1 from "components/part/MultiRangeSlider1";
 import TimeSectionSlider from "components/part/TimeSectionSlider";
 import TransferSlider from "components/part/TransferSlider";
@@ -112,20 +112,10 @@ const TargetSearch = (onClick) => {
   const [mim, setMim] = useState(0);
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
-
-
-  const NextPage = () => {
-    setData([map, mip, mal, mil, mam, mim, search])
-    console.log(data)
-    // navigate('/normalsearch', { state: data })
-  };
   const navigate = useNavigate();
-  // const Back = () => {
-  //   navigate('/normalsearch', { state: data })
-  // };
   const onChange = (e) => {
     setSearch(e.target.value)
-  }
+  };
 
   /////////////////////////////////////////////////숫자==> 시간으로////////////////////////////////////////////////////////
   Number.prototype.toHHMMSS = function () {
@@ -140,6 +130,19 @@ const TargetSearch = (onClick) => {
   }
   /////////////////////////////////////////////////숫자==> 시간으로////////////////////////////////////////////////////////
 
+  const NextPage = () => {
+    navigate('/normalsearch1', {
+      state: {
+        search: search,
+        minTime: mip,
+        maxTime: map,
+        minWalk: mil,
+        maxWalk: mal,
+        minTrans: mim,
+        maxTrans: mam
+      }
+    });
+  };
   return (
     <Container>
       <MainHeader3 />
@@ -200,7 +203,7 @@ const TargetSearch = (onClick) => {
             {JSON.stringify({ data: { search, mip, map, mil, mal, mim, mam } })}
           </code> */}
         </form>
-        <Sbtn onClick={NextPage}>
+        <Sbtn onClick={() => NextPage()}>
           우선순위 정하기
         </Sbtn>
       </Positioner>

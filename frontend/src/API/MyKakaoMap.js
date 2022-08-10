@@ -23,22 +23,30 @@ function MyKakaoMap(data) {
     const [markers, setMarkers] = useState([]);
     const [error, setError] = useState(null);
 
+    // axios.get('https://localhost:8080/getfavorite').then((Response) => {
+    //     console.log(Response.data);
+    // }).catch((Error) => {
+    //     console.log(Error);
+    // })
+
     const fetchMarkers = async () => {
         try {
             setMarkers(null);
             const response = await axios
-                .get('./Gangnam15.json'); //강남매물 데이터 테스트 http://localhost:8080/react/dataList
+                .get('http://localhost:8080/getfavorite');
+            console.log(response.data);
             setMarkers(response.data);
         }
-        catch (e) {
+        catch (error) {
+            console.log(error);
         }
-    };
+    }
 
 
     useEffect(() => {
         fetchMarkers();
     }, []);
-    console.log(markers)
+    console.log()
 
     if (error) return <div>에러발생</div>;
     if (!markers) return null;

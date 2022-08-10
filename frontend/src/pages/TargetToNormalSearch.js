@@ -3,7 +3,7 @@ import styled from "styled-components";
 import image from "../styles/background/2.jpg";
 import CheckBox from "../components/part/CheckBox";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import React, { useState } from "react";
 import MultiRangeSlider from "components/part/MultiRangeSlider";
 import ButtonA from "../components/part/ButtonA";
@@ -158,6 +158,10 @@ const NormalSearch = (onClick) => {
   const [search, setSearch] = useState("");
   const [data, setData] = useState(null);
   const navigate = useNavigate();
+
+  const { state } = useLocation();
+  console.log(state);
+
 
   const onChange = (e) => {
     setSearch(e.target.value)
@@ -345,9 +349,9 @@ const NormalSearch = (onClick) => {
         <Sbtn onClick={() => Back()}>
           추천받기
         </Sbtn>
-        {/* <code>
-          {JSON.stringify({ data: { search, map, mip, mam, mim, category1, type, room_number, options } })}
-        </code> */}
+        <code>
+          {JSON.stringify({ data: { search, map, mip, mam, mim, category1, type, room_number, options, state } })}
+        </code>
       </Positioner>
     </Container>
   );

@@ -3,13 +3,9 @@ import SearchHeader from "../components/part/SearchHeader";
 import React, { useState } from "react";
 import styled from "styled-components";
 import HomeList from "../components/part/HomeList";
-import Map from "../components/part/Map";
 import pallette from "styles/pallette";
 import Modal from "components/part/Modal";
 import KakaoMap from "API/KakaoMap";
-import KakaoSearch from "API/KakaoSearch";
-import SpeakBox from "components/part/SpeakBox";
-import { useLocation } from "react-router-dom";
 
 const RemoteButton = styled.button`
   font-size: 20px; border: solid 3px ${pallette.orange[0]}; border-radius: 20px; font-weight: bold; margin: 15px 18px;
@@ -78,8 +74,10 @@ background-color:white;
 }
 `;
 
+const { kakao } = window
 
 const SearchPage = () => {
+
   let [modal, setModal] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const handleClick = () => {
@@ -93,9 +91,10 @@ const SearchPage = () => {
       <Body>
         <div className="left" style={{ zindex: '50' }}><HomeList />
         </div>
-        <div className="right"><KakaoMap />
+        <div className="right">
+          <KakaoMap />
           <RemoteButton
-            onClick={(handleClick) => { setModal(!modal) }} >필터 목록</RemoteButton>
+            onClick={() => { setModal(!modal) }} >필터 목록</RemoteButton>
           {
             modal === true ? <Modal /> : null
           }
