@@ -22,20 +22,17 @@ function Filter(){
     const Back = async () => {
         axios(
             {
-                url: '/react/filter',
+                url: '/local/filter',
                 method: 'post',
                 data: {
                     "addr1" : addr1,
-
                     "category1" : category,
                     "type" : type,
                     "room_number" : room,
-
                     "maxprice" : map,
                     "minprice" : mip,
                     "maxmonthly" : mam,
                     "minmonthly" : mim,
-
                     "op1" : op1,
                     "op2" : op2,
                     "op3" : op3,
