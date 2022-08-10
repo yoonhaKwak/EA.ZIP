@@ -21,35 +21,23 @@ function MyKakaoMap(data) {
     //     // console.log(state[key].lat, state[key].lng)
     // }
     const [markers, setMarkers] = useState([]);
-    const [error, setError] = useState(null);
-
-    // axios.get('https://localhost:8080/getfavorite').then((Response) => {
-    //     console.log(Response.data);
-    // }).catch((Error) => {
-    //     console.log(Error);
-    // })
-
-    const fetchMarkers = async () => {
-        try {
-            setMarkers(null);
-            const response = await axios
-                .get('http://localhost:8080/getfavorite');
-            console.log(response.data);
-            setMarkers(response.data);
-        }
-        catch (error) {
-            console.log(error);
-        }
-    }
-
-
+    let userId = '2361369723';
     useEffect(() => {
-        fetchMarkers();
+        axios({
+            url: '/mypage/getfavorite',
+            method: 'post',
+            data:
+            {
+                'userId': userId
+            },
+            baseURL: 'http://localhost:8080'
+        }
+        ).then((respoonse) => {
+            setMarkers(respoonse.data);
+            console.log(respoonse.data);
+        });
     }, []);
-    console.log()
-
-    if (error) return <div>에러발생</div>;
-    if (!markers) return null;
+    console.log(markers);
     return (
         <Map
             center={{

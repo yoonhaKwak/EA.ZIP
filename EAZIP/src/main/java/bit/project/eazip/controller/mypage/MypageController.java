@@ -137,6 +137,7 @@ public class MypageController {
         }
 
         System.out.println(favorite);
+        System.out.println();
         System.out.println("favorite size :" + favorite.size());
 
 
@@ -181,6 +182,7 @@ public class MypageController {
         String userId = pramMap.get("userId");
         String temp = service.getFavoriteIdx(userId);
 
+        log.info(" 여기");
         // 가져온 String형태의 idx를 ArrayList로 바꿈
         temp = temp.replace("[", "");
         temp = temp.replace("]", "");
