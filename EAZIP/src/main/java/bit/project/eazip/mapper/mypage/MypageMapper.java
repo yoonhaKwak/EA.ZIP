@@ -14,16 +14,14 @@ public interface MypageMapper {
 
     public List<HomeDTO> getFavoriteHome(ArrayList<String> favorite);
 
-    public String getHistory();
+    public String getHistoryIdx(String userId);
 
-    public String getFavorite();
+    public String getFavoriteIdx(String userId);
 
     //    public void insertHistory(List<Integer> history);
-    public void insertHistory(String temp);
+    public void updateHistoryIdx(String temp, String userId);
 
-    public void insertFavorite(String temp);
-
-
+    public void updateFavoriteIdx(String temp, String userId);
 
 
 }

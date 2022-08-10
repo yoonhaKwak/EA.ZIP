@@ -8,10 +8,11 @@ function MyPage() {
     const onhistory = async () => {
         axios(
             {
-                url: '/history',
+                url: '/mypage/history',
                 method: 'post',
                 data: {
-                    'idx': '28832666',
+                    'userId' :'2361494735',
+                    'idx': '28848255',
                 },
                 baseURL: 'http://localhost:8080'
             }
@@ -23,9 +24,10 @@ function MyPage() {
     const onfavorite = async () => {
         axios(
             {
-                url: '/favorite',
+                url: '/mypage/favorite',
                 method: 'post',
                 data: {
+                    'userId' :'2361494735',
                     'idx': '28832745',
                 },
                 baseURL: 'http://localhost:8080'

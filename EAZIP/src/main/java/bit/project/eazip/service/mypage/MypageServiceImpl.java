@@ -36,36 +36,38 @@ public class MypageServiceImpl implements MypageService{
     }
 
     @Override
-    public String getHistory(){
+    public String getHistoryIdx(String userId){
         log.info("service inple, getIdx() 서비스 실행");
-        return mypageMapper.getHistory();
+        return mypageMapper.getHistoryIdx(userId);
     }
 
     @Override
-    public String getFavorite(){
+    public String getFavoriteIdx(String userId){
         log.info("service inple, getIdx() 서비스 실행");
-        return mypageMapper.getFavorite();
+        return mypageMapper.getFavoriteIdx(userId);
     }
 
 
     @Override
-    public void insertHistory(List<String> history){
+    public void updateHistoryIdx(List<String> history, String userId){
 
         log.info("service imple, insertFavorite() 서비스 실행");
         String temp = history.toString();
         temp = temp.replace("[","");
         temp = temp.replace("]","");
-        mypageMapper.insertHistory(temp);
+
+        String id = "2361494735";
+        mypageMapper.updateHistoryIdx(temp, userId);
     }
 
 
-    public void insertFavorite(List<String> favorite){
+    public void updateFavoriteIdx(List<String> favorite, String userId){
 
         log.info("service imple, insertFavorite() 서비스 실행");
         String temp = favorite.toString();
         temp = temp.replace("[","");
         temp = temp.replace("]","");
-        mypageMapper.insertFavorite(temp);
+        mypageMapper.updateFavoriteIdx(temp, userId);
     }
 
 

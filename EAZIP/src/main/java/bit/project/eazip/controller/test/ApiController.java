@@ -16,7 +16,6 @@ import java.lang.Integer;
 @RequestMapping("/react")
 @CrossOrigin(origins = "http://localhost:3000",allowCredentials = "true")
 public class ApiController {
-
     @Autowired
     LocalService service;
 
@@ -116,15 +115,20 @@ public class ApiController {
             idx[i] = idxList.get(i).getIdx();
         }
 
+
         // for (int i=0; i<idx.length; i++) {
 
         HomeDTO homes = service.selectData(idx[0]);
         Map<String, Double> coordinate = new HashMap<String,Double>();
 
         // 매물의 위도경도 정보 coordinate에 입력
-        coordinate.put("lat",homes.getLat());
-        coordinate.put("lng",homes.getLng());
+//        coordinate.put("lat",homes.getLat());
+//        coordinate.put("lng",homes.getLng());
 
+
+//        127.0276197   37.4946287  /37.6310397,127.1059492
+        coordinate.put("lat",37.4946287);
+        coordinate.put("lng",127.0276197);
 
         // api 받아오기
         api = service.apiList(coordinate);
@@ -140,8 +144,6 @@ public class ApiController {
 
         //HomeDTO 리스트 리턴
         return homeDTOList;
-
-
     }
 
     @GetMapping("/dataList")
