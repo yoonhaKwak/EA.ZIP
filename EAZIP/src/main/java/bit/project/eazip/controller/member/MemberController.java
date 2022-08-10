@@ -15,8 +15,6 @@ import java.util.Map;
 @RequestMapping("/member")
 @RestController
 @Log
-@RequiredArgsConstructor
-@Slf4j
 @CrossOrigin(origins = "http://localhost:3000",allowCredentials = "true")
 public class MemberController {
     @Autowired

@@ -17,7 +17,7 @@ import java.util.Map;
 import lombok.extern.java.Log;
 @Log
 @RestController
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:3000",allowCredentials = "true")
 @RequestMapping("/local")
 public class LocalController {
     @Autowired

@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 @Log
 @RestController
-//@RequestMapping("/mypage")
-@CrossOrigin("*")
+@RequestMapping("/mypage")
+@CrossOrigin(origins = "http://localhost:3000",allowCredentials = "true")
 public class MypageController {
 
     @Autowired

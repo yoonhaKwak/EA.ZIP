@@ -14,7 +14,7 @@ import java.lang.Integer;
 @Log
 @RestController
 @RequestMapping("/react")
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:3000",allowCredentials = "true")
 public class ApiController {
 
     @Autowired
@@ -132,7 +132,7 @@ public class ApiController {
         if(api[0]*0.016<=5 & api[1]<=1 & api[2]<=45){
             //디비에 HomeDTO 저장하기
             service.insertData(service.selectData(idx[0])); // DB에 저장
-
+                //디비에 저장하지말고 리스트에 추가해서 한번에 리턴 , 프론트로 보내기
         //    }
 
         }

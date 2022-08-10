@@ -12,7 +12,7 @@ import java.util.Map;
 
 @Log
 @RestController
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:3000",allowCredentials = "true")
 public class CashingController {
 
     @Autowired
