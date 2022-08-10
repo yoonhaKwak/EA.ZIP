@@ -37,10 +37,11 @@ public class MemberController {
         service.insertUser(memberDTO);
 
         log.info("--------------------------");
-        Map<String,String> UserId = new HashMap<>();
-        UserId.put("userId",memberDTO.getId());
-        System.out.println(UserId);
-        return UserId;
+        Map<String,String> User = new HashMap<>();
+        User.put("userId",memberDTO.getId());
+        User.put("token",token);
+        System.out.println(User);
+        return User;
     }
 
     @GetMapping("/logout")
