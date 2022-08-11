@@ -4,6 +4,8 @@ import pallette from '../../styles/pallette';
 import { Link } from 'react-router-dom';
 import Responsive from '../detail/Responsive';
 import logo from '../../styles/img/Group 65.svg';
+import axios from 'axios';
+import {data} from "jquery"
 
 
 const HeaderBlock = styled.div`
@@ -93,6 +95,6 @@ const MainHeader3 = () => {
             <Spacer />
         </header>
     );
-}
 
+}
 export default MainHeader3;

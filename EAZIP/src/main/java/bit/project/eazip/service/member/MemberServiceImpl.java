@@ -9,6 +9,7 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -23,6 +24,7 @@ public class MemberServiceImpl implements MemberService{
 
     @Autowired
     MemberMapper mapper;
+    @Override
     public String getKakaoAccessToken(String code) {
         String access_Token = "";
         String refresh_Token = "";
@@ -78,6 +80,7 @@ public class MemberServiceImpl implements MemberService{
         return access_Token;
     }
 
+    @Override
     public Map<String, String> createKakaoUser(String token) {
 
         String reqURL = "https://kapi.kakao.com/v2/user/me";
@@ -136,5 +139,8 @@ public class MemberServiceImpl implements MemberService{
         mapper.insertUser(memberDTO);
         log.info("Insert UserData");
     }
+
+
+
 }
 

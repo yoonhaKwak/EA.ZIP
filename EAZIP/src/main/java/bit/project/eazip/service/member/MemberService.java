@@ -13,4 +13,5 @@ public interface MemberService {
     public Map<String, String> createKakaoUser(String token);
 
     public void insertUser(MemberDTO memberDTO);
+
 }
