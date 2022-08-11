@@ -79,4 +79,41 @@ public class LocalController {
         }
 
 
+    @GetMapping("/apilist")
+    public List<HomeDTO> ApiList() throws SQLException,Exception{
+        //입력값 수정하기
+        int api[] = new int[3];
+
+        // 필터링된 매물 idx 가져오기
+        List<HomeDTO> idxList = service.selectIdx();
+        int idx[] = new int[idxList.size()];
+        for(int i=0; i<idxList.size(); i++){
+            idx[i] = idxList.get(i).getIdx();
+        }
+
+
+        // for (int i=0; i<idx.length; i++) {
+
+        HomeDTO homes = service.selectData(idx[0]);
+        Map<String, Double> coordinate = new HashMap<String,Double>();
+
+        // 매물의 위도경도 정보 coordinate에 입력
+        coordinate.put("lat",homes.getLat());
+        coordinate.put("lng",homes.getLng());
+
+        // api 받아오기
+        api = service.apiList(coordinate);
+
+        if(api[0]*0.016<=5 & api[1]<=1 & api[2]<=45){
+            //디비에 HomeDTO 저장하기
+            service.insertData(service.selectData(idx[0])); // DB에 저장
+            //디비에 저장하지말고 리스트에 추가해서 한번에 리턴 , 프론트로 보내기
+            //    }
+
+        }
+
+        //HomeDTO 리스트 리턴
+        return service.filtering();
+    }
+
 }
