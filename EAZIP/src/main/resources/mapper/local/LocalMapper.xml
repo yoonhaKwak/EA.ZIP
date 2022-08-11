@@ -10,6 +10,10 @@
         select * from gangnam0712 where idx = #{idx};
     </select>
 
+
+
+
+
     <select id="filterPrice" parameterType="bit.project.eazip.domain.home.FilterDTO" resultType="bit.project.eazip.domain.home.HomeDTO">
         select * from gangnam0712 where
         type in
@@ -53,10 +57,19 @@
 
     </select>
 
+
+
+
+
+
     <insert id="insertRoomFiltering" parameterType="bit.project.eazip.domain.home.HomeDTO">
         insert into `table`
         select * from test0719 where type = #{type} and  price <![CDATA[<=]]> #{price} and room_number
     </insert>
+
+
+
+
 
 
     <select id="filtering" resultType="bit.project.eazip.domain.home.HomeDTO">
@@ -71,6 +84,8 @@
         insert into `table`
         select * from test0719 where idx = #{idx};
     </insert>
+
+
 
 <!--   칼럼명 변수로 할 때 : ${}    -->
 

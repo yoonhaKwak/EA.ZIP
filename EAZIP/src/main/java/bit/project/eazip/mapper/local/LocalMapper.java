@@ -5,6 +5,7 @@ import bit.project.eazip.domain.home.FilterDTO;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,8 @@ public interface LocalMapper {
     public List<FilterDTO> filterPrice(FilterDTO filterDTO);
 
     public List<FilterDTO> filterMonthly(FilterDTO filterDTO);
+
+    public void insertInterStationDB(ArrayList<String[]> station);
 
     void insertData(HomeDTO filterDTO);
 

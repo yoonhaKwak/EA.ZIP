@@ -2,7 +2,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function(app) {
     app.use(
-        '/react',
+        '/cash',
 
         createProxyMiddleware({
             target: 'http://localhost:8080',

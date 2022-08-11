@@ -15,7 +15,7 @@ function Filter(){
     const Back = async () => {
         axios(
             {
-                url: '/local/apilist',
+                url: '/local/filter',
                 method: 'post',
                 data: {
                     "addr1" : addr1,

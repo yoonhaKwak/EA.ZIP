@@ -95,13 +95,11 @@ public class ApiController {
     }
 
 
-
-
-
     @GetMapping("/filtering")
     public List<HomeDTO> Filtering(){
         return service.filtering();
     }
+
 
     @GetMapping("/apilist")
     public List<HomeDTO> ApiList() throws SQLException,Exception{

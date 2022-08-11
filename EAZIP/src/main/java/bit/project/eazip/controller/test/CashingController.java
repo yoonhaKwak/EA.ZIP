@@ -2,24 +2,27 @@ package bit.project.eazip.controller.test;
 
 import bit.project.eazip.domain.facilities.BusDTO;
 import bit.project.eazip.service.CashingService;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Log
 @RestController
+@RequestMapping("/cash")
 @CrossOrigin(origins = "http://localhost:3000",allowCredentials = "true")
 public class CashingController {
 
     @Autowired
     CashingService service;
 
-    @RequestMapping(value = "/cashing", method = RequestMethod.POST)
-    public void HistoryIdx(@RequestBody Map<String,Double> paramMap){
+    @RequestMapping(value ="/cashing", method = {RequestMethod.GET,RequestMethod.POST})
+    public List<Map<String,String>> HistoryIdx(@RequestBody Map<String,Double> paramMap){
 
         Map<String, Double> temp = paramMap;
         Double dlat = temp.get("lat");
@@ -47,20 +50,33 @@ public class CashingController {
 //        List<Double> result_lng = new ArrayList<Double>();
         List<String> idx_list = new ArrayList<>();
         List<Double> distance_list = new ArrayList<>();
+//        Map<String, List<String>> facility = new HashMap<>();
+        List<Map<String, String>> facilities= new ArrayList<>();
+
 
         // 파이썬의 DIC형태 DATA를 JAVA MAP을 통해 구현하려는 과정
 //        List<Map<Integer, Map<Double, Double>>> distance_dict = (List<Map<Integer, Map<Double, Double>>>) new HashMap<Integer, Map<Double,Double>>();
         int scale = 4;
 
-        for (int i = 0; i < busList.size(); i++ ){
 
+        for (int i = 0; i < busList.size(); i++ ){
+//            List<String> name_lat_lng = new ArrayList<>();
+            Map<String, String> name_lat_lng = new HashMap<>();
             Double blat = Double.parseDouble(busList.get(i).get("lat").toString());
             Double blng = Double.parseDouble(busList.get(i).get("lng").toString());
             String bidx = "b" + busList.get(i).get("idx").toString();
 
+
+
             if ( blat < dlat + lat_gap * scale && blat > dlat - lat_gap * scale && blng < dlng + lng_gap* scale && blng > dlng - lng_gap* scale ){
                 System.out.println("lat :" + blat);
                 idx_list.add(bidx);
+                name_lat_lng.put("name", bidx);
+                name_lat_lng.put("lat", blat.toString());
+                name_lat_lng.put("lng",blng.toString());
+                facilities.add(name_lat_lng);
+
+//                facility.put(bidx, name_lat_lng);
                 Double distance = service.Haversine(dlat, dlng, blat, blng);
                 distance_list.add(distance);
 //                result_lat.add(lat);
@@ -68,18 +84,27 @@ public class CashingController {
             }
         }
 
-        log.info("버스데이터 처리 완료");
 
+        log.info("버스데이터 처리 완료");
         scale = 6;
         for (Map<BusDTO, Object> busDTOObjectMap : subwayList) {
-
-            double slat = Double.parseDouble(busDTOObjectMap.get("lat").toString());
-            double slng = Double.parseDouble(busDTOObjectMap.get("lng").toString());
+//            List<String> name_lat_lng = new ArrayList<>();
+            Map<String, String> name_lat_lng = new HashMap<>();
+            Double slat = Double.parseDouble(busDTOObjectMap.get("lat").toString());
+            Double slng = Double.parseDouble(busDTOObjectMap.get("lng").toString());
             String sidx = "s" + busDTOObjectMap.get("idx").toString();
+
 
             if (slat < dlat + lat_gap * scale && slat > dlat - lat_gap * scale && slng < dlng + lng_gap * scale && slng > dlng - lng_gap * scale) {
                 System.out.println("lat :" + slat);
                 idx_list.add(sidx);
+                name_lat_lng.put("name", sidx);
+                name_lat_lng.put("lat", slat.toString());
+                name_lat_lng.put("lng",slng.toString());
+                facilities.add(name_lat_lng);
+
+
+//                facility.put(sidx, name_lat_lng);
                 Double distance = service.Haversine(dlat, dlng, slat, slng);
                 distance_list.add(distance);
 //                result_lat.add(lat);
@@ -96,9 +121,10 @@ public class CashingController {
 //        System.out.println(result_lat);
 //        System.out.println(result_lng);
         System.out.println("bus idx :" + idx_list);
-        System.out.println("distance :" + distance_list);
+//        System.out.println("distance :" + distance_list);
+        System.out.println(facilities);
 
-
+    return facilities;
     }
 
 }

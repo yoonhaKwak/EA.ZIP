@@ -36,6 +36,7 @@ public class LocalController {
         System.out.println("WalkTimeMax" + filterDTO.getWalkTimeMax());
         System.out.println("TransferMin" + filterDTO.getTransferMin());
         System.out.println("TransferMax" + filterDTO.getTransferMax());
+
         return filterDTO;
     }
 
@@ -59,7 +60,6 @@ public class LocalController {
             System.out.println("getMinprice :" + filterDTO.getMinprice());
             System.out.println("getMaxmonthly :" + filterDTO.getMaxmonthly());
             System.out.println("getMinmonthly :" + filterDTO.getMinmonthly());
-
 
             log.info("########## 들어온 정보 적용하여 서비스 호출 작업 시작 ##########");
             List<FilterDTO> homes = null;

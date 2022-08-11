@@ -59,6 +59,4 @@ public class GeneralController {
         System.out.println(homes.size());
         return homes;
     }
-
-
 }
