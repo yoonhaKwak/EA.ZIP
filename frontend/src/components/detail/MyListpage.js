@@ -73,6 +73,8 @@ const MyListpage = ({ ItemList }) => {
               Window_guard={itemdata.window_guard}//방범창
               Entrance_security={itemdata.entrance_security}//현관보안
               Drier={itemdata.drier}//건조기
+              Lat={itemdata.lat}//경위도
+              Lng={itemdata.lng}//경위도
             />
           );
         })}

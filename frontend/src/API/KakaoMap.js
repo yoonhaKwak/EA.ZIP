@@ -59,12 +59,14 @@ function KakaoMap() {
     //     console.log(cluster.getMarkers());
 
     // });
-
+    console.log(state);
+    const centerlat = state[0].lat;
+    const centerlng = state[0].lng;
     return (
         <Map
             center={{
-                lat: 37.4946012,
-                lng: 127.027561
+                lat: centerlat,
+                lng: centerlng
             }}
             isPanto={true}
             style={{ width: "100%", height: "100%", maxHeight: "905px", maxWidth: "1415px" }}

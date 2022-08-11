@@ -1,8 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
-import BlankHeart from "../../styles/img/Blank_Heart.svg";
-import FillHeart from "../../styles/img/Fill_Heart.svg";
 
 
 
@@ -10,13 +8,15 @@ import FillHeart from "../../styles/img/Fill_Heart.svg";
 
 
 
-function Heart({ Id, value }) {
+
+
+function OptionButton({ Id, value, A, B }) {
 
 
   /*-----------------------------------------------------------[Wla기능 만들거임]-------------------------------------------------------------------------------*/
-  const [Wishadd, setWishadd] = useState(false)
+  /* const [Wishadd, setWishadd] = useState(false)
   const [Wishcount, setWishcount] = useState(800)
-  let userId = "2361369723";
+ 
   const wishAddHandler = () => {
     setWishadd(!Wishadd)
   }
@@ -26,71 +26,69 @@ function Heart({ Id, value }) {
     if (!Wishadd) {
       setWishcount(Wishcount + 1)
       axios({
-        url: 'mypage/favorite',
+        url: '/favorite',
         method: 'post',
         data: {
-          'userId': userId,
           'idx': Id,
         },
         baseURL: 'http://localhost:8080'
       })
       console.log({
-        'userId': userId,
         'productID': Id,
         '찜': "찜했슈"
-
       })
-
+ 
     } else if (Wishadd) {
       setWishcount(Wishcount - 1)
       axios({
-        url: 'mypage/favorite',
+        url: '/favorite',
         method: 'post',
         data: {
-          'userId': userId,
           'idx': Id,
         },
         baseURL: 'http://localhost:8080'
       })
       console.log({
-        'userId': userId,
         'product': Id,
         '찜': "찜 풀렸슈"
-
+ 
       })
     }
-  }
+  } */
 
-
-  return (
-    <HeartButton>
-      <input type="checkbox" name="heart" id={Id} value={value} onClick={wishCountHandler} />
-      <label htmlFor={Id}><img src={BlankHeart} alt="" /></label>
-
-    </HeartButton>
-  );
-}
-
-export default Heart;
-
-const HeartButton = styled.div`
+  const AA = A;
+  const BB = B;
+  const Cafe = styled.div`
   input{
     display:none;
   }
+
   label{
-    width:32px;
-    height:32px;
+
     cursor: pointer;
   }
 input+label{
-  content:url(${BlankHeart});
+  content:url(${BB})
 }
 input:checked+label{
-  content:url(${FillHeart});  
+  content:url(${AA})
 }
 img{
-  width:32px;
-  height:32px;
+
   padding:0;
 }
 `;
+  return (
+
+    <Cafe>
+      <input type="checkbox" id={Id} value={value} A={A} B={B} />
+      <label htmlFor={Id} AA={AA} BB={BB}><img src={BB} alt="" /></label>
+
+
+    </Cafe>
+
+  );
+}
+
+export default OptionButton;
+
