@@ -21,7 +21,7 @@ function MyKakaoMap(data) {
     //     // console.log(state[key].lat, state[key].lng)
     // }
     const [markers, setMarkers] = useState([]);
-    let userId = '2361369723';
+    let userId = sessionStorage.getItem('userId')
     useEffect(() => {
         axios({
             url: '/mypage/getfavorite',
@@ -38,6 +38,10 @@ function MyKakaoMap(data) {
         });
     }, []);
     console.log(markers);
+    // const centerlat = Object.assign({}, markers.map(row => row.lat))[0];
+    // const centerlng = Object.assign({}, markers.map(row => row.lng))[0];
+    // console.log( centerlat, centerlng);
+
     return (
         <Map
             center={{

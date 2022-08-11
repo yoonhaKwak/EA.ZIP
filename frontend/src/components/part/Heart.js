@@ -16,7 +16,7 @@ function Heart({ Id, value }) {
   /*-----------------------------------------------------------[Wla기능 만들거임]-------------------------------------------------------------------------------*/
   const [Wishadd, setWishadd] = useState(false)
   const [Wishcount, setWishcount] = useState(800)
-  let userId = "2361369723";
+  let userId = sessionStorage.getItem('userId');
   const wishAddHandler = () => {
     setWishadd(!Wishadd)
   }
@@ -65,7 +65,9 @@ function Heart({ Id, value }) {
   return (
     <HeartButton>
       <input type="checkbox" name="heart" id={Id} value={value} onClick={wishCountHandler} />
-      <label htmlFor={Id}><img src={BlankHeart} alt="" /></label>
+      <label htmlFor={Id}>
+        <img src={BlankHeart} alt="" />
+      </label>
 
     </HeartButton>
   );

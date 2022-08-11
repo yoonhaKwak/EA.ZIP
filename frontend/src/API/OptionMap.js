@@ -88,52 +88,6 @@ const MapArea = styled.div`
 /*---------------------------------------------------------------[뚜방뚜방]-----------------------------------------------------------------------*/
 
 function OptionMap(Idx, Lat, Lng) {
-    /*  const [modalOpen, setModalOpen] = useState(false);
-     const openModal = () => { setModalOpen(true) };
-     const closeModal = () => { setModalOpen(false) }; */
-    /* const { state } = useLocation([]); */
-
-    /*     const [sendData, setSendData] = useState(); */
-    // useEffect(() => {
-    //     setSendData(clusterPositionsData.positions);
-    // })
-    // console.log(state);
-    // for (const key in Object.keys(state)) {
-    //     // console.log(state[key].lat, state[key].lng)
-    // }
-    /* const [markers, setMarkers] = useState([]); */
-    // const [error, setError] = useState(null);
-
-
-    /*     const fetchMarkers = async () => {
-            try {
-                setMarkers(null);
-                const response = await axios
-                    .get('./Gangnam15.json'); //백엔드 강남매물 데이터 테스트 http://localhost:8080/react/dataList
-                setMarkers(response.data);
-                console.log(response.data);
-            }
-            catch (e) {
-            }
-        };
-    
-    
-        useEffect(() => {
-            fetchMarkers();
-        }, []);
-        console.log(markers) */
-
-    // if (error) return <div>에러발생</div>;
-    // if (!markers) return null;
-
-    // var markers = cluster.getMarkers();
-    // for (var idx = 0; idx < markers.length; idx++) {
-    //     console.log(markers[idx].getPosition());
-    // }
-    // kakao.maps.event.addListener(clusterer, 'clusterclick', function (cluster) {
-    //     console.log(cluster.getMarkers());
-
-    // });
     const [ItemList, SetItemList] = useState([]);
     let Home = [
         Idx

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Responsive from '../detail/Responsive';
 import SearchForm from '../detail/SearchForm';
 import logo from '../../styles/img/Group 64.svg';
-
+import axios from 'axios';
 
 
 const HeaderBlock = styled.div`
@@ -73,6 +73,23 @@ height: 4rem;
 `;
 
 const SearchHeader = () => {
+    const logout = async () => {
+        axios(
+            {
+                url: 'member/logout',
+                method: 'post',
+                data: {
+                    "token": sessionStorage.getItem("token")
+                },
+                baseURL: 'http://localhost:8080'
+            }
+        ).then(function () {
+            alert('로그아웃완료');
+            sessionStorage.removeItem("userId");
+            sessionStorage.removeItem("token");
+        }
+        )
+    }
     return (
         <>
             <HeaderBlock>
@@ -95,7 +112,7 @@ const SearchHeader = () => {
                             <Link to='/Mypage'>마이페이지</Link>
                         </li>
                         <li>
-                            <Link to='/login'>로그인</Link>
+                            <Link to='/login' onClick={() => logout()}>로그아웃</Link>
                         </li>
                     </div>
                 </Wrapper>

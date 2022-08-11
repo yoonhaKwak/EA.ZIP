@@ -17,6 +17,7 @@ const Listblock = styled.div`
 function MyHomeList() {
   let userId = "2361369723";
   const [ItemList, SetItemList] = useState();
+  const [idx, setIdx] = useState([]);
   useEffect(() => {
     axios({
       url: "/mypage/getfavorite",
@@ -29,7 +30,8 @@ function MyHomeList() {
     }
     ).then((response) => {
       SetItemList(response.data);
-      console.log(response.data);
+      // console.log(response.data);
+      // sessionStorage.setItem('idx', response.data);
     });
   }, []);
   console.log(ItemList);

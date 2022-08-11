@@ -4,7 +4,7 @@ import pallette from '../../styles/pallette';
 import { Link } from 'react-router-dom';
 import Responsive from '../detail/Responsive';
 import logo from '../../styles/img/Group 65.svg';
-
+import axios from 'axios';
 
 const HeaderBlock = styled.div`
 position:fixed;
@@ -64,30 +64,55 @@ height: 4rem;
 `;
 
 const MainHeader = () => {
+    const logout = async () => {
+        axios(
+            {
+                url: 'member/logout',
+                method: 'post',
+                data: {
+                    "token": sessionStorage.getItem("token")
+                },
+                baseURL: 'http://localhost:8080'
+            }
+        ).then(function () {
+            sessionStorage.removeItem("userId");
+            sessionStorage.removeItem("token");
+            alert('로그아웃완료');
+        }
+        )
+    }
     return (
         <header>
             <HeaderBlock>
                 <Wrapper>
                     <Link to='/' className="logo"><img src={logo} alt="" /></Link>
-                    <div className="middle">
-                        <li>
-                            <Link to='/normalsearch'>일반추천</Link>
-                        </li>
-                        <li>
-                            <Link to='/targetsearch'>지역추천</Link>
-                        </li>
-                        <li>
-                            <Link to='/'>프리미엄</Link>
-                        </li>
-                        <li>
-                            <Link to='/Mypage'>마이페이지</Link>
-                        </li>
-                    </div>
+                    {sessionStorage.getItem('userId') ?
+                        <div className="middle">
+                            <li>
+                                <Link to='/normalsearch'>일반추천</Link>
+                            </li>
+                            <li>
+                                <Link to='/targetsearch'>지역추천</Link>
+                            </li>
+                            <li>
+                                <Link to='/'>프리미엄</Link>
+                            </li>
+                            <li>
+                                {
+                                    sessionStorage.getItem('userId')
+                                        ?
+                                        <Link to='/Mypage'>마이페이지</Link>
+                                        :
+                                        <Link to='/login' onClick={() => { alert('로그인이 필요합니다.') }}>마이페이지</Link>
+                                }
+                            </li>
+                        </div>
+                        : null}
                     <div className="right">
                         <li>
                             {
                                 sessionStorage.getItem('userId') ?
-                                    <Link to='/login'>로그아웃</Link>
+                                    <Link to='/login' onClick={() => logout()}>로그아웃</Link>
                                     :
                                     <Link to='/login'>로그인</Link>
                             }
