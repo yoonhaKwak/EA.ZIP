@@ -41,41 +41,81 @@ public class LocalController {
 //    }
 
         @RequestMapping(value = "/filter", method = {RequestMethod.GET, RequestMethod.POST})
-        public List<FilterDTO> Filter(@RequestBody FilterDTO paramMap) throws SQLException,Exception{
-
+        public List<HomeDTO> Filter(@RequestBody FilterDTO paramMap) throws SQLException,Exception {
+            int api[] = new int[3];
 
             log.info("############### 컨트롤러 진입 #####################");
 
-            FilterDTO filterDTO = paramMap;
             System.out.println("####  들어온 정보 확인  #####");
-            System.out.println("getAddr1 :" + filterDTO.getAddr1());
-            System.out.println("getType :" + filterDTO.getType());
-            System.out.println("getCategory1 :" + filterDTO.getCategory1());
-            System.out.println("getRoom_number :" + filterDTO.getRoom_number());
-            System.out.println("getOp1 :" + filterDTO.getOp1());
-            System.out.println("getOp2 :" + filterDTO.getOp2());
-            System.out.println("getOp3 :" + filterDTO.getOp3());
+            System.out.println("getD_lat :" + paramMap.getD_lat());
+            System.out.println("getD_lng :" + paramMap.getD_lng());
+            System.out.println("getType :" + paramMap.getType());
+            System.out.println("getCategory1 :" + paramMap.getCategory1());
+            System.out.println("getRoom_number :" + paramMap.getRoom_number());
+            System.out.println("getOp1 :" + paramMap.getOp1());
+            System.out.println("getOp2 :" + paramMap.getOp2());
+            System.out.println("getOp3 :" + paramMap.getOp3());
 
-            System.out.println("getMaxprice :" + filterDTO.getMaxprice());
-            System.out.println("getMinprice :" + filterDTO.getMinprice());
-            System.out.println("getMaxmonthly :" + filterDTO.getMaxmonthly());
-            System.out.println("getMinmonthly :" + filterDTO.getMinmonthly());
+            System.out.println("getMaxprice :" + paramMap.getMaxprice());
+            System.out.println("getMinprice :" + paramMap.getMinprice());
+            System.out.println("getMaxmonthly :" + paramMap.getMaxmonthly());
+            System.out.println("getMinmonthly :" + paramMap.getMinmonthly());
+
+            System.out.println("getTimeSectionMax : " + paramMap.getTimeSectionMax());
+            System.out.println("getTimeSectionMin : " + paramMap.getTimeSectionMin());
+            System.out.println("getWalkTimeMax : " + paramMap.getWalkTimeMax());
+            System.out.println("getWalkTimeMin : " + paramMap.getWalkTimeMin());
+            System.out.println("getTransferMax : " + paramMap.getTransferMax());
+            System.out.println("getTransferMin : " + paramMap.getTransferMin());
 
             log.info("########## 들어온 정보 적용하여 서비스 호출 작업 시작 ##########");
-            List<FilterDTO> homes = null;
+            List<HomeDTO> HomeList = null;
 
             // 월세를 0으로 지정하면, 전세 매매 대상 필터링(db의 price를 이용)
-            if (filterDTO.getMaxmonthly() == 0) {
-                homes = service.filterPrice(filterDTO);
+            if (paramMap.getMaxmonthly() == 0) {
+                HomeList = service.filterPrice(paramMap);
             }
 
             // 월세가 0이 아니라면 월세 전세 매매 모두 필터링(db의 price와 monthly 모두 이용)
             else {
-                homes = service.filterMonthly(filterDTO);
+                HomeList = service.filterMonthly(paramMap);
             }
             log.info("########## 필터링 적용하여 서비스 호출 완료 ##########");
-            System.out.println(homes.size());
-            return homes;
+            System.out.println(HomeList.size());
+            //return HomeList;
+
+            int idx[] = new int[HomeList.size()];
+
+            for (int i = 0; i < HomeList.size(); i++) {
+                idx[i] = HomeList.get(i).getIdx();
+            }
+
+            List<HomeDTO> resultList = null;
+            for (int j = 0; j < idx.length; j++) {
+                HomeDTO homes = service.selectData(idx[j]);
+
+                Map<String, Double> coordinate = new HashMap<String, Double>();
+
+                // 매물의 위도경도 정보 coordinate에 입력
+                coordinate.put("lat", homes.getLat());
+                coordinate.put("lng", homes.getLng());
+                //목적지 위도, 경도
+                coordinate.put("d_lat", paramMap.getD_lat());
+                coordinate.put("d_lng", paramMap.getD_lng());
+
+                // api 받아오기
+                api = service.apiList(coordinate);
+                Thread.sleep(1000);
+
+                if ((api[0] * 0.016 <= paramMap.getWalkTimeMax() & api[0] * 0.016 >= paramMap.getWalkTimeMin()) &
+                        (api[1] <= paramMap.getTransferMax() & api[1] >= paramMap.getTransferMin()) &
+                        (api[2] <= paramMap.getTimeSectionMax() & api[2] >= paramMap.getTimeSectionMin()))
+                        {
+                            resultList.add(homes);
+                            log.info("resultList에 저장");
+                        }
+            }
+            return resultList;
         }
 
 
@@ -83,15 +123,12 @@ public class LocalController {
     public List<HomeDTO> ApiList() throws SQLException,Exception{
         //입력값 수정하기
         int api[] = new int[3];
-
         // 필터링된 매물 idx 가져오기
         List<HomeDTO> idxList = service.selectIdx();
         int idx[] = new int[idxList.size()];
         for(int i=0; i<idxList.size(); i++){
             idx[i] = idxList.get(i).getIdx();
         }
-
-
         // for (int i=0; i<idx.length; i++) {
 
         HomeDTO homes = service.selectData(idx[0]);

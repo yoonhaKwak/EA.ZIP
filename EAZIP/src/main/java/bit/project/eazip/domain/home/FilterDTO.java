@@ -10,7 +10,8 @@ import java.util.ArrayList;
 @Setter
 public class FilterDTO {
 
-    private String addr1;
+    private Double d_lat;
+    private Double d_lng;
 
     private ArrayList<String> type;
     private ArrayList<String> category1;
@@ -25,12 +26,15 @@ public class FilterDTO {
     private int minmonthly;
     private int maxmonthly;
 
-    private int TimeSectionMin;
-    private int TimeSectionMax;
-    private int WalkTimeMin;
-    private int WalkTimeMax;
-    private int TransferMin;
-    private int TransferMax;
+    //소요시간
+    private int timeSectionMin;
+    private int timeSectionMax;
+    //도보시간
+    private int walkTimeMin;
+    private int walkTimeMax;
+    //환승횟수
+    private int transferMin;
+    private int transferMax;
 
 
 

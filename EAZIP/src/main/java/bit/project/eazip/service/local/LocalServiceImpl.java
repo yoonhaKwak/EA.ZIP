@@ -49,7 +49,7 @@ public class LocalServiceImpl implements LocalService {
     }
 
     @Override
-    public List<FilterDTO> filterPrice(FilterDTO filterDTO) {
+    public List<HomeDTO> filterPrice(FilterDTO filterDTO) {
         log.info("############################");
         log.info("서비스 임플, filterPrice 실행");
         log.info("############################");
@@ -57,7 +57,7 @@ public class LocalServiceImpl implements LocalService {
     }
 
     @Override
-    public List<FilterDTO> filterMonthly(FilterDTO filterDTO) {
+    public List<HomeDTO> filterMonthly(FilterDTO filterDTO) {
         log.info("############################");
         log.info("서비스 임플, filterMonthly 실행");
         log.info("############################");
@@ -82,14 +82,17 @@ public class LocalServiceImpl implements LocalService {
 
     @Override
     public int[] apiList(Map<String,Double> coordinate) {
-        Double lat,lng;
+        Double lat,lng,d_lat,d_lng;
         lat = coordinate.get("lat");
         lng = coordinate.get("lng");
+        d_lat = coordinate.get("d_lat");
+        d_lng = coordinate.get("d_lng");
+
 
 
         String line = null;
         int apiList[] = new int[3];
-        String uri = "https://api.odsay.com/v1/api/searchPubTransPath?SX=126.9027279&SY=37.5349277&EX="+lng+"&EY="+lat+"&apiKey=j7A34MnqbWGfZQwWtVRUtqkal9YXPsGl%2BQGMho8v2ag";
+        String uri = "https://api.odsay.com/v1/api/searchPubTransPath?SX="+d_lng+"&SY="+d_lat+"&EX="+lng+"&EY="+lat+"&apiKey=j7A34MnqbWGfZQwWtVRUtqkal9YXPsGl%2BQGMho8v2ag";
 
 //        List<String> walk = new ArrayList<String>();
 //        List<String> bus = new ArrayList<String>();
@@ -108,7 +111,7 @@ public class LocalServiceImpl implements LocalService {
             JSONObject obj = (JSONObject)jsonParser.parse(line);
 
             JSONObject result = (JSONObject) obj.get("result");
-            JSONArray path = (JSONArray) result.get("path");// is null 이라고 뜸
+            JSONArray path = (JSONArray) result.get("path");
             JSONObject info = (JSONObject)path.get(0);
             info = (JSONObject)info.get("info");
 
@@ -288,6 +291,8 @@ public class LocalServiceImpl implements LocalService {
             throw new RuntimeException(e);
         } catch (NullPointerException e){
             log.info(line);
+            apiList[0] = apiList[1] = apiList[2] = 0;
+            return apiList;
         }
         return apiList;
     }

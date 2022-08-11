@@ -18,9 +18,9 @@ public interface LocalMapper {
     public HomeDTO saveData();
     public String type();
 
-    public List<FilterDTO> filterPrice(FilterDTO filterDTO);
+    public List<HomeDTO> filterPrice(FilterDTO filterDTO);
 
-    public List<FilterDTO> filterMonthly(FilterDTO filterDTO);
+    public List<HomeDTO> filterMonthly(FilterDTO filterDTO);
 
     public void insertInterStationDB(ArrayList<String[]> station);
 
