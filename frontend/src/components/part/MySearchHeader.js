@@ -4,6 +4,7 @@ import pallette from '../../styles/pallette';
 import { Link } from 'react-router-dom';
 import Responsive from '../detail/Responsive';
 import logo from '../../styles/img/Group 64.svg';
+import axios from 'axios';
 
 
 
@@ -88,6 +89,24 @@ height: 4rem;
 `;
 
 const MySearchHeader = () => {
+    const logout = async () => {
+        axios(
+            {
+                url: 'member/logout',
+                method: 'post',
+                data: {
+                    "token": sessionStorage.getItem("token")
+                },
+                baseURL: 'http://localhost:8080'
+            }
+        ).then(function () {
+            sessionStorage.removeItem("userId");
+            sessionStorage.removeItem("token");
+            alert('로그아웃완료');
+        }
+        )
+    }
+
     return (
         <>
             <HeaderBlock>
@@ -108,7 +127,7 @@ const MySearchHeader = () => {
                         <div className="right">
 
                             <li>
-                                <Link to='/login'>로그아웃</Link>
+                                <Link to='/login' onClick={logout} >로그아웃</Link>
                             </li>
                         </div>
                     </Wrapper>

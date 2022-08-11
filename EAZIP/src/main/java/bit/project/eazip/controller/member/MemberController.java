@@ -8,7 +8,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,12 +28,15 @@ public class MemberController {
     @Autowired
     MemberService service;
 
-    @RequestMapping(value = "/login", method = {RequestMethod.POST,RequestMethod.GET})
-    public Map<String,String> login(@RequestBody Map<String,String> codeMap){
+    @Autowired
+    HttpSession session;
+
+    @RequestMapping(value = "/login", method = {RequestMethod.POST, RequestMethod.GET})
+    public Map<String, String> login(@RequestBody Map<String, String> codeMap) {
         String code = codeMap.get("code");
         System.out.println(code);
         String token = service.getKakaoAccessToken(code);
-        Map<String,String> userMap = service.createKakaoUser(token);
+        Map<String, String> userMap = service.createKakaoUser(token);
         log.info("====================");
         //세션
 //        HttpSession session = request.getSession();
@@ -35,53 +46,43 @@ public class MemberController {
         memberDTO.setId(userMap.get("id"));
         memberDTO.setEmail(userMap.get("email"));
         service.insertUser(memberDTO);
+//        session = request.getSession();
+//        session.setAttribute("access_token", token);
 
         log.info("--------------------------");
-        Map<String,String> UserId = new HashMap<>();
-        UserId.put("userId",memberDTO.getId());
-        System.out.println(UserId);
-        return UserId;
+        Map<String, String> User = new HashMap<>();
+        User.put("userId", memberDTO.getId());
+        User.put("token", token);
+        System.out.println(User);
+//        log.info((String) session.getAttribute("access_token"));
+//        log.info(session.getId());
+
+        return User;
     }
 
-    @GetMapping("/logout")
-    public void logout(HttpSession session){
-        session.invalidate();
+    @RequestMapping(value ="/logout", method = {RequestMethod.GET,RequestMethod.POST})
+    public int logout(Map<String, String> userToken) {
+        String requrl = "https://kapi.kakao.com/v1/user/logout";
+
+        String token = userToken.get("token");
+        log.info(token);
+        int responseCode;
+        try {
+            URL url = new URL(requrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestMethod("POST");
+            conn.setDoOutput(true);
+            conn.setRequestProperty("Authorization", "Bearer " + token); //전송할 header 작성, access_token전송
+
+            responseCode = conn.getResponseCode();
+            System.out.println("responseCode : " + responseCode);
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return responseCode;
     }
 
-//    @PostMapping(value = "/getAccessToken")
-//    public ResponseEntity issueToken(
-//            // @RequestHeader(value = "Authorization") String accessTokenRequest,
-//            @CookieValue(value = HttpHeaders.SET_COOKIE) Cookie refreshCookie
-//    ) {
-//        ResponseEntity responseEntity = null;
-//        try{
-//            String refreshToken = tokenProvider.resolveToken(refreshCookie.getValue());
-//            // String oldAccessToken = tokenProvider.resolveToken(accessTokenRequest);
-//
-//            // 유저 권한 저장 들어있는 컬렉션
-//            Collection<? extends GrantedAuthority> accessTokenAuthoriryCollection = tokenProvider.getAuthentication(refreshToken).getAuthorities();
-//            // 유저 권한 저장 위한 리스트
-//            List<String> accessTokenAuthorities = new ArrayList<String>(accessTokenAuthoriryCollection.size());
-//
-//            String accessTokenUserId = tokenProvider.getUserId(refreshToken);
-//            String newAccessToken = null;
-//            // 리프레시 토큰이 유효하다면
-//            if (StringUtils.hasText(refreshToken) && tokenProvider.validateToken(refreshToken)) {
-//                for (GrantedAuthority x : accessTokenAuthoriryCollection) {
-//                    accessTokenAuthorities.add(x.getAuthority());
-//                }
-//                newAccessToken = "Bearer" + tokenProvider.createAcessToken(accessTokenUserId, accessTokenAuthorities);
-//                log.info("토큰 재발급 성공");
-//                SingleDataResponse<String> response = responseService.getSingleDataResponse(true, "accessToken 발급성공", newAccessToken);
-//                responseEntity = ResponseEntity.status(HttpStatus.OK).body(response);
-//
-//            }else {
-//                SingleDataResponse<String> response = responseService.getSingleDataResponse(false, "accessToken 발급 실패, refreshToken 유효기간 만료", "Tk402");
-//                responseEntity = ResponseEntity.status(HttpStatus.CONFLICT).body(response);
-//            }
-//            return responseEntity;
-//        }catch (Exception e) {
-//            return responseEntity;
-//        }
-//    }
 }

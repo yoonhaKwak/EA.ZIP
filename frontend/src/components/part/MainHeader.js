@@ -85,7 +85,12 @@ const MainHeader = () => {
                     </div>
                     <div className="right">
                         <li>
-                            <Link to='/login'>로그인</Link>
+                            {
+                                sessionStorage.getItem('userId') ?
+                                    <Link to='/login'>로그아웃</Link>
+                                    :
+                                    <Link to='/login'>로그인</Link>
+                            }
                         </li>
                     </div>
                 </Wrapper>

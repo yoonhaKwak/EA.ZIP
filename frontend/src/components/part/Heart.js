@@ -16,7 +16,7 @@ function Heart({ Id, value }) {
   /*-----------------------------------------------------------[Wla기능 만들거임]-------------------------------------------------------------------------------*/
   const [Wishadd, setWishadd] = useState(false)
   const [Wishcount, setWishcount] = useState(800)
-
+  let userId = "2361369723";
   const wishAddHandler = () => {
     setWishadd(!Wishadd)
   }
@@ -26,14 +26,16 @@ function Heart({ Id, value }) {
     if (!Wishadd) {
       setWishcount(Wishcount + 1)
       axios({
-        url: '/favorite',
+        url: 'mypage/favorite',
         method: 'post',
         data: {
+          'userId': userId,
           'idx': Id,
         },
         baseURL: 'http://localhost:8080'
       })
       console.log({
+        'userId': userId,
         'productID': Id,
         '찜': "찜했슈"
 
@@ -42,14 +44,16 @@ function Heart({ Id, value }) {
     } else if (Wishadd) {
       setWishcount(Wishcount - 1)
       axios({
-        url: '/favorite',
+        url: 'mypage/favorite',
         method: 'post',
         data: {
+          'userId': userId,
           'idx': Id,
         },
         baseURL: 'http://localhost:8080'
       })
       console.log({
+        'userId': userId,
         'product': Id,
         '찜': "찜 풀렸슈"
 

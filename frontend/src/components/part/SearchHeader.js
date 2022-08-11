@@ -72,7 +72,7 @@ const Spacer = styled.div`
 height: 4rem;
 `;
 
-const MainHeader = () => {
+const SearchHeader = () => {
     return (
         <>
             <HeaderBlock>
@@ -105,4 +105,4 @@ const MainHeader = () => {
     );
 }
 
-export default MainHeader;
+export default SearchHeader;

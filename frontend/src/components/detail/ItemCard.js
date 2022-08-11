@@ -1145,7 +1145,7 @@ padding-bottom:28px;
                                     <div className="Header" >위치 및 주변시설</div>
                                     <hr />
                                     <div className="Map">
-                                           <KakaoMap />
+                                        {/* <KakaoMap /> */}
                                     </div>
 
                                     <img src={cafe} alt="" />

@@ -4,5 +4,4 @@
     <insert id="insertUser" parameterType="bit.project.eazip.domain.member.MemberDTO">
         insert ignore into usertbl (id, email) values (#{id}, #{email});
     </insert>
-
 </mapper>

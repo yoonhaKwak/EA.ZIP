@@ -15,14 +15,22 @@ const Listblock = styled.div`
     `;
 
 function MyHomeList() {
-
+  let userId = "2361369723";
   const [ItemList, SetItemList] = useState();
   useEffect(() => {
-    axios.get("http://localhost:8080/getfavorite")
-      .then((response) => {
-        SetItemList(response.data);
-        console.log(response.data);
-      });
+    axios({
+      url: "/mypage/getfavorite",
+      method: 'post',
+      data:
+      {
+        'userId': userId
+      },
+      baseURL: 'http://localhost:8080'
+    }
+    ).then((response) => {
+      SetItemList(response.data);
+      console.log(response.data);
+    });
   }, []);
   console.log(ItemList);
   // const { state } = useLocation([]);
