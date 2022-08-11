@@ -23,22 +23,22 @@ import lombok.extern.java.Log;
 public class LocalController {
     @Autowired
     LocalService service;
-    @RequestMapping(value = "/apilist", method = {RequestMethod.GET, RequestMethod.POST})
-    public FilterDTO ApiList(@RequestBody FilterDTO paramMap) throws SQLException,Exception {
-        //입력값 수정하기
-        log.info("############### 컨트롤러 진입 #####################");
-
-        FilterDTO filterDTO = paramMap;
-        System.out.println("addr1" + filterDTO.getAddr1());
-        System.out.println("TimeSectionMin" + filterDTO.getTimeSectionMin());
-        System.out.println("TimeSectionMax" + filterDTO.getTimeSectionMax());
-        System.out.println("WalkTimeMin" + filterDTO.getWalkTimeMin());
-        System.out.println("WalkTimeMax" + filterDTO.getWalkTimeMax());
-        System.out.println("TransferMin" + filterDTO.getTransferMin());
-        System.out.println("TransferMax" + filterDTO.getTransferMax());
-
-        return filterDTO;
-    }
+//    @RequestMapping(value = "/apilist", method = {RequestMethod.GET, RequestMethod.POST})
+//    public FilterDTO ApiList(@RequestBody FilterDTO paramMap) throws SQLException,Exception {
+//        //입력값 수정하기
+//        log.info("############### 컨트롤러 진입 #####################");
+//
+//        FilterDTO filterDTO = paramMap;
+//        System.out.println("addr1" + filterDTO.getAddr1());
+//        System.out.println("TimeSectionMin" + filterDTO.getTimeSectionMin());
+//        System.out.println("TimeSectionMax" + filterDTO.getTimeSectionMax());
+//        System.out.println("WalkTimeMin" + filterDTO.getWalkTimeMin());
+//        System.out.println("WalkTimeMax" + filterDTO.getWalkTimeMax());
+//        System.out.println("TransferMin" + filterDTO.getTransferMin());
+//        System.out.println("TransferMax" + filterDTO.getTransferMax());
+//
+//        return filterDTO;
+//    }
 
         @RequestMapping(value = "/filter", method = {RequestMethod.GET, RequestMethod.POST})
         public List<FilterDTO> Filter(@RequestBody FilterDTO paramMap) throws SQLException,Exception{
