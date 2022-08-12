@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Responsive from '../detail/Responsive';
 import logo from '../../styles/img/Group 65.svg';
 import axios from 'axios';
-import {data} from "jquery"
+import { data } from "jquery"
 
 
 const HeaderBlock = styled.div`
@@ -66,6 +66,23 @@ height: 4rem;
 `;
 
 const MainHeader3 = () => {
+    const logout = async () => {
+        axios(
+            {
+                url: 'member/logout',
+                method: 'post',
+                data: {
+                    "token": sessionStorage.getItem("token")
+                },
+                baseURL: 'http://localhost:8080'
+            }
+        ).then(function () {
+            sessionStorage.removeItem("userId");
+            sessionStorage.removeItem("token");
+            alert('로그아웃완료');
+        }
+        )
+    }
     return (
         <header>
             <HeaderBlock>
@@ -79,15 +96,20 @@ const MainHeader3 = () => {
                             <Link to='/targetsearch'>지역추천</Link>
                         </li>
                         <li>
-                            <Link to='/'>프리미엄</Link>
-                        </li>
-                        <li>
-                            <Link to='/Mypage'>마이페이지</Link>
+                            {sessionStorage.getItem('userId') ?
+                                <Link to='/Mypage'>마이페이지</Link>
+                                :
+                                <Link to='/login' onClick={alert('로그인이 필요합니다.')}>마이페이지</Link>
+                            }
                         </li>
                     </div>
                     <div className="right">
                         <li>
-                            <Link to='/login'>로그인</Link>
+                            {sessionStorage.getItem('userId') ?
+                                <Link to='/login' onClick={() => logout()}>로그아웃</Link>
+                                :
+                                <Link to='/login'>로그인</Link>
+                            }
                         </li>
                     </div>
                 </Wrapper>

@@ -195,7 +195,9 @@ const NormalSearch = (onClick) => {
   const Back = async () => {
     axios({
       method: 'post',
-      url: '/react/filter',
+
+      url: '/local/filter',
+
       data: {
         "addr1": search,
         "maxprice": map,

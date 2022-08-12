@@ -28,7 +28,6 @@
         <foreach collection="room_number" item="item" index="index" separator="," open="(" close=")">
             #{item}
         </foreach>
-        and (INSTR(addr1, #{addr1}) > 0 or INSTR(addr2, #{addr1}) > 0)
         and ( ${op1} > 4 and ${op2} > 4  and ${op3} > 4)
         and price <![CDATA[<=]]> ${maxprice} and price <![CDATA[>=]]> ${minprice}
         order by ( ${op1} + ${op2} + ${op3}) desc;
@@ -49,7 +48,7 @@
         <foreach collection="room_number" item="item" index="index" separator="," open="(" close=")">
             #{item}
         </foreach>
-        and (INSTR(addr1, #{addr1}) > 0 or INSTR(addr2, #{addr1}) > 0)
+
         and ( ${op1} > 8 and ${op2} > 8  and ${op3} > 8)
         and price <![CDATA[<=]]> ${maxprice} and price <![CDATA[>=]]> ${minprice}
         and (monthly = 0 or  monthly <![CDATA[<=]]> #{maxmonthly} and monthly <![CDATA[>=]]> #{minmonthly} )

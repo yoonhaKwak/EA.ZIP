@@ -10,6 +10,7 @@ const MyListpage = ({ ItemList }) => {
         ItemList.map((itemdata) => {
           return (
             <ItemCard
+              Idx={itemdata.idx}
               ImageUrl={itemdata.image_url}//이미지주소
               Category2={itemdata.category2}//카테고리2
               Name={itemdata.name}//매물명
@@ -73,6 +74,8 @@ const MyListpage = ({ ItemList }) => {
               Window_guard={itemdata.window_guard}//방범창
               Entrance_security={itemdata.entrance_security}//현관보안
               Drier={itemdata.drier}//건조기
+              Lat={itemdata.lat}//경위도
+              Lng={itemdata.lng}//경위도
             />
           );
         })}

@@ -26,9 +26,6 @@ function KakaoMap() {
     // }
     // const [markers, setMarkers] = useState([]);
     // const [error, setError] = useState(null);
-    const something = (cluster) => {
-        state.cluster.getMarkers()
-    }
 
     // const fetchMarkers = async () => {
     //     try {
@@ -59,12 +56,14 @@ function KakaoMap() {
     //     console.log(cluster.getMarkers());
 
     // });
-
+    console.log(state);
+    const centerlat = state[0].lat;
+    const centerlng = state[0].lng;
     return (
         <Map
             center={{
-                lat: 37.4946012,
-                lng: 127.027561
+                lat: centerlat,
+                lng: centerlng
             }}
             isPanto={true}
             style={{ width: "100%", height: "100%", maxHeight: "905px", maxWidth: "1415px" }}
@@ -75,8 +74,6 @@ function KakaoMap() {
                 gridSize={80}
                 averageCenter={true}
                 minLevel={5}
-                disableClickZoom={true}
-                onClusterclick={something}
                 calculator={[5, 10, 20]} // 클러스터의 크기 구분 값, 각 사이값마다 설정된 text나 style이 적용된다
                 styles={[{ // calculator 각 사이 값 마다 적용될 스타일을 지정한다
                     width: '100px', height: '100px',

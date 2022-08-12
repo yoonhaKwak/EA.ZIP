@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import pallette from "styles/pallette";
 import DefaultImg from "../../styles/img/DefaultHomeImg.svg";
 import Officetell from "../../styles/img/Officetell.svg";
 import Villa from "../../styles/img/Villa.svg";
@@ -24,6 +23,36 @@ import "../../styles/css/slick.css"
 import "../../styles/css/slick-theme.css"
 import Slider from "react-slick";
 import Heart from "../part/Heart";
+import aircon_hanging from "../../styles/icons/options/aircon_hanging.svg";
+import aircon_stand_system from "../../styles/icons/options/aircon_stand_system.svg";
+import bath from "../../styles/icons/options/bath.svg";
+import bed from "../../styles/icons/options/bed.svg";
+import bidet from "../../styles/icons/options/bidet.svg";
+import cardkey from "../../styles/icons/options/cardkey.svg";
+import CCTV from "../../styles/icons/options/CCTV.svg";
+import closet from "../../styles/icons/options/closet.svg";
+import couch from "../../styles/icons/options/couch.svg";
+import delivery_box from "../../styles/icons/options/delivery_box.svg";
+import desk from "../../styles/icons/options/desk.svg";
+import drier from "../../styles/icons/options/drier.svg";
+import elevator from "../../styles/icons/options/elevator.svg";
+import entrance_security from "../../styles/icons/options/entrance_security.svg";
+import fridge from "../../styles/icons/options/fridge.svg";
+import gas_induction from "../../styles/icons/options/gas_induction.svg";
+import interphone from "../../styles/icons/options/interphone.svg";
+import microwave from "../../styles/icons/options/microwave.svg";
+import oven from "../../styles/icons/options/oven.svg";
+import security from "../../styles/icons/options/security.svg";
+import shoe from "../../styles/icons/options/shoe.svg";
+import shower_booth from "../../styles/icons/options/showr_booth.svg";
+import sink from "../../styles/icons/options/sink.svg";
+import table from "../../styles/icons/options/table.svg";
+import wardrobe from "../../styles/icons/options/wardrobe.svg";
+import washing from "../../styles/icons/options/washing.svg";
+import window_guard from "../../styles/icons/options/window_guard.svg";
+import fire_alarm from "../../styles/icons/options/fire_alarm.svg";
+import dishwasher from "../../styles/icons/options/dishwasher.svg";
+import OptionMap from "API/OptionMap";
 
 
 
@@ -381,8 +410,12 @@ border-radius: 15px;
 function ItemCard({ key, ImageUrl, Category2, Feature,
     Supply, Dedicated, Jeonse, Monthly, Trading, Selling,
     Room, Deposit, SupplyP, Addr1, Addr2, LongFeature, Layer,
-    AllLayer, LayerType, ManageCost, RoomN, Parking, Bath, Parking2,
-    MoveDate, Direction, DirectionN, Category1, Price, Id }) {
+    AllLayer, LayerType, ManageCost, RoomN, Parking, BathN, Parking2,
+    MoveDate, Direction, DirectionN, Category1, Price, Id,
+    Aircon_Hanging, Fridge, Wardrobe, Microwave, Shoe, Washing, Elevator, Security_private,
+    Security, Cctv, Bed, Desk, Bidet, Closet, Table, Couch, Shower_booth, Bath, Gas, Induction,
+    Oven, Interphone, Cardkey, Fire_alarm, Dishwasher, Sink, Aircon_system, Aircon_standing,
+    Delivery_box, Window_guard, Entrance_security, Drier, Lat, Lng }) {
 
 
 
@@ -680,6 +713,315 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
 
 
     /*-----------------------------------------------------------[뽀짝뽀짝]-------------------------------------------------------------------*/
+    /*---------------------------------------------------[상세페이지 내부 요소 뚜방뚜방]-------------------------------------------------------*/
+    /*-----------------------------------------------------------[여기서부터 이미지]-------------------------------------------------------------------*/
+
+    const ImageArea = styled.div`
+width: 750px;
+height: 400px;
+margin-left:auto;
+margin-right:auto;
+margin-top:20px;
+background: #e2e2e2;
+border-radius: 15px;
+.image{
+ 
+
+  position:flex;
+
+
+}
+.image img{
+  width:400px;
+  height:400px;
+  padding-left:125px;
+  padding-right:125px;
+  
+}
+.rightbutton{
+width:50px;
+height:50px;
+float:right;
+position:flex;
+margin-top:175px;
+}
+
+.leftbutton{
+width:50px;
+height:50px;
+float:left;
+position:flex;
+margin-top:175px;
+}
+
+`;
+    const settings = {
+
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        nextArrow: <img src={RightArrow} alt="" />,
+        prevArrow: <img src={LeftArrow} alt="" />
+    };
+
+    /*-----------------------------------------------------------[전세,주소,간단설명 등등]-------------------------------------------------------------------*/
+
+    const SecondItem = styled.div`
+width: 750px;
+height: 250px;
+margin-top:20px;
+margin-left:auto;
+margin-right:auto;
+text-align:center;
+background: #FDFDFD;
+box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.25);
+border-radius: 15px;
+
+
+.tag{
+padding-top:10px;
+padding-left:10px;
+padding-right:0;
+  float:left;
+}
+.tag img{
+    width:60px;
+    height:24px;
+    padding: 0 0 0 0;
+  }
+  .tag .officetall{
+    width:92px;
+    height:24px;
+    padding: 0 0 0 0;
+  }
+  .tag .threeroom{
+        width:76px;
+    height:24px;
+    padding: 0 0 0 0;
+  }
+  
+
+.sellingtag{
+  padding-top:10px;
+  padding-right:10px;
+
+  float:right;
+  
+}
+.sellingtag img{
+    width:60px;
+    height:24px;
+    padding: 0 0 0 0;
+  }
+  .bold{
+    position:flex;
+    font-weight: 700;
+    font-size:30px;
+    padding-top:40px;
+  }
+  .word{
+    font-size:17px;
+    padding-top:25px;
+    
+  }
+  .addr{
+    font-size:17px;
+    padding-top:15px;
+  }
+`;
+
+
+
+
+    const ThirdItem = styled.div`
+
+width: 750px;
+height: auto;
+margin-top:20px;
+margin-left:auto;
+margin-right:auto;
+background: #FDFDFD;
+box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.25);
+border-radius: 15px;
+
+
+hr{
+  border: 2px solid #d4d4d4;
+  width: 700px;
+}
+.mini hr{
+  
+  border: 0.5px solid #dbdbdb;
+  width: 700px;
+
+}
+.Icon{
+
+    height:200px;
+    padding-left:100px;
+    
+}
+.Icon .Tag{
+    
+    padding-bottom: 20px;
+    bottom:15px;
+    width:70px;
+    height:auto;
+    padding-right:88px;
+    float:left;
+   
+
+  bottom: 10px;
+    
+}
+.Icon .Tag .a img{
+
+    padding-right:auto;
+    padding-left:auto;
+    width:70px;
+   padding-top:27px;
+    
+}
+.Icon .Tag .b img{
+
+padding-right:auto;
+padding-left:auto;
+width:70px;
+padding-top:66px;
+
+}
+.Icon .Tag .c img{
+
+padding-right:auto;
+padding-left:auto;
+width:70px;
+padding-top:80px;
+
+
+}
+.Icon .Tag .d img{
+
+padding-right:auto;
+padding-left:auto;
+width:70px;
+padding-top:70px;
+
+}
+.Icon .Tag .e img{
+
+padding-right:auto;
+padding-left:auto;
+width:70px;
+padding-top:71px;
+
+}
+.Icon .Tag .f img{
+
+padding-right:auto;
+padding-left:auto;
+width:70px;
+padding-top:96px;
+}
+
+.Icon .Tag .Text{
+padding-top:15px;
+width:70px;
+
+text-align : center;
+}
+.Icon .Tag .Text .Wtf{
+
+ white-space: nowrap;
+
+}
+
+.Long{
+  width:690px;
+  padding-top:20px;
+  padding-left:40px;
+  word-break:initial;
+  white-space: pre-wrap;
+  padding-bottom:20px;
+  float:left;
+}
+`;
+
+    const ForthItem = styled.div`
+
+width: 750px;
+height: 809px;
+margin-top:20px;
+margin-left:auto;
+margin-right:auto;
+background: #FDFDFD;
+box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.25);
+border-radius: 15px;
+
+
+
+hr{
+  border: 2px solid #d4d4d4;
+  width: 700px;
+}
+.mini hr{
+  
+  border: 0.5px solid #dbdbdb;
+  width: 700px;
+
+}
+
+
+`;
+    /*----------------------------------------------[옵션 아이콘 스타일 지정할거임 (될때까지 숨참음)]----------------------------------------------------*/
+
+    const Options = styled.main`
+    width:auto;
+    height:auto;
+    display: flex;
+  justify-content: space-between;
+  .Longa{
+  width:690px;
+  padding-top:20px;
+  padding-left:50px;
+  padding-right:40px;
+  word-break:initial;
+  white-space: pre-wrap;
+  padding-bottom:20px;
+  float:left;
+}
+
+
+  .Longa  img{
+padding-left:16px;
+padding-right:16px;
+padding-top:28px;
+padding-bottom:28px;
+  }
+`;
+
+    let Sec;
+    if (Security === 1) { Sec = 1 }
+    else if (Security_private === 1) { Sec = 1 }
+    else {
+        Sec = 0
+    }
+    let GasIn;
+    if (Gas === 1) { GasIn = 1 }
+    else if (Induction === 1) { GasIn = 1 }
+    else {
+        GasIn = 0
+    }
+    let Air
+    if (Aircon_standing === 1) { Air = 1 }
+    else if (Aircon_system === 1) { Air = 1 }
+    else {
+        Air = 0
+    }
+
+    /*----------------------------------------------------------[라고 쓰여있는데요?]-------------------------------------------------------------------*/
+
 
 
     /*-----------------------------------------------------------[여기서부터 리턴값]-------------------------------------------------------------------*/
@@ -794,13 +1136,7 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
                                     </div>
 
                                 </div>
-
-
-
-
-
                                 <div className="mini" ><hr /></div>
-
                                 <div className="Long">
                                     ·{supply}m²/{dedicated}m² (공급/전용)
                                     <br />
@@ -829,12 +1165,158 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
                                 <div className="MiniHeader" >옵션</div>
                                 <hr />
 
+                                {/* ------------------자 여기서부터 옵션 (끝날떄 까지 숨참을거임)-------------------------------- */}
+                                <Options>
+                                    <div className="Longa">
+
+                                        {{
+                                            1: <img src={aircon_hanging} alt="" />,
+                                            0: null
+                                        }[Aircon_Hanging]}
+
+
+
+
+
+                                        {{
+                                            1: <img src={aircon_stand_system} alt="" />,
+                                            0: null
+                                        }[Air]}
+
+
+
+                                        {{
+                                            1: <img src={bath} alt="" />,
+                                            0: null
+                                        }[Bath]}
+                                        {{
+                                            1: <img src={bed} alt="" />,
+                                            0: null
+                                        }[Bed]}
+                                        {{
+                                            1: <img src={drier} alt="" />,
+                                            0: null
+                                        }[Drier]}
+
+                                        {{
+                                            1: <img src={bidet} alt="" />,
+                                            0: null
+                                        }[Bidet]}
+                                        {{
+                                            1: <img src={cardkey} alt="" />,
+                                            0: null
+                                        }[Cardkey]}
+                                        {{
+                                            1: <img src={CCTV} alt="" />,
+                                            0: null
+                                        }[Cctv]}
+                                        {{
+                                            1: <img src={closet} alt="" />,
+                                            0: null
+                                        }[Closet]}
+                                        {{
+                                            1: <img src={couch} alt="" />,
+                                            0: null
+                                        }[Couch]}
+                                        {{
+                                            1: <img src={delivery_box} alt="" />,
+                                            0: null
+                                        }[Delivery_box]}
+                                        {{
+                                            1: <img src={desk} alt="" />,
+                                            0: null
+                                        }[Desk]}
+                                        {{
+                                            1: <img src={elevator} alt="" />,
+                                            0: null
+                                        }[Elevator]}
+                                        {{
+                                            1: <img src={entrance_security} alt="" />,
+                                            0: null
+                                        }[Entrance_security]}
+                                        {{
+                                            1: <img src={fridge} alt="" />,
+                                            0: null
+                                        }[Fridge]}
+                                        {{
+                                            1: <img src={microwave} alt="" />,
+                                            0: null
+                                        }[Microwave]}
+
+
+
+                                        {{
+                                            1: <img src={gas_induction} alt="" />,
+                                            0: null
+                                        }[GasIn]}
+
+
+                                        {{
+                                            1: <img src={interphone} alt="" />,
+                                            0: null
+                                        }[Interphone]}
+                                        {{
+                                            1: <img src={oven} alt="" />,
+                                            0: null
+                                        }[Oven]}
+                                        {{
+                                            1: <img src={security} alt="" />,
+                                            0: null
+                                        }[Sec]}
+
+                                        {{
+                                            1: <img src={shoe} alt="" />,
+                                            0: null
+                                        }[Shoe]}
+                                        {{
+                                            1: <img src={shower_booth} alt="" />,
+                                            0: null
+                                        }[Shower_booth]}
+                                        {{
+                                            1: <img src={sink} alt="" />,
+                                            0: null
+                                        }[Sink]}
+                                        {{
+                                            1: <img src={table} alt="" />,
+                                            0: null
+                                        }[Table]}
+                                        {{
+                                            1: <img src={wardrobe} alt="" />,
+                                            0: null
+                                        }[Wardrobe]}
+                                        {{
+                                            1: <img src={washing} alt="" />,
+                                            0: null
+                                        }[Washing]}
+                                        {{
+                                            1: <img src={window_guard} alt="" />,
+                                            0: null
+                                        }[Window_guard]}
+                                        {{
+                                            1: <img src={fire_alarm} alt="" />,
+                                            0: null
+                                        }[Fire_alarm]}
+                                        {{
+                                            1: <img src={dishwasher} alt="" />,
+                                            0: null
+                                        }[Dishwasher]}
+
+                                    </div>
+                                </Options>
+
+                                {/* ------------------------------------------라고 쓰여있는데요?------------------------------------- */}
+
+
 
                             </ThirdItem>
                             <ForthItem>
-                                4
-                            </ForthItem>
+                                <div className="Header" >위치 및 주변시설</div>
+                                <hr />
 
+                                <OptionMap idx={Id} lat={Lat} lng={Lng} />
+
+
+                            </ForthItem>
                         </React.Fragment>
                     </li>
                 </form>

@@ -15,16 +15,16 @@ public interface LocalService {
     public HomeDTO saveData();
     public String type();
 
-    public List<FilterDTO> filterPrice(FilterDTO filterDTO);
+    public List<HomeDTO> filterPrice(FilterDTO filterDTO);
 
-    public List<FilterDTO> filterMonthly(FilterDTO filterDTO);
+    public List<HomeDTO> filterMonthly(FilterDTO filterDTO);
 
 
     void insertData(HomeDTO filterDTO);
 
     public List<HomeDTO> filtering();
 
-    public int[] apiList(Map<String,Double> coordinate);
+    public int[] localApi(Map<String,Double> coordinate);
     public List<HomeDTO> selectIdx();
 
 

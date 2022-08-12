@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eea96d36-841c-4069-bb9f-06433382a808" name="Changes" comment="Changes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/detail/ItemCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/detail/ItemCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/part/HomeList.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/part/HomeList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/part/MapMultiRangeSlider.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/part/MapMultiRangeSlider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/API/OptionMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/API/OptionMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/detail/OptionButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/detail/OptionButton.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,6 +112,10 @@
       <workItem from="1659658861513" duration="799000" />
       <workItem from="1659853210856" duration="758000" />
       <workItem from="1660089327490" duration="814000" />
+      <workItem from="1660090827838" duration="3525000" />
+      <workItem from="1660176443902" duration="2123000" />
+      <workItem from="1660192913208" duration="1996000" />
+      <workItem from="1660262293135" duration="315000" />
     </task>
     <servers />
   </component>

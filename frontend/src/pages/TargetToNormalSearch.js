@@ -199,9 +199,10 @@ const NormalSearch = (onClick) => {
   const Back = async () => {
     axios({
       method: 'post',
-      url: '/react/filter',
+      url: '/local/filter',
       data: {
-        "addr1": search,
+        "d_lat": "37.49676871972202",
+        "d_lng": "127.02474726969814",
         "maxprice": map,
         "minprice": mip,
         "maxmonthly": mam,
@@ -211,7 +212,13 @@ const NormalSearch = (onClick) => {
         "room_number": room_number,
         "op1": options[0],
         "op2": options[1],
-        "op3": options[2]
+        "op3": options[2],
+        "timeSectionMax" : state.maxTime,
+        "timeSectionMin" : state.minTime,
+        "walkTimeMax" : state.maxWalk,
+        "walkTimeMin" : state.minWalk,
+        "transferMax" : state.maxTrans,
+        "transferMin" : state.minTrans
       },
       baseURL: 'http://localhost:8080'
     }

@@ -148,9 +148,9 @@ const LoginForm = () => {
                     <InputBox2>
                         <HandleInputPw placeholder="비밀번호" name="input_pw" type="password" value={inputPw} onChange={handleInputPw} />
                     </InputBox2>
-                    <code>
+                    {/* <code>
                         {JSON.stringify({ data: { inputId, inputPw } })}
-                    </code>
+                    </code> */}
                     <LoginBox onClick={onClickLogin}>로그인</LoginBox>
                     <div />
                     <Buttons1><Link to='/register'>회원가입</Link></Buttons1>

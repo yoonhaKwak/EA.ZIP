@@ -18,17 +18,16 @@ public interface LocalMapper {
     public HomeDTO saveData();
     public String type();
 
-    public List<FilterDTO> filterPrice(FilterDTO filterDTO);
+    public List<HomeDTO> filterPrice(FilterDTO filterDTO);
 
-    public List<FilterDTO> filterMonthly(FilterDTO filterDTO);
+    public List<HomeDTO> filterMonthly(FilterDTO filterDTO);
 
     public void insertInterStationDB(ArrayList<Map<String, String>> station);
+
 
     void insertData(HomeDTO filterDTO);
 
     public List<HomeDTO> filtering();
-
-    public List<String> apiList(Map<String,String> coordinate);
 
     public List<HomeDTO> selectIdx();
 }

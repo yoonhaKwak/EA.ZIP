@@ -52,9 +52,8 @@ import washing from "../../styles/icons/options/washing.svg";
 import window_guard from "../../styles/icons/options/window_guard.svg";
 import fire_alarm from "../../styles/icons/options/fire_alarm.svg";
 import dishwasher from "../../styles/icons/options/dishwasher.svg";
-import KakaoMap from "API/KakaoMap";
-import OptionButton from "components/part/OptionButton";
-import cafe from "../../styles/icons/locate/CafeOn.svg";
+import OptionMap from "API/OptionMap";
+
 
 
 
@@ -170,7 +169,7 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
     Aircon_Hanging, Fridge, Wardrobe, Microwave, Shoe, Washing, Elevator, Security_private,
     Security, Cctv, Bed, Desk, Bidet, Closet, Table, Couch, Shower_booth, Bath, Gas, Induction,
     Oven, Interphone, Cardkey, Fire_alarm, Dishwasher, Sink, Aircon_system, Aircon_standing,
-    Delivery_box, Window_guard, Entrance_security, Drier
+    Delivery_box, Window_guard, Entrance_security, Drier, Lat, Lng, selectedidx
 }) {
 
 
@@ -727,13 +726,8 @@ background: #FDFDFD;
 box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.25);
 border-radius: 15px;
 
-.Map{
-    width:690px;
-    height:500px;
-    padding-left:30px;
-    padding-top:10px;
-    
-}
+
+
 hr{
   border: 2px solid #d4d4d4;
   width: 700px;
@@ -794,6 +788,8 @@ padding-bottom:28px;
     }
 
     /*----------------------------------------------------------[라고 쓰여있는데요?]-------------------------------------------------------------------*/
+
+
     /*-----------------------------------------------------------[여기서부터 리턴값]-------------------------------------------------------------------*/
     return (
         <Block>
@@ -855,7 +851,7 @@ padding-bottom:28px;
                                         </ListFeature>
                                         <div style={{ float: 'top' }}>
                                             <WTF onClick={openModal} />
-                                            <Heart Id={Id} />
+                                            <Heart Id={Id} value={selectedidx} />
                                         </div>
                                     </div>
 
@@ -1144,12 +1140,7 @@ padding-bottom:28px;
                                 <ForthItem>
                                     <div className="Header" >위치 및 주변시설</div>
                                     <hr />
-                                    <div className="Map">
-                                        {/* <KakaoMap /> */}
-                                    </div>
-
-                                    <img src={cafe} alt="" />
-                                    {/* <OptionButton /> */}
+                                    <OptionMap idx={Id} lat={Lat} lng={Lng} />
                                 </ForthItem>
                             </ItemDetail2>
                         </React.Fragment>
