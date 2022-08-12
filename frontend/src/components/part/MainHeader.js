@@ -70,11 +70,11 @@ const MainHeader = () => {
                 url: 'member/logout',
                 method: 'post',
                 data: {
-                    "token": sessionStorage.getItem("token")
+                    "token": sessionStorage.token
                 },
                 baseURL: 'http://localhost:8080'
             }
-        ).then(function () {
+        ).then(function (response) {
             sessionStorage.removeItem("userId");
             sessionStorage.removeItem("token");
             alert('로그아웃완료');

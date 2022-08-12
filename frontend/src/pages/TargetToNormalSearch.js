@@ -160,8 +160,7 @@ const NormalSearch = (onClick) => {
   const navigate = useNavigate();
 
   const { state } = useLocation();
-  console.log((state.maxTime));
-
+  console.log(state.destination);
 
   const onChange = (e) => {
     setSearch(e.target.value)
@@ -201,8 +200,8 @@ const NormalSearch = (onClick) => {
       method: 'post',
       url: '/local/filter',
       data: {
-        "d_lat": "37.49676871972202",
-        "d_lng": "127.02474726969814",
+        "d_lat": state.search.lat,
+        "d_lng": state.search.lng,
         "maxprice": map,
         "minprice": mip,
         "maxmonthly": mam,
@@ -212,13 +211,7 @@ const NormalSearch = (onClick) => {
         "room_number": room_number,
         "op1": options[0],
         "op2": options[1],
-        "op3": options[2],
-        "timeSectionMax" : state.maxTime,
-        "timeSectionMin" : state.minTime,
-        "walkTimeMax" : state.maxWalk,
-        "walkTimeMin" : state.minWalk,
-        "transferMax" : state.maxTrans,
-        "transferMin" : state.minTrans
+        "op3": options[2]
       },
       baseURL: 'http://localhost:8080'
     }
@@ -356,9 +349,9 @@ const NormalSearch = (onClick) => {
         <Sbtn onClick={() => Back()}>
           추천받기
         </Sbtn>
-        <code>
+        {/* <code>
           {JSON.stringify({ data: { search, map, mip, mam, mim, category1, type, room_number, options, state } })}
-        </code>
+        </code> */}
       </Positioner>
     </Container>
   );

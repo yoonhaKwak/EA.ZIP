@@ -102,6 +102,8 @@ const Hr1 = styled.hr`
 `;
 
 //////////////////////////함수입력 구간//////////////////////////////////////////
+const { kakao } = window
+
 const TargetSearch = (onClick) => {
 
   const [map, setMap] = useState(0);
@@ -110,12 +112,8 @@ const TargetSearch = (onClick) => {
   const [mil, setMil] = useState(0);
   const [mam, setMam] = useState(0);
   const [mim, setMim] = useState(0);
-  const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
   const navigate = useNavigate();
-  const onChange = (e) => {
-    setSearch(e.target.value)
-  };
 
   /////////////////////////////////////////////////숫자==> 시간으로////////////////////////////////////////////////////////
   Number.prototype.toHHMMSS = function () {
@@ -130,19 +128,51 @@ const TargetSearch = (onClick) => {
   }
   /////////////////////////////////////////////////숫자==> 시간으로////////////////////////////////////////////////////////
 
+  const [target, setTarget] = useState({
+    center: { lat: 0, lng: 0 },
+    isPanto: true,
+  });
+  const [searchAddress, SetSearchAddress] = useState();
+
+  const SearchMap = () => {
+    const ps = new kakao.maps.services.Places()
+    const placesSearchCB = function (data, status) {
+      if (status === kakao.maps.services.Status.OK) {
+        const newSearch = data[0]
+        setTarget({
+          center: { lat: newSearch.y, lng: newSearch.x }
+        })
+      }
+    };
+    ps.keywordSearch(`${searchAddress}`, placesSearchCB);
+  }
+  const handlekeypress = e => {
+    if (e.key === 'Enter') {
+      SearchMap();
+      e.preventDefault();
+    }
+  }
+  const handleSearchAddress = (e) => {
+    SetSearchAddress(e.target.value)
+  }
+  let getLatLng = target.center;
+  let Dest = searchAddress;
+
   const NextPage = () => {
     navigate('/normalsearch1', {
       state: {
-        search: search,
+        search: getLatLng,
         minTime: mip,
         maxTime: map,
         minWalk: mil,
         maxWalk: mal,
         minTrans: mim,
-        maxTrans: mam
+        maxTrans: mam,
+        destination: searchAddress
       }
     });
   };
+
   return (
     <Container>
       <MainHeader3 />
@@ -153,9 +183,7 @@ const TargetSearch = (onClick) => {
           <>
             <StyledBox className="inputForm">
               <Button type="button" onClick={onClick} />
-              <StyledInput type="text" placeholder="목적지를 입력하세요!" onChange={onChange} onKeyPress={e => {
-                if (e.key === 'Enter') e.preventDefault();
-              }} />
+              <StyledInput type="text" placeholder="목적지를 입력한 후 엔터를 누르세요!" onChange={handleSearchAddress} onKeyPress={handlekeypress} />
             </StyledBox>
           </>
           <OptionList>
@@ -199,11 +227,13 @@ const TargetSearch = (onClick) => {
             <Hr1 />
             <SliderDBox>최대 횟수 <br />{mam} 번</SliderDBox>
           </Div>
-          {/* <code>
-            {JSON.stringify({ data: { search, mip, map, mil, mal, mim, mam } })}
-          </code> */}
+          <code>
+            {JSON.stringify({ data: { getLatLng, Dest, mip, map, mil, mal, mim, mam } })}
+          </code>
         </form>
-        <Sbtn onClick={() => NextPage()}>
+        <Sbtn onClick={() => {
+          NextPage()
+        }}>
           우선순위 정하기
         </Sbtn>
       </Positioner>
