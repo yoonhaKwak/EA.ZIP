@@ -211,7 +211,13 @@ const NormalSearch = (onClick) => {
         "room_number": room_number,
         "op1": options[0],
         "op2": options[1],
-        "op3": options[2]
+        "op3": options[2],
+        "timeSectionMax" : state.maxTime,
+        "timeSectionMin" : state.minTime,
+        "walkTimeMax" : state.maxWalk,
+        "walkTimeMin" : state.minWalk,
+        "transferMax" : state.maxTrans,
+        "transferMin" : state.minTrans
       },
       baseURL: 'http://localhost:8080'
     }
