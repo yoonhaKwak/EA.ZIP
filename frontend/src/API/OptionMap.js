@@ -7,6 +7,7 @@ import ItemDetailMarker from "../components/part/ItemDetailMarker";
 import styled from "styled-components";
 import { param } from "jquery";
 
+
 import OptionButton from "components/detail/OptionButton";
 import CafeOn from "../styles/icons/locate/CafeOn.svg";
 import CafeOff from "../styles/icons/locate/CafeOff.svg";
@@ -49,6 +50,8 @@ import CycleMarker from "../styles/icons/optionmarker/cycle.svg"
 import CCTVMarker from "../styles/icons/optionmarker/cctv.svg"
 import BusstaMarker from "../styles/icons/optionmarker/busstation.svg"
 import BusterMarker from "../styles/icons/optionmarker/busterminal.svg"
+import { array } from "prop-types";
+
 /*---------------------------------------------------------------[옵션버튼]-----------------------------------------------------------------------*/
 const OptionButtonAreaA = styled.main`
 width:auto;
@@ -57,25 +60,13 @@ height:auto;
 display: flex;
 justify-content: space-between;
 padding-top:20px;
-padding-left:150px;
+
 label{
-padding-right:25;
+padding-right:14;
 
 }
-
 `
-const OptionButtonAreaB = styled.main`
-width:auto;
-float:left;
-height:auto;
-display: flex;
-justify-content: space-between;
-padding-top:20px;
-padding-left:110px;
-label{
-padding-right:25;
 
-}`
 const MapArea = styled.div`
 
     width:690px;
@@ -93,7 +84,7 @@ const MapArea = styled.div`
 function OptionMap(Idx, Lat, Lng, AAA) {
 
 
-    const [ItemList, SetItemList] = useState([]);
+    const [ItemList, SetItemList] = useState();
     let Home = [
         Idx
     ];
@@ -119,14 +110,39 @@ function OptionMap(Idx, Lat, Lng, AAA) {
     // lat
     // lng
 
-    console.log(ItemList)
-    console.log(Idx)
-    console.log(Home)
+    /*     console.log(ItemList)
+        console.log(Idx)
+        console.log(Home) */
+    let Check = array;
+    let OptionId;
+    let OptionOnOff = Boolean;
+    let bruh;
+    const parentFunction = (x) => {
+        Check = x
+        OptionId = Check[0];
+        bruh = Check[1];
+        bruh = bruh + ""
+        if (bruh === `1`) {
+            OptionOnOff = true;
+        }
+        else {
+            OptionOnOff = false;
+        }
+        /*         console.log(Check);
+                console.log(OptionId);
+                console.log(OptionOnOff);
+                return Check, OptionId, OptionOnOff; */
+    };
+    /*  console.log(Check);
+     console.log(OptionId);
+     console.log(OptionOnOff); */
 
-
-
+    console.log(ItemList);
     const [isVisible, setIsVisible] = useState(true)
+
+
     return (
+
         <MapArea>
             <Map
                 center={{
@@ -164,9 +180,9 @@ function OptionMap(Idx, Lat, Lng, AAA) {
                     />
                 ))}
 
-                {isVisible && ItemList.map((marker) => (
+                {/*                  {true && ItemList.map((marker) => (
                     <MapMarker
-                        key={marker.name}
+                        key={marker}
                         position={{
                             lat: marker.lat,
                             lng: marker.lng
@@ -186,26 +202,27 @@ function OptionMap(Idx, Lat, Lng, AAA) {
                             },
                         }}
                     />
-                ))}
+                ))}  */}
                 <OptionButtonAreaA>
-                    <OptionButton Id="Convenience" A={ConviOn} B={ConviOff} />
-                    <OptionButton Id="Cafe" A={CafeOn} B={CafeOff} />
-                    <OptionButton Id="Laundry" A={LaunOn} B={LaunOff} />
-                    <OptionButton Id="PublicHospital" A={PubheOn} B={PubheOff} />
-                    <OptionButton Id="Bank" A={BankOn} B={BankOff} />
+                    <OptionButton parentFunction={parentFunction} Id="Convenience" A={ConviOn} B={ConviOff} />
+                    <OptionButton parentFunction={parentFunction} Id="Cafe" A={CafeOn} B={CafeOff} />
+                    <OptionButton parentFunction={parentFunction} Id="Laundry" A={LaunOn} B={LaunOff} />
+                    <OptionButton parentFunction={parentFunction} Id="PublicHospital" A={PubheOn} B={PubheOff} />
+                    <OptionButton parentFunction={parentFunction} Id="Bank" A={BankOn} B={BankOff} />
+
+
+
+                    <OptionButton parentFunction={parentFunction} Id="Hospital" A={HosOn} B={HosOff} />
+                    <OptionButton parentFunction={parentFunction} Id="Comunicate" A={CommuOn} B={CommuOff} />
+                    <OptionButton parentFunction={parentFunction} Id="Post" A={PostOn} B={PostOff} />
+                    <OptionButton parentFunction={parentFunction} Id="Cycle" A={CycleOn} B={CycleOff} />
+                    <OptionButton parentFunction={parentFunction} Id="CCTV" A={CCTVOn} B={CCTVOff} />
 
                 </OptionButtonAreaA>
-                <OptionButtonAreaB>
-                    <OptionButton Id="Hospital" A={HosOn} B={HosOff} />
-                    <OptionButton Id="Comunicate" A={CommuOn} B={CommuOff} />
-                    <OptionButton Id="Post" A={PostOn} B={PostOff} />
-                    <OptionButton Id="Cycle" A={CycleOn} B={CycleOff} />
-                    <OptionButton Id="CCTV" A={CCTVOn} B={CCTVOff} />
-                    <OptionButton Id="Subway" A={SubwayOn} B={SubwayOff} />
 
-                </OptionButtonAreaB>
             </Map >
         </MapArea>
+
     );
 }
 

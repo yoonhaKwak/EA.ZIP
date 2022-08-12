@@ -718,7 +718,7 @@ text-align : center;
     const ForthItem = styled.div`
 
 width: 750px;
-height: 809px;
+height: 709px;
 margin-top:20px;
 margin-left:auto;
 margin-right:auto;

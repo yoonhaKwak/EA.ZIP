@@ -27,7 +27,10 @@ public class CashingController {
         Double dlat = temp.get("lat");
         Double dlng = temp.get("lng");
 
-        String[] facilityList = new String[9];
+        log.info(String.valueOf(dlat));
+
+
+        String[] facilityList = new String[10];
         facilityList[0] = "bogun_tbl";
         facilityList[1] = "cafe_tbl";
         facilityList[2] = "cctv_tbl";
@@ -37,6 +40,7 @@ public class CashingController {
         facilityList[6] = "market_tbl";
         facilityList[7] = "office_tbl";
         facilityList[8] = "post_tbl";
+        facilityList[9] = "bank_tbl";
 
         Map<String, List<Map<String, String>>> facilities_result = new HashMap<>();
         List<Double> distance_list = new ArrayList<>();
@@ -50,7 +54,7 @@ public class CashingController {
             Double lat_gap = 0.0009000;
             Double lng_gap = 0.0011340;
 
-            int scale = 4;
+            int scale = 7;
 
 //            for (Map<NearDTO, Object> busDTOObjectMap : tempList)
             for (int j = 0; j < tempList.size(); j++) {
@@ -63,12 +67,16 @@ public class CashingController {
                     name_lat_lng.put("name", name);
                     name_lat_lng.put("lat", slat.toString());
                     name_lat_lng.put("lng", slng.toString());
+
+
                     facilities.add(name_lat_lng);
                     Double distance = service.Haversine(dlat, dlng, slat, slng);
                     distance_list.add(distance);
                 }
             }
+            facilities_result.put(facilityList[i], facilities );
         }
+
         System.out.println(facilities_result);
         return facilities_result;
     }
