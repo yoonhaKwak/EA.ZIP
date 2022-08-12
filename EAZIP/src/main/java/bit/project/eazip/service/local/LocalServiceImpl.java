@@ -49,7 +49,7 @@ public class LocalServiceImpl implements LocalService {
     }
 
     @Override
-    public List<FilterDTO> filterPrice(FilterDTO filterDTO) {
+    public List<HomeDTO> filterPrice(FilterDTO filterDTO) {
         log.info("############################");
         log.info("서비스 임플, filterPrice 실행");
         log.info("############################");
@@ -57,7 +57,7 @@ public class LocalServiceImpl implements LocalService {
     }
 
     @Override
-    public List<FilterDTO> filterMonthly(FilterDTO filterDTO) {
+    public List<HomeDTO> filterMonthly(FilterDTO filterDTO) {
         log.info("############################");
         log.info("서비스 임플, filterMonthly 실행");
         log.info("############################");
@@ -81,15 +81,18 @@ public class LocalServiceImpl implements LocalService {
 
 
     @Override
-    public int[] apiList(Map<String,Double> coordinate) {
-        Double lat,lng;
+    public int[] localApi(Map<String,Double> coordinate) {
+        Double lat,lng,d_lat,d_lng;
         lat = coordinate.get("lat");
         lng = coordinate.get("lng");
+        d_lat = coordinate.get("d_lat");
+        d_lng = coordinate.get("d_lng");
+
 
 
         String line = null;
         int apiList[] = new int[3];
-        String uri = "https://api.odsay.com/v1/api/searchPubTransPath?SX=126.9027279&SY=37.5349277&EX="+lng+"&EY="+lat+"&apiKey=j7A34MnqbWGfZQwWtVRUtqkal9YXPsGl%2BQGMho8v2ag";
+        String uri = "https://api.odsay.com/v1/api/searchPubTransPath?SX="+d_lng+"&SY="+d_lat+"&EX="+lng+"&EY="+lat+"&apiKey=j7A34MnqbWGfZQwWtVRUtqkal9YXPsGl%2BQGMho8v2ag";
 
 //        List<String> walk = new ArrayList<String>();
 //        List<String> bus = new ArrayList<String>();
@@ -108,7 +111,7 @@ public class LocalServiceImpl implements LocalService {
             JSONObject obj = (JSONObject)jsonParser.parse(line);
 
             JSONObject result = (JSONObject) obj.get("result");
-            JSONArray path = (JSONArray) result.get("path");// is null 이라고 뜸
+            JSONArray path = (JSONArray) result.get("path");
             JSONObject info = (JSONObject)path.get(0);
             info = (JSONObject)info.get("info");
 
@@ -130,7 +133,7 @@ public class LocalServiceImpl implements LocalService {
 
 
 //            Cashing 코드
-            log.info("############## 캐싱 테스트 시작 ###################" );
+            log.info("############## 8월11일 캐싱 테스트 시작 ###################" );
             // path.size() 베이스 for문 시작 부분
 
             Map<String, Map> pathmap = new HashMap<>();
@@ -141,18 +144,14 @@ public class LocalServiceImpl implements LocalService {
 
             for (int i = 0 ; i < path.size(); i++) {
 
-
                 // path[i] 불러오기
                 JSONObject temppath = (JSONObject) path.get(i);
-
                 // path[i].subpath 불러오기
                 JSONArray subpath = (JSONArray) temppath.get("subPath");
                 // 각 subpath마다 역간 경로 저장할 맵 정의
                 Map<String, String> subpathmap = new HashMap<>();
                 Map<String, String> interStationTemp = new HashMap<>();
-
                 for (int j = 0; j < subpath.size(); j++) {
-
                     JSONObject tempsubpath = (JSONObject) subpath.get(j);
                     if (Integer.parseInt(tempsubpath.get("trafficType").toString()) == 1)
                     {
@@ -160,13 +159,20 @@ public class LocalServiceImpl implements LocalService {
                         subpathmap.put(new String("endID") + j , "" + tempsubpath.get("endID").toString());
                         subpathmap.put(new String("")+j+0+j+1, tempsubpath.get("sectionTime").toString());
 
-                        interStationTemp.put("station1",subpathmap.get("startID"+j));
-                        interStationTemp.put("station2",subpathmap.get("endID"+j ));
+                        // 역코드 크기 비교
+                        if(Integer.parseInt(subpathmap.get("startID"+j)) >= Integer.parseInt(subpathmap.get("endID"+j)) ) {
+                            interStationTemp.put("station1",subpathmap.get("startID"+j));
+                            interStationTemp.put("station2",subpathmap.get("endID"+j ));
+                        }
+                        else{
+                            interStationTemp.put("station1",subpathmap.get("endID"+j ));
+                            interStationTemp.put("station2",subpathmap.get("startID"+j ));
+                        }
+                        interStationTemp.put("idx", interStationTemp.get("station1")+interStationTemp.get("station2"));
                         interStationTemp.put("sectionTime",tempsubpath.get("sectionTime").toString());
                         interStationTemp.put("walk","0");
                         interStationTemp.put("trans","0");
                         interStation.add(interStationTemp);
-
                     }
                     else if (Integer.parseInt(tempsubpath.get("trafficType").toString()) == 2)
                     {
@@ -176,14 +182,20 @@ public class LocalServiceImpl implements LocalService {
                         subpathmap.put(new String("endID") + j, "" + tempsubpath.get("endLocalStationID").toString());
                         subpathmap.put(new String("")+j+0+j+1, tempsubpath.get("sectionTime").toString());
 
-
-                        interStationTemp.put("station1",subpathmap.get("startID"+j));
-                        interStationTemp.put("station2",subpathmap.get("endID"+j ));
+                        // 역코드 크기 비교
+                        if(Integer.parseInt(subpathmap.get("startID"+j)) >= Integer.parseInt(subpathmap.get("endID"+j)) ) {
+                            interStationTemp.put("station1", subpathmap.get("startID"+j));
+                            interStationTemp.put("station2", subpathmap.get("endID"+j ));
+                        }
+                        else{
+                            interStationTemp.put("station1", subpathmap.get("endID"+j ));
+                            interStationTemp.put("station2", subpathmap.get("startID"+j));
+                        }
+                        interStationTemp.put("idx", interStationTemp.get("station1")+interStationTemp.get("station2"));
                         interStationTemp.put("sectionTime",tempsubpath.get("sectionTime").toString());
                         interStationTemp.put("walk","0");
                         interStationTemp.put("trans","0");
                         interStation.add(interStationTemp);
-
                     }
                     else
                     {
@@ -196,7 +208,6 @@ public class LocalServiceImpl implements LocalService {
                 int temp;
                 int temp_walk;
                 int trans;
-
                 for (int k =0; k <subpath.size(); k++)
                 {
                     for (int l =0; l<= k; l++) {
@@ -216,48 +227,75 @@ public class LocalServiceImpl implements LocalService {
                             }
                         }
 
+                        ////////////////////////////////////   2    ////////////////////////////////////////////
+                        // 역코드 크기 비교
                         Map<String, String> interStationTemp2 = new HashMap<>();
-//                        interStation.put(subpathmap.get("endID"+l )+","+subpathmap.get("startID"+k), temp +"," + temp_walk+ ","+ (Math.max(trans - 2, 0)));
-                        interStationTemp2.put("station1", subpathmap.get("startID"+k ));
-                        interStationTemp2.put("station2", subpathmap.get("endID"+l ));
+                        if(Integer.parseInt(subpathmap.get("startID"+k)) >= Integer.parseInt(subpathmap.get("endID"+l)) ) {
+                            interStationTemp2.put("station1", subpathmap.get("startID"+k ));
+                            interStationTemp2.put("station2", subpathmap.get("endID"+l ));
+                        }
+                        else{
+                            interStationTemp2.put("station1", subpathmap.get("endID"+l ));
+                            interStationTemp2.put("station2", subpathmap.get("startID"+k ));
+                        }
+                        interStationTemp2.put("idx", interStationTemp2.get("station1")+interStationTemp2.get("station2"));
                         interStationTemp2.put("sectionTime", String.valueOf(temp));
                         interStationTemp2.put("walk",String.valueOf(temp_walk));
                         interStationTemp2.put("trans",String.valueOf(Math.max(trans -2,0)));
                         interStation.add(interStationTemp2);
 
 
+                        ////////////////////////////////////   3    ////////////////////////////////////////////
                         Map<String, String> interStationTemp3 = new HashMap<>();
                         temp += Integer.parseInt(subpathmap.get(""+l+0+l+1));
-//                        interStation.put(subpathmap.get("startID"+l)+","+subpathmap.get("startID"+k), temp +","+ temp_walk+ ","+ (trans-1));
-                        interStationTemp3.put("station1", subpathmap.get("startID"+l ));
-                        interStationTemp3.put("station2", subpathmap.get("startID"+k ));
+                        // 역코드 크기 비교
+                        if(Integer.parseInt(subpathmap.get("startID"+l)) >= Integer.parseInt(subpathmap.get("startID"+k)) ) {
+                            interStationTemp3.put("station1", subpathmap.get("startID"+l ));
+                            interStationTemp3.put("station2", subpathmap.get("startID"+k ));
+
+                        }
+                        else{
+                            interStationTemp3.put("station1", subpathmap.get("startID"+k ));
+                            interStationTemp3.put("station2", subpathmap.get("startID"+l ));
+                        }
+                        interStationTemp3.put("idx", interStationTemp3.get("station1")+interStationTemp3.get("station2"));
                         interStationTemp3.put("sectionTime",String.valueOf(temp));
                         interStationTemp3.put("walk",String.valueOf(temp_walk));
                         interStationTemp3.put("trans",String.valueOf(trans -1));
                         interStation.add(interStationTemp3);
 
-
-
+                        ////////////////////////////////////   4    ////////////////////////////////////////////
                         Map<String, String> interStationTemp4 = new HashMap<>();
                         temp += Integer.parseInt(subpathmap.get(""+k+0+k+1));
-
-//                        interStation.put(subpathmap.get("startID"+l)+","+subpathmap.get("endID"+k), temp +","+ temp_walk+ ","+ (trans));
-                        interStationTemp4.put("station1", subpathmap.get("startID"+l ));
-                        interStationTemp4.put("station2", subpathmap.get("endID"+k ));
+                        // 역코드 크기 비교
+                        if(Integer.parseInt(subpathmap.get("startID"+l)) >= Integer.parseInt(subpathmap.get("endID"+k)) ) {
+                            interStationTemp4.put("station1", subpathmap.get("startID"+l ));
+                            interStationTemp4.put("station2", subpathmap.get("endID"+k ));
+                        }
+                        else{
+                            interStationTemp4.put("station1", subpathmap.get("endID"+k ));
+                            interStationTemp4.put("station2", subpathmap.get("startID"+l));
+                        }
+                        interStationTemp4.put("idx", interStationTemp4.get("station1")+interStationTemp4.get("station2"));
                         interStationTemp4.put("sectionTime",String.valueOf(temp));
                         interStationTemp4.put("walk",String.valueOf(temp_walk));
                         interStationTemp4.put("trans",String.valueOf(trans));
                         interStation.add(interStationTemp4);
 
 
-
-
+                        ////////////////////////////////////   5    ////////////////////////////////////////////
                         Map<String, String> interStationTemp5 = new HashMap<>();
-
                         temp -= Integer.parseInt(subpathmap.get(""+l+0+l+1));
 //                        interStation.put(subpathmap.get("endID"+l)+","+subpathmap.get("endID"+k), temp +"," + temp_walk+ ","+ (trans-1));
-                        interStationTemp5.put("station1", subpathmap.get("endID"+k ));
-                        interStationTemp5.put("station2", subpathmap.get("endID"+l ));
+                        if(Integer.parseInt(subpathmap.get("endID"+k)) >= Integer.parseInt(subpathmap.get("endID"+l)) ) {
+                            interStationTemp5.put("station1", subpathmap.get("endID"+k ));
+                            interStationTemp5.put("station2", subpathmap.get("endID"+l ));
+                        }
+                        else{
+                            interStationTemp5.put("station1", subpathmap.get("endId"+l ));
+                            interStationTemp5.put("station2", subpathmap.get("endID"+k ));
+                        }
+                        interStationTemp5.put("idx", interStationTemp5.get("station1")+interStationTemp5.get("station2"));
                         interStationTemp5.put("sectionTime",String.valueOf(temp));
                         interStationTemp5.put("walk",String.valueOf(temp_walk));
                         interStationTemp5.put("trans",String.valueOf(trans -1));
@@ -267,9 +305,14 @@ public class LocalServiceImpl implements LocalService {
                 pathmap.put("path"+i, subpathmap);
             }
 
+
             log.info("############### 진행완료 ###############");
             System.out.println(interStation);
             System.out.println("size : "+interStation.size());
+
+
+            localMapper.insertInterStationDB(interStation);
+
 
 
 
@@ -288,6 +331,8 @@ public class LocalServiceImpl implements LocalService {
             throw new RuntimeException(e);
         } catch (NullPointerException e){
             log.info(line);
+            apiList[0] = apiList[1] = apiList[2] = 0;
+            return apiList;
         }
         return apiList;
     }

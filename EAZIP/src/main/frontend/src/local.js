@@ -15,10 +15,11 @@ function Filter(){
     const Back = async () => {
         axios(
             {
-                url: '/local/filter',
+                url: '/cash/filter',
                 method: 'post',
                 data: {
-                    "addr1" : addr1,
+                    'd_lat' : 37.4882984,
+                    'd_lng' : 127.0483885,
                     'TimeSectionMin' : 5000,
                     "TimeSectionMax" : 2000,
                     "WalkTimeMin" : 3000,
