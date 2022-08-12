@@ -27,6 +27,7 @@ public class CashingController {
         Map<String, Double> temp = paramMap;
         Double dlat = temp.get("lat");
         Double dlng = temp.get("lng");
+//        String facility = temp.get("facility");
 
         // DB의 subway data를 가져와 list<map>형태로 로 저장
         List subwayList_temp = service.getStations("subway_tbl");
@@ -36,11 +37,7 @@ public class CashingController {
         List busList_temp = service.getStations("bus_tbl");
         List<Map<BusDTO, Object>> busList = busList_temp;
 
-
-
-
         // String testStr = resultList.get(4).get("name").toString();
-
 
         // 주변 역 탐색시 반경 100m로 검색하기 위한 parameter
         Double lat_gap = 0.0009000;
@@ -66,11 +63,10 @@ public class CashingController {
             Double blng = Double.parseDouble(busList.get(i).get("lng").toString());
             String bidx = "b" + busList.get(i).get("idx").toString();
 
-
-
             if ( blat < dlat + lat_gap * scale && blat > dlat - lat_gap * scale && blng < dlng + lng_gap* scale && blng > dlng - lng_gap* scale ){
                 System.out.println("lat :" + blat);
                 idx_list.add(bidx);
+
                 name_lat_lng.put("name", bidx);
                 name_lat_lng.put("lat", blat.toString());
                 name_lat_lng.put("lng",blng.toString());
@@ -83,7 +79,6 @@ public class CashingController {
 //                result_lng.add(lng);
             }
         }
-
 
         log.info("버스데이터 처리 완료");
         scale = 6;
@@ -103,7 +98,6 @@ public class CashingController {
                 name_lat_lng.put("lng",slng.toString());
                 facilities.add(name_lat_lng);
 
-
 //                facility.put(sidx, name_lat_lng);
                 Double distance = service.Haversine(dlat, dlng, slat, slng);
                 distance_list.add(distance);
@@ -112,17 +106,15 @@ public class CashingController {
             }
         }
 
-
-
-
         log.info("############결과값 확인##############");
         System.out.println(busList.size());
 //        System.out.println(result_lat.size());
 //        System.out.println(result_lat);
 //        System.out.println(result_lng);
         System.out.println("bus idx :" + idx_list);
-//        System.out.println("distance :" + distance_list);
+        System.out.println("distance :" + distance_list);
         System.out.println(facilities);
+        System.out.println(facilities.get(5).get("name"));
 
     return facilities;
     }

@@ -22,7 +22,7 @@ public interface LocalMapper {
 
     public List<FilterDTO> filterMonthly(FilterDTO filterDTO);
 
-    public void insertInterStationDB(ArrayList<String[]> station);
+    public void insertInterStationDB(ArrayList<Map<String, String>> station);
 
     void insertData(HomeDTO filterDTO);
 

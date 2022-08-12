@@ -60,6 +60,14 @@
 
 
 
+    <insert id="insertInterStationDB" parameterType="java.util.List">
+        INSERT ignore into interStationDB (idx, station1, station2, sectionTime, walk, trans) values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.idx}, #{item.station1}, #{item.station2}, #{item.sectionTime}, #{item.walk}, #{item.trans})
+        </foreach>
+    </insert>
+
+
 
 
     <insert id="insertRoomFiltering" parameterType="bit.project.eazip.domain.home.HomeDTO">

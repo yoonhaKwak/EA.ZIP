@@ -19,7 +19,7 @@ import lombok.extern.java.Log;
 @Log
 @RestController
 @CrossOrigin(origins = "http://localhost:3000",allowCredentials = "true")
-@RequestMapping("/local")
+@RequestMapping("/cash")
 public class LocalController {
     @Autowired
     LocalService service;
@@ -76,6 +76,11 @@ public class LocalController {
             log.info("########## 필터링 적용하여 서비스 호출 완료 ##########");
             System.out.println(homes.size());
             return homes;
+
+
+
+
+
         }
 
 
@@ -100,6 +105,11 @@ public class LocalController {
         // 매물의 위도경도 정보 coordinate에 입력
         coordinate.put("lat",homes.getLat());
         coordinate.put("lng",homes.getLng());
+
+        log.info("위도경도");
+        System.out.println(coordinate.get("lat"));
+        System.out.println(coordinate.get("lng"));
+
 
         // api 받아오기
         api = service.apiList(coordinate);
