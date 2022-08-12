@@ -24,7 +24,7 @@ public interface LocalService {
 
     public List<HomeDTO> filtering();
 
-    public int[] apiList(Map<String,Double> coordinate);
+    public int[] localApi(Map<String,Double> coordinate);
     public List<HomeDTO> selectIdx();
 
 

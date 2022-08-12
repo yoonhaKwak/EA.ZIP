@@ -42,7 +42,7 @@ public class LocalController {
 
         @RequestMapping(value = "/filter", method = {RequestMethod.GET, RequestMethod.POST})
         public List<HomeDTO> Filter(@RequestBody FilterDTO paramMap) throws SQLException,Exception {
-            int api[] = new int[3];
+            int[] api = new int[3];
 
             log.info("############### 컨트롤러 진입 #####################");
 
@@ -84,17 +84,17 @@ public class LocalController {
             System.out.println(HomeList.size());
             //return HomeList;
 
-            int idx[] = new int[HomeList.size()];
+            int[] idx = new int[HomeList.size()];
 
             for (int i = 0; i < HomeList.size(); i++) {
                 idx[i] = HomeList.get(i).getIdx();
             }
 
-            List<HomeDTO> resultList = null;
-            for (int j = 0; j < idx.length; j++) {
-                HomeDTO homes = service.selectData(idx[j]);
+            List<HomeDTO> resultList = new ArrayList<>();
+            for (int i : idx) {
+                HomeDTO homes = service.selectData(i);
 
-                Map<String, Double> coordinate = new HashMap<String, Double>();
+                Map<String, Double> coordinate = new HashMap<>();
 
                 // 매물의 위도경도 정보 coordinate에 입력
                 coordinate.put("lat", homes.getLat());
@@ -104,16 +104,16 @@ public class LocalController {
                 coordinate.put("d_lng", paramMap.getD_lng());
 
                 // api 받아오기
-                api = service.apiList(coordinate);
-                Thread.sleep(1000);
+                api = service.localApi(coordinate);
+                Thread.sleep(300);
 
                 if ((api[0] * 0.016 <= paramMap.getWalkTimeMax() & api[0] * 0.016 >= paramMap.getWalkTimeMin()) &
                         (api[1] <= paramMap.getTransferMax() & api[1] >= paramMap.getTransferMin()) &
-                        (api[2] <= paramMap.getTimeSectionMax() & api[2] >= paramMap.getTimeSectionMin()))
-                        {
-                            resultList.add(homes);
-                            log.info("resultList에 저장");
-                        }
+                        (api[2] <= paramMap.getTimeSectionMax() & api[2] >= paramMap.getTimeSectionMin())) {
+
+                    resultList.add(homes);
+                    log.info("resultList에 저장");
+                }
             }
             return resultList;
         }
@@ -139,7 +139,7 @@ public class LocalController {
         coordinate.put("lng",homes.getLng());
 
         // api 받아오기
-        api = service.apiList(coordinate);
+        api = service.localApi(coordinate);
 
         if(api[0]*0.016<=5 & api[1]<=1 & api[2]<=45){
             //디비에 HomeDTO 저장하기

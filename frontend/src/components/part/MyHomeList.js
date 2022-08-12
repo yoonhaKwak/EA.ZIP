@@ -15,7 +15,7 @@ const Listblock = styled.div`
     `;
 
 function MyHomeList() {
-  let userId = "2361369723";
+  let userId = sessionStorage.getItem("userId");
   const [ItemList, SetItemList] = useState();
   const [idx, setIdx] = useState([]);
   useEffect(() => {

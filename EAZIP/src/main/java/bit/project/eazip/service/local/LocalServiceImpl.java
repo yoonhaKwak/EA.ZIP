@@ -81,7 +81,7 @@ public class LocalServiceImpl implements LocalService {
 
 
     @Override
-    public int[] apiList(Map<String,Double> coordinate) {
+    public int[] localApi(Map<String,Double> coordinate) {
         Double lat,lng,d_lat,d_lng;
         lat = coordinate.get("lat");
         lng = coordinate.get("lng");

@@ -24,11 +24,10 @@ public interface LocalMapper {
 
     public void insertInterStationDB(ArrayList<String[]> station);
 
+
     void insertData(HomeDTO filterDTO);
 
     public List<HomeDTO> filtering();
-
-    public List<String> apiList(Map<String,String> coordinate);
 
     public List<HomeDTO> selectIdx();
 }
