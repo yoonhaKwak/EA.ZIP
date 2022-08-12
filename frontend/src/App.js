@@ -12,6 +12,7 @@ import KakaoSearch from 'API/KakaoSearch';
 import FirstPage from 'pages/FirstPage';
 import OAuthRedirectHandler from 'pages/OAuthRedirectHandler';
 import Test from 'pages/Test';
+import Loading from 'pages/Loading';
 
 
 
@@ -31,6 +32,8 @@ function App() {
                                 <Route path="/targetsearch" element={<TargetSearch />} />
                                 <Route path="/test" element={<Test />} />
                                 <Route path="/normalsearch1" element={<TargetToNormalSearch />} />
+                                <Route path="/loading" element={<Loading />} />
+
                         </Routes>
                 </Router>
         );

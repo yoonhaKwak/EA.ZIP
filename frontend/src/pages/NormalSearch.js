@@ -4,13 +4,14 @@ import image from "../styles/background/2.jpg";
 import CheckBox from "../components/part/CheckBox";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MultiRangeSlider from "components/part/MultiRangeSlider";
 import ButtonA from "../components/part/ButtonA";
 import ButtonB from "../components/part/ButtonB";
 import ButtonC from "../components/part/ButtonC";
 import pallette from 'styles/pallette';
 import Search from '../styles/icons/Search.svg';
+import Loading from "./Loading";
 
 const Container = styled.div`
 position: absolute;
@@ -146,7 +147,7 @@ const CategoryList2 = [
 ];
 
 const NormalSearch = (onClick) => {
-
+  const [loading, setLoading] = useState(true);
   const [category1, setCategory] = useState([]);
   const [type, setType] = useState([]);
   const [room_number, setRoom] = useState([]);
@@ -192,6 +193,9 @@ const NormalSearch = (onClick) => {
       setOption(options.filter(el => el !== item));
     }
   };
+  useEffect(() => {
+    setLoading(false);
+  });
   const Back = async () => {
     axios({
       method: 'post',
@@ -215,7 +219,10 @@ const NormalSearch = (onClick) => {
     }
     ).then((response) => {
       setData(JSON.stringify(response.data));
-      navigate('/search', { state: response.data })
+      {
+        loading ? (<Loading />) :
+          navigate('/search', { state: response.data })
+      }
     });
   };
   ////////////////////////////////////////////////////////// 숫자에 금액 표시 구간/////////////////////////////////////////////////////
@@ -344,12 +351,19 @@ const NormalSearch = (onClick) => {
             <SliderDBox>최고 금액 <br /> ₩ {numberToKorean(mam)}</SliderDBox>
           </Div>
         </form>
-        <Sbtn onClick={() => Back()}>
+        <Sbtn onClick={() => {
+          Back()
+          if (sessionStorage.filtered == null) {
+            sessionStorage.setItem('filtered',
+              JSON.stringify({ data: { search, map, mip, mam, mim, category1, type, room_number, options } })
+            )
+          }
+        }}>
           추천받기
         </Sbtn>
-        {/* <code>
+        <code>
           {JSON.stringify({ data: { search, map, mip, mam, mim, category1, type, room_number, options } })}
-        </code> */}
+        </code>
       </Positioner>
     </Container>
   );

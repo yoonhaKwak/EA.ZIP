@@ -260,7 +260,7 @@ const NormalSearch = (onClick) => {
     <Container>
       <MainHeader3 />
       <Positioner>
-        <p style={{ paddingLeft: '760px', color: 'white', fontSize: '30px', marginTop: '40px', fontWeight: 'bold' }}>"나에게 딱 맞는 집을 찾아보세요!"</p>
+        <p style={{ paddingLeft: '760px', color: 'white', fontSize: '30px', marginTop: '0px', fontWeight: 'bold' }}>"나에게 딱 맞는 집을 찾아보세요!"</p>
         <div />
         <form style={{ paddingTop: '25px' }}>
           <OptionList>
