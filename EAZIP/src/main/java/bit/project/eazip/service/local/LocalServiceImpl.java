@@ -304,18 +304,12 @@ public class LocalServiceImpl implements LocalService {
                 }
                 pathmap.put("path"+i, subpathmap);
             }
-
-
             log.info("############### 진행완료 ###############");
             System.out.println(interStation);
             System.out.println("size : "+interStation.size());
 
 
             localMapper.insertInterStationDB(interStation);
-
-
-
-
 //            String temp;
 //            temp = interStation.toString();
 //            temp = temp.replace("{", "");

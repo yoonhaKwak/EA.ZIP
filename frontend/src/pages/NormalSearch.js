@@ -196,7 +196,7 @@ const NormalSearch = (onClick) => {
     axios({
       method: 'post',
 
-      url: '/local/filter',
+      url: '/general/filter',
 
       data: {
         "addr1": search,

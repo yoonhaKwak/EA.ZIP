@@ -25,7 +25,6 @@ public class GeneralController {
     @RequestMapping(value = "/filter", method = {RequestMethod.GET, RequestMethod.POST})
     public List<HomeDTO> Filter(@RequestBody FilterDTO paramMap) throws SQLException,Exception{
 
-
         log.info("############### 컨트롤러 진입 #####################");
 
         FilterDTO filterDTO = paramMap;
