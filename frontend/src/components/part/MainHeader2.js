@@ -60,7 +60,7 @@ const Spacer = styled.div`
 height: 4rem;
 `;
 
-const MainHeader = () => {
+const MainHeader2 = () => {
     return (
         <>
             <HeaderBlock>
@@ -75,4 +75,4 @@ const MainHeader = () => {
     );
 }
 
-export default MainHeader;
+export default MainHeader2;

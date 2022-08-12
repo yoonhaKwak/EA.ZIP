@@ -61,7 +61,7 @@ public class MemberController {
     }
 
     @RequestMapping(value ="/logout", method = {RequestMethod.GET,RequestMethod.POST})
-    public int logout(Map<String, String> userToken) {
+    public int logout(@RequestBody Map<String, String> userToken) {
         String requrl = "https://kapi.kakao.com/v1/user/logout";
 
         String token = userToken.get("token");

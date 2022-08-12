@@ -91,7 +91,7 @@ public class LocalServiceImpl implements LocalService {
 
 
         String line = null;
-        int apiList[] = new int[3];
+        int[] apiList = new int[3];
         String uri = "https://api.odsay.com/v1/api/searchPubTransPath?SX="+d_lng+"&SY="+d_lat+"&EX="+lng+"&EY="+lat+"&apiKey=j7A34MnqbWGfZQwWtVRUtqkal9YXPsGl%2BQGMho8v2ag";
 
 //        List<String> walk = new ArrayList<String>();

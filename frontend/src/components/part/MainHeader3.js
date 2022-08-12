@@ -76,7 +76,8 @@ const MainHeader3 = () => {
                 },
                 baseURL: 'http://localhost:8080'
             }
-        ).then(function () {
+        ).then(function (response) {
+            console.log("post")
             sessionStorage.removeItem("userId");
             sessionStorage.removeItem("token");
             alert('로그아웃완료');

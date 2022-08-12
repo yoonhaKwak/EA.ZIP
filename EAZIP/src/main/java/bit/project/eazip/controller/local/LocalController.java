@@ -93,7 +93,6 @@ public class LocalController {
         List<HomeDTO> resultList = new ArrayList<>();
         for (int i : idx) {
             HomeDTO homes = service.selectData(i);
-            log.info("selectIdx 완료");
 
             Map<String, Double> coordinate = new HashMap<>();
 
@@ -106,7 +105,6 @@ public class LocalController {
 
             // api 받아오기
             api = service.localApi(coordinate);
-            log.info("localApi 완료");
 
             Thread.sleep(300);
 
@@ -120,7 +118,6 @@ public class LocalController {
         }
         return resultList;
     }
-
 
 //    @GetMapping("/apilist")
 //    public List<HomeDTO> ApiList() throws SQLException,Exception{
