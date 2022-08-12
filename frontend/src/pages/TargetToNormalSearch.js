@@ -160,7 +160,7 @@ const NormalSearch = (onClick) => {
   const navigate = useNavigate();
 
   const { state } = useLocation();
-  console.log(state);
+  console.log((state.maxTime));
 
 
   const onChange = (e) => {
@@ -212,13 +212,7 @@ const NormalSearch = (onClick) => {
         "room_number": room_number,
         "op1": options[0],
         "op2": options[1],
-        "op3": options[2],
-        "timeSectionMax" : state.maxTime,
-        "timeSectionMin" : state.minTime,
-        "walkTimeMax" : state.maxWalk,
-        "walkTimeMin" : state.minWalk,
-        "transferMax" : state.maxTrans,
-        "transferMin" : state.minTrans
+        "op3": options[2]
       },
       baseURL: 'http://localhost:8080'
     }
