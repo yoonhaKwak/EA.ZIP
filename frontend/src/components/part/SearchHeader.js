@@ -72,7 +72,7 @@ const Spacer = styled.div`
 height: 4rem;
 `;
 
-const SearchHeader = () => {
+const SearchHeader = (address) => {
     const logout = async () => {
         axios(
             {
@@ -96,7 +96,7 @@ const SearchHeader = () => {
                 <Wrapper>
                     <Link to='/' className="logo"><img src={logo} alt="" /></Link>
                     <div className="middle">
-                        <SearchForm />
+                        <SearchForm inputaddress={address} />
                     </div>
                     <div className="right">
                         <li>

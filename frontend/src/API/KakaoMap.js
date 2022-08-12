@@ -65,6 +65,11 @@ function KakaoMap() {
                 lat: centerlat,
                 lng: centerlng
             }}
+            // 기존에 쓰던 센터 지우면안된다.
+            // center={{
+            //     lat: centerlat,
+            //     lng: centerlng
+            // }}
             isPanto={true}
             style={{ width: "100%", height: "100%", maxHeight: "905px", maxWidth: "1415px" }}
             level={8}

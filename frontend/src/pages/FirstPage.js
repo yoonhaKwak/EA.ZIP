@@ -95,31 +95,59 @@ line-height: 29px;
 
 const SamplePage = () => {
     return (
-        <Container>
-            <MainHeader />
-            <div className="Bodya">
-                <NormalButton>
-                    <Link to='/normalsearch'>
-                        <img src={Normal} alt="" />
-                        <div className="Text">
-                            지역을 입력하세요
-                        </div>
+        <>
+            {sessionStorage.getItem('userId') ?
+                <Container>
+                    <MainHeader />
+                    <div className="Bodya">
+                        <NormalButton>
+                            <Link to='/normalsearch'>
+                                <img src={Normal} alt="" />
+                                <div className="Text">
+                                    지역을 입력하세요
+                                </div>
 
-                    </Link>
-                </NormalButton>
-            </div>
-            <div className="Bodyb">
-                <LocationButton>
-                    <Link to='/targetsearch'>
-                        <img src={Location} alt="" />
-                        <div className="Text">
-                            목적지를 입력하세요
-                        </div>
-                    </Link>
-                </LocationButton>
-            </div>
+                            </Link>
+                        </NormalButton>
+                    </div>
+                    <div className="Bodyb">
+                        <LocationButton>
+                            <Link to='/targetsearch'>
+                                <img src={Location} alt="" />
+                                <div className="Text">
+                                    목적지를 입력하세요
+                                </div>
+                            </Link>
+                        </LocationButton>
+                    </div>
+                </Container>
+                :
+                <Container>
+                    <MainHeader />
+                    <div className="Bodya">
+                        <NormalButton>
+                            <Link to='/login' onClick={() => { alert('로그인이 필요합니다.') }}>
+                                <img src={Normal} alt="" />
+                                <div className="Text">
+                                    지역을 입력하세요
+                                </div>
 
-        </Container>
+                            </Link>
+                        </NormalButton>
+                    </div>
+                    <div className="Bodyb">
+                        <LocationButton>
+                            <Link to='/login' onClick={() => { alert('로그인이 필요합니다.') }}>
+                                <img src={Location} alt="" />
+                                <div className="Text">
+                                    목적지를 입력하세요
+                                </div>
+                            </Link>
+                        </LocationButton>
+                    </div>
+                </Container>
+            }
+        </>
     );
 };
 export default SamplePage;

@@ -41,13 +41,8 @@ const Button = styled.button`
 
 const { kakao } = window
 
-const SearchForm = ({ onClick }) => {
+const SearchForm = ({ onClick }, inputaddress) => {
   const navigate = useNavigate();
-  const onKeyPress = (e) => {
-    if (e.key == 'Enter') {
-      onClick();
-    }
-  }
 
   const [state, setState] = useState({
     center: { lat: 37.49676871972202, lng: 127.02474726969814 },
@@ -67,8 +62,16 @@ const SearchForm = ({ onClick }) => {
     };
     ps.keywordSearch(`${searchAddress}`, placesSearchCB);
   }
-  const handleSearchAddress = (e) => {
-    SetSearchAddress(e.target.value)
+  //엔터 누르면 입력한 주소랑 검색한 주소의 위도 경도 값이 나온다.
+  const onKeyPress = (e) => {
+    if (e.key == 'Enter') {
+      SearchMap();
+      console.log(state.center);
+      console.log(searchAddress);
+    }
+  }
+  const handleSearchAddress = (inputaddress) => {
+    SetSearchAddress(inputaddress.target.value)
   }
   return (
     <StyledBox>

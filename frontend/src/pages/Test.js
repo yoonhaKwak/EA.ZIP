@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import DaumPostcode from "react-daum-postcode";
-import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk";
+import { Map, MapMarker } from "react-kakao-maps-sdk";
 
 const { kakao } = window
 
@@ -23,7 +22,13 @@ function Test() {
         };
         ps.keywordSearch(`${searchAddress}`, placesSearchCB);
     }
-
+    const handlekeypress = e => {
+        if (e.key === 'Enter') {
+            SearchMap();
+            console.log(state.center);
+            console.log(searchAddress);
+        }
+    }
     const handleSearchAddress = (e) => {
         SetSearchAddress(e.target.value)
     }
@@ -35,13 +40,19 @@ function Test() {
                 style={{
                     // 지도의 크기
                     width: "100%",
-                    height: "450px",
+                    height: "900px",
                 }}
                 level={3} // 지도의 확대 레벨
-            />
+            >
+                <MapMarker
+                    position={{
+                        lat: state.center.lat,
+                        lng: state.center.lng
+                    }}
+                />
+            </Map>
             <div>
-                <input onChange={handleSearchAddress}></input>
-                <button onClick={SearchMap}>클릭</button>
+                <input onChange={handleSearchAddress} onKeyPress={handlekeypress} ></input>
             </div>
         </div>
     );
