@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import styled from "styled-components";
 
 
@@ -10,51 +10,25 @@ import styled from "styled-components";
 
 
 
-function OptionButton({ Id, value, A, B }) {
-
-
-  /*-----------------------------------------------------------[Wla기능 만들거임]-------------------------------------------------------------------------------*/
-  /* const [Wishadd, setWishadd] = useState(false)
-  const [Wishcount, setWishcount] = useState(800)
- 
-  const wishAddHandler = () => {
-    setWishadd(!Wishadd)
-  }
-  const wishCountHandler = () => {
-    Id = Id + ""
-    wishAddHandler()
-    if (!Wishadd) {
-      setWishcount(Wishcount + 1)
-      axios({
-        url: '/favorite',
-        method: 'post',
-        data: {
-          'idx': Id,
-        },
-        baseURL: 'http://localhost:8080'
-      })
-      console.log({
-        'productID': Id,
-        '찜': "찜했슈"
-      })
- 
-    } else if (Wishadd) {
-      setWishcount(Wishcount - 1)
-      axios({
-        url: '/favorite',
-        method: 'post',
-        data: {
-          'idx': Id,
-        },
-        baseURL: 'http://localhost:8080'
-      })
-      console.log({
-        'product': Id,
-        '찜': "찜 풀렸슈"
- 
-      })
+function OptionButton({ Id, value, A, B }, props) {
+  const [checkedItems, setCheckedItems] = useState(new Set([Id, "0"]));
+  const checkedItemHandler = (isChecked) => {
+    if (isChecked) {
+      checkedItems.delete(`0`);
+      checkedItems.add(`1`);
+      setCheckedItems(checkedItems);
+    } else if (!isChecked && checkedItems.has(`1`)) {
+      checkedItems.delete(`1`);
+      checkedItems.add(`0`);
+      setCheckedItems(checkedItems);
     }
-  } */
+  };
+  const [bChecked, setChecked] = useState(0);
+
+  const checkHandler = ({ target }) => {
+    setChecked(!bChecked);
+    checkedItemHandler(target.checked);
+  };
 
   const AA = A;
   const BB = B;
@@ -78,10 +52,15 @@ img{
   padding:0;
 }
 `;
+  const AAA = Array.from(checkedItems);
+  console.log(AAA)
+  const submit = () => {
+    props.propFunction(AAA)
+  }
   return (
 
     <Cafe>
-      <input type="checkbox" id={Id} value={value} A={A} B={B} />
+      <input type="checkbox" onClick={submit} checked={bChecked} onChange={(e) => checkHandler(e)} id={Id} value={value} A={A} B={B} />
       <label htmlFor={Id} AA={AA} BB={BB}><img src={BB} alt="" /></label>
 
 

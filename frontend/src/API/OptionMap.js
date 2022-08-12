@@ -1,5 +1,5 @@
 import { Map, MapMarker } from "react-kakao-maps-sdk";
-import { useEffect, useState, createContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import SearchMarker from '../styles/icons/SearchMarker.svg';
 import axios from "axios";
 import { useLocation, Link } from "react-router-dom";
@@ -82,12 +82,17 @@ const MapArea = styled.div`
     height:500px;
     padding-left:30px;
     padding-top:10px;
-    
+ button{
+    visibility:hidden;
+ }   
 `
 
 /*---------------------------------------------------------------[뚜방뚜방]-----------------------------------------------------------------------*/
 
-function OptionMap(Idx, Lat, Lng) {
+
+function OptionMap(Idx, Lat, Lng, AAA) {
+
+
     const [ItemList, SetItemList] = useState([]);
     let Home = [
         Idx
@@ -110,17 +115,17 @@ function OptionMap(Idx, Lat, Lng) {
             });
     }, []);
     // /cash/cashing
-    console.log(ItemList)
-    console.log(Idx)
     // name
     // lat
     // lng
 
+    console.log(ItemList)
+    console.log(Idx)
+    console.log(Home)
 
 
-    console.log(Idx);
 
-
+    const [isVisible, setIsVisible] = useState(true)
     return (
         <MapArea>
             <Map
@@ -158,7 +163,8 @@ function OptionMap(Idx, Lat, Lng) {
                         }}
                     />
                 ))}
-                {ItemList.map((marker) => (
+
+                {isVisible && ItemList.map((marker) => (
                     <MapMarker
                         key={marker.name}
                         position={{
