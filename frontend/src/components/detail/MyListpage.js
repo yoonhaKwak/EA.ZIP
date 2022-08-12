@@ -1,5 +1,5 @@
 import React from "react";
-import ItemCard from "./ItemCard";
+import MyItemCard from "./MyItemCard";
 
 
 const MyListpage = ({ ItemList }) => {
@@ -9,7 +9,7 @@ const MyListpage = ({ ItemList }) => {
       {ItemList &&
         ItemList.map((itemdata) => {
           return (
-            <ItemCard
+            <MyItemCard
               Idx={itemdata.idx}
               ImageUrl={itemdata.image_url}//이미지주소
               Category2={itemdata.category2}//카테고리2

@@ -83,8 +83,6 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
                 <div ref={range} className="slider__range" />
                 <div className="slider__left-value" style={{ paddingLeft: '1.5px', lineHeight: '10px' }}>|</div>
                 <div className="slider__left-value" style={{ lineHeight: '45px', textAlign: 'center' }}>0</div>
-                <div className="slider__right-value" style={{ paddingRight: '210.5px', lineHeight: '10px' }}>|</div>
-                <div className="slider__right-value" style={{ lineHeight: '45px', paddingRight: '203px', textAlign: 'center' }}>1억</div>
                 <div className="slider__right-value" style={{ paddingRight: '11.5px', lineHeight: '10px' }}>|</div>
                 <div className="slider__right-value" style={{ lineHeight: '45px', textAlign: 'center' }}>무제한</div>
             </div>

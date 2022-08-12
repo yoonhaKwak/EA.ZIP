@@ -16,7 +16,7 @@ function ReverseHeart({ Id, value }) {
   /*-----------------------------------------------------------[Wla기능 만들거임]-------------------------------------------------------------------------------*/
   const [Wishadd, setWishadd] = useState(true)
   const [Wishcount, setWishcount] = useState(800)
-
+  let userId = sessionStorage.userId;
   const wishAddHandler = () => {
     setWishadd(!Wishadd)
   }
@@ -26,32 +26,34 @@ function ReverseHeart({ Id, value }) {
     if (!Wishadd) {
       setWishcount(Wishcount + 1)
       axios({
-        url: '/favorite',
+        url: 'mypage/favorite',
         method: 'post',
         data: {
+          'userId': userId,
           'idx': Id,
         },
         baseURL: 'http://localhost:8080'
       })
       console.log({
         'productID': Id,
-        '찜': "찜했슈"
+        '찜': "찜 풀렸슈"
 
       })
 
     } else if (Wishadd) {
       setWishcount(Wishcount - 1)
       axios({
-        url: '/favorite',
+        url: 'mypage/favorite',
         method: 'post',
         data: {
+          'userId': userId,
           'idx': Id,
         },
         baseURL: 'http://localhost:8080'
       })
       console.log({
         'product': Id,
-        '찜': "찜 풀렸슈"
+        '찜': "찜 다시 했슈"
 
       })
     }

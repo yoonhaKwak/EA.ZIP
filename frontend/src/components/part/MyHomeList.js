@@ -30,13 +30,9 @@ function MyHomeList() {
     }
     ).then((response) => {
       SetItemList(response.data);
-      // console.log(response.data);
-      // sessionStorage.setItem('idx', response.data);
     });
   }, []);
   console.log(ItemList);
-  // const { state } = useLocation([]);
-  // console.log(state);
   return (
     <Listblock><MyListpage ItemList={ItemList} /></Listblock>
   );

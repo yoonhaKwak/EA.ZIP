@@ -227,9 +227,9 @@ const TargetSearch = (onClick) => {
             <Hr1 />
             <SliderDBox>최대 횟수 <br />{mam} 번</SliderDBox>
           </Div>
-          <code>
+          {/* <code>
             {JSON.stringify({ data: { getLatLng, Dest, mip, map, mil, mal, mim, mam } })}
-          </code>
+          </code> */}
         </form>
         <Sbtn onClick={() => {
           NextPage()

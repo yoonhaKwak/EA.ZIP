@@ -212,12 +212,12 @@ const NormalSearch = (onClick) => {
         "op1": options[0],
         "op2": options[1],
         "op3": options[2],
-        "timeSectionMax" : state.maxTime,
-        "timeSectionMin" : state.minTime,
-        "walkTimeMax" : state.maxWalk,
-        "walkTimeMin" : state.minWalk,
-        "transferMax" : state.maxTrans,
-        "transferMin" : state.minTrans
+        "timeSectionMax": state.maxTime,
+        "timeSectionMin": state.minTime,
+        "walkTimeMax": state.maxWalk,
+        "walkTimeMin": state.minWalk,
+        "transferMax": state.maxTrans,
+        "transferMin": state.minTrans
       },
       baseURL: 'http://localhost:8080'
     }
@@ -260,17 +260,9 @@ const NormalSearch = (onClick) => {
     <Container>
       <MainHeader3 />
       <Positioner>
-        <p style={{ paddingLeft: '760px', color: 'white', fontSize: '30px', marginTop: '0px', fontWeight: 'bold' }}>"나에게 딱 맞는 집을 찾아보세요!"</p>
+        <p style={{ paddingLeft: '760px', color: 'white', fontSize: '30px', marginTop: '40px', fontWeight: 'bold' }}>"나에게 딱 맞는 집을 찾아보세요!"</p>
         <div />
-        <form>
-          <>
-            <StyledBox className="inputForm">
-              <Button type="button" onClick={onClick} />
-              <StyledInput type="text" placeholder="검색어를 입력하세요" onChange={onChange} onKeyPress={e => {
-                if (e.key === 'Enter') e.preventDefault();
-              }} />
-            </StyledBox>
-          </>
+        <form style={{ paddingTop: '25px' }}>
           <OptionList>
             <FilterTitle>검색 옵션</FilterTitle>
             <FilterTitle>우선 순위</FilterTitle>
