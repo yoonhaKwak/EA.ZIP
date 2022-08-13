@@ -15,9 +15,29 @@ function Filter(){
     const Back = async () => {
         axios(
             {
-                url: '/cash/filter',
+                url: '/local/filter',
                 method: 'post',
                 data: {
+                    // "addr1": search,
+                    // "maxprice": map,
+                    // "minprice": mip,
+                    // "maxmonthly": mam,
+                    // "minmonthly": mim,
+                    // "category1": category1,
+                    // "type": type,
+                    // "room_number": room_number,
+                    // "op1": options[0],
+                    // "op2": options[1],
+                    // "op3": options[2]
+                    // search: getLatLng,
+                    // minTime: mip,
+                    // maxTime: map,
+                    // minWalk: mil,
+                    // maxWalk: mal,
+                    // minTrans: mim,
+                    // maxTrans: mam,
+                    // destination: searchAddress
+
                     'd_lat' : 37.4882984,
                     'd_lng' : 127.0483885,
                     'TimeSectionMin' : 5000,
