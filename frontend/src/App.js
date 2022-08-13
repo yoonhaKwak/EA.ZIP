@@ -8,6 +8,7 @@ import TargetSearch from 'pages/TargetSearch';
 import TargetToNormalSearch from 'pages/TargetToNormalSearch';
 import NormalSearch from 'pages/NormalSearch';
 import KakaoSearch from 'API/KakaoSearch';
+import HistoryPage from 'pages/HistoryPage';
 
 import FirstPage from 'pages/FirstPage';
 import OAuthRedirectHandler from 'pages/OAuthRedirectHandler';
@@ -33,7 +34,7 @@ function App() {
                                 <Route path="/test" element={<Test />} />
                                 <Route path="/normalsearch1" element={<TargetToNormalSearch />} />
                                 <Route path="/loading" element={<Loading />} />
-
+                                <Route path="/historypage" element={<HistoryPage />} />
                         </Routes>
                 </Router>
         );

@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="eea96d36-841c-4069-bb9f-06433382a808" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EAZIP/src/main/java/bit/project/eazip/controller/test/CashingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EAZIP/src/main/java/bit/project/eazip/controller/test/CashingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/API/OptionMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/API/OptionMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EAZIP/src/main/java/bit/project/eazip/controller/mypage/MypageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EAZIP/src/main/java/bit/project/eazip/controller/mypage/MypageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/detail/ItemCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/detail/ItemCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/part/Heart.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/part/Heart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/part/MySearchHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/part/MySearchHeader.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,6 +121,7 @@
       <workItem from="1660192913208" duration="1996000" />
       <workItem from="1660262293135" duration="7832000" />
       <workItem from="1660356345631" duration="816000" />
+      <workItem from="1660371819573" duration="3309000" />
     </task>
     <servers />
   </component>

@@ -63,7 +63,9 @@ public class MypageController {
         if(history.contains(paramMap.get("idx"))) {
             log.info("중복값 존재");
             history.remove(paramMap.get("idx"));
-            log.info("중복값 제거 완료");
+            history.add(paramMap.get("idx"));
+            log.info("중복값 최신화");
+
         }
         // 중복값 없으면 추가
         else {

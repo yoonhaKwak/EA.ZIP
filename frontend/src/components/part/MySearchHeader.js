@@ -14,7 +14,8 @@ width:100%;
 background:${pallette.white[1]};
 `
 const Wrapper1 = styled.div`
-padding-top:0.5rem;
+padding-top:0.8rem;
+padding-left:0.4rem;
 display: fixed;
 align-items: center;
 
@@ -121,7 +122,7 @@ const MySearchHeader = () => {
                                 <Link to='/Mypage' style={{ color: "#ff9431" }}>내가 찜한 매물</Link>
                             </li>
                             <li>
-                                <Link to='/'>최근 본 매물</Link>
+                                <Link to='/historypage'>최근 본 매물</Link>
                             </li>
                         </div>
                         <div className="right">

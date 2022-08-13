@@ -16,7 +16,7 @@ function Heart({ Id, value }) {
   /*-----------------------------------------------------------[Wla기능 만들거임]-------------------------------------------------------------------------------*/
   const [Wishadd, setWishadd] = useState(false)
   const [Wishcount, setWishcount] = useState(800)
-  let userId = sessionStorage.getItem('userId');
+  let userId = sessionStorage.userId;
   const wishAddHandler = () => {
     setWishadd(!Wishadd)
   }

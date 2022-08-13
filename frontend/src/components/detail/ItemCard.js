@@ -53,7 +53,7 @@ import window_guard from "../../styles/icons/options/window_guard.svg";
 import fire_alarm from "../../styles/icons/options/fire_alarm.svg";
 import dishwasher from "../../styles/icons/options/dishwasher.svg";
 import OptionMap from "API/OptionMap";
-
+import axios from "axios";
 
 
 
@@ -788,8 +788,37 @@ padding-bottom:28px;
     }
 
     /*----------------------------------------------------------[라고 쓰여있는데요?]-------------------------------------------------------------------*/
+    /*-------------------------------------------------------[여기서 부터 최근본 매물]------------------------------------------------------------------*/
+    const [Historyadd, setHistoryadd] = useState(false)
+    const [Historycount, setHistorycount] = useState(600)
+    let userId = sessionStorage.userId;
+    const historyAddHandler = () => {
+        setHistoryadd(!Historyadd)
+    }
+    const historyCountHandler = () => {
+        Id = Id + ""
+        historyAddHandler()
+
+        setHistorycount(Historycount + 1)
+        axios({
+            url: 'mypage/history',
+            method: 'post',
+            data: {
+                'userId': userId,
+                'idx': Id,
+            },
+            baseURL: 'http://localhost:8080'
+        })
+        console.log({
+            'userId': userId,
+            'productID': Id,
+            '최근본 매물': "찜했슈"
+
+        })
 
 
+    }
+    /*-------------------------------------------------------[뚜방뚜방뽀짝뽀짝뽀요뽀요]-----------------------------------------------------------------*/
     /*-----------------------------------------------------------[여기서부터 리턴값]-------------------------------------------------------------------*/
     return (
         <Block>
@@ -803,11 +832,11 @@ padding-bottom:28px;
                             <TablE>
 
                                 <div>
-                                    <div className="leftarea" style={{ cursor: 'pointer' }} onClick={openModal}>
+                                    <div className="leftarea" style={{ cursor: 'pointer' }} onClick={() => { openModal(); historyCountHandler(); }}>
                                         {image}
                                     </div>
                                     <div className="rightarea">
-                                        <ListFeature style={{ cursor: 'pointer' }} onClick={openModal}>
+                                        <ListFeature style={{ cursor: 'pointer' }} onClick={() => { openModal(); historyCountHandler(); }}>
                                             <div className="tag">
                                                 {{
                                                     빌라: <img src={Villa} className="default" alt="" />,
@@ -850,7 +879,7 @@ padding-bottom:28px;
 
                                         </ListFeature>
                                         <div style={{ float: 'top' }}>
-                                            <WTF onClick={openModal} />
+                                            <WTF onClick={() => { openModal(); historyCountHandler(); }} />
                                             <Heart Id={Id} value={selectedidx} />
                                         </div>
                                     </div>
