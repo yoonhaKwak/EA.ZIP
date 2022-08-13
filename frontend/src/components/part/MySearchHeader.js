@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import '../../styles/fonts/font.css';
 import pallette from '../../styles/pallette';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Responsive from '../detail/Responsive';
 import logo from '../../styles/img/Group 64.svg';
 import axios from 'axios';
@@ -119,7 +119,7 @@ const MySearchHeader = () => {
                     <Wrapper>
                         <div className="middle">
                             <li>
-                                <Link to='/Mypage' style={{ color: "#ff9431" }}>내가 찜한 매물</Link>
+                                <Link to='/Mypage'>내가 찜한 매물</Link>
                             </li>
                             <li>
                                 <Link to='/historypage'>최근 본 매물</Link>
