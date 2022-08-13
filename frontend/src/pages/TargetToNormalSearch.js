@@ -22,8 +22,8 @@ background-size: cover;
 `;
 
 const Positioner = styled.div`
-  position: absolute; justify-content: center; align-items: center; width: 100%; padding-top: 193px;
-  background: rgba(0, 0, 0, 0.5); height: 72.5%; z-index: 1;
+  position: absolute; justify-content: center; align-items: center; width: 100%; padding-top: 232px;
+  background: rgba(0, 0, 0, 0.5); height: 68%; z-index: 1;
 `;
 
 const OptionList = styled.div`
