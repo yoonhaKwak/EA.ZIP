@@ -221,7 +221,7 @@ const TargetSearch = (onClick) => {
             {/* 환승횟수 구간 */}
             <TransferSlider
               min={0}
-              max={3}
+              max={5}
               onChange={({ min, max }) => setMim(min) & setMam(max)}
             />
             <SliderDBox>최소 횟수 <br />{mim} 번</SliderDBox>

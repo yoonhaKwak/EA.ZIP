@@ -106,13 +106,10 @@ const SearchHeader = (address) => {
                             <Link to='/targetsearch'>지역추천</Link>
                         </li>
                         <li>
-                            <Link to='/'>프리미엄</Link>
-                        </li>
-                        <li>
                             <Link to='/Mypage'>마이페이지</Link>
                         </li>
                         <li>
-                            <Link to='/login' onClick={() => logout()}>로그아웃</Link>
+                            <Link to='/' onClick={() => logout()}>로그아웃</Link>
                         </li>
                     </div>
                 </Wrapper>

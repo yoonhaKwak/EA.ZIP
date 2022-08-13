@@ -95,9 +95,6 @@ const MainHeader = () => {
                                 <Link to='/targetsearch'>지역추천</Link>
                             </li>
                             <li>
-                                <Link to='/'>프리미엄</Link>
-                            </li>
-                            <li>
                                 {
                                     sessionStorage.getItem('userId')
                                         ?
@@ -112,7 +109,7 @@ const MainHeader = () => {
                         <li>
                             {
                                 sessionStorage.getItem('userId') ?
-                                    <Link to='/login' onClick={() => logout()}>로그아웃</Link>
+                                    <Link to='/' onClick={() => logout()}>로그아웃</Link>
                                     :
                                     <Link to='/login'>로그인</Link>
                             }

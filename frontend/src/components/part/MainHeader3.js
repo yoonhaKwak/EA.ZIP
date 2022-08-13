@@ -76,7 +76,7 @@ const MainHeader3 = () => {
                 },
                 baseURL: 'http://localhost:8080'
             }
-        ).then(function (response) {
+        ).then(function () {
             console.log("post")
             sessionStorage.removeItem("userId");
             sessionStorage.removeItem("token");
@@ -107,7 +107,7 @@ const MainHeader3 = () => {
                     <div className="right">
                         <li>
                             {sessionStorage.getItem('userId') ?
-                                <Link to='/login' onClick={() => logout()}>로그아웃</Link>
+                                <Link to='/' onClick={() => logout()}>로그아웃</Link>
                                 :
                                 <Link to='/login'>로그인</Link>
                             }

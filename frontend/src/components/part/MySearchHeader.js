@@ -127,7 +127,7 @@ const MySearchHeader = () => {
                         <div className="right">
 
                             <li>
-                                <Link to='/login' onClick={logout} >로그아웃</Link>
+                                <Link to='/' onClick={logout} >로그아웃</Link>
                             </li>
                         </div>
                     </Wrapper>
