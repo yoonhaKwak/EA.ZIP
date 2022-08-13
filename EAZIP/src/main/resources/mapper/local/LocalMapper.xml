@@ -53,7 +53,6 @@
         and price <![CDATA[<=]]> ${maxprice} and price <![CDATA[>=]]> ${minprice}
         and (monthly = 0 or  monthly <![CDATA[<=]]> #{maxmonthly} and monthly <![CDATA[>=]]> #{minmonthly} )
         order by ( ${op1} + ${op2} + ${op3}) desc;
-
     </select>
 
 

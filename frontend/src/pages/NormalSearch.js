@@ -68,6 +68,7 @@ const StyledBox = styled.form`
   position:flex;
   background-color:white;
   margin-left:550px;
+  padding-top:8px;
   width: 50.6rem;
   height: 2.7rem;
   border-radius: 100px;
