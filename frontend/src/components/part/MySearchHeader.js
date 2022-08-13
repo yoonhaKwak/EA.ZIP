@@ -118,7 +118,7 @@ const MySearchHeader = () => {
                     <Wrapper>
                         <div className="middle">
                             <li>
-                                <Link to='/Mypage'>내가 찜한 매물</Link>
+                                <Link to='/Mypage' style={{ color: "#ff9431" }}>내가 찜한 매물</Link>
                             </li>
                             <li>
                                 <Link to='/'>최근 본 매물</Link>

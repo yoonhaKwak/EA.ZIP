@@ -17,15 +17,15 @@ const Background = styled.div`
 `;
 
 const LoadingText = styled.div`
-    font: 1rem 'Noto Sans KR';
+    font: 2rem 'Noto Sans KR';
     text-align: center;
 `;
 
 export const Loading = () => {
     return (
         <Background>
-            <LoadingText>로딩중...</LoadingText>
             <img src={loading} alt='로딩중' width='5%' />
+            <LoadingText>loading...</LoadingText>
         </Background>
     );
 }

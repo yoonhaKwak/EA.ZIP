@@ -1,6 +1,6 @@
 
 import SearchHeader from "../components/part/SearchHeader";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import HomeList from "../components/part/HomeList";
 import pallette from "styles/pallette";
@@ -77,17 +77,20 @@ background-color:white;
 const { kakao } = window
 
 const SearchPage = () => {
-
+  const [loading, setLoading] = useState(true);
   let [modal, setModal] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const handleClick = () => {
     setIsActive(current => !current);
   };
 
+  useEffect(() => {
+    setLoading(false);
+  })
+
   return (
     <Container>
       <SearchHeader />
-
       <Body>
         <div className="left" style={{ zindex: '50' }}><HomeList />
         </div>
