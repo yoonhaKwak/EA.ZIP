@@ -80,11 +80,10 @@ const MapArea = styled.div`
 
 /*---------------------------------------------------------------[뚜방뚜방]-----------------------------------------------------------------------*/
 
-
 function OptionMap(Idx, Lat, Lng, AAA) {
 
 
-    const [ItemList, SetItemList] = useState();
+    const [ItemList, SetItemList] = useState([]);
     let Home = [
         Idx
     ];
@@ -113,33 +112,127 @@ function OptionMap(Idx, Lat, Lng, AAA) {
     /*     console.log(ItemList)
         console.log(Idx)
         console.log(Home) */
+
+
+    /* console.log(Check);
+    console.log(OptionId);
+    console.log(OptionOnOff); */
+
+
+    /*   console.log(ItemList); */
+    let BankList = ItemList['bank_tbl'];
+    let BogunList = ItemList['bogun_tbl'];
+    let CafeList = ItemList['cafe_tbl'];
+    let CctvList = ItemList['cctv_tbl'];
+    let DdarList = ItemList['ddar_tbl'];
+    let HospitalList = ItemList['hospital_tbl'];
+    let LaundaryList = ItemList['laundary_tbl'];
+    let MarketList = ItemList['market_tbl'];
+    let OfficeList = ItemList['office_tbl'];
+    let PostList = ItemList['post_tbl'];
+
     let Check = array;
     let OptionId;
-    let OptionOnOff = Boolean;
+
+    const [OnOffmar, setOnOffmar] = useState(Boolean(false));
+    const [OnOffcaf, setOnOffcaf] = useState(Boolean(false));
+    const [OnOfflan, setOnOfflan] = useState(Boolean(false));
+    const [OnOffbog, setOnOffbog] = useState(Boolean(false));
+    const [OnOffban, setOnOffban] = useState(Boolean(false));
+    const [OnOffhos, setOnOffhos] = useState(Boolean(false));
+    const [OnOffoffi, setOnOffoffi] = useState(Boolean(false));
+    const [OnOffpos, setOnOffpos] = useState(Boolean(false));
+    const [OnOffddar, setOnOffddar] = useState(Boolean(false));
+    const [OnOffcctv, setOnOffcctv] = useState(Boolean(false));
+
     let bruh;
     const parentFunction = (x) => {
         Check = x
         OptionId = Check[0];
         bruh = Check[1];
         bruh = bruh + ""
-        if (bruh === `1`) {
-            OptionOnOff = true;
+        if (OptionId === "Convenience") {
+            if (bruh === `1`) {
+                setOnOffmar(true);
+            }
+            else {
+                setOnOffmar(false);
+            }
         }
-        else {
-            OptionOnOff = false;
+        if (OptionId === "Cafe") {
+            if (bruh === `1`) {
+                setOnOffcaf(true);
+            }
+            else {
+                setOnOffcaf(false);
+            }
         }
-        /*         console.log(Check);
-                console.log(OptionId);
-                console.log(OptionOnOff);
-                return Check, OptionId, OptionOnOff; */
+        if (OptionId === "Laundry") {
+            if (bruh === `1`) {
+                setOnOfflan(true);
+            }
+            else {
+                setOnOfflan(false);
+            }
+        }
+        if (OptionId === "PublicHospital") {
+            if (bruh === `1`) {
+                setOnOffbog(true);
+            }
+            else {
+                setOnOffbog(false);
+            }
+        }
+        if (OptionId === "Bank") {
+            if (bruh === `1`) {
+                setOnOffban(true);
+            }
+            else {
+                setOnOffban(false);
+            }
+        }
+        if (OptionId === "Hospital") {
+            if (bruh === `1`) {
+                setOnOffhos(true);
+            }
+            else {
+                setOnOffhos(false);
+            }
+        }
+        if (OptionId === "Comunicate") {
+            if (bruh === `1`) {
+                setOnOffoffi(true);
+            }
+            else {
+                setOnOffoffi(false);
+            }
+        }
+        if (OptionId === "Post") {
+            if (bruh === `1`) {
+                setOnOffpos(true);
+            }
+            else {
+                setOnOffpos(false);
+            }
+        }
+        if (OptionId === "Cycle") {
+            if (bruh === `1`) {
+                setOnOffddar(true);
+            }
+            else {
+                setOnOffddar(false);
+            }
+        }
+        if (OptionId === "CCTV") {
+            if (bruh === `1`) {
+                setOnOffcctv(true);
+            }
+            else {
+                setOnOffcctv(false);
+            }
+        }
+
     };
-    /*  console.log(Check);
-     console.log(OptionId);
-     console.log(OptionOnOff); */
-
-    console.log(ItemList);
-    const [isVisible, setIsVisible] = useState(true)
-
 
     return (
 
@@ -163,7 +256,7 @@ function OptionMap(Idx, Lat, Lng, AAA) {
                             lat: marker.lat,
                             lng: marker.lng
                         }}
-
+                        zIndex={10000}
                         image={{
                             src: SearchMarker,
                             size: {
@@ -171,6 +264,7 @@ function OptionMap(Idx, Lat, Lng, AAA) {
                                 height: 50,
                             },
                             options: {
+
                                 offset: {
                                     x: 30,
                                     y: 45,
@@ -180,7 +274,7 @@ function OptionMap(Idx, Lat, Lng, AAA) {
                     />
                 ))}
 
-                {/*                  {true && ItemList.map((marker) => (
+                {OnOffmar && MarketList.map((marker) => (
                     <MapMarker
                         key={marker}
                         position={{
@@ -189,7 +283,31 @@ function OptionMap(Idx, Lat, Lng, AAA) {
                         }}
 
                         image={{
-                            src: BusstaMarker,
+                            src: ConviMarker,
+                            size: {
+                                width: 25,
+                                height: 25,
+                            },
+                            options: {
+
+                                offset: {
+                                    x: 25,
+                                    y: 25,
+                                },
+                            },
+                        }}
+                    />
+                ))}
+                {OnOffcaf && CafeList.map((marker) => (
+                    <MapMarker
+                        key={marker}
+                        position={{
+                            lat: marker.lat,
+                            lng: marker.lng
+                        }}
+
+                        image={{
+                            src: CafeMarker,
                             size: {
                                 width: 25,
                                 height: 25,
@@ -202,16 +320,199 @@ function OptionMap(Idx, Lat, Lng, AAA) {
                             },
                         }}
                     />
-                ))}  */}
+                ))}
+                {OnOfflan && LaundaryList.map((marker) => (
+                    <MapMarker
+                        key={marker}
+                        position={{
+                            lat: marker.lat,
+                            lng: marker.lng
+                        }}
+
+                        image={{
+                            src: LaunMarker,
+                            size: {
+                                width: 25,
+                                height: 25,
+                            },
+                            options: {
+                                offset: {
+                                    x: 25,
+                                    y: 25,
+                                },
+                            },
+                        }}
+                    />
+                ))}
+                {OnOffbog && BogunList.map((marker) => (
+                    <MapMarker
+                        key={marker}
+                        position={{
+                            lat: marker.lat,
+                            lng: marker.lng
+                        }}
+
+                        image={{
+                            src: PubhoMarker,
+                            size: {
+                                width: 25,
+                                height: 25,
+                            },
+                            options: {
+                                offset: {
+                                    x: 25,
+                                    y: 25,
+                                },
+                            },
+                        }}
+                    />
+                ))}
+                {OnOffban && BankList.map((marker) => (
+                    <MapMarker
+                        key={marker}
+                        position={{
+                            lat: marker.lat,
+                            lng: marker.lng
+                        }}
+
+                        image={{
+                            src: BankMarker,
+                            size: {
+                                width: 25,
+                                height: 25,
+                            },
+                            options: {
+                                offset: {
+                                    x: 25,
+                                    y: 25,
+                                },
+                            },
+                        }}
+                    />
+                ))}
+                {OnOffhos && HospitalList.map((marker) => (
+                    <MapMarker
+                        key={marker}
+                        position={{
+                            lat: marker.lat,
+                            lng: marker.lng
+                        }}
+
+                        image={{
+                            src: HosMarker,
+                            size: {
+                                width: 25,
+                                height: 25,
+                            },
+                            options: {
+                                offset: {
+                                    x: 25,
+                                    y: 25,
+                                },
+                            },
+                        }}
+                    />
+                ))}
+                {OnOffoffi && OfficeList.map((marker) => (
+                    <MapMarker
+                        key={marker}
+                        position={{
+                            lat: marker.lat,
+                            lng: marker.lng
+                        }}
+
+                        image={{
+                            src: CommuMarker,
+                            size: {
+                                width: 25,
+                                height: 25,
+                            },
+                            options: {
+                                offset: {
+                                    x: 25,
+                                    y: 25,
+                                },
+                            },
+                        }}
+                    />
+                ))}
+                {OnOffpos && PostList.map((marker) => (
+                    <MapMarker
+                        key={marker}
+                        position={{
+                            lat: marker.lat,
+                            lng: marker.lng
+                        }}
+
+                        image={{
+                            src: PostMarker,
+                            size: {
+                                width: 25,
+                                height: 25,
+                            },
+                            options: {
+                                offset: {
+                                    x: 25,
+                                    y: 25,
+                                },
+                            },
+                        }}
+                    />
+                ))}
+                {OnOffddar && DdarList.map((marker) => (
+                    <MapMarker
+                        key={marker}
+                        position={{
+                            lat: marker.lat,
+                            lng: marker.lng
+                        }}
+
+                        image={{
+                            src: CycleMarker,
+                            size: {
+                                width: 25,
+                                height: 25,
+                            },
+                            options: {
+                                offset: {
+                                    x: 25,
+                                    y: 25,
+                                },
+                            },
+                        }}
+                    />
+                ))}
+                {OnOffcctv && CctvList.map((marker) => (
+                    <MapMarker
+                        key={marker}
+                        position={{
+                            lat: marker.lat,
+                            lng: marker.lng
+                        }}
+
+                        image={{
+                            src: CCTVMarker,
+                            size: {
+                                width: 25,
+                                height: 25,
+                            },
+                            options: {
+                                offset: {
+                                    x: 25,
+                                    y: 25,
+                                },
+                            },
+                        }}
+                    />
+                ))}
+
+
                 <OptionButtonAreaA>
                     <OptionButton parentFunction={parentFunction} Id="Convenience" A={ConviOn} B={ConviOff} />
                     <OptionButton parentFunction={parentFunction} Id="Cafe" A={CafeOn} B={CafeOff} />
                     <OptionButton parentFunction={parentFunction} Id="Laundry" A={LaunOn} B={LaunOff} />
                     <OptionButton parentFunction={parentFunction} Id="PublicHospital" A={PubheOn} B={PubheOff} />
                     <OptionButton parentFunction={parentFunction} Id="Bank" A={BankOn} B={BankOff} />
-
-
-
                     <OptionButton parentFunction={parentFunction} Id="Hospital" A={HosOn} B={HosOff} />
                     <OptionButton parentFunction={parentFunction} Id="Comunicate" A={CommuOn} B={CommuOff} />
                     <OptionButton parentFunction={parentFunction} Id="Post" A={PostOn} B={PostOff} />

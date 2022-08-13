@@ -8,8 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EAZIP/src/main/java/bit/project/eazip/controller/test/CashingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EAZIP/src/main/java/bit/project/eazip/controller/test/CashingController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/API/OptionMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/API/OptionMap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/detail/ItemCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/detail/ItemCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/detail/OptionButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/detail/OptionButton.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +116,8 @@
       <workItem from="1660090827838" duration="3525000" />
       <workItem from="1660176443902" duration="2123000" />
       <workItem from="1660192913208" duration="1996000" />
-      <workItem from="1660262293135" duration="5542000" />
+      <workItem from="1660262293135" duration="7832000" />
+      <workItem from="1660356345631" duration="816000" />
     </task>
     <servers />
   </component>

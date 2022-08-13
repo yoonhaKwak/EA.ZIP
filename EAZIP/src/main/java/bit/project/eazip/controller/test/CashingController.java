@@ -44,11 +44,11 @@ public class CashingController {
 
         Map<String, List<Map<String, String>>> facilities_result = new HashMap<>();
         List<Double> distance_list = new ArrayList<>();
-        List<Map<String, String>> facilities = new ArrayList<>();
 
         for (int i = 0; i < facilityList.length; i++) {
             List subwayList_temp = service.getStations(facilityList[i]);
             List<Map<NearDTO, Object>> tempList = subwayList_temp;
+            List<Map<String, String>> facilities = new ArrayList<>();
 
             // 주변 역 탐색시 반경 100m로 검색하기 위한 parameter
             Double lat_gap = 0.0009000;
