@@ -53,7 +53,7 @@ import window_guard from "../../styles/icons/options/window_guard.svg";
 import fire_alarm from "../../styles/icons/options/fire_alarm.svg";
 import dishwasher from "../../styles/icons/options/dishwasher.svg";
 import OptionMap from "API/OptionMap";
-
+import axios from "axios";
 
 
 const Block = styled.div`
@@ -951,7 +951,7 @@ text-align : center;
     const ForthItem = styled.div`
 
 width: 750px;
-height: 809px;
+height: 709px;
 margin-top:20px;
 margin-left:auto;
 margin-right:auto;

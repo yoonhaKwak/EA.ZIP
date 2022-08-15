@@ -812,7 +812,6 @@ padding-bottom:28px;
         console.log({
             'userId': userId,
             'productID': Id,
-            '최근본 매물': "찜했슈"
 
         })
 

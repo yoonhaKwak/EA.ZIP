@@ -232,6 +232,8 @@ function OptionMap(Idx, Lat, Lng, AAA) {
             }
         }
 
+        console.log(OptionId);
+
     };
 
     return (
@@ -289,7 +291,6 @@ function OptionMap(Idx, Lat, Lng, AAA) {
                                 height: 25,
                             },
                             options: {
-
                                 offset: {
                                     x: 25,
                                     y: 25,

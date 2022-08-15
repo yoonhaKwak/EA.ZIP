@@ -21,6 +21,7 @@ function MyKakaoMap(data) {
     //     // console.log(state[key].lat, state[key].lng)
     // }
     const [markers, setMarkers] = useState([]);
+
     let userId = sessionStorage.getItem('userId')
     useEffect(() => {
         axios({
