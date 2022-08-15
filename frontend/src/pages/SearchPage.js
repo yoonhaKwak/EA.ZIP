@@ -6,11 +6,8 @@ import HomeList from "../components/part/HomeList";
 import pallette from "styles/pallette";
 import Modal from "components/part/Modal";
 import KakaoMap from "API/KakaoMap";
+import { width } from "@mui/system";
 
-const RemoteButton = styled.button`
-  font-size: 20px; border: solid 3px ${pallette.orange[0]}; border-radius: 20px; font-weight: bold; margin: 15px 18px;
-  z-index: 100; position: absolute; width:116px; height:47px; background-color:white; color:#FF9431; cursor: pointer;
-`;
 
 const Container = styled.div`
 justify-content: space-between;
@@ -74,6 +71,20 @@ background-color:white;
 }
 `;
 
+const QuestionMark = styled.button`
+  position:absolute; border:none; border-radius: 50px; background-color: ${pallette.orange[0]}; z-index:100; width:40px; height:40px;
+  font-size:30px; color:white; margin-top: 10px; margin-left: 10px; cursor: pointer;
+`;
+
+const Balloon = styled.div`
+ background-color: #e6e6e6; border: none; border-radius: 10px; color: black; font-size: 16px; font-weight: bold; height: 70px; letter-spacing: -0.25px;
+  margin-top: 20px; margin-left: 100px; padding: 5px 11px; position: absolute; width: 300px; z-index: 100;
+  ::after{
+    border-color: #e6e6e6 transparent; border-style: solid; border-width: 15px 0 0 60px; content: ''; display: block; right: 300px;
+  position: absolute; top: 0; width: 0; z-index: -1;
+  }
+`;
+
 const { kakao } = window
 
 const SearchPage = () => {
@@ -87,7 +98,9 @@ const SearchPage = () => {
   useEffect(() => {
     setLoading(false);
   })
-
+  const show = (event) => {
+    setModal(event.target.value)
+  }
   return (
     <Container>
       <SearchHeader />
@@ -95,12 +108,11 @@ const SearchPage = () => {
         <div className="left" style={{ zindex: '50' }}><HomeList />
         </div>
         <div className="right">
-          <KakaoMap />
-          <RemoteButton
-            onClick={() => { setModal(!modal) }} >필터 목록</RemoteButton>
+          <QuestionMark onClick={() => { if (modal === false) { setModal(true) } else { setModal(false) } }}>?</QuestionMark>
           {
-            modal === true ? <Modal /> : null
+            modal === true ? <Balloon>선택한 편의시설이 가까운 순서대로 나와있습니다.</Balloon> : null
           }
+          <KakaoMap />
         </div>
       </Body>
     </Container>

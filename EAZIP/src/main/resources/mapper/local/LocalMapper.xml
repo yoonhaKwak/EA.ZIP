@@ -53,7 +53,39 @@
         and price <![CDATA[<=]]> ${maxprice} and price <![CDATA[>=]]> ${minprice}
         and (monthly = 0 or  monthly <![CDATA[<=]]> #{maxmonthly} and monthly <![CDATA[>=]]> #{minmonthly} )
         order by ( ${op1} + ${op2} + ${op3}) desc;
+
     </select>
+
+
+    <select id="stationComparing" parameterType="bit.project.eazip.domain.filter.StationComparingDTO" resultType="_long">
+        select idx from interStationDB where
+        (
+        (station1 in    
+        <foreach collection="station1" item="item" index="index" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+        and
+        station2 in
+        <foreach collection="station2" item="item" index="index" separator="," open="(" close=")">
+            #{item}
+        </foreach>)
+            or
+        (station1 in
+        <foreach collection="station2" item="item" index="index" separator="," open="(" close=")">
+            #{item}
+        </foreach>and
+        station2 in
+        <foreach collection="station1" item="item" index="index" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+            )
+        )
+        and sectionTime <![CDATA[<=]]> #{transferMax} and sectionTime <![CDATA[>=]]> #{transferMin}
+        and walk <![CDATA[<=]]> #{walkTimeMax} and walk <![CDATA[>=]]> #{walkTimeMin}
+        and trans <![CDATA[<=]]> #{transferMax} and trans <![CDATA[>=]]> #{transferMin}
+    </select>
+
+
 
 
 

@@ -2,6 +2,8 @@ package bit.project.eazip.service.local;
 
 import bit.project.eazip.domain.home.HomeDTO;
 import bit.project.eazip.domain.home.FilterDTO;
+import bit.project.eazip.domain.filter.StationComparingDTO;
+
 import bit.project.eazip.mapper.local.LocalMapper;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.extern.java.Log;
@@ -26,6 +28,7 @@ public class LocalServiceImpl implements LocalService {
 
     @Autowired
     LocalMapper localMapper;
+
     @Override
     public List<HomeDTO> selectList() {
         log.info("리스트 리스트!");
@@ -63,6 +66,26 @@ public class LocalServiceImpl implements LocalService {
         log.info("############################");
         return localMapper.filterMonthly(filterDTO);
     }
+
+
+    @Override
+    public List<String> stationComparing(StationComparingDTO cDTO) {
+        log.info("############################");
+        log.info("서비스 임플, stationComparing 실행");
+        log.info("############################");
+        System.out.println(cDTO.getStation1());
+        System.out.println(cDTO.getStation2());
+        System.out.println(cDTO.getTimeSectionMax());
+        System.out.println(cDTO.getTimeSectionMin());
+        System.out.println(cDTO.getWalkTimeMax());
+        System.out.println(cDTO.getWalkTimeMin());
+        System.out.println(cDTO.getTransferMax());
+        System.out.println(cDTO.getTransferMin());
+        log.info("############################");
+        return localMapper.stationComparing(cDTO);
+    }
+
+
 
 
 

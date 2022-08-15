@@ -70,18 +70,18 @@ background-color:white;
 
 const Mypage = () => {
 
-    return (
-        <Container>
-            <MySearchHeader />
-            <Body>
-                <div className="left" style={{ zindex: '50' }}>
-                    <HistoryHomeList />
-                </div>
-                <div className="right"><HistoryKakaoMap />
-                </div>
-            </Body>
+  return (
+    <Container>
+      <MySearchHeader />
+      <Body>
+        <div className="left" style={{ zindex: '50' }}>
+          <HistoryHomeList />
+        </div>
+        <div className="right"><HistoryKakaoMap />
+        </div>
+      </Body>
 
-        </Container>
-    );
+    </Container>
+  );
 };
 export default Mypage;

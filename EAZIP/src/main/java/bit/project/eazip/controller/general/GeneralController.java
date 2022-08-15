@@ -41,7 +41,6 @@ public class GeneralController {
         System.out.println("getMaxmonthly :" + filterDTO.getMaxmonthly());
         System.out.println("getMinmonthly :" + filterDTO.getMinmonthly());
 
-
         log.info("########## 들어온 정보 적용하여 서비스 호출 작업 시작 ##########");
         List<HomeDTO> HomeList = null;
 

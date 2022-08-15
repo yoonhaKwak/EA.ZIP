@@ -2,6 +2,7 @@ package bit.project.eazip.mapper.local;
 
 import bit.project.eazip.domain.home.HomeDTO;
 import bit.project.eazip.domain.home.FilterDTO;
+import bit.project.eazip.domain.filter.StationComparingDTO;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -21,6 +22,10 @@ public interface LocalMapper {
     public List<HomeDTO> filterPrice(FilterDTO filterDTO);
 
     public List<HomeDTO> filterMonthly(FilterDTO filterDTO);
+
+    public List<String> stationComparing(StationComparingDTO cDTO);
+
+
 
     public void insertInterStationDB(ArrayList<Map<String, String>> station);
 

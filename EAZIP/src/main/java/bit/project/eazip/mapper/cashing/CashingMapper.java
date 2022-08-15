@@ -1,4 +1,4 @@
-package bit.project.eazip.mapper;
+package bit.project.eazip.mapper.cashing;
 
 import bit.project.eazip.domain.facilities.BusDTO;
 import org.apache.ibatis.annotations.Mapper;
