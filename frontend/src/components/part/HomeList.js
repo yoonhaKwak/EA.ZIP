@@ -25,9 +25,13 @@ function HomeList() {
     }, []);
     console.log(ItemList); */
   const { state } = useLocation([]);
-  console.log(state);
+  const [manydata, setManyData] = useState([]);
+  useEffect(() => {
+    setManyData(state);
+  })
+  console.log(manydata);
   return (
-    <Listblock><ListPage ItemList={state} /></Listblock>
+    <Listblock><ListPage ItemList={manydata} /></Listblock>
   );
 }
 

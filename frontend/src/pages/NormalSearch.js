@@ -194,6 +194,10 @@ const NormalSearch = (onClick) => {
       setOption(options.filter(el => el !== item));
     }
   };
+  const noresult = () => {
+    alert('매물이 없습니다 다시 선택해주세요');
+    window.location.reload();
+  }
   const Back = async () => {
     axios({
       method: 'post',
@@ -217,8 +221,14 @@ const NormalSearch = (onClick) => {
     }
     ).then((response) => {
       setData(JSON.stringify(response.data));
-      navigate('/search', { state: response.data })
-    });
+      console.log(response.data);
+      if (response.data.length === 0) { noresult() } {
+        navigate('/search', { state: response.data })
+      }
+    })
+      .catch((e) => {
+        alert('모든 옵션을 선택해주세요.');
+      })
   };
   ////////////////////////////////////////////////////////// 숫자에 금액 표시 구간/////////////////////////////////////////////////////
 

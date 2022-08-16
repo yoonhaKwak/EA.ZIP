@@ -4,6 +4,7 @@ import styled from "styled-components";
 import MyHomeList from "../components/part/MyHomeList";
 import pallette from "styles/pallette";
 import MyKakaoMap from "API/MyKakaoMap";
+import LoginForm from "./LoginForm";
 
 const Container = styled.div`
 justify-content: space-between;
@@ -71,17 +72,23 @@ background-color:white;
 const Mypage = () => {
 
   return (
-    <Container>
-      <MySearchHeader />
-      <Body>
-        <div className="left" style={{ zindex: '50' }}>
-          <MyHomeList />
-        </div>
-        <div className="right"><MyKakaoMap />
-        </div>
-      </Body>
+    <>
+      {
+        sessionStorage.getItem('userId') ?
+          <Container>
+            <MySearchHeader />
+            <Body>
+              <div className="left" style={{ zindex: '50' }}>
+                <MyHomeList />
+              </div>
+              <div className="right"><MyKakaoMap />
+              </div>
+            </Body>
 
-    </Container>
+          </Container>
+          : (alert('로그인이 필요합니다'), window.history.back())
+      }
+    </>
   );
 };
 export default Mypage;

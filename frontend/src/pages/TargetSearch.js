@@ -160,6 +160,7 @@ const TargetSearch = (onClick) => {
   let Dest = searchAddress;
 
   const NextPage = () => {
+
     navigate('/normalsearch1', {
       state: {
         search: getLatLng,
@@ -171,8 +172,12 @@ const TargetSearch = (onClick) => {
         maxTrans: mam,
         destination: searchAddress
       }
-    });
-  };
+    })
+  }
+  const Stay = () => {
+    alert('목적지 입력 후 엔터를 눌러주세요');
+    window.location.reload();
+  }
 
   return (
     <Container>
@@ -233,7 +238,7 @@ const TargetSearch = (onClick) => {
           </code> */}
         </form>
         <Sbtn onClick={() => {
-          NextPage()
+          if (getLatLng.lat === 0) { Stay() } { NextPage() }
         }}>
           우선순위 정하기
         </Sbtn>

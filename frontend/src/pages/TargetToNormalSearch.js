@@ -160,7 +160,7 @@ const NormalSearch = (onClick) => {
   const navigate = useNavigate();
 
   const { state } = useLocation();
-  console.log(state.destination);
+  console.log(state);
 
   const onChange = (e) => {
     setSearch(e.target.value)

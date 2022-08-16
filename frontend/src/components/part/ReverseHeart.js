@@ -20,7 +20,7 @@ function ReverseHeart({ Id, value }) {
   const wishAddHandler = () => {
     setWishadd(!Wishadd)
   }
-  const wishCountHandler = () => {
+  const WishCountHandler = () => {
     Id = Id + ""
     wishAddHandler()
     if (!Wishadd) {
@@ -60,9 +60,10 @@ function ReverseHeart({ Id, value }) {
   }
 
 
+
   return (
     <HeartButton>
-      <input type="checkbox" name="heart" id={Id} value={value} onClick={wishCountHandler} />
+      <input type="checkbox" name="heart" id={Id} value={value} onClick={WishCountHandler} />
       <label htmlFor={Id}><img src={FillHeart} alt="" /></label>
 
     </HeartButton>

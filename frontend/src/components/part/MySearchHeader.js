@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import '../../styles/fonts/font.css';
 import pallette from '../../styles/pallette';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Responsive from '../detail/Responsive';
 import logo from '../../styles/img/Group 64.svg';
 import axios from 'axios';
@@ -90,6 +90,7 @@ height: 4rem;
 `;
 
 const MySearchHeader = () => {
+    let navigate = useNavigate();
     const logout = async () => {
         axios(
             {
@@ -103,7 +104,6 @@ const MySearchHeader = () => {
         ).then(function () {
             sessionStorage.removeItem("userId");
             sessionStorage.removeItem("token");
-            alert('로그아웃완료');
         }
         )
     }
@@ -128,7 +128,7 @@ const MySearchHeader = () => {
                         <div className="right">
 
                             <li>
-                                <Link to='/' onClick={logout} >로그아웃</Link>
+                                <Link to='/' onClick={() => { alert('로그아웃완료'); logout(); if (sessionStorage.useId === null) { navigate('/'); } }} >로그아웃</Link>
                             </li>
                         </div>
                     </Wrapper>
