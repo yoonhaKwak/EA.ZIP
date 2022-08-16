@@ -1,12 +1,13 @@
 
 import SearchHeader from "../components/part/SearchHeader";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import styled from "styled-components";
 import HomeList from "../components/part/HomeList";
 import pallette from "styles/pallette";
 import Modal from "components/part/Modal";
 import KakaoMap from "API/KakaoMap";
 import { width } from "@mui/system";
+import Loading from "./Loading";
 
 
 const Container = styled.div`
@@ -88,18 +89,20 @@ const Balloon = styled.div`
 const { kakao } = window
 
 const SearchPage = () => {
-  const [loading, setLoading] = useState(true);
-  let [modal, setModal] = useState(false);
+  let [modal, setModal] = useState(true);
   const [isActive, setIsActive] = useState(false);
   const handleClick = () => {
     setIsActive(current => !current);
   };
 
-  useEffect(() => {
-    setLoading(false);
-  })
   const show = (event) => {
     setModal(event.target.value)
+  }
+
+  const buttonevent = () => {
+    {
+      setModal(true) && setTimeout(() => { setModal(false); }, 10000)
+    }
   }
   return (
     <Container>
@@ -108,7 +111,8 @@ const SearchPage = () => {
         <div className="left" style={{ zindex: '50' }}><HomeList />
         </div>
         <div className="right">
-          <QuestionMark onClick={() => { if (modal === false) { setModal(true) } else { setModal(false) } }}>?</QuestionMark>
+          <QuestionMark onClick={setTimeout(() => { setModal(false); }, 10000) && buttonevent} >?</QuestionMark>
+          {/* if (modal === false) { setModal(true) } else { setModal(false) }  */}
           {
             modal === true ? <Balloon>선택한 편의시설에 대한 점수가 높은 순서대로 정렬되어있습니다.</Balloon> : null
           }

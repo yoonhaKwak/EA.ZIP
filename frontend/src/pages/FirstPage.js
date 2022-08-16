@@ -97,7 +97,7 @@ const SamplePage = () => {
     return (
         <>
             {sessionStorage.getItem('userId') ?
-                <Container>
+                < Container >
                     <MainHeader />
                     <div className="Bodya">
                         <NormalButton>

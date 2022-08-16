@@ -95,9 +95,6 @@ const SearchHeader = (address) => {
             <HeaderBlock>
                 <Wrapper>
                     <Link to='/' className="logo"><img src={logo} alt="" /></Link>
-                    <div className="middle">
-                        <SearchForm inputaddress={address} />
-                    </div>
                     <div className="right">
                         <li>
                             <Link to='/normalsearch'>일반추천</Link>

@@ -148,7 +148,7 @@ const CategoryList2 = [
 ];
 
 const NormalSearch = (onClick) => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [category1, setCategory] = useState([]);
   const [type, setType] = useState([]);
   const [room_number, setRoom] = useState([]);
@@ -194,9 +194,6 @@ const NormalSearch = (onClick) => {
       setOption(options.filter(el => el !== item));
     }
   };
-  useEffect(() => {
-    setLoading(false);
-  });
   const Back = async () => {
     axios({
       method: 'post',
@@ -220,10 +217,7 @@ const NormalSearch = (onClick) => {
     }
     ).then((response) => {
       setData(JSON.stringify(response.data));
-      {
-        loading ? (<Loading />) :
-          navigate('/search', { state: response.data })
-      }
+      navigate('/search', { state: response.data })
     });
   };
   ////////////////////////////////////////////////////////// 숫자에 금액 표시 구간/////////////////////////////////////////////////////
@@ -353,18 +347,19 @@ const NormalSearch = (onClick) => {
           </Div>
         </form>
         <Sbtn onClick={() => {
-          Back()
+
+          loading ? <Loading /> :
+            Back()
           if (sessionStorage.filtered == null) {
             sessionStorage.setItem('filtered',
               JSON.stringify({ data: { search, map, mip, mam, mim, category1, type, room_number, options } })
             )
           }
+
+
         }}>
           추천받기
         </Sbtn>
-        {/* <code>
-          {JSON.stringify({ data: { search, map, mip, mam, mim, category1, type, room_number, options } })}
-        </code> */}
       </Positioner>
     </Container>
   );

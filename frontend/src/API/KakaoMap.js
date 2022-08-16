@@ -1,5 +1,5 @@
 import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk";
-import { useEffect, useState, createContext } from 'react';
+import React, { useEffect, useState, createContext, Suspense } from 'react';
 import SearchMarker from '../styles/icons/SearchMarker.svg';
 import axios from "axios";
 import { useLocation, Link } from "react-router-dom";
@@ -17,6 +17,7 @@ function KakaoMap() {
     const { state } = useLocation([]);
 
     const [sendData, setSendData] = useState();
+    const [postmarkers, setPostMarkers] = useState([]);
     // useEffect(() => {
     //     setSendData(clusterPositionsData.positions);
     // })
@@ -56,7 +57,6 @@ function KakaoMap() {
     //     console.log(cluster.getMarkers());
 
     // });
-    console.log(state);
     const centerlat = state[0].lat;
     const centerlng = state[0].lng;
     return (
@@ -79,6 +79,7 @@ function KakaoMap() {
                 gridSize={80}
                 averageCenter={true}
                 minLevel={5}
+                disableClickZoom={true}
                 calculator={[5, 10, 20]} // 클러스터의 크기 구분 값, 각 사이값마다 설정된 text나 style이 적용된다
                 styles={[{ // calculator 각 사이 값 마다 적용될 스타일을 지정한다
                     width: '100px', height: '100px',
@@ -112,7 +113,7 @@ function KakaoMap() {
                     lineHeight: '100px'
                 }
                 ]}
-
+                onClusterclick={(clusters, marker) => { console.log(marker.getMarkers()) }}
             >
                 {state.map((marker) => (
                     <MapMarker
@@ -141,6 +142,7 @@ function KakaoMap() {
                         }}
                     />
                 ))}
+
                 <ItemDetailMarker open={modalOpen} close={closeModal} ItemData={sendData} />
             </MarkerClusterer>
         </Map >

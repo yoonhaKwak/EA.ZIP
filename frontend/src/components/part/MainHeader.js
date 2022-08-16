@@ -77,7 +77,9 @@ const MainHeader = () => {
         ).then(function (response) {
             sessionStorage.removeItem("userId");
             sessionStorage.removeItem("token");
+            window.location.reload();
             alert('로그아웃완료');
+
         }
         )
     }
