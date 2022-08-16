@@ -123,8 +123,6 @@ public class LocalController {
         int caseNumber = 0;
         int APInumber = 0;
 
-
-
         for (int i : idx) {
             caseNumber += 1;
 
@@ -149,11 +147,6 @@ public class LocalController {
             // 매물과 목적지 좌표값을 통해 주변역 Idx를 ArrayList로 받고 transComparingDTO에 입력
             StationComparingDTO cDTO = new StationComparingDTO();
             ArrayList<String> hstation = cashing_service.NearStation(hMap);
-            System.out.println("#########################################");
-            System.out.println("hstation : " );
-            System.out.println(hstation);
-
-
 
             cDTO.setStation1(hstation);
             cDTO.setStation2(dstation);
@@ -164,7 +157,6 @@ public class LocalController {
             cDTO.setTransferMax(paramMap.getTransferMax());
             cDTO.setTransferMin(paramMap.getTransferMin());
 
-
             List<String> result = service.onlystationComparing(cDTO);
 //            System.out.println("only station comparing result :" + result);
 
@@ -174,23 +166,22 @@ public class LocalController {
 
             long end = System.currentTimeMillis();
 
-            System.out.println("cost time : " + (end - start)/1000.0);
+
 
             long start2 = System.currentTimeMillis();
 
-
             // DB에 역정보가 하나도 없는 경우 -> 바로 API
             if(result.isEmpty()) {
-                log.info("case1");
+                log.info("-----------------------------------------------------------------");
+                log.info(caseNumber+" home : case1");
                 api = service.localApi(coordinate);
+                APInumber += 1;
+                log.info("case number : " + caseNumber + " API사용 수 : " + APInumber ) ;
                 Thread.sleep(300);
                 if ((api[0] * 0.016 <= paramMap.getWalkTimeMax() & api[0] * 0.016 >= paramMap.getWalkTimeMin()) &
                         (api[1] <= paramMap.getTransferMax() & api[1] >= paramMap.getTransferMin()) &
                         (api[2] <= paramMap.getTimeSectionMax() & api[2] >= paramMap.getTimeSectionMin())) {
                     resultList.add(homes);
-                    APInumber += 1;
-                    log.info("case number : " + caseNumber + " API사용 수 : " + APInumber ) ;
-
                 }
             }
 
@@ -208,13 +199,12 @@ public class LocalController {
 //                }
 //            }
 
-
-
-            else if (result.size() > 50 ) {
-                log.info("case2");
-                log.info("################### 상당수의 경로가 DB에 저장되어있음 ##################");
+            // DB에 역정보가 상당히 많지만 그것이 교통정보필터링에 부합하지 않음, 그러나 모든 경우의수를 고려했다고 단정 X
+            else if (result.size() > 100 ) {
+                log.info("-----------------------------------------------------------------");
+                log.info(caseNumber+" home : case2");
                 List<String> having_over50_case_result = service.stationComparing(cDTO);
-                System.out.println("result : "+ having_over50_case_result);
+//                System.out.println("result : "+ having_over50_case_result);
                 // 교통정보필터링 결과 묶이는 역이 없는 경우 -> API사용
                 if (having_over50_case_result.isEmpty()) {
                     continue;
@@ -227,33 +217,37 @@ public class LocalController {
 
             // DB에 역정보가 적당히 있는 경우 -> 교통정보 필터링
             else {
-                log.info("case3");
+                log.info("-----------------------------------------------------------------");
+                log.info(caseNumber+" home : case3");
                 List<String> having_some_case_result = service.stationComparing(cDTO);
-                System.out.println("result : "+ having_some_case_result);
-
+//                System.out.println("result : "+result);
+//                System.out.println("station comparing result : "+having_some_case_result);
                 // 교통정보필터링 결과 묶이는 역이 없는 경우 -> API사용
                 if (having_some_case_result.isEmpty()) {
                     api = service.localApi(coordinate);
+                    APInumber += 1;
+                    log.info("case number : " + caseNumber + " API사용 수 : " + APInumber ) ;
                     Thread.sleep(300);
                     if ((api[0] * 0.016 <= paramMap.getWalkTimeMax() & api[0] * 0.016 >= paramMap.getWalkTimeMin()) &
                             (api[1] <= paramMap.getTransferMax() & api[1] >= paramMap.getTransferMin()) &
                             (api[2] <= paramMap.getTimeSectionMax() & api[2] >= paramMap.getTimeSectionMin())) {
                         resultList.add(homes);
-                        APInumber += 1;
-                        log.info("case number : " + caseNumber + " API사용 수 : " + APInumber ) ;
-                    } else {
-                        resultList.add(homes);
                     }
+                }
+                else {
+                    resultList.add(homes);
                 }
             }
 
             long end2 = System.currentTimeMillis();
-            System.out.println("cost time2 : " + (end2 - start2)/1000.0);
-            System.out.println("#########################################################################");
+            log.info("1차 db분석 시간 : " + (end - start)/1000.0);
+            log.info("2차 db분석 시간 : " + (end2 - start2)/1000.0);
             }
 
         long end_ALL = System.currentTimeMillis();
-        System.out.println("total cost time : " + (end_ALL - start_ALL)/1000.0);
+        log.info("total cost time : " + (end_ALL - start_ALL)/1000.0);
+        log.info("최종결과 : " + resultList.size());
+        log.info("총 API 사용 횟수 : " + APInumber );
         return resultList;
     }
 

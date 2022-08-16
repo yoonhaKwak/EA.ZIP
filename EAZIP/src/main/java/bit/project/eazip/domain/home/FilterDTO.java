@@ -9,10 +9,8 @@ import java.util.ArrayList;
 @Getter
 @Setter
 public class FilterDTO {
-
     private Double d_lat;
     private Double d_lng;
-
     private String addr1;
 
     private ArrayList<String> type;
@@ -27,6 +25,9 @@ public class FilterDTO {
     private int maxprice;
     private int minmonthly;
     private int maxmonthly;
+
+    private ArrayList<String> station1;
+    private ArrayList<String> station2;
 
     //소요시간
     private int timeSectionMin;
