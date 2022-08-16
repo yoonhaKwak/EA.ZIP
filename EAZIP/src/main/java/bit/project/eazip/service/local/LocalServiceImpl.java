@@ -56,7 +56,7 @@ public class LocalServiceImpl implements LocalService {
         log.info("############################");
         log.info("서비스 임플, filterPrice 실행");
         log.info("############################");
-        return localMapper.filterPrice(filterDTO);
+        return localMapper.filterPrice1(filterDTO);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class LocalServiceImpl implements LocalService {
         log.info("############################");
         log.info("서비스 임플, filterMonthly 실행");
         log.info("############################");
-        return localMapper.filterMonthly(filterDTO);
+        return localMapper.filterMonthly1(filterDTO);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class LocalServiceImpl implements LocalService {
         log.info("############################");
         log.info("서비스 임플, filterPrice 실행");
         log.info("############################");
-        return localMapper.filterPrice(filterDTO);
+        return localMapper.filterPrice2(filterDTO);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class LocalServiceImpl implements LocalService {
         log.info("############################");
         log.info("서비스 임플, filterMonthly 실행");
         log.info("############################");
-        return localMapper.filterMonthly(filterDTO);
+        return localMapper.filterMonthly2(filterDTO);
     }
 
 
