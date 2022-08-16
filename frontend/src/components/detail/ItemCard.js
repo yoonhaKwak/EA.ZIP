@@ -277,7 +277,11 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
         deposit = null;
     }
 
-
+    let feature;
+    if (Feature === "0") { feature = null }
+    else {
+        feature = Feature
+    }
 
     //평단가
     let realresult;
@@ -405,7 +409,11 @@ function ItemCard({ key, ImageUrl, Category2, Feature,
         dirN = '(' + DirectionN + ' 기준)'
     }
 
-
+    let layertype;
+    if (LayerType === "0") { layertype = null }
+    else {
+        layertype = LayerType
+    }
     /*-----------------------------------------------------------[뽀짝뽀짝]-------------------------------------------------------------------*/
 
 
@@ -856,19 +864,20 @@ padding-bottom:28px;
 
 
                                             <div className="list" >
-                                                <p><scaleFontSize><div className="bold"> {{ 1: "매매", 2: "전세", 3: "월세" }[Selling]} {realprice}
+                                                <p><div className="bold"> {{ 1: "매매", 2: "전세", 3: "월세" }[Selling]} {realprice}
 
                                                     {deposit}
-                                                </div></scaleFontSize></p>
+                                                </div></p>
                                                 <p><div className="em">{Addr}</div></p>
-                                                {Feature}
+                                                {feature}
                                                 <div style={{ height: '8px' }}>
                                                     <br />
                                                 </div >
-                                                {supply}m²/{dedicated}m² |<br />
-                                                {realresult === '0만' ? null
+                                                {Supply === 0 ? null : <> {supply}m²/{dedicated}m² |<br /></>}
+
+                                                {realresult === 'Infinity억 NaN만' ? null
                                                     :
-                                                    <>{realresult}원/3.3m²</>}
+                                                    <>  {realresult}원/3.3m²</>}
 
 
 
@@ -937,15 +946,15 @@ padding-bottom:28px;
 
 
                                     <div className="word">
-                                        {Feature}
+                                        {feature}
                                     </div>
 
 
 
 
                                     <div className="word">
-                                        {supply}m²/{dedicated}m²
-                                        {realresult === '0만' ? null
+                                        {Supply === 0 ? null : <> {supply}m²/{dedicated}m² </>}
+                                        {realresult === 'Infinity억 NaN만' ? null
                                             :
                                             <> | {realresult}원/3.3m²</>}
                                     </div>
@@ -966,7 +975,7 @@ padding-bottom:28px;
                                                 "고층": <div className="a"><img src={High} alt="" /></div>,
                                                 null: null
                                             }[LayerType]}
-                                            <div className="Text">{LayerType}</div>
+                                            <div className="Text">{layertype}</div>
                                         </div>
                                         <div className="Tag">
 
@@ -1165,10 +1174,10 @@ padding-bottom:28px;
 
 
                                 </ThirdItem>
-                                <ForthItem>
+                                <ForthItem id="minimap">
                                     <div className="Header" >위치 및 주변시설</div>
                                     <hr />
-                                    <OptionMap idx={Id} lat={Lat} lng={Lng} />
+                                    <OptionMap className="minimap" idx={Id} lat={Lat} lng={Lng} />
                                 </ForthItem>
                             </ItemDetail2>
                         </React.Fragment>

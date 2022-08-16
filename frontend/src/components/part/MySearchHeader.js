@@ -34,7 +34,7 @@ height:40px;
 .left {
     display:flex;
     align-items: center;
-    margin:auto 0rem auto 20rem;
+    margin: auto 0rem 0.4rem  20rem;
     font-size:1.8rem;
     font-weight:700;
     color:${pallette.orange[0]};
@@ -42,7 +42,7 @@ height:40px;
 `;
 
 const Wrapper = styled(Responsive)`
-padding-top:0.3rem;
+margin-top:-0.4rem;
 display: fixed;
 align-items: center;
 justify-content: space-between;

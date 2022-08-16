@@ -10,7 +10,6 @@ const MyListpage = ({ ItemList }) => {
         ItemList.map((itemdata) => {
           return (
             <MyItemCard
-              Idx={itemdata.idx}
               ImageUrl={itemdata.image_url}//이미지주소
               Category2={itemdata.category2}//카테고리2
               Name={itemdata.name}//매물명

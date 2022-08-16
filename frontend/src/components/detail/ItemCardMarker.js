@@ -1309,12 +1309,10 @@ padding-bottom:28px;
 
 
                             </ThirdItem>
-                            <ForthItem>
+                            <ForthItem className="minimap">
                                 <div className="Header" >위치 및 주변시설</div>
                                 <hr />
-
-                                <OptionMap idx={Id} lat={Lat} lng={Lng} />
-
+                                <OptionMap className="minimap" idx={Id} lat={Lat} lng={Lng} />
 
                             </ForthItem>
                         </React.Fragment>

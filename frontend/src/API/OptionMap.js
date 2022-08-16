@@ -29,17 +29,12 @@ import CycleOn from "../styles/icons/locate/CycleOn.svg";
 import CycleOff from "../styles/icons/locate/CycleOff.svg";
 import CCTVOn from "../styles/icons/locate/CCTVOn.svg";
 import CCTVOff from "../styles/icons/locate/CCTVOff.svg";
-import SubwayOn from "../styles/icons/locate/SubwayOn.svg";
-import SubwayOff from "../styles/icons/locate/SubwayOff.svg";
-import BusstaOn from "../styles/icons/locate/BusstaOn.svg";
-import BusstaOff from "../styles/icons/locate/BusstaOff.svg";
-import BusterOn from "../styles/icons/locate/BusterOn.svg";
-import BusterOff from "../styles/icons/locate/BusterOff.svg";
+
 
 
 import CafeMarker from "../styles/icons/optionmarker/cafe.svg"
 import HosMarker from "../styles/icons/optionmarker/hospital.svg"
-import SubMarker from "../styles/icons/optionmarker/subway.svg"
+
 import ConviMarker from "../styles/icons/optionmarker/convenience.svg"
 import LaunMarker from "../styles/icons/optionmarker/laundry.svg"
 import BankMarker from "../styles/icons/optionmarker/bank.svg"
@@ -48,10 +43,9 @@ import PostMarker from "../styles/icons/optionmarker/post.svg"
 import PubhoMarker from "../styles/icons/optionmarker/publichospital.svg"
 import CycleMarker from "../styles/icons/optionmarker/cycle.svg"
 import CCTVMarker from "../styles/icons/optionmarker/cctv.svg"
-import BusstaMarker from "../styles/icons/optionmarker/busstation.svg"
-import BusterMarker from "../styles/icons/optionmarker/busterminal.svg"
-import { array } from "prop-types";
 
+import { array } from "prop-types";
+const { kakao } = window;
 /*---------------------------------------------------------------[옵션버튼]-----------------------------------------------------------------------*/
 const OptionButtonAreaA = styled.main`
 width:auto;
@@ -77,7 +71,6 @@ const MapArea = styled.div`
     visibility:hidden;
  }   
 `
-
 /*---------------------------------------------------------------[뚜방뚜방]-----------------------------------------------------------------------*/
 
 function OptionMap(Idx, Lat, Lng, AAA) {
@@ -147,6 +140,7 @@ function OptionMap(Idx, Lat, Lng, AAA) {
 
     let bruh;
     const parentFunction = (x) => {
+
         Check = x
         OptionId = Check[0];
         bruh = Check[1];
@@ -233,13 +227,16 @@ function OptionMap(Idx, Lat, Lng, AAA) {
         }
 
         console.log(OptionId);
+        console.log(Lat, Lng)
 
     };
 
+
     return (
 
-        <MapArea>
+        <MapArea >
             <Map
+                className="map" id="map"
                 center={{
                     lat: centerlat,
                     lng: centerlng
@@ -251,12 +248,12 @@ function OptionMap(Idx, Lat, Lng, AAA) {
             >
 
 
-                {Home.map((marker) => (
-                    <MapMarker
-                        key={marker.idx}
+                {Home.map((a) => (
+                    <MapMarker className="map" id="map"
+                        key={a.idx}
                         position={{
-                            lat: marker.lat,
-                            lng: marker.lng
+                            lat: a.lat,
+                            lng: a.lng
                         }}
                         zIndex={10000}
                         image={{
@@ -276,12 +273,12 @@ function OptionMap(Idx, Lat, Lng, AAA) {
                     />
                 ))}
 
-                {OnOffmar && MarketList.map((marker) => (
+                {OnOffmar && MarketList.map((a) => (
                     <MapMarker
-                        key={marker}
+                        key={a}
                         position={{
-                            lat: marker.lat,
-                            lng: marker.lng
+                            lat: a.lat,
+                            lng: a.lng
                         }}
 
                         image={{

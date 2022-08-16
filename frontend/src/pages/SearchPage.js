@@ -110,6 +110,7 @@ const SearchPage = () => {
       <Body>
         <div className="left" style={{ zindex: '50' }}><HomeList />
         </div>
+
         <div className="right">
           <QuestionMark onClick={setTimeout(() => { setModal(false); }, 10000) && buttonevent} >?</QuestionMark>
           {/* if (modal === false) { setModal(true) } else { setModal(false) }  */}
