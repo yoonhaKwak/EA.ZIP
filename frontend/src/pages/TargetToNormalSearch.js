@@ -202,6 +202,7 @@ const NormalSearch = (onClick) => {
       data: {
         "d_lat": state.search.lat,
         "d_lng": state.search.lng,
+        "addr1": "",
         "maxprice": map,
         "minprice": mip,
         "maxmonthly": mam,

@@ -52,7 +52,7 @@ public class LocalServiceImpl implements LocalService {
     }
 
     @Override
-    public List<HomeDTO> filterPrice(FilterDTO filterDTO) {
+    public List<HomeDTO> filterPrice1(FilterDTO filterDTO) {
         log.info("############################");
         log.info("서비스 임플, filterPrice 실행");
         log.info("############################");
@@ -60,7 +60,23 @@ public class LocalServiceImpl implements LocalService {
     }
 
     @Override
-    public List<HomeDTO> filterMonthly(FilterDTO filterDTO) {
+    public List<HomeDTO> filterMonthly1(FilterDTO filterDTO) {
+        log.info("############################");
+        log.info("서비스 임플, filterMonthly 실행");
+        log.info("############################");
+        return localMapper.filterMonthly(filterDTO);
+    }
+
+    @Override
+    public List<HomeDTO> filterPrice2(FilterDTO filterDTO) {
+        log.info("############################");
+        log.info("서비스 임플, filterPrice 실행");
+        log.info("############################");
+        return localMapper.filterPrice(filterDTO);
+    }
+
+    @Override
+    public List<HomeDTO> filterMonthly2(FilterDTO filterDTO) {
         log.info("############################");
         log.info("서비스 임플, filterMonthly 실행");
         log.info("############################");
@@ -84,7 +100,6 @@ public class LocalServiceImpl implements LocalService {
         log.info("############################");
         return localMapper.stationComparing(cDTO);
     }
-
 
 
 

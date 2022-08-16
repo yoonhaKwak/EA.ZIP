@@ -77,7 +77,7 @@ const QuestionMark = styled.button`
 `;
 
 const Balloon = styled.div`
- background-color: #e6e6e6; border: none; border-radius: 10px; color: black; font-size: 16px; font-weight: bold; height: 70px; letter-spacing: -0.25px;
+ background-color: #e6e6e6; border: none; border-radius: 10px; color: black; font-size: 16px; font-weight: bold; height: 46px; letter-spacing: -0.25px;
   margin-top: 20px; margin-left: 100px; padding: 5px 11px; position: absolute; width: 300px; z-index: 100;
   ::after{
     border-color: #e6e6e6 transparent; border-style: solid; border-width: 15px 0 0 60px; content: ''; display: block; right: 300px;
@@ -110,7 +110,7 @@ const SearchPage = () => {
         <div className="right">
           <QuestionMark onClick={() => { if (modal === false) { setModal(true) } else { setModal(false) } }}>?</QuestionMark>
           {
-            modal === true ? <Balloon>선택한 편의시설이 가까운 순서대로 나와있습니다.</Balloon> : null
+            modal === true ? <Balloon>선택한 편의시설에 대한 점수가 높은 순서대로 정렬되어있습니다.</Balloon> : null
           }
           <KakaoMap />
         </div>

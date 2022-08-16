@@ -11,6 +11,7 @@ import bit.project.eazip.service.local.LocalService;
 
 
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.List;
 
 @RequestMapping("/general")
@@ -24,7 +25,7 @@ public class GeneralController {
 
     @RequestMapping(value = "/filter", method = {RequestMethod.GET, RequestMethod.POST})
     public List<HomeDTO> Filter(@RequestBody FilterDTO paramMap) throws SQLException,Exception{
-
+        Calendar cal = Calendar.getInstance();
         log.info("############### 컨트롤러 진입 #####################");
 
         FilterDTO filterDTO = paramMap;
@@ -43,15 +44,26 @@ public class GeneralController {
 
         log.info("########## 들어온 정보 적용하여 서비스 호출 작업 시작 ##########");
         List<HomeDTO> HomeList = null;
+        if(cal.get(Calendar.DAY_OF_WEEK) % 2 ==0)
+        {// 월세를 0으로 지정하면, 전세 매매 대상 필터링(db의 price를 이용)
+            if (filterDTO.getMaxmonthly() == 0) {
+                HomeList = service.filterPrice1(filterDTO);
+            }
 
-        // 월세를 0으로 지정하면, 전세 매매 대상 필터링(db의 price를 이용)
-        if (filterDTO.getMaxmonthly() == 0) {
-            HomeList = service.filterPrice(filterDTO);
+            // 월세가 0이 아니라면 월세 전세 매매 모두 필터링(db의 price와 monthly 모두 이용)
+            else {
+                HomeList = service.filterMonthly1(filterDTO);
+            }
         }
-
-        // 월세가 0이 아니라면 월세 전세 매매 모두 필터링(db의 price와 monthly 모두 이용)
         else {
-            HomeList = service.filterMonthly(filterDTO);
+            if (filterDTO.getMaxmonthly() == 0) {
+                HomeList = service.filterPrice2(filterDTO);
+            }
+
+            // 월세가 0이 아니라면 월세 전세 매매 모두 필터링(db의 price와 monthly 모두 이용)
+            else {
+                HomeList = service.filterMonthly2(filterDTO);
+            }
         }
         log.info("########## 필터링 적용하여 서비스 호출 완료 ##########");
         System.out.println(HomeList.size());

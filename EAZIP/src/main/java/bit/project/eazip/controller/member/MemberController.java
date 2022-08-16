@@ -78,7 +78,6 @@ public class MemberController {
             responseCode = conn.getResponseCode();
             System.out.println("responseCode : " + responseCode);
 
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

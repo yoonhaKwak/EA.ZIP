@@ -13,6 +13,8 @@ public class FilterDTO {
     private Double d_lat;
     private Double d_lng;
 
+    private String addr1;
+
     private ArrayList<String> type;
     private ArrayList<String> category1;
     private ArrayList<String> room_number;
