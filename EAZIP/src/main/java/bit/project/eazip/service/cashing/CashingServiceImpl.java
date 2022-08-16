@@ -101,7 +101,7 @@ public class CashingServiceImpl implements CashingService {
 
 
     @Override
-    public ArrayList<Long> NearStation(Map<String, Double> paramMap) {
+    public ArrayList<String> NearStation(Map<String, Double> paramMap) {
 
         String[] facilityList = new String[2];
         facilityList[0] = "bus_tbl";
@@ -111,7 +111,7 @@ public class CashingServiceImpl implements CashingService {
         Double dlng = paramMap.get("lng");
 
         List<Double> distance_list = new ArrayList<>();
-        ArrayList<Long> stations = new ArrayList<>();
+        ArrayList<String> stations = new ArrayList<>();
 
         for (int i = 0; i < facilityList.length; i++) {
 
@@ -122,9 +122,9 @@ public class CashingServiceImpl implements CashingService {
             Double lat_gap = 0.0009000;
             Double lng_gap = 0.0011340;
 
-            int scale = 6;
+            int scale = 4;
             if (i == 1) {
-                scale = 8;
+                scale = 6;
             }
 
             for (int j = 0; j < tempList.size(); j++) {
@@ -133,7 +133,7 @@ public class CashingServiceImpl implements CashingService {
                 Double slng = Double.parseDouble(tempList.get(j).get("lng").toString());
 
                 if (slat < dlat + lat_gap * scale && slat > dlat - lat_gap * scale && slng < dlng + lng_gap * scale && slng > dlng - lng_gap * scale) {
-                    stations.add(idx);
+                    stations.add(idx.toString());
 
 //                    Double distance = Haversine(dlat, dlng, slat, slng);
 //                    distance_list.add(distance);

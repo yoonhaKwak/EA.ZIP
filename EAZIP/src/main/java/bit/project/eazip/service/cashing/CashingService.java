@@ -14,7 +14,7 @@ public interface CashingService {
 
     public Map<String, List<Map<String, String>>> NearFacility(Map<String, Double> paramMap);
 
-    public ArrayList<Long> NearStation(Map<String, Double> paramMap);
+    public ArrayList<String> NearStation(Map<String, Double> paramMap);
 
     public Double Haversine(Double dlat, Double dlng, Double lat, Double lng);
 

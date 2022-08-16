@@ -25,6 +25,8 @@ public interface LocalService {
 
     public List<String> stationComparing(StationComparingDTO cDTO);
 
+    public List<String> onlystationComparing(StationComparingDTO cDTO);
+
     void insertData(HomeDTO filterDTO);
 
     public List<HomeDTO> filtering();

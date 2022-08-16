@@ -32,12 +32,11 @@ public class CashingController {
     }
 
 
-
     @RequestMapping(value ="/nearStation", method = {RequestMethod.GET,RequestMethod.POST})
-    public ArrayList<Long> NearStation(@RequestBody Map<String,Double> paramMap){
+    public ArrayList<String> NearStation(@RequestBody Map<String,Double> paramMap){
         Map<String, Double> temp = paramMap;
 
-        ArrayList<Long> stations =service.NearStation(temp);
+        ArrayList<String> stations =service.NearStation(temp);
         System.out.println(stations);
         return stations;
     }

@@ -12,8 +12,6 @@
 
 
 
-
-
     <select id="filterPrice1" parameterType="bit.project.eazip.domain.home.FilterDTO" resultType="bit.project.eazip.domain.home.HomeDTO">
         select * from gangnam0712 where
         type in
@@ -36,6 +34,7 @@
     </select>
 
     <select id="filterMonthly1" parameterType="bit.project.eazip.domain.home.FilterDTO" resultType="bit.project.eazip.domain.home.HomeDTO">
+
         select * from gangnam0712 where
         type in
         <foreach collection="type" item="item" index="index" separator="," open="(" close=")">
@@ -102,10 +101,36 @@
     </select>
 
 
-    <select id="stationComparing" parameterType="bit.project.eazip.domain.filter.StationComparingDTO" resultType="_long">
+    <select id="onlystationComparing" parameterType="bit.project.eazip.domain.filter.StationComparingDTO" resultType="String">
         select idx from interStationDB where
         (
-        (station1 in    
+        (station1 in
+        <foreach collection="station1" item="item" index="index" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+        and
+        station2 in
+        <foreach collection="station2" item="item" index="index" separator="," open="(" close=")">
+            #{item}
+        </foreach>)
+        or
+        (station1 in
+        <foreach collection="station2" item="item" index="index" separator="," open="(" close=")">
+            #{item}
+        </foreach>and
+        station2 in
+        <foreach collection="station1" item="item" index="index" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+        ))
+    </select>
+
+
+
+    <select id="stationComparing" parameterType="bit.project.eazip.domain.filter.StationComparingDTO" resultType="String">
+        select idx from interStationDB where
+        ((
+        station1 in
         <foreach collection="station1" item="item" index="index" separator="," open="(" close=")">
             #{item}
         </foreach>
@@ -123,12 +148,16 @@
         <foreach collection="station1" item="item" index="index" separator="," open="(" close=")">
             #{item}
         </foreach>
-            )
-        )
-        and sectionTime <![CDATA[<=]]> #{transferMax} and sectionTime <![CDATA[>=]]> #{transferMin}
-        and walk <![CDATA[<=]]> #{walkTimeMax} and walk <![CDATA[>=]]> #{walkTimeMin}
-        and trans <![CDATA[<=]]> #{transferMax} and trans <![CDATA[>=]]> #{transferMin}
+        ))
+        and sectionTime <![CDATA[<=]]> #{timeSectionMax}
+                                         and sectionTime <![CDATA[>=]]> #{timeSectionMin}
+        and walk <![CDATA[<=]]> #{walkTimeMax}
+                                         and walk <![CDATA[>=]]> #{walkTimeMin}
+        and trans <![CDATA[<=]]> #{transferMax}
+                                         and trans <![CDATA[>=]]> #{transferMin};
     </select>
+
+
 
 
 
@@ -139,7 +168,7 @@
         INSERT ignore into interStationDB (idx, station1, station2, sectionTime, walk, trans) values
         <foreach collection="list" item="item" index="index" separator=",">
             (#{item.idx}, #{item.station1}, #{item.station2}, #{item.sectionTime}, #{item.walk}, #{item.trans})
-        </foreach>
+        </foreach>;
     </insert>
 
 
@@ -147,7 +176,7 @@
 
     <insert id="insertRoomFiltering" parameterType="bit.project.eazip.domain.home.HomeDTO">
         insert into `table`
-        select * from test0719 where type = #{type} and  price <![CDATA[<=]]> #{price} and room_number
+        select * from test0719 where type = #{type} and  price <![CDATA[<=]]> #{price} and room_number;
     </insert>
 
 

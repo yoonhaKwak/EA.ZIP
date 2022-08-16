@@ -26,7 +26,12 @@ public interface LocalMapper {
 
     public List<HomeDTO> filterPrice2(FilterDTO filterDTO);
 
+
+
     public List<HomeDTO> filterMonthly2(FilterDTO filterDTO);
+
+    public List<String> onlystationComparing(StationComparingDTO cDTO);
+
 
     public List<String> stationComparing(StationComparingDTO cDTO);
 

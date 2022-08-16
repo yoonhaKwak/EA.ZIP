@@ -10,8 +10,8 @@ import java.util.ArrayList;
 @Setter
 public class StationComparingDTO {
 
-    private ArrayList<Long> station1;
-    private ArrayList<Long> station2;
+    private ArrayList<String> station1;
+    private ArrayList<String> station2;
     private int timeSectionMax;
     private int timeSectionMin;
 
