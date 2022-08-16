@@ -6,13 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="eea96d36-841c-4069-bb9f-06433382a808" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/API/OptionMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/API/OptionMap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/detail/ItemCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/detail/ItemCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/detail/ItemCardMarker.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/detail/ItemCardMarker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EAZIP/src/main/java/bit/project/eazip/mapper/local/LocalMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/EAZIP/src/main/java/bit/project/eazip/mapper/local/LocalMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/detail/MyItemCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/detail/MyItemCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/detail/MyListpage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/detail/MyListpage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/part/MySearchHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/part/MySearchHeader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/SearchPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/SearchPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,6 +121,7 @@
       <workItem from="1660371819573" duration="5259000" />
       <workItem from="1660540620321" duration="3438000" />
       <workItem from="1660608646087" duration="2025000" />
+      <workItem from="1660633039002" duration="3153000" />
     </task>
     <servers />
   </component>

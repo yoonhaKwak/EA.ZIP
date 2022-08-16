@@ -22,7 +22,7 @@ import RoomNBath from '../../styles/icons/RoomNBath.svg';
 import "../../styles/css/slick.css"
 import "../../styles/css/slick-theme.css"
 import Slider from "react-slick";
-import Heart from "../part/Heart";
+import ReverseHeart from "../part/ReverseHeart";
 import aircon_hanging from "../../styles/icons/options/aircon_hanging.svg";
 import aircon_stand_system from "../../styles/icons/options/aircon_stand_system.svg";
 import bath from "../../styles/icons/options/bath.svg";
@@ -888,7 +888,7 @@ padding-bottom:28px;
                                         </ListFeature>
                                         <div style={{ float: 'top' }}>
                                             <WTF onClick={() => { openModal(); historyCountHandler(); }} />
-                                            <Heart Id={Id} value={selectedidx} />
+                                            <ReverseHeart Id={Id} value={selectedidx} />
                                         </div>
                                     </div>
 
