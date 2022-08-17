@@ -122,12 +122,16 @@ public class LocalController {
         System.out.println(dstation);
         int caseNumber = 0;
         int APInumber = 0;
-
+        HomeDTO homes = new HomeDTO();
         for (int i : idx) {
             caseNumber += 1;
 
             long start = System.currentTimeMillis();
-            HomeDTO homes = service.selectData(i);
+            if(cal.get(Calendar.DAY_OF_WEEK) % 2 ==0) {
+                homes = service.selectData1(i);
+            }else {
+                homes = service.selectData2(i);
+            }
             Map<String, Double> coordinate = new HashMap<>();
 
             // 매물의 위도경도 정보 coordinate에 입력

@@ -2,18 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bit.project.eazip.mapper.local.LocalMapper">
 
-    <select id="selectList" resultType="bit.project.eazip.domain.home.HomeDTO">
-        SELECT * from gangnam0712;
-    </select>
+<!--    <select id="selectList" resultType="bit.project.eazip.domain.home.HomeDTO">-->
+<!--        SELECT * from home1;-->
+<!--    </select>-->
 
-    <select id="selectData" resultType="bit.project.eazip.domain.home.HomeDTO">
-        select * from gangnam0712 where idx = #{idx};
+    <select id="selectData1" resultType="bit.project.eazip.domain.home.HomeDTO">
+        select * from home1 where idx = #{idx};
+    </select>
+    <select id="selectData2" resultType="bit.project.eazip.domain.home.HomeDTO">
+        select * from home2 where idx = #{idx};
     </select>
 
 
 
     <select id="filterPrice1" parameterType="bit.project.eazip.domain.home.FilterDTO" resultType="bit.project.eazip.domain.home.HomeDTO">
-        select * from gangnam0712 where
+        select * from home1 where
         type in
         <foreach collection="type" item="item" index="index" separator="," open="(" close=")">
             #{item}
@@ -35,7 +38,7 @@
 
     <select id="filterMonthly1" parameterType="bit.project.eazip.domain.home.FilterDTO" resultType="bit.project.eazip.domain.home.HomeDTO">
 
-        select * from gangnam0712 where
+        select * from home1 where
         type in
         <foreach collection="type" item="item" index="index" separator="," open="(" close=")">
             #{item}
@@ -58,7 +61,7 @@
 
 
     <select id="filterPrice2" parameterType="bit.project.eazip.domain.home.FilterDTO" resultType="bit.project.eazip.domain.home.HomeDTO">
-        select * from gangnam0712 where
+        select * from home2 where
         type in
         <foreach collection="type" item="item" index="index" separator="," open="(" close=")">
             #{item}
@@ -79,7 +82,7 @@
     </select>
 
     <select id="filterMonthly2" parameterType="bit.project.eazip.domain.home.FilterDTO" resultType="bit.project.eazip.domain.home.HomeDTO">
-        select * from gangnam0712 where
+        select * from home2 where
         type in
         <foreach collection="type" item="item" index="index" separator="," open="(" close=")">
             #{item}

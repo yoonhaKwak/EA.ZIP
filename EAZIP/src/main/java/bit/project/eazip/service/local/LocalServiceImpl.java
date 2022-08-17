@@ -36,9 +36,14 @@ public class LocalServiceImpl implements LocalService {
     }
 
     @Override
-    public HomeDTO selectData(int idx) {
+    public HomeDTO selectData1(int idx) {
 
-        return localMapper.selectData(idx);
+        return localMapper.selectData1(idx);
+    }
+    @Override
+    public HomeDTO selectData2(int idx) {
+
+        return localMapper.selectData2(idx);
     }
 
     @Override

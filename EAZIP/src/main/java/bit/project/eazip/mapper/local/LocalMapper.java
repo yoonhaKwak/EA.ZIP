@@ -14,7 +14,8 @@ import java.util.Map;
 public interface LocalMapper {
     public List<HomeDTO> selectList();
 
-    public HomeDTO selectData(int idx);
+    public HomeDTO selectData1(int idx);
+    public HomeDTO selectData2(int idx);
 
     public HomeDTO saveData();
 
