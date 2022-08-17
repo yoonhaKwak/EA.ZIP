@@ -226,9 +226,6 @@ function OptionMap(Idx, Lat, Lng, AAA) {
             }
         }
 
-        console.log(OptionId);
-        console.log(Lat, Lng)
-
     };
 
 

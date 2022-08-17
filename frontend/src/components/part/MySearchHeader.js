@@ -102,8 +102,7 @@ const MySearchHeader = () => {
                 baseURL: 'http://localhost:8080'
             }
         ).then(function () {
-            sessionStorage.removeItem("userId");
-            sessionStorage.removeItem("token");
+            sessionStorage.clear();
         }
         )
     }

@@ -85,8 +85,7 @@ const SearchHeader = (address) => {
             }
         ).then(function () {
             alert('로그아웃완료');
-            sessionStorage.removeItem("userId");
-            sessionStorage.removeItem("token");
+            sessionStorage.clear();
         }
         )
     }

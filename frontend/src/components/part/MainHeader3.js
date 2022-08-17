@@ -78,8 +78,7 @@ const MainHeader3 = () => {
             }
         ).then(function () {
             console.log("post")
-            sessionStorage.removeItem("userId");
-            sessionStorage.removeItem("token");
+            sessionStorage.clear();
             alert('로그아웃완료');
         }
         )

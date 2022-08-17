@@ -195,6 +195,12 @@ const NormalSearch = (onClick) => {
       setOption(options.filter(el => el !== item));
     }
   };
+
+  const noresult = () => {
+    alert('매물이 없습니다 다시 선택해주세요');
+    window.location.reload();
+  }
+
   const Back = async () => {
     axios({
       method: 'post',
@@ -224,8 +230,13 @@ const NormalSearch = (onClick) => {
     }
     ).then((response) => {
       setData(JSON.stringify(response.data));
-      navigate('/search', { state: response.data })
-    });
+      if (response.data.length === 0) { noresult() } {
+        navigate('/search', { state: response.data })
+      }
+    })
+      .catch((e) => {
+        alert('모든 옵션을 선택해주세요.');
+      })
   };
   ////////////////////////////////////////////////////////// 숫자에 금액 표시 구간/////////////////////////////////////////////////////
 
@@ -334,7 +345,7 @@ const NormalSearch = (onClick) => {
             <Hr1 />
             <SliderDBox>최고 금액 <br />  ₩ {numberToKorean(map)}</SliderDBox>
             <br />
-            <p style={{ fontSize: "20px", marginTop:'50px'}}>월세</p>
+            <p style={{ fontSize: "20px", marginTop: '50px' }}>월세</p>
             <MultiRangeSlider
               min={0}
               max={1000}
@@ -345,12 +356,20 @@ const NormalSearch = (onClick) => {
             <SliderDBox>최고 금액 <br /> ₩ {numberToKorean(mam)}</SliderDBox>
           </Div>
         </form>
-        <Sbtn onClick={() => Back()}>
+        <Sbtn onClick={() => {
+          Back()
+          if (sessionStorage.filtered == null) {
+            sessionStorage.setItem('filteredT',
+              JSON.stringify({ data: { state, map, mip, mam, mim, category1, type, room_number, options } })
+            )
+            sessionStorage.setItem('filteredN', 0)
+          }
+        }}>
           추천받기
         </Sbtn>
-        {/* <code>
-          {JSON.stringify({ data: { search, map, mip, mam, mim, category1, type, room_number, options, state } })}
-        </code> */}
+        <code>
+          {JSON.stringify({ data: { state, map, mip, mam, mim, category1, type, room_number, options } })}
+        </code>
       </Positioner>
     </Container>
   );

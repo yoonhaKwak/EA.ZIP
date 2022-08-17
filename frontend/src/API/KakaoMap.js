@@ -1,15 +1,17 @@
 import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk";
 import React, { useEffect, useState, createContext, Suspense } from 'react';
 import SearchMarker from '../styles/icons/SearchMarker.svg';
-import axios from "axios";
-import { useLocation, Link } from "react-router-dom";
+import TargetMarker from '../styles/icons/TargetMarker.svg';
+import { useLocation } from "react-router-dom";
 import ItemDetailMarker from "../components/part/ItemDetailMarker";
-import styled from "styled-components";
-import { param } from "jquery";
 
 
 const { kakao } = window
-
+// document.addEventListener("touchstart", handler, {
+//     capture: false,
+//     once: false,
+//     passive: false
+// });
 function KakaoMap() {
     const [modalOpen, setModalOpen] = useState(false);
     const openModal = () => { setModalOpen(true) };
@@ -18,6 +20,14 @@ function KakaoMap() {
 
     const [sendData, setSendData] = useState();
     const [postmarkers, setPostMarkers] = useState([]);
+    const [변수, set변수] = useState([0, 0]);
+    let filteredN = JSON.parse(sessionStorage.filteredN);
+    console.log(filteredN);
+    let filteredT = JSON.parse(sessionStorage.filteredT);
+    let Destination = filteredT.data.state.destination;
+    let Rlat = parseFloat(filteredT.data.state.search.lat);
+    let Rlng = parseFloat(filteredT.data.state.search.lng);
+    // 위에 3줄은 지역추천에만 적용된다.
 
     const centerlat = state[0].lat;
     const centerlng = state[0].lng;
@@ -32,6 +42,29 @@ function KakaoMap() {
             level={8}
             minLevel={3}
         >
+            {filteredN === 0 ?
+                <MapMarker
+                    key={Destination}
+                    position={{
+                        lat: Rlat,
+                        lng: Rlng
+                    }}
+                    zIndex={100}
+                    image={{
+                        src: TargetMarker,
+                        size: {
+                            width: 60,
+                            height: 50
+                        },
+                        options: {
+                            offset: {
+                                x: 30,
+                                y: 45
+                            },
+                        },
+                    }}
+                /> : null
+            }
             <MarkerClusterer
                 gridSize={80}
                 averageCenter={true}
@@ -70,7 +103,8 @@ function KakaoMap() {
                     lineHeight: '70px'
                 }
                 ]}
-                onClusterclick={(clusters, marker) => { console.log(marker.getMarkers()) }}
+                onClusterclick={(clusters, marker) => { set변수(marker.getBounds()); console.log(marker.getMarkers().length) }} // putdata(); 일시.
+
             >
                 {state.map((marker) => (
                     <MapMarker

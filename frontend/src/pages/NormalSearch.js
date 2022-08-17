@@ -20,6 +20,10 @@ height: 100%;
 background-image:url(${image});
 background-repeat: no-repeat;
 background-size: cover;
+-webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
 `;
 
 const Positioner = styled.div`
@@ -260,6 +264,10 @@ const NormalSearch = (onClick) => {
   }
   ////////////////////////////////////////////////////////// 숫자에 금액 표시 구간/////////////////////////////////////////////////////
 
+  let state = {
+    "search": { "lat": "37.4946220591256", "lng": "127.027605458376" }
+    , "destination": "비트교육센터"
+  };
   return (
     <Container>
       <MainHeader3 />
@@ -345,7 +353,7 @@ const NormalSearch = (onClick) => {
             <Hr1 />
             <SliderDBox>최고 금액 <br />  ₩ {numberToKorean(map)}</SliderDBox>
             <br />
-            <p style={{ fontSize: "20px",marginTop:'50px'}}>월세</p>
+            <p style={{ fontSize: "20px", marginTop: '50px' }}>월세</p>
             <MultiRangeSlider
               min={0}
               max={1000}
@@ -357,19 +365,20 @@ const NormalSearch = (onClick) => {
           </Div>
         </form>
         <Sbtn onClick={() => {
-
-          loading ? <Loading /> :
-            Back()
+          Back()
           if (sessionStorage.filtered == null) {
-            sessionStorage.setItem('filtered',
+            sessionStorage.setItem('filteredN',
               JSON.stringify({ data: { search, map, mip, mam, mim, category1, type, room_number, options } })
             )
+            sessionStorage.setItem('filteredT',
+              JSON.stringify({ data: { state, map, mip, mam, mim, category1, type, room_number, options } }))
           }
-
-
         }}>
           추천받기
         </Sbtn>
+        {/* <code>
+          {JSON.stringify({ data: { state, map, mip, mam, mim, category1, type, room_number, options } })}
+        </code> */}
       </Positioner>
     </Container>
   );
