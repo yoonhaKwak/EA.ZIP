@@ -44,7 +44,6 @@ public class CashingServiceImpl implements CashingService {
 
 
 
-
     @Override
     public Map<String, List<Map<String, String>>> NearFacility(Map<String, Double> paramMap) {
 
@@ -101,11 +100,13 @@ public class CashingServiceImpl implements CashingService {
 
 
     @Override
-    public ArrayList<String> NearStation(Map<String, Double> paramMap) {
+    public List<Map<NearDTO, Object>> CallStation(String station) {
 
-        String[] facilityList = new String[2];
-        facilityList[0] = "bus_tbl";
-        facilityList[1] = "subway_tbl";
+        return (List<Map<NearDTO, Object>>) (List) cashingMapper.getStations(station);
+    }
+
+    @Override
+    public ArrayList<String> NearStation(Map<String, Double> paramMap, List<Map<NearDTO, Object>> subway, List<Map<NearDTO, Object>> bus) {
 
         Double dlat = paramMap.get("lat");
         Double dlng = paramMap.get("lng");
@@ -113,20 +114,19 @@ public class CashingServiceImpl implements CashingService {
         List<Double> distance_list = new ArrayList<>();
         ArrayList<String> stations = new ArrayList<>();
 
-        for (int i = 0; i < facilityList.length; i++) {
-
-            List subwayList_temp = cashingMapper.getStations(facilityList[i]);
-            List<Map<NearDTO, Object>> tempList = subwayList_temp;
+        int scale = 7;
+        List<Map<NearDTO, Object>> tempList = bus;
+        for (int i = 0; i < 2; i++) {
 
             // 주변 역 탐색시 반경 100m로 검색하기 위한 parameter
             Double lat_gap = 0.0009000;
             Double lng_gap = 0.0011340;
 
-            int scale = 4;
-            if (i == 1) {
-                scale = 6;
-            }
 
+            if (i == 1) {
+                scale = 8;
+                tempList = subway;
+            }
             for (int j = 0; j < tempList.size(); j++) {
                 Long idx = Long.parseLong(tempList.get(j).get("idx").toString());
                 Double slat = Double.parseDouble(tempList.get(j).get("lat").toString());
@@ -139,7 +139,11 @@ public class CashingServiceImpl implements CashingService {
 //                    distance_list.add(distance);
                 }
             }
+
+
+
         }
+//        System.out.println(distance_list);
         return stations;
     }
 

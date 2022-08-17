@@ -36,7 +36,7 @@ public class CashingController {
     public ArrayList<String> NearStation(@RequestBody Map<String,Double> paramMap){
         Map<String, Double> temp = paramMap;
 
-        ArrayList<String> stations =service.NearStation(temp);
+        ArrayList<String> stations =service.NearStation(temp, service.CallStation("subway_tbl"), service.CallStation("bus_tbl"));
         System.out.println(stations);
         return stations;
     }

@@ -9,11 +9,10 @@
     <select id="selectData1" resultType="bit.project.eazip.domain.home.HomeDTO">
         select * from home1 where idx = #{idx};
     </select>
+
     <select id="selectData2" resultType="bit.project.eazip.domain.home.HomeDTO">
         select * from home2 where idx = #{idx};
     </select>
-
-
 
     <select id="filterPrice1" parameterType="bit.project.eazip.domain.home.FilterDTO" resultType="bit.project.eazip.domain.home.HomeDTO">
         select * from home1 where
