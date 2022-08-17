@@ -2,15 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bit.project.eazip.mapper.mypage.MypageMapper">
 
-    <select id="getHistoryHome" resultType="bit.project.eazip.domain.home.HomeDTO">
-        SELECT * from gangnam0712 WHERE idx IN
+    <select id="getHistoryHome1" resultType="bit.project.eazip.domain.home.HomeDTO">
+        SELECT * from home1 WHERE idx IN
         <foreach collection="collection" item="item" index="index" separator="," open="(" close=")">
             #{item}
         </foreach>
     </select>
 
-    <select id="getFavoriteHome" resultType="bit.project.eazip.domain.home.HomeDTO">
-        SELECT * from gangnam0712 WHERE idx IN
+    <select id="getFavoriteHome1" resultType="bit.project.eazip.domain.home.HomeDTO">
+        SELECT * from home1 WHERE idx IN
+        <foreach collection="collection" item="item" index="index" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="getHistoryHome2" resultType="bit.project.eazip.domain.home.HomeDTO">
+        SELECT * from home2 WHERE idx IN
+        <foreach collection="collection" item="item" index="index" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="getFavoriteHome2" resultType="bit.project.eazip.domain.home.HomeDTO">
+        SELECT * from home2 WHERE idx IN
         <foreach collection="collection" item="item" index="index" separator="," open="(" close=")">
             #{item}
         </foreach>

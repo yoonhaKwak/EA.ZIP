@@ -181,7 +181,7 @@ public class LocalController {
                 api = service.localApi(coordinate);
                 APInumber += 1;
                 log.info("case number : " + caseNumber + " API사용 수 : " + APInumber ) ;
-                Thread.sleep(300);
+                Thread.sleep(50);
                 if ((api[0] * 0.016 <= paramMap.getWalkTimeMax() & api[0] * 0.016 >= paramMap.getWalkTimeMin()) &
                         (api[1] <= paramMap.getTransferMax() & api[1] >= paramMap.getTransferMin()) &
                         (api[2] <= paramMap.getTimeSectionMax() & api[2] >= paramMap.getTimeSectionMin())) {

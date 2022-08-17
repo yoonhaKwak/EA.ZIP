@@ -10,9 +10,12 @@ import java.util.List;
 @Mapper
 public interface MypageMapper {
 
-    public List<HomeDTO> getHistoryHome(ArrayList<String> history);
+    public List<HomeDTO> getHistoryHome1(ArrayList<String> history);
 
-    public List<HomeDTO> getFavoriteHome(ArrayList<String> favorite);
+    public List<HomeDTO> getFavoriteHome1(ArrayList<String> favorite);
+    public List<HomeDTO> getHistoryHome2(ArrayList<String> history);
+
+    public List<HomeDTO> getFavoriteHome2(ArrayList<String> favorite);
 
     public String getHistoryIdx(String userId);
 

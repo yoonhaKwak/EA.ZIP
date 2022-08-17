@@ -24,15 +24,26 @@ public class MypageServiceImpl implements MypageService{
     MypageMapper mypageMapper;
 
     @Override
-    public List<HomeDTO> getHistoryHome(ArrayList<String> history) {
-        log.info("service imple, getHistoryHome() 서비스 실행");
-        return mypageMapper.getHistoryHome(history);
+    public List<HomeDTO> getHistoryHome1(ArrayList<String> history) {
+        log.info("service imple, getHistoryHome1() 서비스 실행");
+        return mypageMapper.getHistoryHome1(history);
     }
 
     @Override
-    public List<HomeDTO> getFavoriteHome(ArrayList<String> favorite) {
-        log.info("service imple, getFavoriteHome() 서비스 실행");
-        return mypageMapper.getFavoriteHome(favorite);
+    public List<HomeDTO> getFavoriteHome1(ArrayList<String> favorite) {
+        log.info("service imple, getFavoriteHome1() 서비스 실행");
+        return mypageMapper.getFavoriteHome1(favorite);
+    }
+    @Override
+    public List<HomeDTO> getHistoryHome2(ArrayList<String> history) {
+        log.info("service imple, getHistoryHome2() 서비스 실행");
+        return mypageMapper.getHistoryHome2(history);
+    }
+
+    @Override
+    public List<HomeDTO> getFavoriteHome2(ArrayList<String> favorite) {
+        log.info("service imple, getFavoriteHome2() 서비스 실행");
+        return mypageMapper.getFavoriteHome2(favorite);
     }
 
     @Override

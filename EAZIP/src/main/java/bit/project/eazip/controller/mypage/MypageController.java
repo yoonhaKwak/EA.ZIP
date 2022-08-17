@@ -1,10 +1,7 @@
 package bit.project.eazip.controller.mypage;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import bit.project.eazip.domain.home.HomeDTO;
 import bit.project.eazip.service.mypage.MypageService;
@@ -153,8 +150,9 @@ public class MypageController {
     /////////////////   최근본 매물 불러오기  ///////////////////
     @RequestMapping(value ="/gethistory", method = {RequestMethod.GET,RequestMethod.POST})
     public List<HomeDTO> GetHistoryHome(@RequestBody Map<String, String> pramMap) {
+        Calendar cal = Calendar.getInstance();
         log.info("MypageController 집입");
-
+        List<HomeDTO> home = new ArrayList<>();
         String userId = pramMap.get("userId");
         String temp = service.getHistoryIdx(userId);
 
@@ -166,7 +164,11 @@ public class MypageController {
 
 
         // ArrayList형태의 idx를 통해 매물 가져오기
-        List<HomeDTO> home = service.getHistoryHome(history);
+        if(cal.get(Calendar.DAY_OF_WEEK) % 2 ==0) {
+            home = service.getHistoryHome1(history);
+        }else{
+            home = service.getHistoryHome2(history);
+        }
 
         log.info("데이터 불러와보기");
         System.out.println(home.get(0));
@@ -179,8 +181,9 @@ public class MypageController {
     /////////////////   찜 매물 불러오기  ///////////////////
     @RequestMapping(value="/getfavorite", method = {RequestMethod.GET, RequestMethod.POST})
     public List<HomeDTO> GetFavoriteHome(@RequestBody Map<String, String> pramMap) {
+        Calendar cal = Calendar.getInstance();
         log.info("MypageController 집입");
-
+        List<HomeDTO> home = new ArrayList<>();
         String userId = pramMap.get("userId");
         String temp = service.getFavoriteIdx(userId);
 
@@ -193,7 +196,11 @@ public class MypageController {
 
 
         // ArrayList형태의 idx를 통해 매물 가져오기
-        List<HomeDTO> home = service.getFavoriteHome(favorite);
+        if(cal.get(Calendar.DAY_OF_WEEK) % 2 ==0) {
+            home = service.getFavoriteHome1(favorite);
+        }else{
+            home = service.getFavoriteHome2(favorite);
+        }
 
         log.info("데이터 불러와보기");
         System.out.println(home.get(0));
