@@ -270,7 +270,7 @@ const NormalSearch = (onClick) => {
           <>
             <StyledBox className="inputForm">
               <Button type="button" onClick={onClick} />
-              <StyledInput type="text" placeholder="검색어를 입력하세요" onChange={onChange} onKeyPress={e => {
+              <StyledInput type="text" placeholder="지역을 입력하세요" onChange={onChange} onKeyPress={e => {
                 if (e.key === 'Enter') e.preventDefault();
               }} />
             </StyledBox>
@@ -337,7 +337,7 @@ const NormalSearch = (onClick) => {
             <p style={{ fontSize: "20px" }}>매매/전세/보증금</p>
             <MultiRangeSlider
               min={0}
-              max={1000000}
+              max={100000}
               onChange={({ min, max }) => setMip(min) & setMap(max)}
 
             />
@@ -345,7 +345,7 @@ const NormalSearch = (onClick) => {
             <Hr1 />
             <SliderDBox>최고 금액 <br />  ₩ {numberToKorean(map)}</SliderDBox>
             <br />
-            <p style={{ fontSize: "20px", padding: "10px 10px" }}>월세</p>
+            <p style={{ fontSize: "20px",marginTop:'50px'}}>월세</p>
             <MultiRangeSlider
               min={0}
               max={1000}
