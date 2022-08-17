@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 
 @Log
 @RestController
@@ -121,7 +122,7 @@ public class LocalController {
         List<Map<NearDTO, Object>> bus = cashing_service.CallStation("bus_tbl");
 
 
-        ArrayList<String> dstation = cashing_service.NearStation(dMap, subway, bus);
+        ArrayList<String> dstation = cashing_service.NearStation(dMap, subway, bus, paramMap.getWalkTimeMax());
 
         int caseNumber = 0;
         int APInumber = 0;
@@ -154,7 +155,7 @@ public class LocalController {
 
             // 매물과 목적지 좌표값을 통해 주변역 Idx를 ArrayList로 받고 transComparingDTO에 입력
             StationComparingDTO cDTO = new StationComparingDTO();
-            ArrayList<String> hstation = cashing_service.NearStation(hMap, subway, bus);
+            ArrayList<String> hstation = cashing_service.NearStation(hMap, subway, bus, paramMap.getWalkTimeMax());
 
             cDTO.setStation1(hstation);
             cDTO.setStation2(dstation);
@@ -176,6 +177,7 @@ public class LocalController {
             if(result.isEmpty()) {
                 log.info("-----------------------------------------------------------------");
                 log.info(caseNumber+" home : case1");
+                System.out.println("filtered station result : "+ result);
                 api = service.localApi(coordinate);
                 APInumber += 1;
                 log.info("case number : " + caseNumber + " API사용 수 : " + APInumber ) ;
@@ -183,7 +185,11 @@ public class LocalController {
                 if ((api[0] * 0.016 <= paramMap.getWalkTimeMax() & api[0] * 0.016 >= paramMap.getWalkTimeMin()) &
                         (api[1] <= paramMap.getTransferMax() & api[1] >= paramMap.getTransferMin()) &
                         (api[2] <= paramMap.getTimeSectionMax() & api[2] >= paramMap.getTimeSectionMin())) {
+                    log.info("api 결과 조건 만족");
                     resultList.add(homes);
+                }
+                else {
+                    log.info("api 결과 조건 불만족");
                 }
             }
 
@@ -208,10 +214,12 @@ public class LocalController {
 
                 // DB에 역정보가 상당히 많지만 그것이 교통정보필터링에 부합하지 않음, 그러나 모든 경우의수를 고려했다고 단정 X
 /////////////////////////////////////////// 여기 if문 조건 더 생각해야 함 //////////////////////////////////////////////////////
-                if (result.size() > (dstation.size() * hstation.size()) /3 ) {
+                if (  (result.size() >= (dstation.size() * hstation.size()) /430) || result.size() >= 7 )
+                {
                     log.info("-----------------------------------------------------------------");
                     log.info(caseNumber + " home : case2");
-                    System.out.println("only station result : " + result);
+//                    System.out.println("only station result # : " + result.size());
+//                    System.out.println("restricted result condtion # : " + (dstation.size() * hstation.size()) /430 );
                     System.out.println("filtered station result : " + having_case_result);
                     // DB의 역정보 대비
                     if (having_case_result.isEmpty()) {
@@ -227,7 +235,8 @@ public class LocalController {
                 else {
                     log.info("-----------------------------------------------------------------");
                     log.info(caseNumber + " home : case3");
-                    System.out.println("only station result : " + result);
+//                    System.out.println("only station result # : " + result.size());
+//                    System.out.println("restricted result condtion # : " + (dstation.size() * hstation.size()) /430 );
                     System.out.println("filtered station result : " + having_case_result);
                     // 교통정보필터링 결과 묶이는 역이 없는 경우 -> API사용
                     if (having_case_result.isEmpty()) {
@@ -252,8 +261,9 @@ public class LocalController {
             }
 
         long end_ALL = System.currentTimeMillis();
+        log.info("-----------------------------------------------------------------");
         log.info("total cost time : " + (end_ALL - start_ALL)/1000.0);
-        log.info("최종결과 : " + resultList.size());
+        log.info("최종매물 수 : " + resultList.size());
         log.info("총 API 사용 횟수 : " + APInumber );
         return resultList;
     }

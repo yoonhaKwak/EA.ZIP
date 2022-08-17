@@ -106,7 +106,7 @@ public class CashingServiceImpl implements CashingService {
     }
 
     @Override
-    public ArrayList<String> NearStation(Map<String, Double> paramMap, List<Map<NearDTO, Object>> subway, List<Map<NearDTO, Object>> bus) {
+    public ArrayList<String> NearStation(Map<String, Double> paramMap, List<Map<NearDTO, Object>> subway, List<Map<NearDTO, Object>> bus, Integer walk) {
 
         Double dlat = paramMap.get("lat");
         Double dlng = paramMap.get("lng");
@@ -114,7 +114,8 @@ public class CashingServiceImpl implements CashingService {
         List<Double> distance_list = new ArrayList<>();
         ArrayList<String> stations = new ArrayList<>();
 
-        int scale = 7;
+
+        Double scale = Math.min(walk * 0.55 , 7);
         List<Map<NearDTO, Object>> tempList = bus;
         for (int i = 0; i < 2; i++) {
 
@@ -122,9 +123,8 @@ public class CashingServiceImpl implements CashingService {
             Double lat_gap = 0.0009000;
             Double lng_gap = 0.0011340;
 
-
             if (i == 1) {
-                scale = 8;
+                scale += 1 ;
                 tempList = subway;
             }
             for (int j = 0; j < tempList.size(); j++) {

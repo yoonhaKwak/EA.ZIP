@@ -22,5 +22,5 @@ public interface CashingService {
 
     List<Map<NearDTO, Object>> CallStation(String station);
 
-    ArrayList<String> NearStation(Map<String, Double> paramMap, List<Map<NearDTO, Object>> subway, List<Map<NearDTO, Object>> bus);
+    ArrayList<String> NearStation(Map<String, Double> paramMap, List<Map<NearDTO, Object>> subway, List<Map<NearDTO, Object>> bus, Integer walk);
 }
