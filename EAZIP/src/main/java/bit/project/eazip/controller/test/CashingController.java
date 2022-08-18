@@ -15,7 +15,7 @@ import java.util.Map;
 @Log
 @RestController
 @RequestMapping("/cash")
-@CrossOrigin(origins = "http://localhost:3000",allowCredentials = "true")
+@CrossOrigin(origins = "http://3.34.152.8:3000",allowCredentials = "true")
 public class CashingController {
 
     @Autowired
