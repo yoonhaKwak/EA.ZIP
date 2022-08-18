@@ -42,7 +42,7 @@ public class MemberServiceImpl implements MemberService{
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
             String sb = "grant_type=authorization_code" +
                     "&client_id=e98b7c20443a64d2a2230260e7c2fa22" + // TODO REST_API_KEY 입력
-                    "&redirect_uri=http://3.34.152.8:3000/oauth/kakao/callback" + // TODO 인가코드 받은 redirect_uri 입력
+                    "&redirect_uri=http://localhost:3000/oauth/kakao/callback" + // TODO 인가코드 받은 redirect_uri 입력
                     "&code=" + code +
                     "&client_secret=ZLRArPSx5tzIcj0XB7YGHxy1JNUCJrT4";
             bw.write(sb);

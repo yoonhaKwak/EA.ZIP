@@ -23,7 +23,7 @@ import java.util.Map;
 @RequestMapping("/member")
 @RestController
 @Log
-@CrossOrigin(origins = "http://3.34.152.8:3000",allowCredentials = "true")
+@CrossOrigin(origins = "http://localhost:3000",allowCredentials = "true")
 public class MemberController {
     @Autowired
     MemberService service;
