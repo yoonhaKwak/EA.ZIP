@@ -177,7 +177,7 @@ public class LocalController {
             if(result.isEmpty()) {
                 log.info("-----------------------------------------------------------------");
                 log.info(caseNumber+" home : case1");
-                System.out.println("filtered station result : "+ result);
+//                System.out.println("filtered station result : "+ result);
                 api = service.localApi(coordinate);
                 APInumber += 1;
                 log.info("case number : " + caseNumber + " API사용 수 : " + APInumber ) ;
@@ -220,7 +220,7 @@ public class LocalController {
                     log.info(caseNumber + " home : case2");
 //                    System.out.println("only station result # : " + result.size());
 //                    System.out.println("restricted result condtion # : " + (dstation.size() * hstation.size()) /430 );
-                    System.out.println("filtered station result : " + having_case_result);
+//                    System.out.println("filtered station result : " + having_case_result);
                     // DB의 역정보 대비
                     if (having_case_result.isEmpty()) {
                         continue;
@@ -237,7 +237,7 @@ public class LocalController {
                     log.info(caseNumber + " home : case3");
 //                    System.out.println("only station result # : " + result.size());
 //                    System.out.println("restricted result condtion # : " + (dstation.size() * hstation.size()) /430 );
-                    System.out.println("filtered station result : " + having_case_result);
+//                    System.out.println("filtered station result : " + having_case_result);
                     // 교통정보필터링 결과 묶이는 역이 없는 경우 -> API사용
                     if (having_case_result.isEmpty()) {
                         api = service.localApi(coordinate);
