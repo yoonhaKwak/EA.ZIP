@@ -367,9 +367,9 @@ const NormalSearch = (onClick) => {
         }}>
           추천받기
         </Sbtn>
-        <code>
+        {/* <code>
           {JSON.stringify({ data: { state, map, mip, mam, mim, category1, type, room_number, options } })}
-        </code>
+        </code> */}
       </Positioner>
     </Container>
   );

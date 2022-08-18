@@ -1,7 +1,7 @@
 import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk";
 import React, { useEffect, useState, createContext, Suspense } from 'react';
 import SearchMarker from '../styles/icons/SearchMarker.svg';
-import TargetMarker from '../styles/icons/TargetMarker.svg';
+import TargetMarker from '../styles/icons/TargetMarker(1).svg';
 import { useLocation } from "react-router-dom";
 import ItemDetailMarker from "../components/part/ItemDetailMarker";
 
